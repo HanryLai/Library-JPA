@@ -8,6 +8,8 @@ public class MainTest {
 //		EntityManagerFactory emf = jakarta.persistence.Persistence.createEntityManagerFactory("jpa-mssql");
 		Persistence.createEntityManagerFactory("jpa-mssql");
 		
+	
+
 //		DO NOT CLOSE
 //		emf.close();
 	}
