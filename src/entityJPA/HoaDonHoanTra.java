@@ -21,20 +21,17 @@ import lombok.Setter;
 public class HoaDonHoanTra {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String maHoaDonHoanTra;
+	private int maHoaDonHoanTra;
 	
 	private LocalDate ngayHoan;
-	private String nhanVien;
-	private String hoaDon;
+	private int nhanVien;
+	private int hoaDon;
 	private String ghiChu;
 	private int tinhTrangHoaDon;
 	private float tienHoanTra;
-	
-	
-
-	public HoaDonHoanTra(LocalDate ngayHoan, String nhanVien, String hoaDon, String ghiChu, int tinhTrangHoaDon,
+	public HoaDonHoanTra(LocalDate ngayHoan, int nhanVien, int hoaDon, String ghiChu, int tinhTrangHoaDon,
 			float tienHoanTra) {
-		
+		super();
 		this.ngayHoan = ngayHoan;
 		this.nhanVien = nhanVien;
 		this.hoaDon = hoaDon;
@@ -42,5 +39,9 @@ public class HoaDonHoanTra {
 		this.tinhTrangHoaDon = tinhTrangHoaDon;
 		this.tienHoanTra = tienHoanTra;
 	}
+	
+	
+
+	
 
 }
