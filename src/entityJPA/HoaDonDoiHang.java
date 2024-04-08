@@ -20,15 +20,15 @@ import lombok.ToString;
 public class HoaDonDoiHang {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String maHoaDonDoi;
+	private int maHoaDonDoi;
 	
-	private String hoaDonHoanTra;
+	private int hoaDonHoanTra;
 	private String ghiChu;
 	private float tienHoanTra;
 	private float chietKhau;
 	private String khuyenMai;
 	
-	public HoaDonDoiHang(String hoaDonHoanTra, String ghiChu, float tienHoanTra, float chietKhau, String khuyenMai) {
+	public HoaDonDoiHang(int hoaDonHoanTra, String ghiChu, float tienHoanTra, float chietKhau, String khuyenMai) {
 		super();
 		this.hoaDonHoanTra = hoaDonHoanTra;
 		this.ghiChu = ghiChu;
@@ -36,6 +36,8 @@ public class HoaDonDoiHang {
 		this.chietKhau = chietKhau;
 		this.khuyenMai = khuyenMai;
 	}
+	
+	
 	
 	
 	
