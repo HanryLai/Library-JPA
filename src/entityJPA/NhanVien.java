@@ -3,9 +3,6 @@ package entityJPA;
 import java.time.LocalDate;
 import java.util.List;
 
-import entity.CaLamViec;
-import entity.ChucVu;
-import entity.TaiKhoan;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
