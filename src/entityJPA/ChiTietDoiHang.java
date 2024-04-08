@@ -18,18 +18,20 @@ import lombok.Setter;
 @Table(name = "ChiTietDoiHang")
 public class ChiTietDoiHang {
 	@Id
-	private String hoaDonDoiHang;
+	private int hoaDonDoiHang;
 	@Id
-	private String sanPham;
+	private int sanPham;
 	private int soLuong;
 	private float thanhTien;
-	public ChiTietDoiHang(String hoaDonDoiHang, String sanPham, int soLuong, float thanhTien) {
+	public ChiTietDoiHang(int hoaDonDoiHang, int sanPham, int soLuong, float thanhTien) {
 		super();
 		this.hoaDonDoiHang = hoaDonDoiHang;
 		this.sanPham = sanPham;
 		this.soLuong = soLuong;
 		this.thanhTien = thanhTien;
 	}
+	
+	
 	
 	
 	
