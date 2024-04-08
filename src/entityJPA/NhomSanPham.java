@@ -20,19 +20,11 @@ import lombok.ToString;
 public class NhomSanPham {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String maNhomSanPham;
+	private int maNhomSanPham;
 	private String tenNhomSanPham;
 	public NhomSanPham(String tenNhomSanPham) {
 		super();
 		this.tenNhomSanPham = tenNhomSanPham;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
