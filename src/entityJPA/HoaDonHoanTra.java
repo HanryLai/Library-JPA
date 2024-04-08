@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,17 +24,16 @@ public class HoaDonHoanTra {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String maHoaDonHoanTra;
-	
 	private LocalDate ngayHoan;
-	private String nhanVien;
+	@ManyToOne
+	@JoinColumn(name = "maNhanVien")
+	private NhanVien nhanVien;
 	private String hoaDon;
 	private String ghiChu;
 	private int tinhTrangHoaDon;
 	private float tienHoanTra;
 	
-	
-
-	public HoaDonHoanTra(LocalDate ngayHoan, String nhanVien, String hoaDon, String ghiChu, int tinhTrangHoaDon,
+	public HoaDonHoanTra(LocalDate ngayHoan, NhanVien nhanVien, String hoaDon, String ghiChu, int tinhTrangHoaDon,
 			float tienHoanTra) {
 		
 		this.ngayHoan = ngayHoan;

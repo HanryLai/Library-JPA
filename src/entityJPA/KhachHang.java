@@ -1,11 +1,14 @@
 package entityJPA;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +31,8 @@ public class KhachHang {
 	private NhomKhachHang nhomKhachHang;
 	private double tongTienMua;
 	private int soLuongHoaDon;
+	@OneToMany(mappedBy = "khachHang")
+	private List<HoaDon> hoaDon;
 	
 	@Override
 	public String toString() {
