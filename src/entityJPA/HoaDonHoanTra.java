@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ import lombok.Setter;
 public class HoaDonHoanTra {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private int maHoaDonHoanTra;
 	
 	private LocalDate ngayHoan;
@@ -30,6 +33,7 @@ public class HoaDonHoanTra {
 	private int tinhTrangHoaDon;
 	private float tienHoanTra;
 	public HoaDonHoanTra(LocalDate ngayHoan, int nhanVien, int hoaDon, String ghiChu, int tinhTrangHoaDon,
+
 			float tienHoanTra) {
 		super();
 		this.ngayHoan = ngayHoan;
