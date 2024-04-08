@@ -2,55 +2,41 @@ package entityJPA;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
+@AllArgsConstructor
+
+@Entity
 @Table(name = "VanPhongPham")
-public class VanPhongPham  {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int maSanPham;
-    private String tenSanPham;
-    
-//    private NhomSanPham nhomSanPham;
-//    private NhaCungCap nhaCungCap;
-    
-    private int soLuongTon;
-    private double donGiaNhap;
-    private String moTa;
-    private double donGiaBan;
-    private double VAT;
-//    private MauSac mauSac;
-    private String noiSanXuat;
-    private LocalDateTime ngayTao;
-    private double giamGia;
-    private String tinhTrang;
-    
-    // Tạm Thời
-	public VanPhongPham(String tenSanPham, int soLuongTon, double donGiaNhap, String moTa, double donGiaBan, double VAT,
-			String noiSanXuat, LocalDateTime ngayTao, double giamGia, String tinhTrang) {
-		this.tenSanPham = tenSanPham;
-		this.soLuongTon = soLuongTon;
-		this.donGiaNhap = donGiaNhap;
-		this.moTa = moTa;
-		this.donGiaBan = donGiaBan;
-		this.VAT = VAT;
+@DiscriminatorValue("VanPhongPham")
+public class VanPhongPham extends SanPham {
+	@ManyToOne
+	@JoinColumn(name = "maMau")
+	private MauSac mauSac;
+	private String noiSanXuat;
+	
+	public VanPhongPham(String tenSanPham, NhomSanPham nhomSanPham, NhaCungCap nhaCungCap, int soLuongTon,
+			double donGiaNhap, String moTa, String tinhTrang, double donGiaBan, LocalDateTime ngayTao, double VAT,
+			double giamGia, MauSac mauSac, String noiSanXuat) {
+		super(tenSanPham, nhomSanPham, nhaCungCap, soLuongTon, donGiaNhap, moTa, tinhTrang, donGiaBan, ngayTao, VAT,
+				giamGia);
+		this.mauSac = mauSac;
 		this.noiSanXuat = noiSanXuat;
-		this.ngayTao = ngayTao;
-		this.giamGia = giamGia;
-		this.tinhTrang = tinhTrang;
 	}
+
     
 }

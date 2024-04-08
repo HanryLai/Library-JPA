@@ -1,64 +1,40 @@
 package entityJPA;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-import groovy.transform.ToString;
-import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+
 @Entity
-public class Sach {
-//	[maSanPham] [nvarchar](50) NOT NULL,
-//	[tenSanPham] [nvarchar](50) NULL,
-//	[nhomSanPham] [nvarchar](50) NULL,
-//	[soLuongTon] [int] NULL,
-//	[donGiaNhap] [float] NULL,
-//	[moTa] [nvarchar](500) NULL,
-//	[tinhTrang] [nvarchar](50) NULL,
-//	[donGiaBan] [float] NULL,
-//	[VAT] [float] NULL,
-//	[tacGia] [nvarchar](50) NULL,
-//	[namXuatBan] [int] NULL,
-//	[nhaSanXuat] [nvarchar](50) NULL,
-//	[soTrang] [int] NULL,
-//	[ngayTao] [datetime] NULL,
-//	[giamGia] [float] NULL,
-// CONSTRAINT [PK_Sach] PRIMARY KEY CLUSTERED 
-	
-	@Id
-	private String maSanPham;
-	
-	@Column(columnDefinition = "nvarchar(50)")
-	private String tenSanPham;
-	@Column(columnDefinition = "nvarchar(50)")
-	private String nhomSanPham;
-	private int soLuongTon;
-	private float donGiaNhap;
-	@Column(columnDefinition = "nvarchar(500)")
-	private String moTa;
-	@Column(columnDefinition = "nvarchar(50)")
-	private String tinhTrang;
-	private float donGiaBan;
-	private float VAT;
-	@Column(columnDefinition = "nvarchar(50)")
+@Table(name = "Sach")
+@DiscriminatorValue("Sach")
+public class Sach extends SanPham{
 	private String tacGia;
+	private String nhaXuatBan;
 	private int namXuatBan;
-	@Column(columnDefinition = "nvarchar(50)")
-	private String nhaSanXuat;
 	private int soTrang;
-	private LocalDate ngayTao;
-	private float giamGia;
 	
-	
+	public Sach(String tenSanPham, NhomSanPham nhomSanPham, NhaCungCap nhaCungCap, int soLuongTon, double donGiaNhap,
+			String moTa, String tinhTrang, double donGiaBan, LocalDateTime ngayTao, double VAT, double giamGia,
+			String tacGia, String nhaXuatBan, int namXuatBan, int soTrang) {
+		super(tenSanPham, nhomSanPham, nhaCungCap, soLuongTon, donGiaNhap, moTa, tinhTrang, donGiaBan, ngayTao, VAT,
+				giamGia);
+		this.tacGia = tacGia;
+		this.nhaXuatBan = nhaXuatBan;
+		this.namXuatBan = namXuatBan;
+		this.soTrang = soTrang;
+	}
 	
 }
