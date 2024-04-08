@@ -1,6 +1,7 @@
 package entityJPA;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import entity.CaLamViec;
 import entity.ChucVu;
@@ -11,6 +12,10 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,11 +37,19 @@ public class NhanVien {
 	private String soDienThoai;
 	private String gioiTinh;
 	private String email;
+	@OneToOne
+	@JoinColumn(name = "tenDangNhap", unique = true, nullable = false)
 	private TaiKhoan taiKhoan;
 	private int tinhTrangLamViec;
+	@ManyToOne
+	@JoinColumn(name = "maCa")
 	private CaLamViec caLamViec;
 	@Enumerated(EnumType.STRING)
 	private ChucVu chucVu;
+	@OneToMany(mappedBy = "nhanVien")
+	private List<HoaDon> hoaDon;
+	@OneToMany(mappedBy = "nhanVien")
+	private List<HoaDonHoanTra> hoaDonHoanTra;
 
 	
 }
