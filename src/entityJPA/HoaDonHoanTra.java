@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Table(name = "HoaDonHoanTra")
 public class HoaDonHoanTra {
@@ -28,24 +30,18 @@ public class HoaDonHoanTra {
 	
 	private LocalDate ngayHoan;
 	private int nhanVien;
-	private int hoaDon;
+	
+	@ManyToOne
+	@JoinColumn(name = "maHoaDon")
+	private HoaDon hoaDon;
 	private String ghiChu;
 	private int tinhTrangHoaDon;
 	private float tienHoanTra;
-	public HoaDonHoanTra(LocalDate ngayHoan, int nhanVien, int hoaDon, String ghiChu, int tinhTrangHoaDon,
-
-			float tienHoanTra) {
-		super();
-		this.ngayHoan = ngayHoan;
-		this.nhanVien = nhanVien;
-		this.hoaDon = hoaDon;
-		this.ghiChu = ghiChu;
-		this.tinhTrangHoaDon = tinhTrangHoaDon;
-		this.tienHoanTra = tienHoanTra;
-	}
 	
 	
-
+	
+	
+	
 	
 
 }
