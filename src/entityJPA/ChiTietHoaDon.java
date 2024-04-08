@@ -24,12 +24,12 @@ public class ChiTietHoaDon {
 	@JoinColumn(name = "hoaDon")
 	private HoaDon hoaDon;
 	
-	@Id
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "maSach")
 	private Sach sach;
 	
-	@Id
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "maVanPhongPham")
 	private VanPhongPham vanPhongPham;

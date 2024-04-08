@@ -19,12 +19,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 public class ChiTietHoanTra {
-	@Id
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "maSach")
 	private Sach sach;
 	
-	@Id
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "maVanPhongPham")
 	private VanPhongPham vanPhongPham;
