@@ -1,9 +1,14 @@
 package entityJPA;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,23 +27,16 @@ public class HoaDonDoiHang {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maHoaDonDoi;
 	
-	private int hoaDonHoanTra;
+	@OneToMany(mappedBy = "hoaDonDoiHang")
+	private List<ChiTietDoiHang> chiTietDoiHang;
+	
+	@OneToOne
+    @JoinColumn(name = "maHoaDonHoanTra")
+    private HoaDonHoanTra hoaDonHoanTra;
+
+	
 	private String ghiChu;
 	private float tienHoanTra;
 	private float chietKhau;
 	private String khuyenMai;
-	
-	public HoaDonDoiHang(int hoaDonHoanTra, String ghiChu, float tienHoanTra, float chietKhau, String khuyenMai) {
-		super();
-		this.hoaDonHoanTra = hoaDonHoanTra;
-		this.ghiChu = ghiChu;
-		this.tienHoanTra = tienHoanTra;
-		this.chietKhau = chietKhau;
-		this.khuyenMai = khuyenMai;
-	}
-	
-	
-	
-	
-	
 }
