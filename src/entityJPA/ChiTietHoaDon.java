@@ -19,18 +19,22 @@ import lombok.ToString;
 @Entity
 public class ChiTietHoaDon {
 
-//	[soLuong] [int] NULL,
-//	[thanhTien] [float] NULL,
-
 	@Id
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "hoaDon")
-	HoaDon hoaDon;
+	private HoaDon hoaDon;
 	
-	@Id
+	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "sanPham")
-	Sach sanPham;
+	@JoinColumn(name = "maSach")
+	private Sach sach;
+	
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "maVanPhongPham")
+	private VanPhongPham vanPhongPham;
+	
+	
 	private int soLuong;
 	private double thanhTien;
 	

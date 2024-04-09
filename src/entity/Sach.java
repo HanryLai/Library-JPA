@@ -3,12 +3,16 @@ package entity;
 import java.time.LocalDateTime;
 
 public class Sach extends SanPham {
-
+	
+	
+	
     private String tacGia;
+    
     private int namXuatBan;
     private String nhaXuatBan;
     private int soTrang;
-
+    
+    
     public Sach() {
 
     }

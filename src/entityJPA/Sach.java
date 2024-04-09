@@ -2,9 +2,9 @@ package entityJPA;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,28 +13,34 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor
 @AllArgsConstructor
-
+@NoArgsConstructor
+@ToString(callSuper = true)
 @Entity
-@Table(name = "Sach")
-@DiscriminatorValue("Sach")
 public class Sach extends SanPham{
+	
+	
+	@Column(columnDefinition = "nvarchar(50)")
 	private String tacGia;
-	private String nhaXuatBan;
+	
 	private int namXuatBan;
+	@Column(columnDefinition = "nvarchar(50)")
+	private String nhaSanXuat;
 	private int soTrang;
 	
 	public Sach(String tenSanPham, NhomSanPham nhomSanPham, NhaCungCap nhaCungCap, int soLuongTon, double donGiaNhap,
-			String moTa, String tinhTrang, double donGiaBan, LocalDateTime ngayTao, double VAT, double giamGia,
-			String tacGia, String nhaXuatBan, int namXuatBan, int soTrang) {
-		super(tenSanPham, nhomSanPham, nhaCungCap, soLuongTon, donGiaNhap, moTa, tinhTrang, donGiaBan, ngayTao, VAT,
+			String moTa, String tinhTrang, double donGiaBan, double VAT, LocalDateTime ngayTao, double giamGia,
+			String tacGia, int namXuatBan, String nhaSanXuat, int soTrang) {
+		super(tenSanPham, nhomSanPham, nhaCungCap, soLuongTon, donGiaNhap, moTa, tinhTrang, donGiaBan, VAT, ngayTao,
 				giamGia);
 		this.tacGia = tacGia;
-		this.nhaXuatBan = nhaXuatBan;
 		this.namXuatBan = namXuatBan;
+		this.nhaSanXuat = nhaSanXuat;
 		this.soTrang = soTrang;
 	}
+	
+	
+	
+	
 	
 }
