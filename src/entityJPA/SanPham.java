@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.lowagie.text.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -40,6 +41,9 @@ public abstract class SanPham {
 	@JoinColumn(name = "maNhaCungCap")
 	private NhaCungCap nhaCungCap;
 	
+	
+	
+	
 	protected int soLuongTon;
 	protected double donGiaNhap;
 	protected String moTa;
@@ -48,8 +52,6 @@ public abstract class SanPham {
 	protected double VAT;
 	protected LocalDateTime ngayTao;
 	protected double giamGia;
-	
-
 	
 	public SanPham(String tenSanPham, NhomSanPham nhomSanPham, NhaCungCap nhaCungCap, int soLuongTon, double donGiaNhap,
 			String moTa, String tinhTrang, double donGiaBan, double VAT, LocalDateTime ngayTao, double giamGia) {
@@ -65,4 +67,6 @@ public abstract class SanPham {
 		this.ngayTao = ngayTao;
 		this.giamGia = giamGia;
 	}
+	
+	
 }
