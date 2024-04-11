@@ -46,8 +46,5 @@ public class HoaDon {
 		return "HoaDon [maHoaDon=" + maHoaDon + ", ngayLap=" + ngayLap + ", ghiChu=" + ghiChu + ", tinhTrangHoaDon="
 				+ tinhTrangHoaDon + ", tongTien=" + tongTien + ", chietKhau=" + chietKhau + ", khuyenMai=" + khuyenMai
 				+ ", khachHang=" + khachHang + ", nhanVien=" + nhanVien + "]";
-	}
-	
-	
-	
+	}	
 }
