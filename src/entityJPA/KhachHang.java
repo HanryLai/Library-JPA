@@ -2,6 +2,7 @@ package entityJPA;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -25,7 +26,9 @@ public class KhachHang {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maKhachHang;
+	@Column(columnDefinition = "nvarchar(50)")
 	private String tenKhachHang;
+	@Column(columnDefinition = "nvarchar(50)")
 	private String soDienThoai;
 	@Enumerated(EnumType.STRING)
 	private NhomKhachHang nhomKhachHang;

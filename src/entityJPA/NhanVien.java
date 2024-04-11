@@ -3,6 +3,7 @@ package entityJPA;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -29,10 +30,15 @@ public class NhanVien {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maNhanVien;
+	@Column(columnDefinition = "nvarchar(50)")
 	private String hoTenNV;
+	@Column(columnDefinition = "nvarchar(50)")
 	private LocalDate ngaySinh;
+	@Column(columnDefinition = "nvarchar(50)")
 	private String soDienThoai;
+	@Column(columnDefinition = "nvarchar(50)")
 	private String gioiTinh;
+	@Column(columnDefinition = "nvarchar(50)")
 	private String email;
 	@OneToOne
 	@JoinColumn(name = "tenDangNhap", unique = true, nullable = false)
