@@ -1,5 +1,6 @@
 package entityJPA;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -16,8 +17,11 @@ import lombok.Setter;
 @Table(name = "TaiKhoan")
 public class TaiKhoan {
 	@Id
+	@Column(columnDefinition = "nvarchar(50)")
 	private String tenDangNhap;
+	@Column(columnDefinition = "nvarchar(50)")
 	private String matKhau;
+	@Column(columnDefinition = "nvarchar(50)")
 	private String email;
 	
 	@Override

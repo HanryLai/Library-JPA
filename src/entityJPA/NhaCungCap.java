@@ -2,6 +2,7 @@ package entityJPA;
 
 import java.util.List;
 
+import entity.SanPham;
 import groovy.transform.ToString;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
