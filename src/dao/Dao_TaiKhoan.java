@@ -216,22 +216,4 @@ public class Dao_TaiKhoan {
         return dsTaiKhoan;
     }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
