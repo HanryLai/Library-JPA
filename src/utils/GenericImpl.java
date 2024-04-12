@@ -10,7 +10,7 @@ import jakarta.persistence.Query;
 
 public class GenericImpl<T> implements GenericDao<T>{
 	private EntityManager entityManager = Persistence
-												.createEntityManagerFactory("")
+												.createEntityManagerFactory("jpa-mssql")
 												.createEntityManager();
     private final Class<T> entityClass;
 
