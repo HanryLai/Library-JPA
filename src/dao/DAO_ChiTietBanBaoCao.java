@@ -25,7 +25,7 @@ public class DAO_ChiTietBanBaoCao {
         try {
             if (ctbbc.getBanBaoCao() == null || ctbbc.getBanBaoCao().getMaBanBaoCao() == null) {
                 JOptionPane.showMessageDialog(null, "Đối tượng BanBaoCao không hợp lệ");
-                return; // hoặc xử lý trường hợp giá trị null một cách phù hợp
+                return;
             }
             String sql = "INSERT INTO ChiTietBanBaoCao(banBaoCao, sanPham, soLuongBan, "
                         + "thanhTien, soLuongNhap, tonKho, ghiChu)\n" +
