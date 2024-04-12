@@ -3,8 +3,8 @@ package dao.impl;
 import javax.swing.JOptionPane;
 
 import dao.TaiKhoanDao;
-import entity.NhanVien;
-import entity.TaiKhoan;
+import entityJPA.NhanVien;
+import entityJPA.TaiKhoan;
 import gui.FrmChinh;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
@@ -13,7 +13,7 @@ import utils.GenericImpl;
 
 public class TaiKhoanImpl extends GenericImpl<TaiKhoan> implements TaiKhoanDao{
 	private EntityManager em = Persistence
-			.createEntityManagerFactory("NguyenTanLoc_21059391")
+			.createEntityManagerFactory("jpa-mssql")
 			.createEntityManager();
 
 	public TaiKhoanImpl(Class<TaiKhoan> entityClass) {
@@ -22,7 +22,7 @@ public class TaiKhoanImpl extends GenericImpl<TaiKhoan> implements TaiKhoanDao{
 	}
 	public boolean xacThucNguoiDung(String tenDangNhap, String matKhau) {
 		try {
-			String query = "SELECT * FROM TaiKhoan WHERE email = :email";
+			String query = "SELECT t FROM TaiKhoan t WHERE email = :email";
 			TaiKhoan taiKhoan = em.createQuery(query, TaiKhoan.class)
 					.setParameter("email", tenDangNhap)
 					.getSingleResult();
@@ -54,6 +54,7 @@ public class TaiKhoanImpl extends GenericImpl<TaiKhoan> implements TaiKhoanDao{
 	        String tenDangNhap = em.createQuery(query, String.class)
 				        		.setParameter("email", email)
 				        		.getSingleResult();
+	        System.out.println(tenDangNhap);
 	        if (tenDangNhap != null) {
 	        	tenDN = tenDangNhap;
 	        }

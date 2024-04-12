@@ -1,7 +1,7 @@
 package dao;
 
 import utils.GenericDao;
-import entity.TaiKhoan;
+import entityJPA.TaiKhoan;
 
 public interface TaiKhoanDao extends GenericDao<TaiKhoan>{
 	public boolean xacThucNguoiDung(String tenDangNhap, String matKhau);
