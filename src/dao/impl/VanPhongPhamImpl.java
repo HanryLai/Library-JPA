@@ -1,7 +1,7 @@
 package dao.impl;
 
 import dao.VanPhongPhamDao;
-import entity.VanPhongPham;
+import entityJPA.VanPhongPham;
 import utils.GenericImpl;
 
 public class VanPhongPhamImpl extends GenericImpl<VanPhongPham> implements VanPhongPhamDao{
