@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 import java.util.Properties;
 import java.util.Random;
 
-import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -25,7 +24,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Random;
 
 public class Dao_TaiKhoan {
 	public static boolean xacThucNguoiDung(String tenDangNhap, String matKhau) {

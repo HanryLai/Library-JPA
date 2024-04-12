@@ -1,6 +1,6 @@
 package dao;
 
-import entity.ChiTietHoaDonDoi;
+import entityJPA.ChiTietHoaDonDoi;
 import utils.GenericDao;
 
 public interface ChiTietHoaDonDoiDao extends GenericDao<ChiTietHoaDonDoi>{
