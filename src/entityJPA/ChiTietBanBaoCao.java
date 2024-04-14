@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,37 +19,28 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 
 @Table(name = "ChiTietBanBaoCao")
 public class ChiTietBanBaoCao {
 	@EmbeddedId
-	@ManyToOne
-	@JoinColumn(name = "maBanBaoCao")
-	private BanBaoCao banBaoCao;
-	
-	@ManyToOne
-	@JoinColumn(name = "maSach", insertable=false, updatable=false, referencedColumnName = "maSanPham")
-	private Sach sach;
-	
-	@ManyToOne
-	@JoinColumn(name = "maVanPhongPham", insertable=false, updatable=false, referencedColumnName = "maSanPham")
-	private VanPhongPham vanPhongPham;
+	private ChiTietBanBaoCaoID id;
 
 	private int soLuongBan;
 	private double thanhTien;
 	private int soLuongNhap;
 	private int tonKho;
 	private String ghiChu;
+
+	@ManyToOne
+	@JoinColumn(name = "maSanPham", referencedColumnName = "maSanPham", insertable = false, updatable = false)
+	private SanPham sanPham;
+
+	@ManyToOne
+	@JoinColumn(name = "maBanBaoCao", referencedColumnName = "maBanBaoCao", insertable = false, updatable = false)
+	private BanBaoCao banBaoCao;
 	
-	public ChiTietBanBaoCao(BanBaoCao banBaoCao, int soLuongBan, double thanhTien, int soLuongNhap, int tonKho,
-			String ghiChu) {
-		this.banBaoCao = banBaoCao;
-		this.soLuongBan = soLuongBan;
-		this.thanhTien = thanhTien;
-		this.soLuongNhap = soLuongNhap;
-		this.tonKho = tonKho;
-		this.ghiChu = ghiChu;
-	}
+
 
 }

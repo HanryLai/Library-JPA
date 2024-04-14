@@ -8,7 +8,7 @@ public class MainTest {
 		EntityManagerFactory emf = jakarta.persistence.Persistence.createEntityManagerFactory("jpa-mssql");
 //		Persistence.createEntityManagerFactory("jpa-mssql");
 		
-		System.out.println("asasdd");
+		System.out.println("asasasdasddd");
 
 //		DO NOT CLOSE
 //		emf.close();

@@ -1,8 +1,7 @@
 package entityJPA;
 
 import java.time.LocalDateTime;
-
-import com.lowagie.text.List;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -25,11 +24,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @AllArgsConstructor
+
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class SanPham {
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maSanPham;
 	private String tenSanPham;
 	
@@ -40,6 +40,9 @@ public abstract class SanPham {
 	@ManyToOne
 	@JoinColumn(name = "maNhaCungCap")
 	private NhaCungCap nhaCungCap;
+
+	@OneToMany(mappedBy = "sanPham", cascade = CascadeType.ALL)
+	private List<ChiTietBanBaoCao> chiTietBanBaoCaos;
 	
 	
 	
@@ -53,20 +56,6 @@ public abstract class SanPham {
 	protected LocalDateTime ngayTao;
 	protected double giamGia;
 	
-	public SanPham(String tenSanPham, NhomSanPham nhomSanPham, NhaCungCap nhaCungCap, int soLuongTon, double donGiaNhap,
-			String moTa, String tinhTrang, double donGiaBan, double VAT, LocalDateTime ngayTao, double giamGia) {
-		this.tenSanPham = tenSanPham;
-		this.nhomSanPham = nhomSanPham;
-		this.nhaCungCap = nhaCungCap;
-		this.soLuongTon = soLuongTon;
-		this.donGiaNhap = donGiaNhap;
-		this.moTa = moTa;
-		this.tinhTrang = tinhTrang;
-		this.donGiaBan = donGiaBan;
-		this.VAT = VAT;
-		this.ngayTao = ngayTao;
-		this.giamGia = giamGia;
-	}
 	
 	
 }

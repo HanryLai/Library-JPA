@@ -30,6 +30,7 @@ public class NhanVien {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maNhanVien;
+	
 	@Column(columnDefinition = "nvarchar(50)")
 	private String hoTenNV;
 	@Column(columnDefinition = "nvarchar(50)")
@@ -40,18 +41,23 @@ public class NhanVien {
 	private String gioiTinh;
 	@Column(columnDefinition = "nvarchar(50)")
 	private String email;
+	
 	@OneToOne
 	@JoinColumn(name = "tenDangNhap", unique = true, nullable = false)
 	private TaiKhoan taiKhoan;
 	private int tinhTrangLamViec;
+	
 	@ManyToOne
 	@JoinColumn(name = "maCa")
 	private CaLamViec caLamViec;
+	
 	@Enumerated(EnumType.STRING)
 	private ChucVu chucVu;
-	@OneToMany(mappedBy = "nhanVien")
+	
+	@OneToMany
 	private List<HoaDon> hoaDon;
-	@OneToMany(mappedBy = "nhanVien")
+	
+	@OneToMany
 	private List<HoaDonHoanTra> hoaDonHoanTra;
 
 	
