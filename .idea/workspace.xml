@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fc6bc60-140d-4662-806e-c793fdbab4c0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/connectDB/ConnectDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/connectDB/ConnectDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/DAO_HoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DAO_HoaDon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietHoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietHoaDon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietHoaDonDoi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietHoaDonDoi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDonDoiHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDonDoiHang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/MauSac.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/MauSac.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/NhanVien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/NhanVien.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entityJPA/Sach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/Sach.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/SanPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/SanPham.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entityJPA/VanPhongPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/VanPhongPham.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/libraryOneEight/QuanLiNhaSachONEEIGHT/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/maven/libraryOneEight/QuanLiNhaSachONEEIGHT/pom.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,9 +26,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2epFL7S1nsWLxBAWQNQ8LGrB05X" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -33,7 +39,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "minh",
+    "git-widget-placeholder": "Minh",
     "last_opened_file_path": "F:/HK2_2023-2024/LapTrinhPhanTan/Library-JPA/lib/poi-bin-4.1.0-20190412.zip",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -74,6 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1712593553924</updated>
       <workItem from="1712593554950" duration="577000" />
+      <workItem from="1713090898887" duration="25000" />
     </task>
     <servers />
   </component>
