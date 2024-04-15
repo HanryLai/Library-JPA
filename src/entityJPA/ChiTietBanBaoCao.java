@@ -1,14 +1,6 @@
 package entityJPA;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,13 +11,19 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 
 @Table(name = "ChiTietBanBaoCao")
 public class ChiTietBanBaoCao {
-	@EmbeddedId
-	private ChiTietBanBaoCaoID id;
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "maBanBaoCao")
+	private BanBaoCao banBaoCao;
+
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "maSanPham")
+	private SanPham sanPham;
 
 	private int soLuongBan;
 	private double thanhTien;
@@ -33,14 +31,15 @@ public class ChiTietBanBaoCao {
 	private int tonKho;
 	private String ghiChu;
 
-	@ManyToOne
-	@JoinColumn(name = "maSanPham", referencedColumnName = "maSanPham", insertable = false, updatable = false)
-	private SanPham sanPham;
-
-	@ManyToOne
-	@JoinColumn(name = "maBanBaoCao", referencedColumnName = "maBanBaoCao", insertable = false, updatable = false)
-	private BanBaoCao banBaoCao;
-	
-
+	public ChiTietBanBaoCao(BanBaoCao banBaoCao, SanPham sanPham, int soLuongBan, double thanhTien, int soLuongNhap,
+			int tonKho, String ghiChu) {
+		this.banBaoCao = banBaoCao;
+		this.sanPham = sanPham;
+		this.soLuongBan = soLuongBan;
+		this.thanhTien = thanhTien;
+		this.soLuongNhap = soLuongNhap;
+		this.tonKho = tonKho;
+		this.ghiChu = ghiChu;
+	}
 
 }

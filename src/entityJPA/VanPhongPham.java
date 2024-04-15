@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 
 @Getter
@@ -32,7 +33,15 @@ public class VanPhongPham extends SanPham {
 	private MauSac	mauSac;
 	
     private String noiSanXuat;
-    
+
+	public VanPhongPham(String tenSanPham, NhomSanPham nhomSanPham, NhaCungCap nhaCungCap,
+			int soLuongTon, double donGiaNhap, String moTa, String tinhTrang, double donGiaBan, double vAT,
+			LocalDateTime ngayTao, double giamGia, MauSac mauSac, String noiSanXuat) {
+		super(tenSanPham, nhomSanPham, nhaCungCap, soLuongTon, donGiaNhap, moTa, tinhTrang, donGiaBan, vAT,
+				ngayTao, giamGia);
+		this.mauSac = mauSac;
+		this.noiSanXuat = noiSanXuat;
+	}
 
     
     
