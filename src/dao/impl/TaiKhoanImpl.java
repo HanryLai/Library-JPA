@@ -2,7 +2,7 @@ package dao.impl;
 
 import javax.swing.JOptionPane;
 
-import dao.TaiKhoanDao;
+import dao.Interface.TaiKhoanDao;
 import entityJPA.NhanVien;
 import entityJPA.TaiKhoan;
 import jakarta.persistence.EntityManager;
