@@ -8,10 +8,14 @@
       <change afterPath="$PROJECT_DIR$/src/dao/impl/NhanVienImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8830536c5ac494581f24e48b3364644bb1238e5f
       <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietDoiHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietDoiHang.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTra.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDonDoiHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDonDoiHang.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDonHoanTra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDonHoanTra.java" afterDir="false" />
+<<<<<<< HEAD
 =======
       <change beforePath="$PROJECT_DIR$/src/dao/Interface/BanBaoCaoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/BanBaoCaoDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/impl/BanBaoCaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/BanBaoCaoImpl.java" afterDir="false" />
@@ -46,6 +50,9 @@
       <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmThongKe.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmThongKe.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmXemBaoCao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmXemBaoCao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/menuGui/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/menuGui/Menu.class" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/target/classes/entityJPA/MainTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entityJPA/MainTest.class" afterDir="false" />
+>>>>>>> 8830536c5ac494581f24e48b3364644bb1238e5f
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +73,7 @@
     <option name="isToolWindowVisible" value="false" />
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -74,12 +82,20 @@
   "associatedIndex": -1
 }]]></component>
 >>>>>>> main
+=======
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+>>>>>>> 8830536c5ac494581f24e48b3364644bb1238e5f
   <component name="ProjectId" id="2f66mHQGj3E4AI60DyHgeg5UJaa" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8830536c5ac494581f24e48b3364644bb1238e5f
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
@@ -100,6 +116,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15820312&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.4390244&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+<<<<<<< HEAD
   }
 }</component>
 =======
@@ -128,6 +145,10 @@
   }
 }]]></component>
 >>>>>>> main
+=======
+  }
+}</component>
+>>>>>>> 8830536c5ac494581f24e48b3364644bb1238e5f
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.impl.Main" />
@@ -182,11 +203,14 @@
 <<<<<<< HEAD
       <workItem from="1713170555794" duration="850000" />
       <workItem from="1713195681503" duration="3966000" />
+<<<<<<< HEAD
 =======
       <workItem from="1713170555794" duration="2017000" />
       <workItem from="1713195611523" duration="327000" />
       <workItem from="1713195951199" duration="4518000" />
 >>>>>>> main
+=======
+>>>>>>> 8830536c5ac494581f24e48b3364644bb1238e5f
     </task>
     <servers />
   </component>
