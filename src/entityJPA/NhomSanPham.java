@@ -10,21 +10,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
-@Table(name = "NhomSanPham")
 
+@Entity
+@Table(name = "NhomSanPham")
 public class NhomSanPham {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maNhomSanPham;
 	private String tenNhomSanPham;
-	public NhomSanPham(String tenNhomSanPham) {
-		super();
-		this.tenNhomSanPham = tenNhomSanPham;
-	}
-	
+
+
 }

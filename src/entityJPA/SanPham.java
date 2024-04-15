@@ -15,7 +15,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -24,23 +24,18 @@ public abstract class SanPham {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maSanPham;
 	private String tenSanPham;
-	
-	@ManyToOne
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "maNhomSanPham")
 	private NhomSanPham nhomSanPham;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "maNhaCungCap")
 	private NhaCungCap nhaCungCap;
 
 	@OneToMany(mappedBy = "sanPham", cascade = CascadeType.ALL)
-	private List<ChiTietBanBaoCao> chiTietBanBaoCaos;
+	private Set<ChiTietBanBaoCao> chiTietBanBaoCaos;
 
-	@ManyToMany(mappedBy = "sanPhams")
-	private Set<BanBaoCao> banBaoCaos = new HashSet<>();
-	
-	
-	
 	
 	protected int soLuongTon;
 	protected double donGiaNhap;
@@ -50,22 +45,22 @@ public abstract class SanPham {
 	protected double VAT;
 	protected LocalDateTime ngayTao;
 	protected double giamGia;
-	
-	public SanPham( String tenSanPham, NhomSanPham nhomSanPham, NhaCungCap nhaCungCap, int soLuongTon,
-			double donGiaNhap, String moTa, String tinhTrang, double donGiaBan, double vAT, LocalDateTime ngayTao,
-			double giamGia) {
-		super();
-		this.tenSanPham = tenSanPham;
-		this.nhomSanPham = nhomSanPham;
-		this.nhaCungCap = nhaCungCap;
-		this.soLuongTon = soLuongTon;
-		this.donGiaNhap = donGiaNhap;
-		this.moTa = moTa;
-		this.tinhTrang = tinhTrang;
-		this.donGiaBan = donGiaBan;
-		VAT = vAT;
-		this.ngayTao = ngayTao;
-		this.giamGia = giamGia;
+
+	@Override
+	public String toString() {
+		return "SanPham{" +
+				"maSanPham=" + maSanPham +
+				", tenSanPham='" + tenSanPham + '\'' +
+				", nhomSanPham=" + nhomSanPham +
+				", nhaCungCap=" + nhaCungCap +
+				", soLuongTon=" + soLuongTon +
+				", donGiaNhap=" + donGiaNhap +
+				", moTa='" + moTa + '\'' +
+				", tinhTrang='" + tinhTrang + '\'' +
+				", donGiaBan=" + donGiaBan +
+				", VAT=" + VAT +
+				", ngayTao=" + ngayTao +
+				", giamGia=" + giamGia +
+				'}';
 	}
-	
 }
