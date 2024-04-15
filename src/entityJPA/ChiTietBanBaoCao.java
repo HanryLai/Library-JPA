@@ -1,11 +1,9 @@
 package entityJPA;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
+import java.io.Serializable;
 
 @Entity
 @Getter
@@ -13,10 +11,11 @@ import lombok.ToString;
 @NoArgsConstructor
 
 @Table(name = "ChiTietBanBaoCao")
-public class ChiTietBanBaoCao {
+public class ChiTietBanBaoCao implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	@EmbeddedId
 	private ChiTietBanBaoCaoID id;
-
 
 	@ManyToOne
 	@JoinColumn(name = "maBanBaoCao", insertable = false, updatable = false)
@@ -44,3 +43,17 @@ public class ChiTietBanBaoCao {
 				'}';
 	}
 }
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+
+@Embeddable
+class ChiTietBanBaoCaoID implements Serializable {
+	private int maSanPham;
+	private int maBanBaoCao;
+}
+

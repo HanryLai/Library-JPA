@@ -7,11 +7,45 @@
     <list default="true" id="fba06fb3-d2af-460f-a8d7-384e7725c7b3" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/dao/impl/NhanVienImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietDoiHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietDoiHang.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTra.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDonDoiHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDonDoiHang.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDonHoanTra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDonHoanTra.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/BanBaoCaoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/BanBaoCaoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/BanBaoCaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/BanBaoCaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/TaiKhoanImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/TaiKhoanImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCaoID.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/SanPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/SanPham.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/GenericDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/GenericDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/libraryOneEight/QuanLiNhaSachONEEIGHT/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/maven/libraryOneEight/QuanLiNhaSachONEEIGHT/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/DAO_KhachHang.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/DAO_KhachHang.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/DAO_NhaCungCap.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/DAO_NhaCungCap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/DAO_NhanVien.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/DAO_NhanVien.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/NewClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/NewClass.class" afterDir="false" />
+>>>>>>> main
       <change beforePath="$PROJECT_DIR$/target/classes/entityJPA/MainTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entityJPA/MainTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmBaoCao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmBaoCao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmChinh.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmChinh.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmDSHoaDon$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmDSHoaDon$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmDSHoaDon.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmDSHoaDon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmDSSanPham.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmDSSanPham.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmKhachHang.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmKhachHang.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmKhachTraHang$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmKhachTraHang$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmKhachTraHang.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmKhachTraHang.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmKhuyenMai.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmKhuyenMai.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmLapHoaDon$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmLapHoaDon$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmLapHoaDon.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmLapHoaDon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmNhaCungCap.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmNhaCungCap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmNhanVien.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmNhanVien.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmTaiKhoan.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmTaiKhoan.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmThongKe.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmThongKe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmXemBaoCao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/gui/FrmXemBaoCao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/menuGui/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/menuGui/Menu.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,14 +65,21 @@
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
+=======
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": -1
+}]]></component>
+>>>>>>> main
   <component name="ProjectId" id="2f66mHQGj3E4AI60DyHgeg5UJaa" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
@@ -61,6 +102,32 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Minh",
+    "last_opened_file_path": "F:/Project_Lib/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15820312",
+    "project.structure.side.proportion": "0.17546469",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlserver"
+    ]
+  }
+}]]></component>
+>>>>>>> main
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.impl.Main" />
@@ -80,7 +147,7 @@
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="entityJPA.*" />
+          <option name="PATTERN" value="entityJPA.OtherIDClass.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -112,12 +179,22 @@
       <updated>1713109342338</updated>
       <workItem from="1713109343498" duration="1952000" />
       <workItem from="1713164284368" duration="5824000" />
+<<<<<<< HEAD
       <workItem from="1713170555794" duration="850000" />
       <workItem from="1713195681503" duration="3966000" />
+=======
+      <workItem from="1713170555794" duration="2017000" />
+      <workItem from="1713195611523" duration="327000" />
+      <workItem from="1713195951199" duration="4518000" />
+>>>>>>> main
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
