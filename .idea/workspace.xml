@@ -5,11 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fba06fb3-d2af-460f-a8d7-384e7725c7b3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/BanBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/BanBaoCao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/MainTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/NhomSanPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/NhomSanPham.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/SanPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/SanPham.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/TaiKhoan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/TaiKhoan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/libraryOneEight/QuanLiNhaSachONEEIGHT/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/libraryOneEight/QuanLiNhaSachONEEIGHT/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/DAO_KhachHang.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/DAO_NhaCungCap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/DAO_NhanVien.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/NewClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entityJPA/MainTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmBaoCao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmChinh.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmDSHoaDon$11.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmDSHoaDon.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmDSSanPham.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmKhachHang.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmKhachTraHang$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmKhachTraHang.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmKhuyenMai.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmLapHoaDon$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmLapHoaDon.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmNhaCungCap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmNhanVien.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmTaiKhoan.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmThongKe.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/FrmXemBaoCao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/menuGui/Menu.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,33 +46,35 @@
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: -1
-}</component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
   <component name="ProjectId" id="2f66mHQGj3E4AI60DyHgeg5UJaa" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Minh&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/Project_Lib/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15820312&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.4390244&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MainTest.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "hieu",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/IUH/KH_II_2023_2024/PhanTanJava/project/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15820312",
+    "project.structure.side.proportion": "0.4390244",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="MainTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="entityJPA.MainTest" />
@@ -69,6 +95,13 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -79,6 +112,7 @@
       <updated>1713109342338</updated>
       <workItem from="1713109343498" duration="1952000" />
       <workItem from="1713164284368" duration="1580000" />
+      <workItem from="1713171933588" duration="380000" />
     </task>
     <servers />
   </component>
