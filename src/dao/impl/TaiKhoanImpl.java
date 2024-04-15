@@ -2,7 +2,7 @@ package dao.impl;
 
 import javax.swing.JOptionPane;
 
-import dao.TaiKhoanDao;
+import dao.Interface.TaiKhoanDao;
 import entityJPA.NhanVien;
 import entityJPA.TaiKhoan;
 import jakarta.persistence.EntityManager;
@@ -31,7 +31,7 @@ public class TaiKhoanImpl extends GenericImpl<TaiKhoan> implements TaiKhoanDao{
 	}
 	public boolean xacThucNguoiDung(String tenDangNhap, String matKhau) {
 		try {
-			String query = "SELECT t FROM TaiKhoan t WHERE email = :email";
+			String query = "SELECT c FROM TaiKhoan c WHERE email = :email";
 			TaiKhoan taiKhoan = null;
 			taiKhoan = em.createQuery(query, TaiKhoan.class)
 					.setParameter("email", tenDangNhap)

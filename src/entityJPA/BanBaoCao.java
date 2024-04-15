@@ -1,14 +1,14 @@
 package entityJPA;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -24,7 +24,12 @@ public class BanBaoCao {
 	private String tenNhanVien;
 	private double doanhThu;
 	private String thoiGianBaoCao;
-	
+
+	@OneToMany(mappedBy = "banBaoCao")
+	private List<ChiTietBanBaoCao> chiTietBanBaoCaos;
+
+
+
 	public BanBaoCao(String tenBanBaoCao, String tenNhanVien, double doanhThu, String thoiGianBaoCao) {
 		this.tenBanBaoCao = tenBanBaoCao;
 		this.tenNhanVien = tenNhanVien;

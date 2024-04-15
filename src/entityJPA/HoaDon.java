@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,6 +20,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @Entity
+@Table(name = "HoaDon")
 public class HoaDon {
 	@Id
 	@Column(columnDefinition = "nvarchar(50)")

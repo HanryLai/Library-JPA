@@ -1,6 +1,6 @@
 package dao.impl;
 
-import dao.TaiKhoanDao;
+import dao.Interface.TaiKhoanDao;
 import entityJPA.TaiKhoan;
 
 public class Main {

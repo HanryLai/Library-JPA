@@ -1,6 +1,6 @@
 package dao.impl;
 
-import dao.VanPhongPhamDao;
+import dao.Interface.VanPhongPhamDao;
 import entityJPA.VanPhongPham;
 import utils.GenericImpl;
 

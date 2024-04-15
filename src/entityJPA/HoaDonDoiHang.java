@@ -1,6 +1,7 @@
 package entityJPA;
 
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,11 +17,11 @@ import lombok.Setter;
 import lombok.ToString;
 
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+
+@Entity
 @Table(name = "HoaDonDoiHang")
 public class HoaDonDoiHang {
 	@Id
@@ -28,7 +29,7 @@ public class HoaDonDoiHang {
 	private int maHoaDonDoi;
 	
 	@OneToMany(mappedBy = "hoaDonDoiHang")
-	private List<ChiTietDoiHang> chiTietDoiHang;
+	private Set<ChiTietDoiHang> chiTietDoiHang;
 	
 	@OneToOne
     @JoinColumn(name = "maHoaDonHoanTra")
@@ -39,4 +40,11 @@ public class HoaDonDoiHang {
 	private float tienHoanTra;
 	private float chietKhau;
 	private String khuyenMai;
+	@Override
+	public String toString() {
+		return "HoaDonDoiHang [maHoaDonDoi=" + maHoaDonDoi + ", hoaDonHoanTra=" + hoaDonHoanTra + ", ghiChu=" + ghiChu
+				+ ", tienHoanTra=" + tienHoanTra + ", chietKhau=" + chietKhau + ", khuyenMai=" + khuyenMai + "]";
+	}
+	
+	
 }
