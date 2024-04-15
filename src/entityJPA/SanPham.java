@@ -16,7 +16,6 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class SanPham {
@@ -50,8 +49,8 @@ public abstract class SanPham {
 		return "SanPham{" +
 				"maSanPham=" + maSanPham +
 				", tenSanPham='" + tenSanPham + '\'' +
-				", nhomSanPham=" + nhomSanPham +
-				", nhaCungCap=" + nhaCungCap +
+				", nhomSanPham=" + nhomSanPham.getSanPham() +
+				", nhaCungCap=" + nhaCungCap.getMaNCC() +
 				", soLuongTon=" + soLuongTon +
 				", donGiaNhap=" + donGiaNhap +
 				", moTa='" + moTa + '\'' +

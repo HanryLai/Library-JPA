@@ -2,10 +2,6 @@ package entityJPA;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import org.hibernate.LockMode;
-
-import java.time.LocalDateTime;
 
 public class MainTest {
 	public static void main(String[] args) {
@@ -100,7 +96,14 @@ public class MainTest {
 		ChiTietBanBaoCaoID id = new ChiTietBanBaoCaoID(1, 1);
 
 		ChiTietBanBaoCao t = em.find(ChiTietBanBaoCao.class, id);
+
+
+
 		System.out.println(t.toString());
+
+
+
+
 
 
 		em.getTransaction().commit();
