@@ -42,9 +42,10 @@ public class ChiTietBanBaoCao implements Serializable{
 				", ghiChu='" + ghiChu + '\'' +
 				'}';
 	}
+
+
 }
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
@@ -56,4 +57,3 @@ class ChiTietBanBaoCaoID implements Serializable {
 	private int maSanPham;
 	private int maBanBaoCao;
 }
-
