@@ -2,7 +2,9 @@ package entityJPA;
 
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,30 +16,34 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+
+@Entity
 @Table(name = "ChiTietDoiHang")
 public class ChiTietDoiHang {
-	
-	
-	@Id
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "maHoaDonDoi")
+	@EmbeddedId
+	private ChiTietDoiHangID id;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "maHoaDonDoi",insertable=false, updatable=false)
 	private HoaDonDoiHang hoaDonDoiHang;
 	
-	
-	@ManyToOne
-	@JoinColumn(name = "maSach", insertable=false, updatable=false, referencedColumnName = "maSanPham")
-	private Sach sach;
-	
-	@ManyToOne
-	@JoinColumn(name = "maVanPhongPham", insertable=false, updatable=false, referencedColumnName = "maSanPham")
-	private VanPhongPham vanPhongPham;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "maSanPham", insertable=false, updatable=false)
+	private SanPham sanPham;
 	
 	private int soLuong;
 	private float thanhTien;
+
+	@Override
+	public String toString() {
+		return "ChiTietDoiHang [hoaDonDoiHang=" + hoaDonDoiHang + ", sanPham=" + sanPham + ", soLuong=" + soLuong
+				+ ", thanhTien=" + thanhTien + "]";
+	}
+	
+	
+	
 
 }
