@@ -39,11 +39,11 @@ public class ChiTietDoiHang {
 
 	@Override
 	public String toString() {
-		return "ChiTietDoiHang [hoaDonDoiHang=" + hoaDonDoiHang + ", sanPham=" + sanPham + ", soLuong=" + soLuong
-				+ ", thanhTien=" + thanhTien + "]";
+		return "ChiTietDoiHang{" +
+				", hoaDonDoiHang=" + hoaDonDoiHang.getMaHoaDonDoi() +
+				", sanPham=" + sanPham.getMaSanPham() +
+				", soLuong=" + soLuong +
+				", thanhTien=" + thanhTien +
+				'}';
 	}
-	
-	
-	
-
 }

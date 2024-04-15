@@ -35,6 +35,15 @@ public class ChiTietHoanTra {
 	
 	private int soLuong;
 	private double thanhTien;
-	
-	
+
+	@Override
+	public String toString() {
+		return "ChiTietHoanTra{" +
+				"id=" + id +
+				", sanPham=" + sanPham.getMaSanPham() +
+				", hoaDonHoanTra=" + hoaDonHoanTra.getMaHoaDonHoanTra() +
+				", soLuong=" + soLuong +
+				", thanhTien=" + thanhTien +
+				'}';
+	}
 }
