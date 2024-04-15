@@ -28,13 +28,7 @@ public class BanBaoCao {
 	@OneToMany(mappedBy = "banBaoCao")
 	private List<ChiTietBanBaoCao> chiTietBanBaoCaos;
 
-	@ManyToMany
-	@JoinTable(
-			name = "ChiTietBanBaoCao",
-			joinColumns = @JoinColumn(name = "maBanBaoCao"),
-			inverseJoinColumns = @JoinColumn(name = "maSanPham")
-	)
-	private Set<SanPham> sanPhams = new HashSet<>();
+
 
 	public BanBaoCao(String tenBanBaoCao, String tenNhanVien, double doanhThu, String thoiGianBaoCao) {
 		this.tenBanBaoCao = tenBanBaoCao;

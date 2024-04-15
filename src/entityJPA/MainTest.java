@@ -6,6 +6,8 @@ import jakarta.persistence.Persistence;
 
 import java.time.LocalDateTime;
 
+
+
 public class MainTest {
 	public static void main(String[] args) {
 		EntityManagerFactory emf = jakarta.persistence.Persistence.createEntityManagerFactory("jpa-mssql");
