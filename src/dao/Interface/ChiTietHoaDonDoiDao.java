@@ -1,4 +1,4 @@
-package dao;
+package dao.Interface;
 
 import entityJPA.ChiTietHoaDonDoi;
 import utils.GenericDao;

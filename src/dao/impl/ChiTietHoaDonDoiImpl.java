@@ -1,6 +1,6 @@
 package dao.impl;
 
-import dao.ChiTietHoaDonDoiDao;
+import dao.Interface.ChiTietHoaDonDoiDao;
 import entityJPA.ChiTietHoaDonDoi;
 import utils.GenericImpl;
 

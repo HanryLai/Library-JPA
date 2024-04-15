@@ -33,10 +33,9 @@ public abstract class SanPham {
 	@JoinColumn(name = "maNhaCungCap")
 	private NhaCungCap nhaCungCap;
 
-	@OneToMany(mappedBy = "sanPham", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
 	private Set<ChiTietBanBaoCao> chiTietBanBaoCaos;
 
-	
 	protected int soLuongTon;
 	protected double donGiaNhap;
 	protected String moTa;

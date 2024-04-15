@@ -30,17 +30,7 @@ public class Sach extends SanPham{
 	private String nhaSanXuat;
 	private int soTrang;
 
-	public Sach(String tenSanPham, NhomSanPham nhomSanPham, NhaCungCap nhaCungCap, int soLuongTon,
-			double donGiaNhap, String moTa, String tinhTrang, double donGiaBan, double vAT, LocalDateTime ngayTao,
-			double giamGia, String tacGia, int namXuatBan, String nhaSanXuat, int soTrang) {
-		super(tenSanPham, nhomSanPham, nhaCungCap, soLuongTon, donGiaNhap, moTa, tinhTrang, donGiaBan, vAT,
-				ngayTao, giamGia);
-		this.tacGia = tacGia;
-		this.namXuatBan = namXuatBan;
-		this.nhaSanXuat = nhaSanXuat;
-		this.soTrang = soTrang;
-	}
-	
+
 	
 	
 }
