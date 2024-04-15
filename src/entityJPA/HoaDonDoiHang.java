@@ -40,11 +40,16 @@ public class HoaDonDoiHang {
 	private float tienHoanTra;
 	private float chietKhau;
 	private String khuyenMai;
+
 	@Override
 	public String toString() {
-		return "HoaDonDoiHang [maHoaDonDoi=" + maHoaDonDoi + ", hoaDonHoanTra=" + hoaDonHoanTra + ", ghiChu=" + ghiChu
-				+ ", tienHoanTra=" + tienHoanTra + ", chietKhau=" + chietKhau + ", khuyenMai=" + khuyenMai + "]";
+		return "HoaDonDoiHang{" +
+				"maHoaDonDoi=" + maHoaDonDoi +
+				", hoaDonHoanTra=" + hoaDonHoanTra.getMaHoaDonHoanTra() +
+				", ghiChu='" + ghiChu + '\'' +
+				", tienHoanTra=" + tienHoanTra +
+				", chietKhau=" + chietKhau +
+				", khuyenMai='" + khuyenMai + '\'' +
+				'}';
 	}
-	
-	
 }

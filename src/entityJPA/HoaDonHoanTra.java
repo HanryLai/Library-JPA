@@ -36,23 +36,17 @@ public class HoaDonHoanTra {
 	private String ghiChu;
 	private int tinhTrangHoaDon;
 	private float tienHoanTra;
-	
-	public HoaDonHoanTra(int maHoaDonHoanTra, LocalDate ngayHoan, int nhanVien, HoaDon hoaDon, String ghiChu,
-			int tinhTrangHoaDon, float tienHoanTra) {
-		super();
-		this.maHoaDonHoanTra = maHoaDonHoanTra;
-		this.ngayHoan = ngayHoan;
-		this.nhanVien = nhanVien;
-		this.hoaDon = hoaDon;
-		this.ghiChu = ghiChu;
-		this.tinhTrangHoaDon = tinhTrangHoaDon;
-		this.tienHoanTra = tienHoanTra;
-	}
-	
-	
-	
-	
-	
-	
 
+	@Override
+	public String 	toString() {
+		return "HoaDonHoanTra{" +
+				"maHoaDonHoanTra=" + maHoaDonHoanTra +
+				", ngayHoan=" + ngayHoan +
+				", nhanVien=" + nhanVien +
+				", hoaDon=" + hoaDon.getMaHoaDon() +
+				", ghiChu='" + ghiChu + '\'' +
+				", tinhTrangHoaDon=" + tinhTrangHoaDon +
+				", tienHoanTra=" + tienHoanTra +
+				'}';
+	}
 }
