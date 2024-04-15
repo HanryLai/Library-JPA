@@ -34,14 +34,7 @@ public class VanPhongPham extends SanPham {
 	
     private String noiSanXuat;
 
-	public VanPhongPham(String tenSanPham, NhomSanPham nhomSanPham, NhaCungCap nhaCungCap,
-			int soLuongTon, double donGiaNhap, String moTa, String tinhTrang, double donGiaBan, double vAT,
-			LocalDateTime ngayTao, double giamGia, MauSac mauSac, String noiSanXuat) {
-		super(tenSanPham, nhomSanPham, nhaCungCap, soLuongTon, donGiaNhap, moTa, tinhTrang, donGiaBan, vAT,
-				ngayTao, giamGia);
-		this.mauSac = mauSac;
-		this.noiSanXuat = noiSanXuat;
-	}
+
 
     
     

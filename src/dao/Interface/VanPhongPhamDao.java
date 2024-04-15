@@ -1,4 +1,4 @@
-package dao;
+package dao.Interface;
 
 import entityJPA.VanPhongPham;
 import utils.GenericDao;

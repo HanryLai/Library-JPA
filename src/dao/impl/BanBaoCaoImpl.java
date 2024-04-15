@@ -1,6 +1,6 @@
 package dao.impl;
 
-import dao.BanBaoCaoDao;
+import dao.Interface.BanBaoCaoDao;
 import entityJPA.BanBaoCao;
 import utils.GenericImpl;
 

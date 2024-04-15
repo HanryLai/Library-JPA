@@ -11,18 +11,19 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 
 @Table(name = "ChiTietBanBaoCao")
 public class ChiTietBanBaoCao {
-	@Id
+	@EmbeddedId
+	private ChiTietBanBaoCaoID id;
+
+
 	@ManyToOne
-	@JoinColumn(name = "maBanBaoCao")
+	@JoinColumn(name = "maBanBaoCao", insertable = false, updatable = false)
 	private BanBaoCao banBaoCao;
 
-	@Id
 	@ManyToOne
-	@JoinColumn(name = "maSanPham")
+	@JoinColumn(name = "maSanPham", insertable = false, updatable = false)
 	private SanPham sanPham;
 
 	private int soLuongBan;
@@ -31,15 +32,15 @@ public class ChiTietBanBaoCao {
 	private int tonKho;
 	private String ghiChu;
 
-	public ChiTietBanBaoCao(BanBaoCao banBaoCao, SanPham sanPham, int soLuongBan, double thanhTien, int soLuongNhap,
-			int tonKho, String ghiChu) {
-		this.banBaoCao = banBaoCao;
-		this.sanPham = sanPham;
-		this.soLuongBan = soLuongBan;
-		this.thanhTien = thanhTien;
-		this.soLuongNhap = soLuongNhap;
-		this.tonKho = tonKho;
-		this.ghiChu = ghiChu;
+	@Override
+	public String toString() {
+		return "ChiTietBanBaoCao{" +
+				"id=" + id +
+				", soLuongBan=" + soLuongBan +
+				", thanhTien=" + thanhTien +
+				", soLuongNhap=" + soLuongNhap +
+				", tonKho=" + tonKho +
+				", ghiChu='" + ghiChu + '\'' +
+				'}';
 	}
-
 }
