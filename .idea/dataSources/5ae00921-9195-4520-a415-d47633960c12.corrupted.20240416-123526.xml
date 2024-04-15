@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="Library-JPA@localhost">
-  <database-model serializer="dbm" dbms="MSSQL" family-id="MSSQL" format-version="4.51">
+  <database-model serializer="dbm" dbms="MSSQL" family-id="MSSQL" format-version="4.49">
     <root id="1">
       <Grants>2|||2|connect|G
 3|||2|connect|G
@@ -16957,7 +16957,8 @@
 82099333|||2|execute|D
 2133582639|||0|execute|G
 2133582639|||2|execute|D</Grants>
-      <LastIntrospectionLocalTimestamp>2024-04-15.09:25:29</LastIntrospectionLocalTimestamp>
+      <IntrospectionTimestamp>2024-04-15.23:25:29.893</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-04-15.09:25:29</LocalIntrospectionTimestamp>
       <ObjectId>1</ObjectId>
       <PermissionsCheckSum>13894115775</PermissionsCheckSum>
     </schema>
@@ -16965,7 +16966,8 @@
       <ObjectId>2</ObjectId>
     </schema>
     <schema id="5589" parent="5510" name="schema_name">
-      <LastIntrospectionLocalTimestamp>2024-04-15.09:25:29</LastIntrospectionLocalTimestamp>
+      <IntrospectionTimestamp>2024-04-15.23:25:29.927</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-04-15.09:25:29</LocalIntrospectionTimestamp>
       <ObjectId>5</ObjectId>
     </schema>
     <schema id="5590" parent="5510" name="sys">
