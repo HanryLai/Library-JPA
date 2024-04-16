@@ -22,7 +22,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "NhanVien")
@@ -60,5 +59,35 @@ public class NhanVien {
 	@OneToMany
 	private List<HoaDonHoanTra> hoaDonHoanTra;
 
-	
+
+	public NhanVien(String hoTenNV, LocalDate ngaySinh, String soDienThoai, String gioiTinh, String email,
+			TaiKhoan taiKhoan, int tinhTrangLamViec, CaLamViec caLamViec, ChucVu chucVu, List<HoaDon> hoaDon,
+			List<HoaDonHoanTra> hoaDonHoanTra) {
+		super();
+		this.hoTenNV = hoTenNV;
+		this.ngaySinh = ngaySinh;
+		this.soDienThoai = soDienThoai;
+		this.gioiTinh = gioiTinh;
+		this.email = email;
+		this.taiKhoan = taiKhoan;
+		this.tinhTrangLamViec = tinhTrangLamViec;
+		this.caLamViec = caLamViec;
+		this.chucVu = chucVu;
+		this.hoaDon = hoaDon;
+		this.hoaDonHoanTra = hoaDonHoanTra;
+	}
+
+	@Override
+	public String toString() {
+		return "NhanVien [maNhanVien=" + maNhanVien
+				+ ", hoTenNV=" + hoTenNV
+				+ ", ngaySinh=" + ngaySinh
+				+ ", soDienThoai=" + soDienThoai
+				+ ", gioiTinh=" + gioiTinh
+				+ ", email=" + email
+				+ ", taiKhoan=" + taiKhoan.getTenDangNhap()
+				+ ", tinhTrangLamViec=" + tinhTrangLamViec
+				+ ", caLamViec=" + caLamViec.getMaCa()
+				+ ", chucVu=" + chucVu.toString() + "]";
+	}
 }

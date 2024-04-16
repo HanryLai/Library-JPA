@@ -6,10 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="fba06fb3-d2af-460f-a8d7-384e7725c7b3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5ae00921-9195-4520-a415-d47633960c12.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/CaLamViec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/CaLamViec.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/NhanVien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/NhanVien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/SanPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/SanPham.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/TaiKhoan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/TaiKhoan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/VanPhongPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/VanPhongPham.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,8 +34,7 @@
     <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": -1
+  "associatedIndex": 0
 }]]></component>
   <component name="ProjectId" id="2f66mHQGj3E4AI60DyHgeg5UJaa" />
   <component name="ProjectViewState">
@@ -40,16 +43,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merge",
-    "last_opened_file_path": "F:/Project_Lib/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/IUH/2023-2024/HK2-2324/PTJava/Project-Intellij/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15820312",
     "project.structure.side.proportion": "0.17546469",
@@ -62,7 +68,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Application.MainTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.impl.Main" />
       <module name="QuanLiNhaSachONEEIGHT" />
@@ -89,12 +95,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MainTest" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -110,6 +135,7 @@
       <workItem from="1713195611523" duration="327000" />
       <workItem from="1713195951199" duration="4518000" />
       <workItem from="1713204698439" duration="891000" />
+      <workItem from="1713247747072" duration="1632000" />
     </task>
     <servers />
   </component>

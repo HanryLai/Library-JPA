@@ -11,7 +11,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "TaiKhoan")
@@ -23,9 +22,17 @@ public class TaiKhoan {
 	private String matKhau;
 	@Column(columnDefinition = "nvarchar(50)")
 	private String email;
-	
+
+	public TaiKhoan(String tenDangNhap, String matKhau, String email) {
+		this.tenDangNhap = tenDangNhap;
+		this.matKhau = matKhau;
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
-		return "TaiKhoan [tenDangNhazxp=" + tenDangNhap + ", matKhau=" + matKhau + ", email=" + email + "]";
+		return "TaiKhoan [tenDangNhap=" + tenDangNhap
+				+ ", matKhau=" + matKhau
+				+ ", email=" + email + "]";
 	}
 }

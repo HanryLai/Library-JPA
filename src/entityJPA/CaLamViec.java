@@ -16,7 +16,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "CaLamViec")
@@ -29,9 +28,18 @@ public class CaLamViec {
 	private LocalDateTime thoiGianKetThuc;
 	@OneToMany(mappedBy = "caLamViec")
 	private List<NhanVien> nhanVien;
+
+	public CaLamViec(String tenCa, LocalDateTime thoiGianBatDau, LocalDateTime thoiGianKetThuc) {
+		this.tenCa = tenCa;
+		this.thoiGianBatDau = thoiGianBatDau;
+		this.thoiGianKetThuc = thoiGianKetThuc;
+	}
+
 	@Override
 	public String toString() {
-		return "CaLamViec [maCa=" + maCa + ", tenCa=" + tenCa + ", thoiGianBatDau=" + thoiGianBatDau
+		return "CaLamViec [maCa=" + maCa
+				+ ", tenCa=" + tenCa
+				+ ", thoiGianBatDau=" + thoiGianBatDau
 				+ ", thoiGianKetThuc=" + thoiGianKetThuc + "]";
 	}
 	
