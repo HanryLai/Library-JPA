@@ -1,15 +1,9 @@
 package entityJPA;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,22 +15,24 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 
 @Entity
 @Table(name = "VanPhongPham")
 
-public class VanPhongPham extends SanPham {
-	
-	@OneToOne
+public class VanPhongPham extends SanPham implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "mauSac")
 	private MauSac	mauSac;
 	
     private String noiSanXuat;
 
-
-
-    
-    
-    
+	@Override
+	public String toString() {
+		return "VanPhongPham{" +
+				"mauSac=" + mauSac.getMaMau() +
+				", noiSanXuat='" + noiSanXuat + '\'' +
+				'}';
+	}
 }

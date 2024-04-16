@@ -6,17 +6,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+
+@Entity
 @Table(name = "BanBaoCao")
-public class BanBaoCao {
+public class BanBaoCao implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maBanBaoCao;
@@ -28,12 +31,17 @@ public class BanBaoCao {
 	@OneToMany(mappedBy = "banBaoCao")
 	private List<ChiTietBanBaoCao> chiTietBanBaoCaos;
 
-
-
-	public BanBaoCao(String tenBanBaoCao, String tenNhanVien, double doanhThu, String thoiGianBaoCao) {
-		this.tenBanBaoCao = tenBanBaoCao;
-		this.tenNhanVien = tenNhanVien;
-		this.doanhThu = doanhThu;
-		this.thoiGianBaoCao = thoiGianBaoCao;
+	@Override
+	public String toString() {
+		return "BanBaoCao{" +
+				"maBanBaoCao=" + maBanBaoCao +
+				", tenBanBaoCao='" + tenBanBaoCao + '\'' +
+				", tenNhanVien='" + tenNhanVien + '\'' +
+				", doanhThu=" + doanhThu +
+				", thoiGianBaoCao='" + thoiGianBaoCao + '\'' +
+				", chiTietBanBaoCaos=" + chiTietBanBaoCaos +
+				'}';
 	}
 }
+
+

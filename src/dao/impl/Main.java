@@ -3,8 +3,10 @@ package dao.impl;
 import dao.Interface.TaiKhoanDao;
 import entityJPA.TaiKhoan;
 
+import java.rmi.RemoteException;
+
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RemoteException {
 		TaiKhoanDao taiKhoanDao = new TaiKhoanImpl(TaiKhoan.class);
 		TaiKhoan taiKhoan = new TaiKhoan("hieulai","123123","hieulaidev");
 

@@ -1,14 +1,15 @@
-package utils;
+package dao.impl;
 
 import java.util.List;
 
+import dao.Interface.GenericDao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
 import jakarta.persistence.Query;
 
-public class GenericImpl<T> implements GenericDao<T>{
+public class GenericImpl<T> implements GenericDao<T> {
 	private EntityManager entityManager = Persistence
 												.createEntityManagerFactory("jpa-mssql")
 												.createEntityManager();
@@ -24,7 +25,7 @@ public class GenericImpl<T> implements GenericDao<T>{
     
     @Override
 	public void open() {
-		entityManager = Persistence.createEntityManagerFactory("NguyenTanLoc_21059391")
+		entityManager = Persistence.createEntityManagerFactory("jpa-mssql")
 				.createEntityManager();
 	}
 
