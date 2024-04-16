@@ -1,5 +1,6 @@
 package entityJPA;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -18,11 +19,12 @@ import lombok.ToString;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class SanPham {
+public abstract class SanPham implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maSanPham;
-	private String tenSanPham;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "maNhomSanPham")
@@ -35,6 +37,7 @@ public abstract class SanPham {
 	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
 	private Set<ChiTietBanBaoCao> chiTietBanBaoCaos;
 
+	private String tenSanPham;
 	protected int soLuongTon;
 	protected double donGiaNhap;
 	protected String moTa;
