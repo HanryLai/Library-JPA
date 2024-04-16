@@ -28,6 +28,7 @@
       <change beforePath="$PROJECT_DIR$/src/entityJPA/VanPhongPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/VanPhongPham.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/GenericDao.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/GenericImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/GenericImpl.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +53,7 @@
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: -1
 }</component>
+
   <component name="ProjectId" id="2f66mHQGj3E4AI60DyHgeg5UJaa" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -62,16 +64,20 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+
     "git-widget-placeholder": "Minh",
     "last_opened_file_path": "F:/Project_Lib/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
+
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15820312",
     "project.structure.side.proportion": "0.17546469",
@@ -84,7 +90,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Application.MainTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.impl.Main" />
       <module name="QuanLiNhaSachONEEIGHT" />
@@ -111,12 +117,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MainTest" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -132,7 +157,9 @@
       <workItem from="1713195611523" duration="327000" />
       <workItem from="1713195951199" duration="4518000" />
       <workItem from="1713204698439" duration="891000" />
+
       <workItem from="1713241996896" duration="8600000" />
+
     </task>
     <servers />
   </component>

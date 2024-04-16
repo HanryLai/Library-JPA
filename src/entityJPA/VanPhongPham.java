@@ -26,7 +26,7 @@ public class VanPhongPham extends SanPham implements Serializable {
 	@JoinColumn(name = "mauSac")
 	private MauSac	mauSac;
 	
-    private String noiSanXuat;
+  private String noiSanXuat;
 
 	@Override
 	public String toString() {
@@ -34,5 +34,6 @@ public class VanPhongPham extends SanPham implements Serializable {
 				"mauSac=" + mauSac.getMaMau() +
 				", noiSanXuat='" + noiSanXuat + '\'' +
 				'}';
+
 	}
 }

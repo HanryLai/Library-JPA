@@ -47,6 +47,21 @@ public abstract class SanPham implements Serializable {
 	protected LocalDateTime ngayTao;
 	protected double giamGia;
 
+	public SanPham(int maSanPham, String tenSanPham, NhomSanPham nhomSanPham, NhaCungCap nhaCungCap, int soLuongTon, double donGiaNhap, String moTa, String tinhTrang, double donGiaBan, double VAT, LocalDateTime ngayTao, double giamGia) {
+		this.maSanPham = maSanPham;
+		this.tenSanPham = tenSanPham;
+		this.nhomSanPham = nhomSanPham;
+		this.nhaCungCap = nhaCungCap;
+		this.soLuongTon = soLuongTon;
+		this.donGiaNhap = donGiaNhap;
+		this.moTa = moTa;
+		this.tinhTrang = tinhTrang;
+		this.donGiaBan = donGiaBan;
+		this.VAT = VAT;
+		this.ngayTao = ngayTao;
+		this.giamGia = giamGia;
+	}
+
 	@Override
 	public String toString() {
 		return "SanPham{" +
