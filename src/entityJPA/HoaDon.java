@@ -5,6 +5,8 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -23,8 +25,8 @@ import lombok.ToString;
 @Table(name = "HoaDon")
 public class HoaDon {
 	@Id
-	@Column(columnDefinition = "nvarchar(50)")
-	private String maHoaDon;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int maHoaDon;
 	private LocalDateTime ngayLap;
 	@Column(columnDefinition = "nvarchar(500)")
 	private String ghiChu;
