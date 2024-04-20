@@ -39,7 +39,7 @@ public class BanBaoCao_Impl extends UnicastRemoteObject implements BanBaoCao_Dao
 	}
 
 	@Override
-	public boolean delete(Object id) {
+	public boolean delete(Object id) throws RemoteException{
 		return generic.delete(id);
 	}
 
