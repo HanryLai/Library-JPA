@@ -1,8 +1,11 @@
 package entityJPA;
 
+import java.io.Serializable;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -20,24 +23,33 @@ import lombok.ToString;
 @Entity
 @Table(name = "ChiTietHoaDon")
 public class ChiTietHoaDon {
+	
+	@EmbeddedId
+	private ChiTietHoaDonID id;
 
-	@Id
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "hoaDon")
-	private HoaDon hoaDon;
+	@ManyToOne
+	@JoinColumn(name = "hoaDon", insertable = false, updatable = false)
+	private HoaDon maHoaDon;
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "maSach")
-	private Sach sach;
+	@JoinColumn(name = "maSach", insertable = false, updatable = false)
+	private SanPham maSanPham;
 	
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "maVanPhongPham")
-	private VanPhongPham vanPhongPham;
-	
-	
+		
 	private int soLuong;
 	private double thanhTien;
 	
+}
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Embeddable
+class ChiTietHoaDonID implements Serializable{
+	private static final long serialVersionUID = 1L;
+	private int maHoaDon;
+	private int maSanPham;
 }

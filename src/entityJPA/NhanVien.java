@@ -54,15 +54,15 @@ public class NhanVien {
 	private ChucVu chucVu;
 	
 	@OneToMany
-	private List<HoaDon> hoaDon;
+	private List<HoaDon> hoaDons;
 	
 	@OneToMany
-	private List<HoaDonHoanTra> hoaDonHoanTra;
+	private List<HoaDonHoanTra> hoaDonHoanTras;
 
 
 	public NhanVien(String hoTenNV, LocalDate ngaySinh, String soDienThoai, String gioiTinh, String email,
-			TaiKhoan taiKhoan, int tinhTrangLamViec, CaLamViec caLamViec, ChucVu chucVu, List<HoaDon> hoaDon,
-			List<HoaDonHoanTra> hoaDonHoanTra) {
+			TaiKhoan taiKhoan, int tinhTrangLamViec, CaLamViec caLamViec, ChucVu chucVu, List<HoaDon> hoaDons,
+			List<HoaDonHoanTra> hoaDonHoanTras) {
 		super();
 		this.hoTenNV = hoTenNV;
 		this.ngaySinh = ngaySinh;
@@ -73,8 +73,8 @@ public class NhanVien {
 		this.tinhTrangLamViec = tinhTrangLamViec;
 		this.caLamViec = caLamViec;
 		this.chucVu = chucVu;
-		this.hoaDon = hoaDon;
-		this.hoaDonHoanTra = hoaDonHoanTra;
+		this.hoaDons = hoaDons;
+		this.hoaDonHoanTras = hoaDonHoanTras;
 	}
 
 	@Override
