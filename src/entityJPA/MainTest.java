@@ -18,6 +18,11 @@ public class MainTest {
 		vpp.setTinhTrang("Còn hàng");
 
 
+
+
+
+
+
 		VanPhongPham vpp2 = new VanPhongPham();
 		vpp2.setTenSanPham("Văn phòng phẩm mẫu 2");
 		vpp2.setSoLuongTon(100);
@@ -42,8 +47,18 @@ public class MainTest {
 		sach2.setTinhTrang("Còn hàng");
 
 
-		BanBaoCao banBaoCao = new BanBaoCao("Báo cáo tháng 1", "Nguyễn Văn A", 1000000, "01/01/2022");
-		BanBaoCao banBaoCao2 = new BanBaoCao("Báo cáo tháng 2", "Nguyễn Văn B", 2000000, "01/02/2022");
+		BanBaoCao banBaoCao = new BanBaoCao();
+		banBaoCao.setTenBanBaoCao("Báo cáo tháng 1");
+		banBaoCao.setTenNhanVien("Nguyễn Văn A");
+		banBaoCao.setDoanhThu(1000000);
+		banBaoCao.setThoiGianBaoCao("01/01/2022");
+
+		BanBaoCao banBaoCao2 = new BanBaoCao();
+		banBaoCao2.setTenBanBaoCao("Báo cáo tháng 2");
+		banBaoCao2.setTenNhanVien("Nguyễn Văn B");
+		banBaoCao2.setDoanhThu(2000000);
+		banBaoCao2.setThoiGianBaoCao("01/02/2022");
+
 
 		em.getTransaction().begin();
 		em.persist(vpp);

@@ -1,16 +1,18 @@
 package entityJPA;
 
-import entityJPA.HoaDonDoiHang;
-import entityJPA.SanPham;
+import java.io.Serializable;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
@@ -18,21 +20,24 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "ChiTietHoaDonDoi")
 public class ChiTietHoaDonDoi {
-	@Id
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "maHoaDonDoi")
+	
+	@EmbeddedId
+	private chiTietHoaDonDoiID id;
+	
+	@ManyToOne
+	@JoinColumn(name = "maHoaDonDoi", insertable = false, updatable = false)
 	private HoaDonDoiHang hoaDonDoiHang;
 	
-	@Id
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "maSanPham")
+	
+	@ManyToOne
+	@JoinColumn(name = "maSanPham", insertable = false, updatable = false)
     private SanPham sanPham;
     private int soLuong;
     private double thanhTien;
     
         public ChiTietHoaDonDoi(HoaDonDoiHang hoaDonDoiHang, SanPham sanPham, int soLuong, double thanhTien) {
         	super();
-        	this.hoaDonDoiHang = hoaDonDoiHang;
+       	 	this.hoaDonDoiHang = hoaDonDoiHang;
         	this.sanPham = sanPham;
         	this.soLuong = soLuong;
         	this.thanhTien = thanhTien;
@@ -45,4 +50,15 @@ public class ChiTietHoaDonDoi {
 	}
     
     
+}
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+class chiTietHoaDonDoiID implements Serializable{
+	private static final long serialVersionUID = 1L;
+	private int maHoaDonDoi;
+	private int maSanPham;
 }

@@ -5,11 +5,11 @@ import lombok.*;
 
 import java.io.Serializable;
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 
+@Entity
 @Table(name = "ChiTietBanBaoCao")
 public class ChiTietBanBaoCao implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -35,6 +35,8 @@ public class ChiTietBanBaoCao implements Serializable{
 	public String toString() {
 		return "ChiTietBanBaoCao{" +
 				"id=" + id +
+				", banBaoCao=" + banBaoCao.getMaBanBaoCao() +
+				", sanPham=" + sanPham.getMaSanPham() +
 				", soLuongBan=" + soLuongBan +
 				", thanhTien=" + thanhTien +
 				", soLuongNhap=" + soLuongNhap +
@@ -42,8 +44,6 @@ public class ChiTietBanBaoCao implements Serializable{
 				", ghiChu='" + ghiChu + '\'' +
 				'}';
 	}
-
-
 }
 
 @Getter
@@ -54,6 +54,7 @@ public class ChiTietBanBaoCao implements Serializable{
 
 @Embeddable
 class ChiTietBanBaoCaoID implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private int maSanPham;
 	private int maBanBaoCao;
 }
