@@ -4,6 +4,6 @@ import entityJPA.VanPhongPham;
 
 import java.rmi.Remote;
 
-public interface VanPhongPham_Dao extends GenericDao<VanPhongPham>, Remote {
+public interface VanPhongPham_Dao extends Remote {
 
 }

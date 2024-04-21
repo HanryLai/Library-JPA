@@ -14,5 +14,7 @@ public class Main {
 
 		System.out.println(taiKhoanDao.xacThucNguoiDung("example@gmail.com", "NTL@1108"));
 		//taiKhoanDao.phanQuyen("example@gmail.com");
+
+
 	}
 }
