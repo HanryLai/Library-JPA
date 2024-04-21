@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fba06fb3-d2af-460f-a8d7-384e7725c7b3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/BanBaoCao_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/BanBaoCao_Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/ChiTietBaoCao_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/ChiTietBaoCao_Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/Sach_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/Sach_Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/SanPham_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/SanPham_Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/VanPhongPham_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/VanPhongPham_Dao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/impl/BanBaoCao_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/BanBaoCao_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/GenericImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/GenericImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietBanBaoCao_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietBanBaoCao_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonDoiImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonDoiImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/Sach_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/Sach_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/SanPham_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/SanPham_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/VanPhongPham_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/VanPhongPham_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/MainTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +42,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2f66mHQGj3E4AI60DyHgeg5UJaa" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -140,7 +148,9 @@
       <workItem from="1713204698439" duration="891000" />
       <workItem from="1713241996896" duration="8600000" />
       <workItem from="1713373222737" duration="86000" />
-      <workItem from="1713590264058" duration="2577000" />
+      <workItem from="1713590264058" duration="2720000" />
+      <workItem from="1713621274919" duration="8465000" />
+      <workItem from="1713691693525" duration="6110000" />
     </task>
     <servers />
   </component>

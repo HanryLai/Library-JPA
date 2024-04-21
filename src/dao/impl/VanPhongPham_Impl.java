@@ -7,6 +7,7 @@ import jakarta.persistence.Persistence;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.List;
 
 public class VanPhongPham_Impl extends UnicastRemoteObject implements VanPhongPham_Dao {
@@ -40,7 +41,7 @@ public class VanPhongPham_Impl extends UnicastRemoteObject implements VanPhongPh
 	}
 
 	@Override
-	public boolean delete(Object id) {
+	public boolean delete(Object id) throws RemoteException{
 		return generic.delete(id);
 	}
 
@@ -58,5 +59,17 @@ public class VanPhongPham_Impl extends UnicastRemoteObject implements VanPhongPh
 	public List<VanPhongPham> findByProperty(String property, Object value) throws RemoteException {
 		return generic.findByProperty(property, value);
 	}
+
+	public ArrayList<VanPhongPham> getAllVanPhongPhan() throws RemoteException{
+		return new ArrayList<>(generic.findAll());
+	}
+
+	public VanPhongPham getVPPtheoMa(String id) throws RemoteException{
+		return generic.findById(id);
+	}
+
+
+
+
 
 }

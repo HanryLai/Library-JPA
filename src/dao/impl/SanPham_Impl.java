@@ -40,7 +40,7 @@ public class SanPham_Impl extends UnicastRemoteObject implements SanPham_Dao {
     }
 
     @Override
-    public boolean delete(Object id) {
+    public boolean delete(Object id) throws RemoteException{
         return generic.delete(id);
     }
 
