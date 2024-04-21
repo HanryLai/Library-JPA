@@ -17,47 +17,6 @@ public class VanPhongPham_Impl extends UnicastRemoteObject implements VanPhongPh
 	public VanPhongPham_Impl() throws Exception {
 		super();
 		em = Persistence.createEntityManagerFactory("jpa-mssql").createEntityManager();
-		generic = new GenericImpl<>(VanPhongPham.class);
-	}
-
-	@Override
-	public void open() throws RemoteException {
-		generic.open();
-	}
-
-	@Override
-	public void close() throws RemoteException {
-		generic.close();
-	}
-
-	@Override
-	public boolean save(VanPhongPham obj) throws RemoteException {
-		return generic.save(obj);
-	}
-
-	@Override
-	public boolean update(VanPhongPham obj) throws RemoteException {
-		return generic.update(obj);
-	}
-
-	@Override
-	public boolean delete(Object id) throws RemoteException{
-		return generic.delete(id);
-	}
-
-	@Override
-	public VanPhongPham findById(Object id) throws RemoteException {
-		return generic.findById(id);
-	}
-
-	@Override
-	public List<VanPhongPham> findAll() throws RemoteException {
-		return generic.findAll();
-	}
-
-	@Override
-	public List<VanPhongPham> findByProperty(String property, Object value) throws RemoteException {
-		return generic.findByProperty(property, value);
 	}
 
 	public ArrayList<VanPhongPham> getAllVanPhongPhan() throws RemoteException{

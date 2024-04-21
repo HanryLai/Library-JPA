@@ -4,5 +4,5 @@ import entityJPA.Sach;
 
 import java.rmi.Remote;
 
-public interface Sach_Dao extends GenericDao<Sach>, Remote {
+public interface Sach_Dao extends Remote {
 }

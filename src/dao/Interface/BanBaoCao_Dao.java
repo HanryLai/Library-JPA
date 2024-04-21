@@ -4,6 +4,6 @@ import entityJPA.BanBaoCao;
 
 import java.rmi.Remote;
 
-public interface BanBaoCao_Dao extends GenericDao<BanBaoCao>, Remote {
+public interface BanBaoCao_Dao extends Remote {
 
 }

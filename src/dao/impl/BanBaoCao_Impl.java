@@ -1,8 +1,9 @@
 package dao.impl;
 
 import dao.Interface.BanBaoCao_Dao;
-import entityJPA.BanBaoCao;
+import entity.BanBaoCao;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.rmi.RemoteException;
@@ -11,53 +12,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BanBaoCao_Impl extends UnicastRemoteObject implements BanBaoCao_Dao {
-	private EntityManager em;
-	private GenericImpl<BanBaoCao> generic;
-	public BanBaoCao_Impl() throws Exception {
+	private EntityManagerFactory emf;
+	public BanBaoCao_Impl(EntityManagerFactory emf) throws RemoteException {
 		super();
-		em = Persistence.createEntityManagerFactory("jpa-mssql").createEntityManager();
-		generic = new GenericImpl<>(BanBaoCao.class);
+		this.emf = emf;
 	}
 
-	@Override
-	public void open() throws RemoteException {
-		generic.open();
+	public ArrayList<BanBaoCao> getALLBanBaoCao() throws RemoteException {
+		GenericImpl<BanBaoCao> generic = new GenericImpl<>(BanBaoCao.class, emf);
+		return (ArrayList<BanBaoCao>) generic.findAll();
 	}
 
-	@Override
-	public void close() throws RemoteException {
-		generic.close();
+	public boolean taoBanBaoCao(BanBaoCao bbc) throws RemoteException {
+		GenericImpl<BanBaoCao> generic = new GenericImpl<>(BanBaoCao.class, emf);
+		return generic.save(bbc);
 	}
 
-	@Override
-	public boolean save(BanBaoCao obj) throws RemoteException {
-		return generic.save(obj);
-	}
 
-	@Override
-	public boolean update(BanBaoCao obj) throws RemoteException {
-		return generic.update(obj);
-	}
-
-	@Override
-	public boolean delete(Object id) throws RemoteException{
-		return generic.delete(id);
-	}
-
-	@Override
-	public BanBaoCao findById(Object id) throws RemoteException {
-		return generic.findById(id);
-	}
-
-	@Override
-	public List<BanBaoCao> findAll() throws RemoteException {
-		return generic.findAll();
-	}
-
-	@Override
-	public List<BanBaoCao> findByProperty(String property, Object value) throws RemoteException {
-		return generic.findByProperty(property, value);
-	}
 
 //	public ArrayList<BanBaoCao> getALLBanBaoCao() throws RemoteException {
 //		return (ArrayList<BanBaoCao>) generic.findAll();
