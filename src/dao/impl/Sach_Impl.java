@@ -40,7 +40,7 @@ public class Sach_Impl extends UnicastRemoteObject implements Sach_Dao {
     }
 
     @Override
-    public boolean delete(Object id) {
+    public boolean delete(Object id) throws RemoteException{
         return generic.delete(id);
     }
 
@@ -58,6 +58,16 @@ public class Sach_Impl extends UnicastRemoteObject implements Sach_Dao {
     public List<Sach> findByProperty(String property, Object value) throws RemoteException {
         return generic.findByProperty(property, value);
     }
+
+    public Sach getSachTheoMa(String ma) throws RemoteException{
+        return generic.findById(ma);
+    }
+
+    public boolean updateSach (Sach sach) throws RemoteException{
+        return generic.update(sach);
+    }
+
+
 
 
 }

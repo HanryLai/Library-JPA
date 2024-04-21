@@ -114,9 +114,6 @@ public class MainTest {
 
 
 
-		System.out.println(t.toString());
-
-
 
 
 

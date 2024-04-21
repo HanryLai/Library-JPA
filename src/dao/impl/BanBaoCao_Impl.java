@@ -7,6 +7,7 @@ import jakarta.persistence.Persistence;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BanBaoCao_Impl extends UnicastRemoteObject implements BanBaoCao_Dao {
@@ -57,6 +58,24 @@ public class BanBaoCao_Impl extends UnicastRemoteObject implements BanBaoCao_Dao
 	public List<BanBaoCao> findByProperty(String property, Object value) throws RemoteException {
 		return generic.findByProperty(property, value);
 	}
+
+//	public ArrayList<BanBaoCao> getALLBanBaoCao() throws RemoteException {
+//		return (ArrayList<BanBaoCao>) generic.findAll();
+//	}
+//
+//	public boolean taoBanBaoCao(BanBaoCao bbc) throws RemoteException {
+//		return generic.save(bbc);
+//	}
+//
+//	public int getMaBBCTheoTen(String tenBBC) throws RemoteException {
+//		List<BanBaoCao> list = generic.findByProperty("tenBanBaoCao", tenBBC);
+//
+//		if (!list.isEmpty()) {
+//			return list.get(0).getMaBanBaoCao();
+//		}
+//
+//		return -1;
+//	}
 
 
 }
