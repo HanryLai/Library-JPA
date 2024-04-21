@@ -35,7 +35,7 @@ public class KhachHang {
 	private double tongTienMua;
 	private int soLuongHoaDon;
 	@OneToMany(mappedBy = "khachHang")
-	private List<HoaDon> hoaDon;
+	private List<HoaDon> hoaDons;
 	
 	@Override
 	public String toString() {

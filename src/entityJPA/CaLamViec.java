@@ -27,7 +27,7 @@ public class CaLamViec {
 	private LocalDateTime thoiGianBatDau;
 	private LocalDateTime thoiGianKetThuc;
 	@OneToMany(mappedBy = "caLamViec")
-	private List<NhanVien> nhanVien;
+	private List<NhanVien> nhanViens;
 
 	public CaLamViec(String tenCa, LocalDateTime thoiGianBatDau, LocalDateTime thoiGianKetThuc) {
 		this.tenCa = tenCa;
