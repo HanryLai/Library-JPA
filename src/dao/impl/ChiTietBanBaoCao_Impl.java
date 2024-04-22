@@ -206,7 +206,7 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
     public ArrayList<ChiTietBanBaoCao> getChiTietBanBaoCao(int maBanBaoCao) throws RemoteException {
         ArrayList<ChiTietBanBaoCao> list = new ArrayList<ChiTietBanBaoCao>();
 
-        GenericImpl<ChiTietBanBaoCao> generic = new GenericImpl<>(ChiTietBanBaoCao.class, emf);
+        Generic_Impl<ChiTietBanBaoCao> generic = new Generic_Impl<>(ChiTietBanBaoCao.class, emf);
         list = (ArrayList<ChiTietBanBaoCao>) generic.findByProperty("maBanBaoCao", maBanBaoCao);
 
         return list;

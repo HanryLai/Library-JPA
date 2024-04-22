@@ -3,7 +3,6 @@ package dao.impl;
 import dao.Interface.HoaDonDoiHang_Dao;
 import dao.Interface.HoaDonHoanTra_Dao;
 import entityJPA.HoaDonDoiHang;
-import entityJPA.HoaDonHoanTra;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
@@ -21,25 +20,25 @@ public class HoaDonDoiHang_Impl extends UnicastRemoteObject implements HoaDonDoi
     }
     @Override
     public ArrayList<HoaDonDoiHang> getAllHoaDonDoiHang() throws RemoteException {
-        GenericImpl<HoaDonDoiHang> hdGeneric = new GenericImpl<>(HoaDonDoiHang.class, emf);
+        Generic_Impl<HoaDonDoiHang> hdGeneric = new Generic_Impl<>(HoaDonDoiHang.class, emf);
         return (ArrayList<HoaDonDoiHang>) hdGeneric.findAll();
     }
 
     @Override
     public boolean createHoaDonDoiHang(HoaDonDoiHang hd) throws RemoteException {
-        GenericImpl<HoaDonDoiHang> hdGeneric = new GenericImpl<>(HoaDonDoiHang.class, emf);
+        Generic_Impl<HoaDonDoiHang> hdGeneric = new Generic_Impl<>(HoaDonDoiHang.class, emf);
         return hdGeneric.save(hd);
     }
 
     @Override
     public boolean updateHoaDonDoiHang(HoaDonDoiHang hd) throws RemoteException {
-        GenericImpl<HoaDonDoiHang> hdGeneric = new GenericImpl<>(HoaDonDoiHang.class, emf);
+        Generic_Impl<HoaDonDoiHang> hdGeneric = new Generic_Impl<>(HoaDonDoiHang.class, emf);
         return hdGeneric.update(hd);
     }
 
     @Override
     public HoaDonDoiHang getHoaDonDoiHangtheoMa(String ma) throws RemoteException {
-        GenericImpl<HoaDonDoiHang> hdGeneric = new GenericImpl<>(HoaDonDoiHang.class, emf);
+        Generic_Impl<HoaDonDoiHang> hdGeneric = new Generic_Impl<>(HoaDonDoiHang.class, emf);
         return hdGeneric.findById(ma);
     }
 
