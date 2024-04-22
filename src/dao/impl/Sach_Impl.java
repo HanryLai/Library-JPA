@@ -2,69 +2,38 @@ package dao.impl;
 
 import dao.Interface.Sach_Dao;
 import entityJPA.Sach;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.EntityManagerFactory;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Sach_Impl extends UnicastRemoteObject implements Sach_Dao {
 
-    private EntityManager em;
-    private GenericImpl<Sach> generic;
-    public Sach_Impl() throws Exception {
+    private final EntityManagerFactory emf;
+    public Sach_Impl(EntityManagerFactory emf) throws RemoteException {
         super();
-        em = Persistence.createEntityManagerFactory("jpa-mssql").createEntityManager();
-        generic = new GenericImpl<>(Sach.class);
+        this.emf = emf;
     }
 
-    @Override
-    public void open() throws RemoteException {
-        generic.open();
+    public ArrayList<Sach> getAlltbSach() throws RemoteException {
+        Generic_Impl<Sach> sachGeneric = new Generic_Impl<>(Sach.class, emf);
+        return (ArrayList<Sach>) sachGeneric.findAll();
     }
 
-    @Override
-    public void close() throws RemoteException {
-        generic.close();
+    public void createSach(Sach s) throws RemoteException {
+        Generic_Impl<Sach> sachGeneric = new Generic_Impl<>(Sach.class, emf);
+        sachGeneric.save(s);
     }
 
-    @Override
-    public boolean save(Sach obj) throws RemoteException {
-        return generic.save(obj);
+    public Sach getSachtheoMa(String ma) throws RemoteException {
+        Generic_Impl<Sach> sachGeneric = new Generic_Impl<>(Sach.class, emf);
+        return sachGeneric.findById(ma);
     }
 
-    @Override
-    public boolean update(Sach obj) throws RemoteException {
-        return generic.update(obj);
-    }
-
-    @Override
-    public boolean delete(Object id) throws RemoteException{
-        return generic.delete(id);
-    }
-
-    @Override
-    public Sach findById(Object id) throws RemoteException {
-        return generic.findById(id);
-    }
-
-    @Override
-    public List<Sach> findAll() throws RemoteException {
-        return generic.findAll();
-    }
-
-    @Override
-    public List<Sach> findByProperty(String property, Object value) throws RemoteException {
-        return generic.findByProperty(property, value);
-    }
-
-    public Sach getSachTheoMa(String ma) throws RemoteException{
-        return generic.findById(ma);
-    }
-
-    public boolean updateSach (Sach sach) throws RemoteException{
-        return generic.update(sach);
+    public void updateSach(Sach s) throws RemoteException {
+        Generic_Impl<Sach> sachGeneric = new Generic_Impl<>(Sach.class, emf);
+        sachGeneric.update(s);
     }
 
 

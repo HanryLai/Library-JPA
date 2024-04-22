@@ -4,5 +4,6 @@ import entityJPA.SanPham;
 
 import java.rmi.Remote;
 
-public interface SanPham_Dao extends GenericDao<SanPham>, Remote {
+public interface SanPham_Dao extends Remote {
+
 }

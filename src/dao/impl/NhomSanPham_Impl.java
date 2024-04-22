@@ -16,11 +16,10 @@ public class NhomSanPham_Impl extends UnicastRemoteObject implements NhomSanPham
     private EntityManager em = Persistence
             .createEntityManagerFactory("jpa-mssql")
             .createEntityManager();
-    private GenericImpl<NhomSanPham> generic;
+    private Generic_Impl<NhomSanPham> generic;
 
     protected NhomSanPham_Impl(Class<NhomSanPham> entityClass) throws RemoteException {
-        super();
-        generic = new GenericImpl<NhomSanPham>(entityClass);
+
     }
 
     @Override
@@ -84,9 +83,10 @@ public class NhomSanPham_Impl extends UnicastRemoteObject implements NhomSanPham
 //            listNhomSanPham.add(nhomSanPham);
 //        }
 
-        List<NhomSanPham> listNhomSanPham =
 
-        return (ArrayList<NhomSanPham>) listNhomSanPham;
+
+//        return (ArrayList<NhomSanPham>) listNhomSanPham;
+        return null;
     }
 
     @Override

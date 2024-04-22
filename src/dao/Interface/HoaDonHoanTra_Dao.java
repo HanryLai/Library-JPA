@@ -1,12 +1,21 @@
 package dao.Interface;
+
+
+
+
 import entityJPA.HoaDonHoanTra;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface HoaDonHoanTra_Dao extends GenericDao<HoaDonHoanTra>{
-    public ArrayList<entity.HoaDonHoanTra> getAllHoaDonHoanTra();
-    public boolean createHoaDonHoanTra(entity.HoaDonHoanTra hd);
-    public boolean updateHoaDonHoanTra(entity.HoaDonHoanTra hd);
-    public entity.HoaDonHoanTra getHoaDonHoanTratheoMa(String ma);
-    public void deleteHoaDonHoanTra(String ma);
+public interface HoaDonHoanTra_Dao extends Remote {
+    public ArrayList<HoaDonHoanTra> getAllHoaDonHoanTra() throws RemoteException;
+    public boolean createHoaDonHoanTra(HoaDonHoanTra hd) throws RemoteException;
+    public boolean updateHoaDonHoanTra(HoaDonHoanTra hd) throws RemoteException;
+
+    public HoaDonHoanTra getHoaDonHoanTratheoMa(String ma)  throws RemoteException;
+    public void deleteHoaDonHoanTra(String ma) throws RemoteException;
+
+
 }
