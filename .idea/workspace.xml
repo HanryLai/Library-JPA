@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fba06fb3-d2af-460f-a8d7-384e7725c7b3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/HoaDon_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/HoaDon_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDonDoiHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDonDoiHang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDonHoanTra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDonHoanTra.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +50,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.HoaDonHoanTra_Impl.executor": "Run",
     "Application.HoaDon_Impl.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.MainTest.executor": "Run",
@@ -75,7 +77,20 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Application.HoaDon_Impl">
+  <component name="RunManager" selected="Application.HoaDonHoanTra_Impl">
+    <configuration name="HoaDonHoanTra_Impl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.impl.HoaDonHoanTra_Impl" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HoaDon_Impl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.impl.HoaDon_Impl" />
       <module name="QuanLiNhaSachONEEIGHT" />
@@ -141,6 +156,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HoaDonHoanTra_Impl" />
         <item itemvalue="Application.HoaDon_Impl" />
         <item itemvalue="Application.MainTest" />
         <item itemvalue="Application.Main" />
