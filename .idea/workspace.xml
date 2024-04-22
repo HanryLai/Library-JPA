@@ -5,30 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fba06fb3-d2af-460f-a8d7-384e7725c7b3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/dao/Interface/BanBaoCao_Dao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/Interface/GenericDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/Interface/VanPhongPham_Dao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/impl/VanPhongPham_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/BanBaoCaoDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/ChiTietHoaDonDoiDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/ChiTietHoaDonDoiDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/TaiKhoanDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/TaiKhoanDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/VanPhongPhamDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/BanBaoCaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/BanBaoCao_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonDoiImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonDoiImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/TaiKhoanImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/TaiKhoanImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/VanPhongPhamImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/BanBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/BanBaoCao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/MainTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/Sach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/Sach.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/SanPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/SanPham.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/VanPhongPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/VanPhongPham.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/GenericDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/GenericImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/GenericImpl.java" afterDir="false" />
-
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,11 +26,9 @@
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: -1
-}</component>
-
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
   <component name="ProjectId" id="2f66mHQGj3E4AI60DyHgeg5UJaa" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -65,14 +40,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "Application.Server.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-
-    "git-widget-placeholder": "Minh",
+    "git-widget-placeholder": "zy",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "F:/Project_Lib/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
-
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -90,7 +65,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.impl.Main" />
       <module name="QuanLiNhaSachONEEIGHT" />
@@ -117,6 +92,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.Server" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -130,6 +118,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Server" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.MainTest" />
       </list>
@@ -139,7 +128,6 @@
     <attachedChunks>
       <set>
         <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
       </set>
     </attachedChunks>
   </component>
@@ -157,9 +145,7 @@
       <workItem from="1713195611523" duration="327000" />
       <workItem from="1713195951199" duration="4518000" />
       <workItem from="1713204698439" duration="891000" />
-
       <workItem from="1713241996896" duration="8600000" />
-
     </task>
     <servers />
   </component>
