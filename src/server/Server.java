@@ -19,11 +19,11 @@ public class Server {
 
 
 //    PositionService positionDao = new PosionImpl();
-        TaiKhoanImpl daoTK = new TaiKhoanImpl(TaiKhoan.class);
-
-        LocateRegistry.createRegistry(6361);
-
-        context.bind(url + "TKdao",daoTK );
+//        TaiKhoanImpl daoTK = new TaiKhoanImpl(TaiKhoan.class);
+//
+//        LocateRegistry.createRegistry(6361);
+//
+//        context.bind(url + "TKdao",daoTK );
 
 
 
