@@ -35,7 +35,16 @@ public class HoaDon {
 	private float chietKhau;
 	@Column(columnDefinition = "nvarchar(50)")
 	private String khuyenMai;
-	
+
+	public HoaDon(LocalDateTime ngayLap, String ghiChu, int tinhTrangHoaDon, float tongTien, float chietKhau, String khuyenMai) {
+		this.ngayLap = ngayLap;
+		this.ghiChu = ghiChu;
+		this.tinhTrangHoaDon = tinhTrangHoaDon;
+		this.tongTien = tongTien;
+		this.chietKhau = chietKhau;
+		this.khuyenMai = khuyenMai;
+	}
+
 	@OneToMany(mappedBy = "hoaDon")
 	private List<HoaDonHoanTra> hoaDonHoanTras;
 	

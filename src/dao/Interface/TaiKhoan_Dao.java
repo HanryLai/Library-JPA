@@ -1,10 +1,8 @@
 package dao.Interface;
 
-import entityJPA.TaiKhoan;
-
 import java.rmi.Remote;
 
-public interface TaiKhoanDao extends Remote {
+public interface TaiKhoan_Dao extends Remote {
 	public boolean xacThucNguoiDung(String tenDangNhap, String matKhau);
 	public String phanQuyen(String email);
 	public String getTenNguoiDung(String email);

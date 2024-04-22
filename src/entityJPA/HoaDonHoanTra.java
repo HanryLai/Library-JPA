@@ -37,6 +37,15 @@ public class HoaDonHoanTra {
 	private int tinhTrangHoaDon;
 	private float tienHoanTra;
 
+
+	public HoaDonHoanTra(LocalDate ngayHoan, HoaDon hoaDon, String ghiChu, int tinhTrangHoaDon, float tienHoanTra) {
+		this.ngayHoan = ngayHoan;
+		this.hoaDon = hoaDon;
+		this.ghiChu = ghiChu;
+		this.tinhTrangHoaDon = tinhTrangHoaDon;
+		this.tienHoanTra = tienHoanTra;
+	}
+
 	@Override
 	public String 	toString() {
 		return "HoaDonHoanTra{" +
