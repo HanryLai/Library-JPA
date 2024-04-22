@@ -41,6 +41,14 @@ public class HoaDonDoiHang {
 	private float chietKhau;
 	private String khuyenMai;
 
+	public HoaDonDoiHang(HoaDonHoanTra hoaDonHoanTra, String ghiChu, float tienHoanTra, float chietKhau, String khuyenMai) {
+		this.hoaDonHoanTra = hoaDonHoanTra;
+		this.ghiChu = ghiChu;
+		this.tienHoanTra = tienHoanTra;
+		this.chietKhau = chietKhau;
+		this.khuyenMai = khuyenMai;
+	}
+
 	@Override
 	public String toString() {
 		return "HoaDonDoiHang{" +
