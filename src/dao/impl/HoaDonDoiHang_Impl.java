@@ -1,13 +1,17 @@
 package dao.impl;
 
 import dao.Interface.HoaDonDoiHang_Dao;
+import dao.Interface.HoaDonHoanTra_Dao;
 import entityJPA.HoaDonDoiHang;
+import entityJPA.HoaDonHoanTra;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.List;
 
 public class HoaDonDoiHang_Impl extends UnicastRemoteObject implements HoaDonDoiHang_Dao {
     private final EntityManagerFactory emf;
@@ -42,13 +46,18 @@ public class HoaDonDoiHang_Impl extends UnicastRemoteObject implements HoaDonDoi
     @Override
     public HoaDonDoiHang getHoaDonDoiHangtheoMaHT(String ma) throws RemoteException {
         EntityManager em = emf.createEntityManager();
-        String query = "select maHoaDon  from HoaDon\n" +
-                "where CONVERT(date, ngayLap) = ?";
-//        List<?> ls = em.createNativeQuery(query)
-//                .setParameter(1, ngayLapHD)
-//                .getResultList();
+        String query = "select maHoaDonDoi from HoaDonDoiHang\n" +
+                "where maHoaDonHoanTra = ?";
+        List<?> ls = em.createNativeQuery(query)
+                .setParameter(1, ma)
+                .getResultList();
 
-        return  null;
+        if(ls.size() == 0)
+            return  null;
+        int id = (int) ls.get(0);
+        HoaDonDoiHang hdht = em.find(HoaDonDoiHang.class, id);
+
+        return  hdht;
     }
 
     @Override
@@ -56,7 +65,18 @@ public class HoaDonDoiHang_Impl extends UnicastRemoteObject implements HoaDonDoi
         return false;
     }
 
-    public static void main(String[] args) {
-//       HoaDonDoiHang hd =
+    public static void main(String[] args) throws RemoteException {
+        HoaDonHoanTra_Dao daoht = new HoaDonHoanTra_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+        HoaDonDoiHang_Dao daodh = new HoaDonDoiHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+
+//        HoaDonHoanTra hdht = daoht.getHoaDonHoanTratheoMa("1");
+//        public HoaDonDoiHang(HoaDonHoanTra hoaDonHoanTra, String ghiChu, float tienHoanTra, float chietKhau, String khuyenMai)
+//        HoaDonDoiHang hddh = new HoaDonDoiHang(hdht, "ghi chu", 50f, 0.1f, "khum");
+//
+//        System.out.println(daodh.createHoaDonDoiHang(hddh));
+
+
+        System.out.println(daodh.getHoaDonDoiHangtheoMaHT("1"));
+
     }
 }
