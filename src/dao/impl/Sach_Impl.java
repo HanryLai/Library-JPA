@@ -8,22 +8,35 @@ import jakarta.persistence.Persistence;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sach_Impl extends UnicastRemoteObject implements Sach_Dao {
 
-    private EntityManagerFactory emf;
+    private final EntityManagerFactory emf;
     public Sach_Impl(EntityManagerFactory emf) throws RemoteException {
         super();
         this.emf = emf;
     }
 
-    public Sach getSachTheoMa(String ma) throws RemoteException{
-        return null;
+    public ArrayList<Sach> getAlltbSach() throws RemoteException {
+        GenericImpl<Sach> sachGeneric = new GenericImpl<>(Sach.class, emf);
+        return (ArrayList<Sach>) sachGeneric.findAll();
     }
 
-    public boolean updateSach (Sach sach) throws RemoteException{
-        return true;
+    public void createSach(Sach s) throws RemoteException {
+        GenericImpl<Sach> sachGeneric = new GenericImpl<>(Sach.class, emf);
+        sachGeneric.save(s);
+    }
+
+    public Sach getSachtheoMa(String ma) throws RemoteException {
+        GenericImpl<Sach> sachGeneric = new GenericImpl<>(Sach.class, emf);
+        return sachGeneric.findById(ma);
+    }
+
+    public void updateSach(Sach s) throws RemoteException {
+        GenericImpl<Sach> sachGeneric = new GenericImpl<>(Sach.class, emf);
+        sachGeneric.update(s);
     }
 
 
