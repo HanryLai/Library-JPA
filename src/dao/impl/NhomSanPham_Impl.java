@@ -2,108 +2,41 @@ package dao.impl;
 
 import dao.Interface.NhomSanPham_Dao;
 import entityJPA.NhomSanPham;
-import entityJPA.TaiKhoan;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+import jakarta.persistence.EntityManagerFactory;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.List;
 
 public class NhomSanPham_Impl extends UnicastRemoteObject implements NhomSanPham_Dao {
-    private EntityManager em = Persistence
-            .createEntityManagerFactory("jpa-mssql")
-            .createEntityManager();
-    private Generic_Impl<NhomSanPham> generic;
+    private final EntityManagerFactory emf;
+    public NhomSanPham_Impl(EntityManagerFactory emf) throws RemoteException {
+        super();
+        this.emf = emf;
+    }
 
-    protected NhomSanPham_Impl(Class<NhomSanPham> entityClass) throws RemoteException {
+
+    @Override
+    public ArrayList<NhomSanPham> getAllNhomSanPham() throws  RemoteException{
+       Generic_Impl<NhomSanPham> nspGeneric = new Generic_Impl<>(NhomSanPham.class, emf);
+       return (ArrayList<NhomSanPham>) nspGeneric.findAll();
+    }
+
+    @Override
+    public NhomSanPham getNsptheoTen(String ten) throws RemoteException {
+        Generic_Impl<NhomSanPham> nspGeneric = new Generic_Impl<>(NhomSanPham.class, emf);
+        return nspGeneric.findByProperty("tenNhomSanPham", ten).get(0);
 
     }
 
     @Override
-    public void open() throws RemoteException {
-
-    }
-
-    @Override
-    public void close() throws RemoteException {
-
-    }
-
-    @Override
-    public boolean save(NhomSanPham obj) throws RemoteException {
-        return false;
-    }
-
-    @Override
-    public boolean update(NhomSanPham obj) throws RemoteException {
-        return false;
-    }
-
-    @Override
-    public boolean delete(Object id) throws RemoteException {
-        return false;
-    }
-
-    @Override
-    public NhomSanPham findById(Object id) throws RemoteException {
-        return null;
-    }
-
-    @Override
-    public List<NhomSanPham> findAll() throws RemoteException {
-        return null;
-    }
-
-    @Override
-    public List<NhomSanPham> findByProperty(String property, Object value) throws RemoteException {
-        return null;
-    }
-
-    @Override
-    public ArrayList<NhomSanPham> getAllNhomSanPham() {
-//        String queryStr = "SELECT n.maNhomSanPham, n.tenNhomSanPham FROM NhomSanPham n";
-//        Query query = em.createQuery(queryStr);
-//
-//        List<Object[]> resultList = query.getResultList();
-//        List<NhomSanPham> listNhomSanPham = new ArrayList<>();
-//
-//        for (Object[] obj : resultList) {
-//            int maNhomSanPham = (int) obj[0];
-//            String tenNhomSanPham = (String) obj[1];
-//
-//            // Tạo đối tượng NhomSanPham từ các giá trị trong mảng obj
-//            NhomSanPham nhomSanPham = new NhomSanPham();
-//            nhomSanPham.setMaNhomSanPham(maNhomSanPham);
-//            nhomSanPham.setTenNhomSanPham(tenNhomSanPham);
-//
-//            // Thêm đối tượng NhomSanPham vào danh sách
-//            listNhomSanPham.add(nhomSanPham);
-//        }
-
-
-
-//        return (ArrayList<NhomSanPham>) listNhomSanPham;
-        return null;
-    }
-
-    @Override
-    public NhomSanPham getNsptheoTen(String ten) {
-        String queryStr = "SELECT n.maNhomSanPham, n.tenNhomSanPham FROM NhomSanPham n WHERE n.tenNhomSanPham = :ten";
-        Query query = em.createQuery(queryStr);
-        query.setParameter("ten", "%"+ten+"%");
-        Object resultList = query.getSingleResult();
-        Object[] obj = (Object[]) resultList;
-        NhomSanPham nhomSanPham = new NhomSanPham();
-        nhomSanPham.setMaNhomSanPham((int) obj[0]);
-        nhomSanPham.setTenNhomSanPham((String) obj[1]);
-        return nhomSanPham;
-    }
-
-    @Override
-    public NhomSanPham getNspTheoMa(String ma) {
-        return null;
+    public NhomSanPham getNspTheoMa(String ma) throws RemoteException {
+        Generic_Impl<NhomSanPham> nspGeneric = new Generic_Impl<>(NhomSanPham.class, emf);
+        return nspGeneric.findByProperty("maNhomSanPham", ma).get(0);
     }
 }
+
+
+
+
+

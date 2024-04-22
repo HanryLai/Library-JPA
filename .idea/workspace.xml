@@ -5,44 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fba06fb3-d2af-460f-a8d7-384e7725c7b3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/Interface/HoaDon_Dao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/Interface/ThongKe_Dao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/impl/HoaDonDoiHang_Impl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/impl/HoaDonHoanTra_Impl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/impl/HoaDon_Impl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/impl/NhanVien_Impl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/impl/ThongKe_Impl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/untils/entityManagerFactory/EntityManagerFactory_Static.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/BanBaoCao_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/BanBaoCao_Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/ChiTietBaoCao_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/ChiTietBaoCao_Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/ChiTietHoaDonDoiDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/ChiTietHoaDonDoiDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/GenericDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/Generic_Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/HoaDonDoiHang_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/HoaDonDoiHang_Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/HoaDonHoanTra_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/HoaDonHoanTra_Dao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/Interface/NhomSanPham_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/NhomSanPham_Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/Sach_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/Sach_Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/SanPham_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/SanPham_Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/TaiKhoanDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/TaiKhoan_Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/VanPhongPham_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/VanPhongPham_Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/BanBaoCao_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/BanBaoCao_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietBanBaoCao_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietBanBaoCao_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/GenericImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/Generic_Impl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/impl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/NhanVienImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/impl/NhomSanPham_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/NhomSanPham_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/Sach_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/Sach_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/SanPham_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/SanPham_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/TaiKhoanImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/VanPhongPham_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/VanPhongPham_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDonDoiHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDonDoiHang.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDonHoanTra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDonHoanTra.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +59,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging hieu",
+    "git-widget-placeholder": "hieu",
     "last_opened_file_path": "F:/HK2_2023-2024/LapTrinhPhanTan/RMI/RMI_1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
