@@ -5,9 +5,7 @@ import javax.swing.JOptionPane;
 import dao.Interface.TaiKhoanDao;
 import entityJPA.NhanVien;
 import entityJPA.TaiKhoan;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -23,21 +21,20 @@ import javax.mail.internet.MimeMessage;
 import java.util.Random;
 
 public class TaiKhoanImpl extends UnicastRemoteObject implements TaiKhoanDao {
-	private EntityManager em = Persistence
-			.createEntityManagerFactory("jpa-mssql")
-			.createEntityManager();
+	private EntityManagerFactory emf;
 
 	private GenericImpl<TaiKhoan> generic;
 
-	public TaiKhoanImpl(Class<TaiKhoan> entityClass) throws RemoteException {
+	public TaiKhoanImpl(EntityManagerFactory emf) throws RemoteException {
 		super();
-		generic = new GenericImpl<TaiKhoan>(entityClass);
+		this.emf = emf;
 	}
 
 	public boolean xacThucNguoiDung(String tenDangNhap, String matKhau) {
 		try {
 			String   query    = "SELECT c FROM TaiKhoan c WHERE email = :email";
 			TaiKhoan taiKhoan = null;
+			EntityManager em = emf.createEntityManager();
 			taiKhoan = em.createQuery(query, TaiKhoan.class)
 					.setParameter("email", tenDangNhap)
 					.getSingleResult();
@@ -115,6 +112,7 @@ public class TaiKhoanImpl extends UnicastRemoteObject implements TaiKhoanDao {
 		String tenDN = "";
 		try {
 			String query = "SELECT tenDangNhap FROM TaiKhoan WHERE email = :email";
+			EntityManager em = emf.createEntityManager();
 			String tenDangNhap = em.createQuery(query, String.class)
 					.setParameter("email", email)
 					.getSingleResult();
@@ -133,6 +131,7 @@ public class TaiKhoanImpl extends UnicastRemoteObject implements TaiKhoanDao {
 		String tenND = "";
 		try {
 			String query = "SELECT hoTenNV FROM NhanVien WHERE email = :email";
+			EntityManager em = emf.createEntityManager();
 			String tenNguoiDung = em.createQuery(query, String.class)
 					.setParameter("email", email)
 					.getSingleResult();
@@ -150,13 +149,14 @@ public class TaiKhoanImpl extends UnicastRemoteObject implements TaiKhoanDao {
 	public void doiMatKhau(String email, String newPassword) {
 		try {
 			String query = "SELECT c FROM TaiKhoan c WHERE email = :email";
+			EntityManager em = emf.createEntityManager();
 			NhanVien nhanVien = em.createQuery(query, NhanVien.class)
 					.setParameter("email", email)
 					.getSingleResult();
 			if (nhanVien == null) {
 				JOptionPane.showMessageDialog(null, "Email Nhân viên không tồn tại.");
 			}
-			String queryUpdatePwd = "UPDATE TaiKhoan  SET matkhau = :matkhau WHERE email = :email";
+			String queryUpdatePwd = "UPDATE TaiKhoan SET matkhau = :matkhau WHERE email = :email ";
 			Query  updatePwdQuery = em.createQuery(queryUpdatePwd);
 			updatePwdQuery.setParameter("matkhau", newPassword);
 			updatePwdQuery.setParameter("email", email);
@@ -174,43 +174,4 @@ public class TaiKhoanImpl extends UnicastRemoteObject implements TaiKhoanDao {
 	}
 
 
-	@Override
-	public void open() throws RemoteException {
-
-	}
-
-	@Override
-	public void close() throws RemoteException {
-
-	}
-
-	@Override
-	public boolean save(TaiKhoan obj) throws RemoteException {
-		return false;
-	}
-
-	@Override
-	public boolean update(TaiKhoan obj) throws RemoteException {
-		return false;
-	}
-
-	@Override
-	public boolean delete(Object id) {
-		return false;
-	}
-
-	@Override
-	public TaiKhoan findById(Object id) throws RemoteException {
-		return null;
-	}
-
-	@Override
-	public List<TaiKhoan> findAll() throws RemoteException {
-		return null;
-	}
-
-	@Override
-	public List<TaiKhoan> findByProperty(String property, Object value) throws RemoteException {
-		return null;
-	}
 }
