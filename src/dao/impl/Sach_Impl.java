@@ -3,6 +3,7 @@ package dao.impl;
 import dao.Interface.Sach_Dao;
 import entityJPA.Sach;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.rmi.RemoteException;
@@ -11,19 +12,18 @@ import java.util.List;
 
 public class Sach_Impl extends UnicastRemoteObject implements Sach_Dao {
 
-    private EntityManager em;
-    private GenericImpl<Sach> generic;
-    public Sach_Impl() throws Exception {
+    private EntityManagerFactory emf;
+    public Sach_Impl(EntityManagerFactory emf) throws RemoteException {
         super();
-        em = Persistence.createEntityManagerFactory("jpa-mssql").createEntityManager();
+        this.emf = emf;
     }
 
     public Sach getSachTheoMa(String ma) throws RemoteException{
-        return generic.findById(ma);
+        return null;
     }
 
     public boolean updateSach (Sach sach) throws RemoteException{
-        return generic.update(sach);
+        return true;
     }
 
 

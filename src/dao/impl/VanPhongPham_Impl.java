@@ -3,6 +3,7 @@ package dao.impl;
 import dao.Interface.VanPhongPham_Dao;
 import entityJPA.VanPhongPham;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.rmi.RemoteException;
@@ -12,11 +13,11 @@ import java.util.List;
 
 public class VanPhongPham_Impl extends UnicastRemoteObject implements VanPhongPham_Dao {
 
-	private EntityManager em;
+	private EntityManagerFactory emf;
 	private GenericImpl<VanPhongPham> generic;
-	public VanPhongPham_Impl() throws Exception {
+	public VanPhongPham_Impl(EntityManagerFactory emf) throws RemoteException {
 		super();
-		em = Persistence.createEntityManagerFactory("jpa-mssql").createEntityManager();
+		this.emf = emf;
 	}
 
 	public ArrayList<VanPhongPham> getAllVanPhongPhan() throws RemoteException{
