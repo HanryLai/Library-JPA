@@ -1,6 +1,7 @@
 package dao.Interface;
 
 
+
 import entityJPA.HoaDonDoiHang;
 
 import java.rmi.Remote;
@@ -16,4 +17,5 @@ public interface HoaDonDoiHang_Dao extends Remote {
     public HoaDonDoiHang getHoaDonDoiHangtheoMaHT(String ma) throws RemoteException;
 
     public boolean deleteHoaDonDoi(String ma) throws RemoteException;
+
 }

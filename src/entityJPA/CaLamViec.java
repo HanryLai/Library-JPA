@@ -1,15 +1,9 @@
 package entityJPA;
 
-import java.time.LocalDateTime;
+import java.sql.Time;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,13 +17,16 @@ public class CaLamViec {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maCa;
+	@Column(columnDefinition = "nvarchar(25)")
 	private String tenCa;
-	private LocalDateTime thoiGianBatDau;
-	private LocalDateTime thoiGianKetThuc;
+	@Column(columnDefinition = "time")
+	private Time thoiGianBatDau;
+	@Column(columnDefinition = "time")
+	private Time thoiGianKetThuc;
 	@OneToMany(mappedBy = "caLamViec")
 	private List<NhanVien> nhanViens;
 
-	public CaLamViec(String tenCa, LocalDateTime thoiGianBatDau, LocalDateTime thoiGianKetThuc) {
+	public CaLamViec(String tenCa, Time thoiGianBatDau, Time thoiGianKetThuc) {
 		this.tenCa = tenCa;
 		this.thoiGianBatDau = thoiGianBatDau;
 		this.thoiGianKetThuc = thoiGianKetThuc;

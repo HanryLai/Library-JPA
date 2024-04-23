@@ -1,14 +1,17 @@
 package entityJPA;
 
+
 import java.io.Serializable;
 
 import jakarta.persistence.*;
 import lombok.*;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
 @EqualsAndHashCode
 @Table(name = "ChiTietHoaDon")
@@ -53,3 +56,4 @@ class ChiTietHoaDonID implements Serializable{
 	private int maHoaDon;
 	private int maSanPham;
 }
+

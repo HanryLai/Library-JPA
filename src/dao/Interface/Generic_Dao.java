@@ -1,12 +1,11 @@
 package dao.Interface;
 
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
 import org.apache.poi.ss.formula.functions.T;
 
-public interface GenericDao<T> {
+public interface Generic_Dao<T> {
 	public void open() throws RemoteException;
 	public void close() throws RemoteException;
 	public boolean save(T obj)throws RemoteException;

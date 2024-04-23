@@ -1,5 +1,6 @@
 package entityJPA;
 
+import entityJPA.otherID.ChiTietBanBaoCaoID;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,6 +30,8 @@ public class ChiTietBanBaoCao implements Serializable{
 	private double thanhTien;
 	private int soLuongNhap;
 	private int tonKho;
+
+	@Column(columnDefinition = "NVARCHAR(255)")
 	private String ghiChu;
 
 	@Override
@@ -46,15 +49,3 @@ public class ChiTietBanBaoCao implements Serializable{
 	}
 }
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-
-@Embeddable
-class ChiTietBanBaoCaoID implements Serializable {
-	private static final long serialVersionUID = 1L;
-	private int maSanPham;
-	private int maBanBaoCao;
-}

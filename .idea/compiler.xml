@@ -10,5 +10,8 @@
         <module name="QuanLiNhaSachONEEIGHT" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Test" target="21" />
+    </bytecodeTargetLevel>
   </component>
 </project>

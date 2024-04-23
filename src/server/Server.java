@@ -1,14 +1,9 @@
 package server;
 
-import dao.Dao_TaiKhoan;
-import dao.impl.TaiKhoanImpl;
-import entityJPA.TaiKhoan;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
 
 
 public class Server {

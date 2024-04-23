@@ -2,6 +2,7 @@ package dao.Interface;
 
 
 
+
 import entityJPA.HoaDonHoanTra;
 
 import java.rmi.Remote;
@@ -15,5 +16,6 @@ public interface HoaDonHoanTra_Dao extends Remote {
 
     public HoaDonHoanTra getHoaDonHoanTratheoMa(String ma)  throws RemoteException;
     public void deleteHoaDonHoanTra(String ma) throws RemoteException;
+
 
 }
