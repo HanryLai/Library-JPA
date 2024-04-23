@@ -1,9 +1,6 @@
 package testPackage.data;
 
-import entityJPA.CaLamViec;
-import entityJPA.ChucVu;
-import entityJPA.NhanVien;
-import entityJPA.TaiKhoan;
+import entityJPA.*;
 import jakarta.persistence.EntityManager;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
@@ -32,6 +29,18 @@ public class TaiKhoan_NhanVien_KhachHang {
         NhanVien nhanVien4 = new NhanVien("Lại Dương Minh Hiếu", LocalDate.of(2003, 1, 1),
                 "0123456789", "Nam", "laiduongminhhieu@gmail.com", taiKhoan4, 1, ca3, ChucVu.QUANLY);
         // KhachHang
+        KhachHang khachHang1 = new KhachHang();
+        khachHang1.setTenKhachHang("Nguyễn Van A");
+        khachHang1.setSoDienThoai("0123456789");
+        khachHang1.setNhomKhachHang(NhomKhachHang.KHACHBT);
+        KhachHang khachHang2 = new KhachHang();
+        khachHang2.setTenKhachHang("Nguyễn Van B");
+        khachHang2.setSoDienThoai("0987654321");
+        khachHang2.setNhomKhachHang(NhomKhachHang.KHACHBT);
+        KhachHang khachHang3 = new KhachHang();
+        khachHang3.setTenKhachHang("Nguyễn Van C");
+        khachHang3.setSoDienThoai("0111222333");
+        khachHang3.setNhomKhachHang(NhomKhachHang.KHACHBT);
 
 
         em.getTransaction().begin();
@@ -50,6 +59,9 @@ public class TaiKhoan_NhanVien_KhachHang {
         em.persist(nhanVien3);
         em.persist(nhanVien4);
         // KhachHang
+        em.persist(khachHang1);
+        em.persist(khachHang2);
+        em.persist(khachHang3);
 
         em.getTransaction().commit();
         em.close();

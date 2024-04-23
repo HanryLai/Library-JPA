@@ -1,23 +1,21 @@
 package testPackage.data;
 
+import dao.impl.Sach_Impl;
+import dao.impl.TaiKhoan_Impl;
+import dao.impl.VanPhongPham_Impl;
 import entityJPA.*;
 import entityJPA.otherID.ChiTietBanBaoCaoID;
 import jakarta.persistence.EntityManager;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
+import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 
 public class SanPham_BaoCao_ChiTiet {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RemoteException {
 		
 		EntityManager em = EntityManagerFactory_Static.getEntityManagerFactory().createEntityManager();
-		VanPhongPham vpp = new VanPhongPham();
-		vpp.setTenSanPham("Văn phòng phẩm mẫu");
-		vpp.setSoLuongTon(100);
-		vpp.setDonGiaNhap(15000);
-		vpp.setMoTa("Văn phòng phẩm mẫu cho dự án");
-		vpp.setTinhTrang("Còn hàng");
-
+		em.getTransaction().begin();
 		MauSac mauSac = new MauSac();
 		mauSac.setTenMau("Màu đỏ");
 
@@ -25,8 +23,7 @@ public class SanPham_BaoCao_ChiTiet {
 		MauSac mauSac2 = new MauSac();
 		mauSac2.setTenMau("Màu xanh");
 
-		em.persist(mauSac);
-		em.persist(mauSac2);
+
 
 		VanPhongPham vanPhongPham = new VanPhongPham();
 		vpp.setTenSanPham("Văn phòng phẩm mẫu1");
@@ -106,6 +103,10 @@ public class SanPham_BaoCao_ChiTiet {
 
 
 		em.getTransaction().begin();
+
+		em.persist(mauSac);
+		em.persist(mauSac2);
+
 		em.persist(vpp);
 		em.persist(sach);
 		em.persist(vpp2);
@@ -152,13 +153,14 @@ public class SanPham_BaoCao_ChiTiet {
 		em.persist(chiTietBanBaoCao2);
 		em.persist(chiTietBanBaoCao3);
 		em.persist(chiTietBanBaoCao4);
+		
+		em.getTransaction().commit();
 
 		ChiTietBanBaoCaoID id = new ChiTietBanBaoCaoID(1, 1);
 
 		ChiTietBanBaoCao t = em.find(ChiTietBanBaoCao.class, id);
 
 
-		em.getTransaction().commit();
 		em.close();
 
 //		DO NOT CLOSE

@@ -28,7 +28,7 @@ public class KhachHang {
 	private int maKhachHang;
 	@Column(columnDefinition = "nvarchar(100)")
 	private String tenKhachHang;
-	@Column(columnDefinition = "nvarchar(20)")
+	@Column(columnDefinition = "nvarchar(20)", unique = true)
 	private String soDienThoai;
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "nvarchar(50)")

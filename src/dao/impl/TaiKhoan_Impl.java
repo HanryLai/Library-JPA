@@ -25,7 +25,6 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 	private Generic_Impl<TaiKhoan> generic;
 
 	public TaiKhoan_Impl(EntityManagerFactory emf) throws RemoteException {
-		super();
 		this.emf = emf;
 	}
 
@@ -149,14 +148,15 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 		try {
 			String query = "SELECT c FROM TaiKhoan c WHERE email = :email";
 			EntityManager em = emf.createEntityManager();
-			NhanVien nhanVien = em.createQuery(query, NhanVien.class)
+			TaiKhoan taiKhoan = em.createQuery(query, TaiKhoan.class)
 					.setParameter("email", email)
 					.getSingleResult();
-			if (nhanVien == null) {
-				JOptionPane.showMessageDialog(null, "Email Nhân viên không tồn tại.");
+			if (taiKhoan == null) {
+				JOptionPane.showMessageDialog(null, "Email nhân viên không tồn tại.");
 			}
+			em.getTransaction().begin();
 			String queryUpdatePwd = "UPDATE TaiKhoan SET matkhau = :matkhau WHERE email = :email ";
-			Query  updatePwdQuery = em.createQuery(queryUpdatePwd);
+			Query  updatePwdQuery = em.createNativeQuery(queryUpdatePwd);
 			updatePwdQuery.setParameter("matkhau", newPassword);
 			updatePwdQuery.setParameter("email", email);
 
@@ -167,6 +167,7 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 			} else {
 				JOptionPane.showMessageDialog(null, "Có lỗi xảy ra khi đổi mật khẩu.");
 			}
+			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
