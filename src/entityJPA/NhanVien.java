@@ -29,16 +29,16 @@ public class NhanVien {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maNhanVien;
-	
-	@Column(columnDefinition = "nvarchar(50)")
+
+	@Column(columnDefinition = "nvarchar(255)")
 	private String hoTenNV;
-	@Column(columnDefinition = "nvarchar(50)")
+
 	private LocalDate ngaySinh;
-	@Column(columnDefinition = "nvarchar(50)")
+	@Column(columnDefinition = "nvarchar(255)")
 	private String soDienThoai;
-	@Column(columnDefinition = "nvarchar(50)")
+	@Column(columnDefinition = "nvarchar(255)")
 	private String gioiTinh;
-	@Column(columnDefinition = "nvarchar(50)")
+	@Column(columnDefinition = "nvarchar(255)")
 	private String email;
 	
 	@OneToOne
@@ -51,6 +51,7 @@ public class NhanVien {
 	private CaLamViec caLamViec;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "nvarchar(255)")
 	private ChucVu chucVu;
 	
 	@OneToMany

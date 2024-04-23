@@ -28,7 +28,7 @@ public class NhomSanPham {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maNhomSanPham;
-	
+	@Column(columnDefinition = "nvarchar(50)")
 	private String tenNhomSanPham;
 	
 	@OneToMany(mappedBy = "nhomSanPham")
