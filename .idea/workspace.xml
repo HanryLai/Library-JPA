@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fba06fb3-d2af-460f-a8d7-384e7725c7b3" name="Changes" comment="">
+
+
+    <list default="true" id="7c21c59b-ebb7-46bf-9d07-1730e3294b05" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/persistence.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/impl/NhanVien_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/NhanVien_Impl.java" afterDir="false" />
@@ -200,6 +202,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

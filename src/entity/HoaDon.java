@@ -10,6 +10,7 @@ public class HoaDon {
     private LocalDateTime ngayLap;
     private NhanVien nhanVien;
     private KhachHang khachHang;
+
     private String ghiChu;
     private int tinhTrangHoaDon;
     private double tongTien;
