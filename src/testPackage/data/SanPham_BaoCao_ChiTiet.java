@@ -25,7 +25,7 @@ public class SanPham_BaoCao_ChiTiet {
 
 
 
-		VanPhongPham vpp = new VanPhongPham();
+		VanPhongPham vanPhongPham = new VanPhongPham();
 		vpp.setTenSanPham("Văn phòng phẩm mẫu1");
 		vpp.setSoLuongTon(100);
 		vpp.setDonGiaNhap(15000);

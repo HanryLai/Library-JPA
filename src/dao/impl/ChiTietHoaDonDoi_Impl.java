@@ -113,8 +113,6 @@ public class ChiTietHoaDonDoi_Impl extends UnicastRemoteObject implements ChiTie
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
         return null;
     }
 
