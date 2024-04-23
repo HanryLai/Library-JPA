@@ -26,12 +26,12 @@ public class KhachHang {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maKhachHang;
-	@Column(columnDefinition = "nvarchar(255)")
+	@Column(columnDefinition = "nvarchar(100)")
 	private String tenKhachHang;
-	@Column(columnDefinition = "nvarchar(255)")
+	@Column(columnDefinition = "nvarchar(20)")
 	private String soDienThoai;
 	@Enumerated(EnumType.STRING)
-	@Column(columnDefinition = "nvarchar(255)")
+	@Column(columnDefinition = "nvarchar(50)")
 	private NhomKhachHang nhomKhachHang;
 	private double tongTienMua;
 	private int soLuongHoaDon;
