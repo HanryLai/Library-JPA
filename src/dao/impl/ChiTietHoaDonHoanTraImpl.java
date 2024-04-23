@@ -19,13 +19,13 @@ public class ChiTietHoaDonHoanTraImpl extends UnicastRemoteObject implements Chi
 
     @Override
     public ArrayList<ChiTietHoanTra> getAllChiTietHoanTra() throws RemoteException {
-        GenericImpl<ChiTietHoanTra> gen = new GenericImpl<>(ChiTietHoanTra.class, emf);
+        Generic_Impl<ChiTietHoanTra> gen = new Generic_Impl<>(ChiTietHoanTra.class, emf);
         return (ArrayList<ChiTietHoanTra>) gen.findAll();
     }
 
     @Override
     public boolean createChiTietHoanTra(ChiTietHoanTra ctht) throws RemoteException {
-        GenericImpl<ChiTietHoanTra> gen = new GenericImpl<>(ChiTietHoanTra.class, emf);
+        Generic_Impl<ChiTietHoanTra> gen = new Generic_Impl<>(ChiTietHoanTra.class, emf);
         return gen.save(ctht);
     }
 
@@ -33,7 +33,7 @@ public class ChiTietHoaDonHoanTraImpl extends UnicastRemoteObject implements Chi
     public void deleteChiTietHoanTra(String maHD) throws RemoteException {
         try {
             ArrayList<ChiTietHoanTra> ls = this.getAllChiTietHoanTra();
-            GenericImpl<ChiTietHoanTra> gen = new GenericImpl<>(ChiTietHoanTra.class, emf);
+            Generic_Impl<ChiTietHoanTra> gen = new Generic_Impl<>(ChiTietHoanTra.class, emf);
             for (ChiTietHoanTra ctht : ls) {
                 String id = ctht.getHoaDonHoanTra().getHoaDon().getMaHoaDon() + "";
                 if (id.equals(maHD)) {
@@ -47,7 +47,7 @@ public class ChiTietHoaDonHoanTraImpl extends UnicastRemoteObject implements Chi
 
     @Override
     public ChiTietHoanTra getHoaDontheoMa(String ma1, String ma2) throws RemoteException {
-        GenericImpl<ChiTietHoanTra> gen = new GenericImpl<>(ChiTietHoanTra.class, emf);
+        Generic_Impl<ChiTietHoanTra> gen = new Generic_Impl<>(ChiTietHoanTra.class, emf);
         ChiTietHoanTraID id = new ChiTietHoanTraID(Integer.parseInt(ma1), Integer.parseInt(ma2));
         return gen.findById(id);
     }

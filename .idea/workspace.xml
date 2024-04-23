@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
-
     <list default="true" id="7c21c59b-ebb7-46bf-9d07-1730e3294b05" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/NhanVien_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/NhanVien_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testPackage/data/SanPham_BaoCao_ChiTiet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/data/SanPham_BaoCao_ChiTiet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testPackage/implement/TaiKhoan_Test_Implement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/implement/TaiKhoan_Test_Implement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonHoanTraImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonHoanTraImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDon_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDon_Impl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,9 +56,9 @@
     "Application.TaiKhoan_Test_Implement.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "loc",
+    "git-widget-placeholder": "zy",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/IUH/2023-2024/HK2-2324/PTJava/Project-Intellij/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
+    "last_opened_file_path": "D:/HK2_23_24_nam3/Project_PhanTan/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -80,9 +75,9 @@
       <recent name="F:\Project_Lib\Library-JPA\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.NhanVien_Test_Implement">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.impl.Main" />
+  <component name="RunManager" selected="Application.ChiTietHoaDon_Impl">
+    <configuration name="ChiTietHoaDon_Impl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.impl.ChiTietHoaDon_Impl" />
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
@@ -159,11 +154,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ChiTietHoaDon_Impl" />
         <item itemvalue="Application.NhanVien_Test_Implement" />
         <item itemvalue="Application.SanPham_BaoCao_ChiTiet" />
         <item itemvalue="Application.TaiKhoan_Test_Implement" />
         <item itemvalue="Application.TaiKhoan_NhanVien_KhachHang" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>

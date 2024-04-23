@@ -23,14 +23,14 @@ public class ChiTietHoaDon_Impl extends UnicastRemoteObject implements ChiTietHo
 
     @Override
     public ArrayList<ChiTietHoaDon> getAllChiTietHoaDon() throws RemoteException {
-        GenericImpl<ChiTietHoaDon> gen = new GenericImpl<>(ChiTietHoaDon.class, emf);
+        Generic_Impl<ChiTietHoaDon> gen = new Generic_Impl<>(ChiTietHoaDon.class, emf);
         return (ArrayList<ChiTietHoaDon>) gen.findAll();
     }
 
     @Override
     public ArrayList<ChiTietHoaDon> getAllChiTietHoaDonByMaHD(String maHD) throws RemoteException {
-        GenericImpl<ChiTietHoaDon> gen = new GenericImpl<>(ChiTietHoaDon.class, emf);
-        GenericImpl<HoaDon> genhd = new GenericImpl<>(HoaDon.class, emf);
+        Generic_Impl<ChiTietHoaDon> gen = new Generic_Impl<>(ChiTietHoaDon.class, emf);
+        Generic_Impl<HoaDon> genhd = new Generic_Impl<>(HoaDon.class, emf);
 
         HoaDon hd = genhd.findById(Integer.parseInt(maHD));
 
@@ -40,13 +40,13 @@ public class ChiTietHoaDon_Impl extends UnicastRemoteObject implements ChiTietHo
 
     @Override
     public boolean createChiTietHoaDon(ChiTietHoaDon cthd) throws RemoteException {
-        GenericImpl<ChiTietHoaDon> gen = new GenericImpl<>(ChiTietHoaDon.class, emf);
+        Generic_Impl<ChiTietHoaDon> gen = new Generic_Impl<>(ChiTietHoaDon.class, emf);
         return gen.save(cthd);
     }
 
     @Override
     public boolean deleteChiTietHoaDonVaSanPham(String maHD, String maSP) throws RemoteException {
-        GenericImpl<ChiTietHoaDon> gen = new GenericImpl<>(ChiTietHoaDon.class, emf);
+        Generic_Impl<ChiTietHoaDon> gen = new Generic_Impl<>(ChiTietHoaDon.class, emf);
         ChiTietHoaDonID id = new ChiTietHoaDonID(Integer.parseInt(maHD), Integer.parseInt(maSP));
         return gen.delete(id);
     }
@@ -55,7 +55,7 @@ public class ChiTietHoaDon_Impl extends UnicastRemoteObject implements ChiTietHo
     public boolean deleteChiTietHoaDon(String maHD) throws RemoteException {
         try {
             List<ChiTietHoaDon> ls = this.getAllChiTietHoaDonByMaHD(maHD);
-            GenericImpl<ChiTietHoaDon> gen = new GenericImpl<>(ChiTietHoaDon.class, emf);
+            Generic_Impl<ChiTietHoaDon> gen = new Generic_Impl<>(ChiTietHoaDon.class, emf);
             for (ChiTietHoaDon cthd : ls) {
                 gen.delete(cthd.getId());
             }
@@ -71,7 +71,7 @@ public class ChiTietHoaDon_Impl extends UnicastRemoteObject implements ChiTietHo
     @Override
     public ChiTietHoaDon getCTHoaDontheoMa(String ma1, String ma2) throws RemoteException {
 
-        GenericImpl<ChiTietHoaDon> gen = new GenericImpl<>(ChiTietHoaDon.class, emf);
+        Generic_Impl<ChiTietHoaDon> gen = new Generic_Impl<>(ChiTietHoaDon.class, emf);
         ChiTietHoaDonID id = new ChiTietHoaDonID(Integer.parseInt(ma1), Integer.parseInt(ma2));
         return gen.findById(id);
     }
@@ -105,11 +105,13 @@ public class ChiTietHoaDon_Impl extends UnicastRemoteObject implements ChiTietHo
 //        System.out.println(cthd_dao.deleteChiTietHoaDon("3"));
 //        System.out.println(cthd_dao.getAllChiTietHoaDonByMaHD("3"));
 //        System.out.println(cthd_dao.deleteChiTietHoaDon("3"));
-        System.out.println(cthd_dao.getCTHoaDontheoMa("4", "1"));
+//        System.out.println(cthd_dao.getCTHoaDontheoMa("4", "1"));
 
 //        public HoaDon(LocalDateTime ngayLap, String ghiChu, int tinhTrangHoaDon, float tongTien, float chietKhau, String khuyenMai)
 //        HoaDon newhd = new HoaDon(LocalDateTime.now(), "ghi chu", 1, 0, 0.1f, "Khong");
 //        System.out.println(dao_hd.createHoaDon(newhd));
+
+        System.out.println(cthd_dao.getAllChiTietHoaDonByMaHD("4"));
 
 
 
