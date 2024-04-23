@@ -37,6 +37,7 @@ public abstract class SanPham implements Serializable {
 	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
 	private Set<ChiTietBanBaoCao> chiTietBanBaoCaos;
 
+	@Column(columnDefinition = "NVARCHAR(255)")
 	private String tenSanPham;
 	protected int soLuongTon;
 	protected double donGiaNhap;

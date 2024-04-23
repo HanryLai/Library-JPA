@@ -39,7 +39,6 @@ public class BanBaoCao implements Serializable {
 				", tenNhanVien='" + tenNhanVien + '\'' +
 				", doanhThu=" + doanhThu +
 				", thoiGianBaoCao='" + thoiGianBaoCao + '\'' +
-				", chiTietBanBaoCaos=" + chiTietBanBaoCaos +
 				'}';
 	}
 }
