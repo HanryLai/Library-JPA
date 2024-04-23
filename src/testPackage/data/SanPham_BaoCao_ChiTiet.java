@@ -19,6 +19,7 @@ public class SanPham_BaoCao_ChiTiet {
 		MauSac mauSac = new MauSac();
 		mauSac.setTenMau("Màu đỏ");
 
+
 		MauSac mauSac2 = new MauSac();
 		mauSac2.setTenMau("Màu xanh");
 
@@ -39,10 +40,12 @@ public class SanPham_BaoCao_ChiTiet {
 
 		VanPhongPham vpp2 = new VanPhongPham();
 		vpp2.setTenSanPham("Văn phòng phẩm mẫu2");
+
 		vpp2.setSoLuongTon(100);
 		vpp2.setDonGiaNhap(15000);
 		vpp2.setMoTa("Văn phòng phẩm mẫu cho dự án 2");
 		vpp2.setTinhTrang("Còn hàng");
+
 		vpp2.setDonGiaBan(30000);
 		vpp2.setVAT(0.2);
 		vpp2.setNgayTao(LocalDateTime.now());
@@ -52,7 +55,9 @@ public class SanPham_BaoCao_ChiTiet {
 
 
 
+
 		Sach sach = new Sach();
+    
 		sach.setTenSanPham("Sách mẫu1");
 		sach.setSoLuongTon(100);
 		sach.setDonGiaNhap(15000);
@@ -81,6 +86,7 @@ public class SanPham_BaoCao_ChiTiet {
 		sach2.setNamXuatBan(2023);
 		sach2.setNhaSanXuat("Nhà xuất bản B");
 		sach2.setSoTrang(200);
+
 
 
 		BanBaoCao banBaoCao = new BanBaoCao();

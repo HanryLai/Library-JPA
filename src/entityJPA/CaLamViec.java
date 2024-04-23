@@ -1,10 +1,9 @@
 package entityJPA;
 
-import java.time.LocalDateTime;
+import java.sql.Time;
 import java.util.List;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,16 +17,16 @@ public class CaLamViec {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maCa;
-	@Column(columnDefinition = "nvarchar(50)")
+	@Column(columnDefinition = "nvarchar(25)")
 	private String tenCa;
 	@Column(columnDefinition = "time")
-	private LocalDateTime thoiGianBatDau;
+	private Time thoiGianBatDau;
 	@Column(columnDefinition = "time")
-	private LocalDateTime thoiGianKetThuc;
+	private Time thoiGianKetThuc;
 	@OneToMany(mappedBy = "caLamViec")
 	private List<NhanVien> nhanViens;
 
-	public CaLamViec(String tenCa, LocalDateTime thoiGianBatDau, LocalDateTime thoiGianKetThuc) {
+	public CaLamViec(String tenCa, Time thoiGianBatDau, Time thoiGianKetThuc) {
 		this.tenCa = tenCa;
 		this.thoiGianBatDau = thoiGianBatDau;
 		this.thoiGianKetThuc = thoiGianKetThuc;

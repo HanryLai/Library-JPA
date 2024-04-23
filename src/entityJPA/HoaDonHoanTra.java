@@ -56,6 +56,7 @@ public class HoaDonHoanTra {
 				", ghiChu='" + ghiChu + '\'' +
 				", tinhTrangHoaDon=" + tinhTrangHoaDon +
 				", tienHoanTra=" + tienHoanTra +
+				", maHoaDon=" + hoaDon.getMaHoaDon() +
 				'}';
 	}
 }
