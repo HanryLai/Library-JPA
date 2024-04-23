@@ -1,14 +1,17 @@
-package entityJPA;
+package testPackage.data;
 
+import entityJPA.*;
+import entityJPA.otherID.ChiTietBanBaoCaoID;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
+
+import java.time.LocalDateTime;
 
 public class MainTest {
 	public static void main(String[] args) {
-		EntityManagerFactory emf = jakarta.persistence.Persistence.createEntityManagerFactory("jpa-mssql");
-//		Persistence.createEntityManagerFactory("jpa-mssql");
 		
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = EntityManagerFactory_Static.getEntityManagerFactory().createEntityManager();
 
 		VanPhongPham vpp = new VanPhongPham();
 		vpp.setTenSanPham("Văn phòng phẩm mẫu");
@@ -16,12 +19,7 @@ public class MainTest {
 		vpp.setDonGiaNhap(15000);
 		vpp.setMoTa("Văn phòng phẩm mẫu cho dự án");
 		vpp.setTinhTrang("Còn hàng");
-
-
-
-
-
-
+		vpp.setNgayTao(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
 
 		VanPhongPham vpp2 = new VanPhongPham();
 		vpp2.setTenSanPham("Văn phòng phẩm mẫu 2");
@@ -29,6 +27,7 @@ public class MainTest {
 		vpp2.setDonGiaNhap(15000);
 		vpp2.setMoTa("Văn phòng phẩm mẫu cho dự án 2");
 		vpp2.setTinhTrang("Còn hàng");
+		vpp2.setNgayTao(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
 
 
 
@@ -38,6 +37,7 @@ public class MainTest {
 		sach.setDonGiaNhap(60000);
 		sach.setMoTa("Sách mẫu cho dự án");
 		sach.setTinhTrang("Còn hàng");
+		sach.setNgayTao(LocalDateTime.of(2022, 1, 2, 0, 0, 0));
 
 		Sach sach2 = new Sach();
 		sach2.setTenSanPham("Sách mẫu 2");
@@ -45,6 +45,7 @@ public class MainTest {
 		sach2.setDonGiaNhap(60000);
 		sach2.setMoTa("Sách mẫu cho dự án 2");
 		sach2.setTinhTrang("Còn hàng");
+		sach2.setNgayTao(LocalDateTime.of(2022, 1, 2, 0, 0, 0));
 
 
 		BanBaoCao banBaoCao = new BanBaoCao();
@@ -111,12 +112,6 @@ public class MainTest {
 		ChiTietBanBaoCaoID id = new ChiTietBanBaoCaoID(1, 1);
 
 		ChiTietBanBaoCao t = em.find(ChiTietBanBaoCao.class, id);
-
-
-
-
-
-
 
 		em.getTransaction().commit();
 
