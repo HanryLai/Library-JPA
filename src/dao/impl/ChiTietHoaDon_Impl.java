@@ -25,14 +25,14 @@ public class ChiTietHoaDon_Impl extends UnicastRemoteObject implements ChiTietHo
 
     @Override
     public ArrayList<ChiTietHoaDon> getAllChiTietHoaDon() throws RemoteException {
-        GenericImpl<ChiTietHoaDon> gen = new GenericImpl<>(ChiTietHoaDon.class, emf);
+        Generic_Impl<ChiTietHoaDon> gen = new Generic_Impl<>(ChiTietHoaDon.class, emf);
         return (ArrayList<ChiTietHoaDon>) gen.findAll();
     }
 
 
     @Override
     public boolean createChiTietHoaDon(ChiTietHoaDon cthd) throws RemoteException {
-        GenericImpl<ChiTietHoaDon> gen = new GenericImpl<>(ChiTietHoaDon.class, emf);
+        Generic_Impl<ChiTietHoaDon> gen = new Generic_Impl<>(ChiTietHoaDon.class, emf);
         return gen.save(cthd);
     }
 
