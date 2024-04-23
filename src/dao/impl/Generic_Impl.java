@@ -3,36 +3,22 @@ package dao.impl;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import dao.Interface.GenericDao;
 import jakarta.persistence.*;
 
-public class GenericImpl<T> {
+
+public class Generic_Impl<T> {
     private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager;
     private final Class<T> entityClass;
 
-    public GenericImpl(Class<T> entityClass) throws RemoteException{
-        entityManagerFactory = Persistence.createEntityManagerFactory("jpa-mssql");
-        entityManager = entityManagerFactory.createEntityManager();
+    public Generic_Impl(Class<T> entityClass, EntityManagerFactory emf) throws RemoteException{
+        entityManagerFactory = emf; // EntityManagerFactory_Static.getEntityManagerFactory();
         this.entityClass = entityClass;
     }
 
-	public void open() throws RemoteException {
-       if (!entityManager.isOpen()) {
-           entityManager = entityManagerFactory.createEntityManager();
-       }
-	}
-
-	public void close() throws RemoteException {
-		 if (entityManager.isOpen()) {
-              entityManager.close();
-         }
-	}
-
     public T findById(Object id) throws RemoteException{
-        open();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         T result = entityManager.find(entityClass, id);
-        close();
+        entityManager.close();
 
         return result;
     }
@@ -40,9 +26,9 @@ public class GenericImpl<T> {
 	public List<T> findAll() throws RemoteException{
         String queryString = "SELECT e FROM " + entityClass.getSimpleName() + " e";
 
-        open();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         List<T> result = entityManager.createQuery(queryString, entityClass).getResultList();
-        close();
+        entityManager.close();
 
         return result;
     }
@@ -50,43 +36,45 @@ public class GenericImpl<T> {
 	public List<T> findByProperty(String propertyName, Object value) throws RemoteException{
         String queryString = "SELECT e FROM " + entityClass.getSimpleName() + " e WHERE e." + propertyName + " = :value";
 
-        open();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         List<T> result = entityManager.createQuery(queryString, entityClass).setParameter("value", value).getResultList();
-        close();
+        entityManager.close();
 
         return result;
     }
 
     
-    public boolean save(T entity) throws RemoteException{
-        open();
-        EntityTransaction transaction = entityManager.getTransaction();
-        try {
-        	transaction.begin();
+    public boolean save(T entity) throws RemoteException {
+        EntityManager     entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction   = null;
+        try (entityManager) {
+            transaction = entityManager.getTransaction();
+            transaction.begin();
             entityManager.persist(entity);
             transaction.commit();
 
             return true;
         } catch (PersistenceException e) {
+            assert transaction != null;
             if (transaction.isActive()) {
                 transaction.rollback();
             }
 
             return false;
         }
-        finally {
-            close();
-        }
     }
 
-    public boolean update(T entity) throws RemoteException{
-        EntityTransaction transaction = entityManager.getTransaction();
-        try {
-        	transaction.begin();
+    public boolean update(T entity) throws RemoteException {
+        EntityManager     entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction   = null;
+        try (entityManager) {
+            transaction = entityManager.getTransaction();
+            transaction.begin();
             entityManager.merge(entity);
             transaction.commit();
             return true;
         } catch (PersistenceException e) {
+            assert transaction != null;
             if (transaction.isActive()) {
                 transaction.rollback();
             }
@@ -94,23 +82,24 @@ public class GenericImpl<T> {
         }
     }
 
-    public boolean delete(Object id) throws RemoteException{
-        open();
-        EntityTransaction transaction = entityManager.getTransaction();
-        try {
-        	transaction.begin();
-        	T entity = entityManager.find(entityClass, id);
+    public boolean delete(Object id) throws RemoteException {
+        EntityManager     entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction   = null;
+        try (entityManager) {
+            transaction = entityManager.getTransaction();
+
+            transaction.begin();
+            T entity = entityManager.find(entityClass, id);
             entityManager.remove(entity);
             transaction.commit();
+
             return true;
         } catch (PersistenceException e) {
+            assert transaction != null;
             if (transaction.isActive()) {
                 transaction.rollback();
             }
             return false;
-        }
-        finally {
-            close();
         }
     }
 }

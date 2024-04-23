@@ -2,61 +2,269 @@ package dao.impl;
 
 import dao.Interface.ChiTietBaoCao_Dao;
 import entityJPA.ChiTietBanBaoCao;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
+import entityJPA.SanPham;
+
+import jakarta.persistence.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTietBaoCao_Dao {
-
-    private EntityManager em;
-    private GenericImpl<ChiTietBanBaoCao> generic;
-    public ChiTietBanBaoCao_Impl() throws Exception {
+    private final EntityManagerFactory emf;
+    public ChiTietBanBaoCao_Impl(EntityManagerFactory emf) throws RemoteException {
         super();
-        em = Persistence.createEntityManagerFactory("jpa-mssql").createEntityManager();
-        generic = new GenericImpl<>(ChiTietBanBaoCao.class);
+        this.emf = emf;
+    }
+    public ArrayList<ChiTietBanBaoCao> getSachDaBan (int maHD, String thoiGianBatDau, String thoiGianKetThuc) throws RemoteException{
+        ArrayList<ChiTietBanBaoCao> list = new ArrayList<>();
+        String sql   = """
+                select s.maSanPham, sum(ct.soLuong) as soLuong, sum(thanhTien) as thanhTien
+                from Sach s
+                inner join ChiTietHoaDon ct on ct.sanPham = s.maSanPham
+                inner join HoaDon hd on hd.maHoaDon = ct.hoaDon
+                where hoaDon like ? and (ngayLap >= ? and ngayLap < ?)
+                group by s.maSanPham""";
+
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createNativeQuery(sql);
+        query.setParameter(1, maHD);
+        query.setParameter(2, thoiGianBatDau);
+        query.setParameter(3, thoiGianKetThuc);
+
+        List<?> result = query.getResultList();
+
+        for (Object obj : result){
+            Object[] objArr = (Object[]) obj;
+            ChiTietBanBaoCao ct = new ChiTietBanBaoCao();
+            SanPham sanPham = em.find(SanPham.class, (int) objArr[0]);
+
+            ct.setSanPham(sanPham);
+            ct.setSoLuongBan((int) objArr[1]);
+            ct.setThanhTien((double) objArr[2]);
+            ct.setGhiChu("");
+
+            list.add(ct);
+        }
+        em.close();
+        return list;
     }
 
-    @Override
-    public void open() throws RemoteException {
-        generic.open();
+    public ArrayList<ChiTietBanBaoCao> getVPPDaBan (int maHD, String thoiGianBatDau, String thoiGianKetThuc)throws RemoteException{
+        ArrayList<ChiTietBanBaoCao> list = new ArrayList<>();
+        String sql   = """
+                select v.maSanPham, sum(ct.soLuong) as soLuong, sum(thanhTien) as thanhTien \s
+                  from VanPhongPham v
+                inner join ChiTietHoaDon ct on ct.sanPham = v.maSanPham
+                inner join HoaDon hd on hd.maHoaDon = ct.hoaDon
+                   where hoaDon like ? and (ngayLap >= ? and ngayLap < ?)
+                  group by v.maSanPham""";
+
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createNativeQuery(sql);
+        query.setParameter(1, maHD);
+        query.setParameter(2, thoiGianBatDau);
+        query.setParameter(3, thoiGianKetThuc);
+
+        List<?> result = query.getResultList();
+
+        for (Object obj : result){
+            Object[] objArr = (Object[]) obj;
+            ChiTietBanBaoCao ct = new ChiTietBanBaoCao();
+            SanPham sanPham = em.find(SanPham.class, (int) objArr[0]);
+
+            ct.setSanPham(sanPham);
+            ct.setSoLuongBan((int) objArr[1]);
+            ct.setThanhTien((double) objArr[2]);
+            ct.setGhiChu("");
+
+            list.add(ct);
+        }
+        em.close();
+
+        return list;
     }
 
-    @Override
-    public void close() throws RemoteException {
-        generic.close();
+//    FIX
+    public ArrayList<ChiTietBanBaoCao> getTinhTrangNhapSach(String ngayTao) throws RemoteException{
+        ArrayList<ChiTietBanBaoCao> list = new ArrayList<>();
+        String sql = """
+                WITH CumulativeSumCTE AS (
+                SELECT
+                    tenSanPham,
+                    soLuongTon as soLuongNhap,
+                    ngayTao,
+                    SUM(soLuongTon) OVER (PARTITION BY tenSanPham ORDER BY ngayTao) AS CumulativeSoLuongTon
+                FROM
+                    Sach
+                )
+                SELECT
+                    tenSanPham,
+                    MAX(soLuongNhap) AS soLuongNhap,
+                    MAX(CumulativeSoLuongTon) AS tonKho
+                FROM
+                    CumulativeSumCTE
+                WHERE
+                    CONVERT(DATE, ngayTao) = ?
+                GROUP BY
+                    tenSanPham;""";
+
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createNativeQuery(sql);
+        query.setParameter(1, ngayTao);
+
+        List<?> result = query.getResultList();
+        for (Object obj : result){
+            Object[] objArr = (Object[]) obj;
+            ChiTietBanBaoCao ct = new ChiTietBanBaoCao();
+            SanPham sanPham = em.find(SanPham.class, (int) objArr[0]);
+
+            ct.setSanPham(sanPham);
+            ct.setSoLuongBan((int) objArr[1]);
+            ct.setThanhTien((double) objArr[2]);
+            ct.setGhiChu("");
+
+            list.add(ct);
+        }
+        em.close();
+
+        return list;
     }
 
-    @Override
-    public boolean save(ChiTietBanBaoCao obj) throws RemoteException {
-        return generic.save(obj);
+    public ArrayList<ChiTietBanBaoCao> getTinhTrangNhapVPP(String ngayTao)throws RemoteException{
+        ArrayList<ChiTietBanBaoCao> list = new ArrayList<>();
+        String sql = """
+                WITH CumulativeSumCTE AS (
+                SELECT
+                    tenSanPham,
+                    soLuongTon as soLuongNhap,
+                    ngayTao,
+                    SUM(soLuongTon) OVER (PARTITION BY tenSanPham ORDER BY ngayTao) AS CumulativeSoLuongTon
+                FROM
+                    VanPhongPham
+                )
+                SELECT
+                    tenSanPham,
+                    MAX(soLuongNhap) AS soLuongNhap,
+                    MAX(CumulativeSoLuongTon) AS tonKho
+                FROM
+                    CumulativeSumCTE
+                WHERE
+                    CONVERT(DATE, ngayTao) = ?
+                GROUP BY
+                    tenSanPham;""";
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createNativeQuery(sql);
+        query.setParameter(1, ngayTao);
+
+        List<?> result = query.getResultList();
+        for (Object obj : result){
+            Object[] objArr = (Object[]) obj;
+            ChiTietBanBaoCao ct = new ChiTietBanBaoCao();
+            SanPham sanPham = em.find(SanPham.class, (int) objArr[0]);
+
+            ct.setSanPham(sanPham);
+            ct.setSoLuongBan((int) objArr[1]);
+            ct.setThanhTien((double) objArr[2]);
+            ct.setGhiChu("");
+
+            list.add(ct);
+        }
+        em.close();
+
+        return list;
     }
 
-    @Override
-    public boolean update(ChiTietBanBaoCao obj) throws RemoteException {
-        return generic.update(obj);
+    public double getDoanhThuTheoCa(int maHD, String thoiGianBatDau, String thoiGianKetThuc)throws RemoteException{
+        double doanhThu = 0;
+        String sql = """
+                select sum(ThanhTien) as ThanhTien
+                from HoaDon hd
+                inner join ChiTietHoaDon cthd on hd.maHoaDon = cthd.hoaDon
+                inner join NhanVien nv on nv.maNhanVien = hd.nhanVien
+                where hd.maHoaDon like ? and (ngayLap >= ? and ngayLap < ?)
+                group by nv.caLamViec""";
+
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createNativeQuery(sql);
+        query.setParameter(1, maHD);
+        query.setParameter(2, thoiGianBatDau);
+        query.setParameter(3, thoiGianKetThuc);
+
+        List<?> result = query.getResultList();
+        for (Object obj : result){
+            doanhThu += (double) obj;
+        }
+        em.close();
+
+        return doanhThu;
     }
 
-    @Override
-    public boolean delete(Object id) {
-        return generic.delete(id);
+    public ArrayList<ChiTietBanBaoCao> getChiTietBanBaoCao(int maBanBaoCao) throws RemoteException {
+        ArrayList<ChiTietBanBaoCao> list = new ArrayList<ChiTietBanBaoCao>();
+
+        Generic_Impl<ChiTietBanBaoCao> generic = new Generic_Impl<>(ChiTietBanBaoCao.class, emf);
+        list = (ArrayList<ChiTietBanBaoCao>) generic.findByProperty("maBanBaoCao", maBanBaoCao);
+
+        return list;
     }
 
-    @Override
-    public ChiTietBanBaoCao findById(Object id) throws RemoteException {
-        return generic.findById(id);
+    public double getDoanhThuCaNgay(String maBanBaoCao)throws RemoteException{
+        double doanhThu = 0;
+        String sql = """
+                select sum(ThanhTien) as ThanhTien
+                from ChiTietBanBaoCao
+                where maBanBaoCao like ?""";
+
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createNativeQuery(sql);
+        query.setParameter(1, maBanBaoCao);
+
+        List<?> result = query.getResultList();
+        for (Object obj : result){
+            doanhThu += (double) obj;
+        }
+        em.close();
+        return doanhThu;
     }
 
-    @Override
-    public List<ChiTietBanBaoCao> findAll() throws RemoteException {
-        return generic.findAll();
+    public int getTongSanPhamBanDuoc(String maBanBaoCao)throws RemoteException{
+        int soLuong = 0;
+        String sql = """
+                select sum(SoLuongBan) as SoLuongBan
+                from ChiTietBanBaoCao
+                where maBanBaoCao like ?""";
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createNativeQuery(sql);
+        query.setParameter(1, maBanBaoCao);
+
+        List<?> result = query.getResultList();
+        for (Object obj : result){
+            soLuong += (int) obj;
+        }
+        em.close();
+        return soLuong;
     }
 
-    @Override
-    public List<ChiTietBanBaoCao> findByProperty(String property, Object value) throws RemoteException {
-        return generic.findByProperty(property, value);
+    public double getDoanhThuTheoTenBC(String tenBanBaoCao)throws RemoteException{
+        double doanhThu = 0;
+        String sql = """
+                select doanhThu
+                from BanBaoCao
+                where tenBanBaoCao like ?""";
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createNativeQuery(sql);
+        query.setParameter(1, tenBanBaoCao);
+
+        List<?> result = query.getResultList();
+        for (Object obj : result){
+            doanhThu += (double) obj;
+        }
+        em.close();
+        return doanhThu;
     }
 
 }
