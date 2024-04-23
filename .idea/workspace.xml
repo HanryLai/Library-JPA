@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7c21c59b-ebb7-46bf-9d07-1730e3294b05" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonHoanTraImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonHoanTraImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDon_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDon_Impl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +32,7 @@
     <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -47,41 +45,56 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.NhanVien_Test_Implement.executor": "Run",
-    "Application.SanPham_BaoCao_ChiTiet.executor": "Run",
-    "Application.TaiKhoan_NhanVien_KhachHang.executor": "Run",
-    "Application.TaiKhoan_Test_Implement.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "zy",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/HK2_23_24_nam3/Project_PhanTan/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ChiTietHoaDon_Impl.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HoaDon_ChiTietHoaDon.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.NhanVien_Test_Implement.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SanPham_BaoCao_ChiTiet.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TaiKhoan_NhanVien_KhachHang.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TaiKhoan_Test_Implement.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;zy&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/HK2_23_24_nam3/Project_PhanTan/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\Project_Lib\Library-JPA\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ChiTietHoaDon_Impl">
+  <component name="RunManager" selected="Application.HoaDon_ChiTietHoaDon">
     <configuration name="ChiTietHoaDon_Impl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.impl.ChiTietHoaDon_Impl" />
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dao.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HoaDon_ChiTietHoaDon" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testPackage.data.HoaDon_ChiTietHoaDon" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testPackage.data.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -128,19 +141,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TaiKhoan_Test_Implement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="testPackage.implement.TaiKhoan_Test_Implement" />
-      <module name="QuanLiNhaSachONEEIGHT" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="testPackage.implement.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -154,11 +154,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HoaDon_ChiTietHoaDon" />
+        <item itemvalue="Application.SanPham_BaoCao_ChiTiet" />
+        <item itemvalue="Application.TaiKhoan_NhanVien_KhachHang" />
         <item itemvalue="Application.ChiTietHoaDon_Impl" />
         <item itemvalue="Application.NhanVien_Test_Implement" />
-        <item itemvalue="Application.SanPham_BaoCao_ChiTiet" />
-        <item itemvalue="Application.TaiKhoan_Test_Implement" />
-        <item itemvalue="Application.TaiKhoan_NhanVien_KhachHang" />
       </list>
     </recent_temporary>
   </component>
@@ -166,14 +166,13 @@
     <attachedChunks>
       <set>
         <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fba06fb3-d2af-460f-a8d7-384e7725c7b3" name="Changes" comment="" />
+      <changelist id="7c21c59b-ebb7-46bf-9d07-1730e3294b05" name="Changes" comment="" />
       <created>1713109342338</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
