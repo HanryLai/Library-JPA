@@ -18,34 +18,78 @@ public class SanPham_BaoCao_ChiTiet {
 		vpp.setMoTa("Văn phòng phẩm mẫu cho dự án");
 		vpp.setTinhTrang("Còn hàng");
 
+		MauSac mauSac = new MauSac();
+		mauSac.setTenMau("Màu đỏ");
 
 
+		MauSac mauSac2 = new MauSac();
+		mauSac2.setTenMau("Màu xanh");
 
+		em.persist(mauSac);
+		em.persist(mauSac2);
 
-
+		VanPhongPham vpp = new VanPhongPham();
+		vpp.setTenSanPham("Văn phòng phẩm mẫu1");
+		vpp.setSoLuongTon(100);
+		vpp.setDonGiaNhap(15000);
+		vpp.setMoTa("Văn phòng phẩm mẫu cho dự án");
+		vpp.setTinhTrang("Còn hàng");
+		vpp.setDonGiaBan(20000);
+		vpp.setVAT(0.1);
+		vpp.setNgayTao(LocalDateTime.now());
+		vpp.setGiamGia(0.1);
+		vpp.setMauSac(mauSac);
+		vpp.setNoiSanXuat("Việt Nam");
 
 		VanPhongPham vpp2 = new VanPhongPham();
-		vpp2.setTenSanPham("Văn phòng phẩm mẫu 2");
+		vpp2.setTenSanPham("Văn phòng phẩm mẫu2");
+
 		vpp2.setSoLuongTon(100);
 		vpp2.setDonGiaNhap(15000);
 		vpp2.setMoTa("Văn phòng phẩm mẫu cho dự án 2");
 		vpp2.setTinhTrang("Còn hàng");
 
+		vpp2.setDonGiaBan(30000);
+		vpp2.setVAT(0.2);
+		vpp2.setNgayTao(LocalDateTime.now());
+		vpp2.setGiamGia(0.1);
+		vpp2.setMauSac(mauSac2);
+		vpp2.setNoiSanXuat("Việt Nam");
+
+
 
 
 		Sach sach = new Sach();
-		sach.setTenSanPham("Sách mẫu");
+    
+		sach.setTenSanPham("Sách mẫu1");
 		sach.setSoLuongTon(100);
-		sach.setDonGiaNhap(60000);
+		sach.setDonGiaNhap(15000);
 		sach.setMoTa("Sách mẫu cho dự án");
 		sach.setTinhTrang("Còn hàng");
+		sach.setDonGiaBan(20000);
+		sach.setVAT(0.1);
+		sach.setNgayTao(LocalDateTime.now());
+		sach.setGiamGia(0.1);
+		sach.setTacGia("Nguyễn Văn A");
+		sach.setNamXuatBan(2022);
+		sach.setNhaSanXuat("Nhà xuất bản A");
+		sach.setSoTrang(100);
 
 		Sach sach2 = new Sach();
-		sach2.setTenSanPham("Sách mẫu 2");
+		sach2.setTenSanPham("Sách mẫu2");
 		sach2.setSoLuongTon(100);
-		sach2.setDonGiaNhap(60000);
+		sach2.setDonGiaNhap(15000);
 		sach2.setMoTa("Sách mẫu cho dự án 2");
 		sach2.setTinhTrang("Còn hàng");
+		sach2.setDonGiaBan(30000);
+		sach2.setVAT(0.2);
+		sach2.setNgayTao(LocalDateTime.now());
+		sach2.setGiamGia(0.1);
+		sach2.setTacGia("Nguyễn Văn B");
+		sach2.setNamXuatBan(2023);
+		sach2.setNhaSanXuat("Nhà xuất bản B");
+		sach2.setSoTrang(200);
+
 
 
 		BanBaoCao banBaoCao = new BanBaoCao();
@@ -112,11 +156,6 @@ public class SanPham_BaoCao_ChiTiet {
 		ChiTietBanBaoCaoID id = new ChiTietBanBaoCaoID(1, 1);
 
 		ChiTietBanBaoCao t = em.find(ChiTietBanBaoCao.class, id);
-
-
-
-
-
 
 
 		em.getTransaction().commit();
