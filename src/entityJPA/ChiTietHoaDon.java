@@ -18,18 +18,25 @@ public class ChiTietHoaDon {
 	private ChiTietHoaDonID id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "hoaDon", insertable = false, updatable = false)
+	@JoinColumn(name = "maHoaDon", insertable=false, updatable=false)
 	private HoaDon maHoaDon;
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "maSach", insertable = false, updatable = false)
+	@JoinColumn(name = "maSanPham", insertable=false, updatable=false)
 	private SanPham maSanPham;
 	
 		
 	private int soLuong;
 	private double thanhTien;
 
+	public ChiTietHoaDon(HoaDon HoaDon, SanPham SanPham, int soLuong, double thanhTien) {
+		this.id = new ChiTietHoaDonID(HoaDon.getMaHoaDon(), SanPham.getMaSanPham());
+		this.maHoaDon = HoaDon;
+		this.maSanPham = SanPham;
+		this.soLuong = soLuong;
+		this.thanhTien = thanhTien;
+	}
 
 	@Override
 	public String toString() {
@@ -41,15 +48,8 @@ public class ChiTietHoaDon {
 				", thanhTien=" + thanhTien +
 				'}';
 	}
+
+
 }
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Embeddable
-class ChiTietHoaDonID implements Serializable{
-	private static final long serialVersionUID = 1L;
-	private int maHoaDon;
-	private int maSanPham;
-}
+

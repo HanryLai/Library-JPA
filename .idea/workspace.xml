@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fba06fb3-d2af-460f-a8d7-384e7725c7b3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/HoaDon_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/HoaDon_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/ChiTietHoaDon_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/ChiTietHoaDon_Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDon_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDon_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietHoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietHoaDon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
