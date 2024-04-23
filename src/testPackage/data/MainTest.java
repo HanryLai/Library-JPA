@@ -1,14 +1,17 @@
-package entityJPA;
+package testPackage.data;
 
+import entityJPA.*;
+import entityJPA.otherID.ChiTietBanBaoCaoID;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
+
+import java.time.LocalDateTime;
 
 public class MainTest {
 	public static void main(String[] args) {
-		EntityManagerFactory emf = jakarta.persistence.Persistence.createEntityManagerFactory("jpa-mssql");
-//		Persistence.createEntityManagerFactory("jpa-mssql");
 		
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = EntityManagerFactory_Static.getEntityManagerFactory().createEntityManager();
 
 		try {
 			// create session
