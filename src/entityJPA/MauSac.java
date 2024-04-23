@@ -11,12 +11,13 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+
 @Table(name = "MauSac")
 public class MauSac {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maMau;
+
 	@Column(columnDefinition = "nvarchar(50)")
 	private String tenMau;
 
@@ -30,5 +31,10 @@ public class MauSac {
 	public MauSac(int maMau, String tenMau) {
 		this.maMau = maMau;
 		this.tenMau = tenMau;
+	}
+
+	@Override
+	public String toString() {
+		return "MauSac [maMau=" + maMau + ", tenMau=" + tenMau + "]";
 	}
 }
