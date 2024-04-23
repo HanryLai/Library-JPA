@@ -28,7 +28,7 @@ public class SanPham_BaoCao_ChiTiet {
 		em.persist(mauSac);
 		em.persist(mauSac2);
 
-		VanPhongPham vpp = new VanPhongPham();
+		VanPhongPham vpp1 = new VanPhongPham();
 		vpp.setTenSanPham("Văn phòng phẩm mẫu1");
 		vpp.setSoLuongTon(100);
 		vpp.setDonGiaNhap(15000);
