@@ -18,7 +18,7 @@ public class CaLamViec {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maCa;
-	@Column(columnDefinition = "nvarchar(50)")
+	@Column(columnDefinition = "nvarchar(255)")
 	private String tenCa;
 	@Column(columnDefinition = "time")
 	private LocalDateTime thoiGianBatDau;
