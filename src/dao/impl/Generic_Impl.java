@@ -3,19 +3,15 @@ package dao.impl;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import dao.Interface.GenericDao;
-import entityJPA.BanBaoCao;
 import jakarta.persistence.*;
 
 
-
-
-public class GenericImpl<T> {
+public class Generic_Impl<T> {
     private EntityManagerFactory entityManagerFactory;
     private final Class<T> entityClass;
 
-    public GenericImpl(Class<T> entityClass, EntityManagerFactory emf) throws RemoteException{
-        entityManagerFactory = emf;
+    public Generic_Impl(Class<T> entityClass, EntityManagerFactory emf) throws RemoteException{
+        entityManagerFactory = emf; // EntityManagerFactory_Static.getEntityManagerFactory();
         this.entityClass = entityClass;
     }
 

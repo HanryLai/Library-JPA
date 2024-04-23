@@ -2,14 +2,13 @@ package dao.impl;
 
 import javax.swing.JOptionPane;
 
-import dao.Interface.TaiKhoanDao;
+import dao.Interface.TaiKhoan_Dao;
 import entityJPA.NhanVien;
 import entityJPA.TaiKhoan;
 import jakarta.persistence.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.List;
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -20,12 +19,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Random;
 
-public class TaiKhoanImpl extends UnicastRemoteObject implements TaiKhoanDao {
+public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 	private EntityManagerFactory emf;
 
-	private GenericImpl<TaiKhoan> generic;
+	private Generic_Impl<TaiKhoan> generic;
 
-	public TaiKhoanImpl(EntityManagerFactory emf) throws RemoteException {
+	public TaiKhoan_Impl(EntityManagerFactory emf) throws RemoteException {
 		super();
 		this.emf = emf;
 	}
@@ -91,7 +90,7 @@ public class TaiKhoanImpl extends UnicastRemoteObject implements TaiKhoanDao {
 
 		try {
 			msg.addHeader("Content-type", "text/HTML;charset=UTF-8");
-			msg.setFrom(from);
+			msg.setFrom();
 			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));
 			msg.setSubject("OTP quên mật khẩu hiệu sách ONEEIGHT");
 			msg.setSentDate(new java.util.Date());
