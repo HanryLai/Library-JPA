@@ -18,7 +18,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 
 @Entity
 @Table(name = "NhaCungCap")
@@ -55,7 +54,7 @@ public class NhaCungCap {
 				", soDienThoai='" + soDienThoai + '\'' +
 				", email='" + email + '\'' +
 				", ghiChu='" + ghiChu + '\'' +
-				", sanPhams=" + sanPhams +
+
 				'}';
 	}
 }

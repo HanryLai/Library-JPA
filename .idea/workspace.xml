@@ -4,21 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
-
     <list default="true" id="7c21c59b-ebb7-46bf-9d07-1730e3294b05" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/BanBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/BanBaoCao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTra.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/MauSac.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/MauSac.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/SanPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/SanPham.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/VanPhongPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/VanPhongPham.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonDoi_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonDoi_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonHoanTraImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonHoanTraImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDon_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDon_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/NhaCungCap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/NhaCungCap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/testPackage/data/SanPham_BaoCao_ChiTiet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/data/SanPham_BaoCao_ChiTiet.java" afterDir="false" />
-
-
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,14 +52,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-
+    "Application.ChiTietHoaDonHoanTraImpl.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.NhaCungCap_Impl.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-
-    "git-widget-placeholder": "Minh2",
-    "last_opened_file_path": "F:/Project_Lib/Library-JPA/lib/TEMP",
-
+    "git-widget-placeholder": "hieu",
+    "last_opened_file_path": "D:/IUH/KH_II_2023_2024/PhanTanJava/project/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -75,17 +67,17 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.17546469",
-
-
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-
-
-  <component name="RunManager" selected="Application.MainTest">
-    <configuration name="HoaDonDoiHang_Impl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.impl.HoaDonDoiHang_Impl" />
-
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Project_Lib\Library-JPA\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="ChiTietHoaDonHoanTraImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.impl.ChiTietHoaDonHoanTraImpl" />
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
@@ -97,47 +89,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-
-    <configuration name="MainTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="entityJPA.MainTest" />
-
-      <module name="QuanLiNhaSachONEEIGHT" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="entityJPA.OtherIDClass.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-
-    <configuration name="TaiKhoan_NhanVien_KhachHang" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="testPackage.data.TaiKhoan_NhanVien_KhachHang" />
-
-      <module name="QuanLiNhaSachONEEIGHT" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="testPackage.data.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-
-}</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\Project_Lib\Library-JPA\src" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Application.SanPham_BaoCao_ChiTiet">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.impl.Main" />
-
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
@@ -149,8 +102,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-
-
+    <configuration name="NhaCungCap_Impl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.impl.NhaCungCap_Impl" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SachAndVPP_Test_Implement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="testPackage.implement.SachAndVPP_Test_Implement" />
       <module name="QuanLiNhaSachONEEIGHT" />
@@ -183,7 +147,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="testPackage.data.*" />
-
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -191,7 +154,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -205,12 +167,11 @@
     </configuration>
     <recent_temporary>
       <list>
-
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.NhaCungCap_Impl" />
+        <item itemvalue="Application.ChiTietHoaDonHoanTraImpl" />
         <item itemvalue="Application.SanPham_BaoCao_ChiTiet" />
         <item itemvalue="Application.SachAndVPP_Test_Implement" />
-        <item itemvalue="Application.MainTest" />
-        <item itemvalue="Application.Main" />
-
       </list>
     </recent_temporary>
   </component>
