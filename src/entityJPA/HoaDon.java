@@ -58,6 +58,6 @@ public class HoaDon {
 	public String toString() {
 		return "HoaDon [maHoaDon=" + maHoaDon + ", ngayLap=" + ngayLap + ", ghiChu=" + ghiChu + ", tinhTrangHoaDon="
 				+ tinhTrangHoaDon + ", tongTien=" + tongTien + ", chietKhau=" + chietKhau + ", khuyenMai=" + khuyenMai
-				+ ", khachHang=" + khachHang + ", nhanVien=" + nhanVien + "]";
+				+ ", maKhachHang=" + khachHang.getMaKhachHang() + ", maMhanVien=" + nhanVien.getMaNhanVien() + "]";
 	}	
 }
