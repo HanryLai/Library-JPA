@@ -3,6 +3,7 @@ package dao.impl;
 import dao.DAO_ThongKe;
 import dao.Interface.ThongKe_Dao;
 import entity.MonthlyRevenueInfo;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.rmi.RemoteException;
@@ -58,17 +59,45 @@ public class ThongKe_Impl extends UnicastRemoteObject implements ThongKe_Dao {
 
     @Override
     public int thongKeSoLuongSanPhamDaBan(Date ngayBatDau, Date ngayKetThuc) throws RemoteException {
-        return 0;
+        int soLuongSanPhamDaBan = 0;
+        try{
+            String query = "SELECT SUM(soLuong) AS SoLuongSanPhamDaBan FROM ChiTietHoaDon WHERE hoaDon IN "
+                    + "(SELECT maHoaDon FROM HoaDon WHERE ngayLap BETWEEN ? AND ?)";
+            EntityManager em = emf.createEntityManager();
+            soLuongSanPhamDaBan = (int) em.createNativeQuery(query)
+                    .setParameter(1, ngayBatDau)
+                    .setParameter(2, ngayKetThuc)
+                    .getSingleResult();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return soLuongSanPhamDaBan;
     }
 
     @Override
     public double ThongKeTongDoanhThu() throws RemoteException {
-        return 0;
+        double tongDoanhThu = 0;
+        try {
+            String query = "SELECT SUM(tongTien) FROM HoaDon";
+            EntityManager em = emf.createEntityManager();
+            tongDoanhThu = (double) em.createNativeQuery(query).getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tongDoanhThu;
     }
 
     @Override
     public int thongKeTongSoHoaDon() throws RemoteException {
-        return 0;
+        int tongSoHoaDon = 0;
+        try{
+            String query = "SELECT COUNT(*) FROM HoaDon";
+            EntityManager em = emf.createEntityManager();
+            tongSoHoaDon = (int) em.createNativeQuery(query).getSingleResult();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return tongSoHoaDon;
     }
 
     @Override

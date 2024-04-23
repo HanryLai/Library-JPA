@@ -31,11 +31,11 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 
 	public boolean xacThucNguoiDung(String tenDangNhap, String matKhau) {
 		try {
-			String   query    = "SELECT c FROM TaiKhoan c WHERE email = :email";
+			String   query    = "SELECT c FROM TaiKhoan c WHERE tenDangNhap = :tenDangNhap";
 			TaiKhoan taiKhoan = null;
 			EntityManager em = emf.createEntityManager();
 			taiKhoan = em.createQuery(query, TaiKhoan.class)
-					.setParameter("email", tenDangNhap)
+					.setParameter("tenDangNhap", tenDangNhap)
 					.getSingleResult();
 			if (taiKhoan == null) {
 				JOptionPane.showMessageDialog(null, "Tên đăng nhập không tồn tại");
@@ -57,8 +57,8 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 //				return false;
 //			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Error");
+//			e.printStackTrace();
+//			JOptionPane.showMessageDialog(null, "Error");
 			return false;
 		}
 	}
