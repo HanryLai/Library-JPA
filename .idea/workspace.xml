@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="fba06fb3-d2af-460f-a8d7-384e7725c7b3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/ThongKe_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ThongKe_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_KhuyenMai.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/CaLamViec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/CaLamViec.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/MauSac.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/MauSac.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,9 +61,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "test",
+    "git-widget-placeholder": "loc",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/HK2_2023-2024/LapTrinhPhanTan/RMI/RMI_1",
+    "last_opened_file_path": "D:/IUH/2023-2024/HK2-2324/PTJava/Project-Intellij/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -78,7 +81,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Application.HoaDonDoiHang_Impl">
+  <component name="RunManager" selected="Application.MainTest">
     <configuration name="HoaDonDoiHang_Impl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.impl.HoaDonDoiHang_Impl" />
       <module name="QuanLiNhaSachONEEIGHT" />
@@ -157,10 +160,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainTest" />
         <item itemvalue="Application.HoaDonDoiHang_Impl" />
         <item itemvalue="Application.HoaDonHoanTra_Impl" />
         <item itemvalue="Application.HoaDon_Impl" />
-        <item itemvalue="Application.MainTest" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -193,7 +196,7 @@
       <workItem from="1713621274919" duration="8465000" />
       <workItem from="1713691693525" duration="6110000" />
       <workItem from="1713753158611" duration="7442000" />
-      <workItem from="1713848388777" duration="2295000" />
+      <workItem from="1713848388777" duration="7135000" />
     </task>
     <servers />
   </component>
