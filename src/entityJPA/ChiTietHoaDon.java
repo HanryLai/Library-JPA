@@ -41,7 +41,7 @@ public class ChiTietHoaDon {
 	@Override
 	public String toString() {
 		return "ChiTietHoaDon{" +
-				"id=" + id +
+//				"id=" + id +
 				", maHoaDon=" + maHoaDon.getMaHoaDon() +
 				", maSanPham=" + maSanPham.getMaSanPham() +
 				", soLuong=" + soLuong +

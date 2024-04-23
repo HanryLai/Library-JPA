@@ -2,10 +2,7 @@ package dao.impl;
 
 import dao.Interface.ChiTietHoaDonHoanTra_Dao;
 import dao.Interface.HoaDonHoanTra_Dao;
-import entityJPA.ChiTietDoiHangID;
-import entityJPA.ChiTietHoanTra;
-import entityJPA.HoaDonDoiHang;
-import entityJPA.HoaDonHoanTra;
+import entityJPA.*;
 import jakarta.persistence.EntityManagerFactory;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
@@ -17,28 +14,42 @@ public class ChiTietHoaDonHoanTraImpl extends UnicastRemoteObject implements Chi
 
     private final EntityManagerFactory emf;
     public ChiTietHoaDonHoanTraImpl(EntityManagerFactory emf) throws RemoteException {
-        super();
         this.emf = emf;
     }
 
     @Override
     public ArrayList<ChiTietHoanTra> getAllChiTietHoanTra() throws RemoteException {
-        return null;
+        GenericImpl<ChiTietHoanTra> gen = new GenericImpl<>(ChiTietHoanTra.class, emf);
+        return (ArrayList<ChiTietHoanTra>) gen.findAll();
     }
 
     @Override
-    public boolean createChiTietHoanTra(ChiTietHoanTra cthd) throws RemoteException {
-        return false;
+    public boolean createChiTietHoanTra(ChiTietHoanTra ctht) throws RemoteException {
+        GenericImpl<ChiTietHoanTra> gen = new GenericImpl<>(ChiTietHoanTra.class, emf);
+        return gen.save(ctht);
     }
 
     @Override
     public void deleteChiTietHoanTra(String maHD) throws RemoteException {
-
+        try {
+            ArrayList<ChiTietHoanTra> ls = this.getAllChiTietHoanTra();
+            GenericImpl<ChiTietHoanTra> gen = new GenericImpl<>(ChiTietHoanTra.class, emf);
+            for (ChiTietHoanTra ctht : ls) {
+                String id = ctht.getHoaDonHoanTra().getHoaDon().getMaHoaDon() + "";
+                if (id.equals(maHD)) {
+                    gen.delete(ctht.getId());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public ChiTietHoanTra getHoaDontheoMa(String ma1, String ma2) throws RemoteException {
-        return null;
+        GenericImpl<ChiTietHoanTra> gen = new GenericImpl<>(ChiTietHoanTra.class, emf);
+        ChiTietHoanTraID id = new ChiTietHoanTraID(Integer.parseInt(ma1), Integer.parseInt(ma2));
+        return gen.findById(id);
     }
 
     public static void main(String[] args) throws RemoteException {
