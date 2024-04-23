@@ -86,7 +86,7 @@ public class HoaDon_Impl extends UnicastRemoteObject implements HoaDon_Dao {
 //        hd.setTongTien(10000f);
 //        System.out.println(dao.updateHoaDon(hd));
 
-//        System.out.println(dao.getAllHoaDon());
+        System.out.println(dao.getAllHoaDon());
     }
 
 }

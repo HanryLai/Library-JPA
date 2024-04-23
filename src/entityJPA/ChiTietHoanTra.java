@@ -36,6 +36,14 @@ public class ChiTietHoanTra {
 	private int soLuong;
 	private double thanhTien;
 
+	public ChiTietHoanTra(ChiTietDoiHangID id, SanPham sanPham, HoaDonHoanTra hoaDonHoanTra, int soLuong, double thanhTien) {
+		this.id = id;
+		this.sanPham = sanPham;
+		this.hoaDonHoanTra = hoaDonHoanTra;
+		this.soLuong = soLuong;
+		this.thanhTien = thanhTien;
+	}
+
 	@Override
 	public String toString() {
 		return "ChiTietHoanTra{" +

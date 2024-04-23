@@ -52,4 +52,6 @@ public class ChiTietHoaDonDoiImpl extends UnicastRemoteObject implements ChiTiet
 	public List<ChiTietHoaDonDoi> findByProperty(String property, Object value) throws RemoteException {
 		return null;
 	}
+
+
 }
