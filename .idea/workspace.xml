@@ -8,9 +8,11 @@
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testPackage/data/SanPham_BaoCao_ChiTiet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/data/SanPham_BaoCao_ChiTiet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testPackage/implement/ChiTietBanBaoCao_Test_Implement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/implement/ChiTietBanBaoCao_Test_Implement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonHoanTraImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonHoanTraImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDon_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDon_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/NhanVien_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/NhanVien_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/KhachHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/KhachHang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testPackage/data/TaiKhoan_NhanVien_KhachHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/data/TaiKhoan_NhanVien_KhachHang.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,21 +52,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Minh2&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/Project_Lib/Library-JPA/lib/TEMP&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15820312&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.17546469&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.KhachHang_Test_Implement.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.NhanVien_Test_Implement.executor": "Run",
+    "Application.SanPham_BaoCao_ChiTiet.executor": "Run",
+    "Application.TaiKhoan_NhanVien_KhachHang.executor": "Run",
+    "Application.TaiKhoan_Test_Implement.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "loc",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/IUH/2023-2024/HK2-2324/PTJava/Project-Intellij/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15820312",
+    "project.structure.side.proportion": "0.17546469",
+    "vue.rearranger.settings.migration": "true"
   }
 }</component>
   <component name="RecentsManager">
@@ -72,13 +81,13 @@
       <recent name="F:\Project_Lib\Library-JPA\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.HoaDon_ChiTietHoaDon">
-    <configuration name="ChiTietHoaDon_Impl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.impl.ChiTietHoaDon_Impl" />
+  <component name="RunManager" selected="Application.KhachHang_Test_Implement">
+    <configuration name="KhachHang_Test_Implement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testPackage.implement.KhachHang_Test_Implement" />
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dao.impl.*" />
+          <option name="PATTERN" value="testPackage.implement.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -151,11 +160,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HoaDon_ChiTietHoaDon" />
-        <item itemvalue="Application.SanPham_BaoCao_ChiTiet" />
+        <item itemvalue="Application.KhachHang_Test_Implement" />
         <item itemvalue="Application.TaiKhoan_NhanVien_KhachHang" />
-        <item itemvalue="Application.ChiTietHoaDon_Impl" />
         <item itemvalue="Application.NhanVien_Test_Implement" />
+        <item itemvalue="Application.SanPham_BaoCao_ChiTiet" />
+        <item itemvalue="Application.TaiKhoan_Test_Implement" />
       </list>
     </recent_temporary>
   </component>
@@ -187,9 +196,7 @@
       <workItem from="1713691693525" duration="6110000" />
       <workItem from="1713753158611" duration="7442000" />
       <workItem from="1713848388777" duration="7135000" />
-      <workItem from="1713886436237" duration="425000" />
-      <workItem from="1713887433268" duration="3698000" />
-      <workItem from="1713893098903" duration="2431000" />
+      <workItem from="1713886433290" duration="9662000" />
     </task>
     <servers />
   </component>

@@ -31,13 +31,8 @@ public class NhanVien_Impl extends UnicastRemoteObject implements NhanVien_Dao {
     public List<NhanVien> getAllNhanVien() throws RemoteException {
         List<NhanVien> list = null;
         try{
-            String query = "select * from NhanVien";
-            EntityManager em = emf.createEntityManager();
-            list = em.createNativeQuery(query, NhanVien.class)
-                        .getResultList();
-            if (list == null) {
-                return null;
-            }
+            Generic_Impl<NhanVien> generic = new Generic_Impl<>(NhanVien.class, emf);
+            list = generic.findAll();
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,11 +58,8 @@ public class NhanVien_Impl extends UnicastRemoteObject implements NhanVien_Dao {
     public NhanVien getNVTheoMa(int maNV) throws RemoteException {
         NhanVien nhanVien = null;
         try{
-            String query = "select * from NhanVien where maNhanVien = :maNV";
-            EntityManager em = emf.createEntityManager();
-            nhanVien = (NhanVien) em.createNativeQuery(query, NhanVien.class)
-                    .setParameter("maNV", maNV)
-                    .getSingleResult();
+           Generic_Impl<NhanVien> generic = new Generic_Impl<>(NhanVien.class, emf);
+              nhanVien = generic.findById(maNV);
         }catch (Exception e) {
             e.printStackTrace();
         }
