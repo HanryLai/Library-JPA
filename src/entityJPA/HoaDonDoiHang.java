@@ -3,14 +3,7 @@ package entityJPA;
 import java.util.List;
 import java.util.Set;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,10 +28,11 @@ public class HoaDonDoiHang {
     @JoinColumn(name = "maHoaDonHoanTra")
     private HoaDonHoanTra hoaDonHoanTra;
 
-	
+	@Column(columnDefinition = "nvarchar(500)")
 	private String ghiChu;
 	private float tienHoanTra;
 	private float chietKhau;
+	@Column(columnDefinition = "nvarchar(50)")
 	private String khuyenMai;
 
 	public HoaDonDoiHang(HoaDonHoanTra hoaDonHoanTra, String ghiChu, float tienHoanTra, float chietKhau, String khuyenMai) {

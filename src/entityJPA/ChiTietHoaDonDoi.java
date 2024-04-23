@@ -1,18 +1,14 @@
 package entityJPA;
 
-import java.io.Serializable;
-
-import jakarta.persistence.CascadeType;
+import entityJPA.otherID.ChiTietHoaDonDoiID;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Getter
@@ -22,7 +18,7 @@ import lombok.ToString;
 public class ChiTietHoaDonDoi {
 	
 	@EmbeddedId
-	private chiTietHoaDonDoiID id;
+	private ChiTietHoaDonDoiID id;
 	
 	@ManyToOne
 	@JoinColumn(name = "maHoaDonDoi", insertable = false, updatable = false)
@@ -52,13 +48,3 @@ public class ChiTietHoaDonDoi {
     
 }
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-class chiTietHoaDonDoiID implements Serializable{
-	private static final long serialVersionUID = 1L;
-	private int maHoaDonDoi;
-	private int maSanPham;
-}

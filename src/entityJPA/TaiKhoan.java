@@ -16,11 +16,11 @@ import lombok.Setter;
 @Table(name = "TaiKhoan")
 public class TaiKhoan {
 	@Id
-	@Column(columnDefinition = "nvarchar(50)")
+	@Column(columnDefinition = "nvarchar(100)")
 	private String tenDangNhap;
 	@Column(columnDefinition = "nvarchar(50)")
 	private String matKhau;
-	@Column(columnDefinition = "nvarchar(50)")
+	@Column(columnDefinition = "nvarchar(100)")
 	private String email;
 
 	public TaiKhoan(String tenDangNhap, String matKhau, String email) {

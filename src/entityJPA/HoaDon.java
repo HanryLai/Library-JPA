@@ -19,7 +19,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
+
 @NoArgsConstructor
 @Entity
 @Table(name = "HoaDon")
@@ -58,6 +58,6 @@ public class HoaDon {
 	public String toString() {
 		return "HoaDon [maHoaDon=" + maHoaDon + ", ngayLap=" + ngayLap + ", ghiChu=" + ghiChu + ", tinhTrangHoaDon="
 				+ tinhTrangHoaDon + ", tongTien=" + tongTien + ", chietKhau=" + chietKhau + ", khuyenMai=" + khuyenMai
-				+ ", khachHang=" + khachHang + ", nhanVien=" + nhanVien + "]";
+				+ ", maKhachHang=" + khachHang.getMaKhachHang() + ", maMhanVien=" + nhanVien.getMaNhanVien() + "]";
 	}	
 }

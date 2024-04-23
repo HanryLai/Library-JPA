@@ -29,16 +29,16 @@ public class NhanVien {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maNhanVien;
-	
+
 	@Column(columnDefinition = "nvarchar(50)")
 	private String hoTenNV;
-	@Column(columnDefinition = "nvarchar(50)")
+
 	private LocalDate ngaySinh;
-	@Column(columnDefinition = "nvarchar(50)")
+	@Column(columnDefinition = "nvarchar(20)")
 	private String soDienThoai;
-	@Column(columnDefinition = "nvarchar(50)")
+	@Column(columnDefinition = "nvarchar(10)")
 	private String gioiTinh;
-	@Column(columnDefinition = "nvarchar(50)")
+	@Column(columnDefinition = "nvarchar(100)")
 	private String email;
 	
 	@OneToOne
@@ -51,6 +51,7 @@ public class NhanVien {
 	private CaLamViec caLamViec;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "nvarchar(10)")
 	private ChucVu chucVu;
 	
 	@OneToMany
@@ -61,8 +62,7 @@ public class NhanVien {
 
 
 	public NhanVien(String hoTenNV, LocalDate ngaySinh, String soDienThoai, String gioiTinh, String email,
-			TaiKhoan taiKhoan, int tinhTrangLamViec, CaLamViec caLamViec, ChucVu chucVu, List<HoaDon> hoaDons,
-			List<HoaDonHoanTra> hoaDonHoanTras) {
+			TaiKhoan taiKhoan, int tinhTrangLamViec, CaLamViec caLamViec, ChucVu chucVu) {
 		super();
 		this.hoTenNV = hoTenNV;
 		this.ngaySinh = ngaySinh;
@@ -73,8 +73,6 @@ public class NhanVien {
 		this.tinhTrangLamViec = tinhTrangLamViec;
 		this.caLamViec = caLamViec;
 		this.chucVu = chucVu;
-		this.hoaDons = hoaDons;
-		this.hoaDonHoanTras = hoaDonHoanTras;
 	}
 
 	@Override
