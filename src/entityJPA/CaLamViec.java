@@ -3,12 +3,7 @@ package entityJPA;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,8 +18,11 @@ public class CaLamViec {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maCa;
+	@Column(columnDefinition = "nvarchar(50)")
 	private String tenCa;
+	@Column(columnDefinition = "time")
 	private LocalDateTime thoiGianBatDau;
+	@Column(columnDefinition = "time")
 	private LocalDateTime thoiGianKetThuc;
 	@OneToMany(mappedBy = "caLamViec")
 	private List<NhanVien> nhanViens;
