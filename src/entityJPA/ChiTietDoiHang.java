@@ -1,6 +1,7 @@
 package entityJPA;
 
 
+import entityJPA.otherID.ChiTietDoiHangID;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,13 +21,13 @@ public class ChiTietDoiHang {
 	private ChiTietDoiHangID id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "maHoaDonDoi",insertable=false, updatable=false)
+	@JoinColumn(name = "maHoaDonDoi", insertable = false, updatable = false)
 	private HoaDonDoiHang hoaDonDoiHang;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "maSanPham", insertable=false, updatable=false)
+	@JoinColumn(name = "maSanPham", insertable = false, updatable = false)
 	private SanPham sanPham;
-	
+
 	private int soLuong;
 	private float thanhTien;
 
@@ -39,16 +40,4 @@ public class ChiTietDoiHang {
 				", thanhTien=" + thanhTien +
 				'}';
 	}
-}
-
-@Getter
-@Setter
-@NoArgsConstructor
-@ToString
-
-
-@Embeddable
-class ChiTietDoiHangID implements Serializable {
-	private int maHoaDonDoi;
-	private int maSanPham;
 }

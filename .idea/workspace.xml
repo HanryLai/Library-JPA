@@ -5,12 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fba06fb3-d2af-460f-a8d7-384e7725c7b3" name="Changes" comment="">
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietDoiHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietDoiHang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testPackage/data/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/data/SanPham_BaoCao_ChiTiet.java" afterDir="false" />
+=======
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/persistence.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/DAO_KhuyenMai.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entityJPA/CaLamViec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/CaLamViec.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entityJPA/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/MainTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entityJPA/MauSac.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/MauSac.java" afterDir="false" />
+>>>>>>> origin/main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +59,8 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
+=======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.HoaDonDoiHang_Impl.executor": "Run",
@@ -74,15 +85,20 @@
     "project.structure.side.proportion": "0.17546469",
     "settings.editor.selected.configurable": "reference.settings.ide.settings.uml",
     "vue.rearranger.settings.migration": "true"
+>>>>>>> origin/main
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.HoaDonDoiHang_Impl.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HoaDonHoanTra_Impl.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HoaDon_Impl.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainTest.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Minh&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/Project_Lib/Library-JPA/lib/TEMP&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;hieu&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/HK2_2023-2024/LapTrinhPhanTan/RMI/RMI_1&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -90,15 +106,36 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15820312&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.22665663&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.17546469&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  &lt;component name=&quot;PropertiesComponent&quot;&gt;{
+  &amp;quot;keyToString&amp;quot;: {
+    &amp;quot;Application.Main.executor&amp;quot;: &amp;quot;Run&amp;quot;,
+    &amp;quot;RunOnceActivity.OpenProjectViewOnStart&amp;quot;: &amp;quot;true&amp;quot;,
+    &amp;quot;RunOnceActivity.ShowReadmeOnStart&amp;quot;: &amp;quot;true&amp;quot;,
+    &amp;quot;SHARE_PROJECT_CONFIGURATION_FILES&amp;quot;: &amp;quot;true&amp;quot;,
+    &amp;quot;WebServerToolWindowFactoryState&amp;quot;: &amp;quot;false&amp;quot;,
+    &amp;quot;git-widget-placeholder&amp;quot;: &amp;quot;Minh&amp;quot;,
+    &amp;quot;last_opened_file_path&amp;quot;: &amp;quot;F:/Project_Lib/Library-JPA/lib/TEMP&amp;quot;,
+    &amp;quot;node.js.detected.package.eslint&amp;quot;: &amp;quot;true&amp;quot;,
+    &amp;quot;node.js.detected.package.tslint&amp;quot;: &amp;quot;true&amp;quot;,
+    &amp;quot;node.js.selected.package.eslint&amp;quot;: &amp;quot;(autodetect)&amp;quot;,
+    &amp;quot;node.js.selected.package.tslint&amp;quot;: &amp;quot;(autodetect)&amp;quot;,
+    &amp;quot;nodejs_package_manager_path&amp;quot;: &amp;quot;npm&amp;quot;,
+    &amp;quot;project.structure.last.edited&amp;quot;: &amp;quot;Modules&amp;quot;,
+    &amp;quot;project.structure.proportion&amp;quot;: &amp;quot;0.15820312&amp;quot;,
+    &amp;quot;project.structure.side.proportion&amp;quot;: &amp;quot;0.22665663&amp;quot;,
+    &amp;quot;settings.editor.selected.configurable&amp;quot;: &amp;quot;reference.settings.ide.settings.uml&amp;quot;,
+    &amp;quot;vue.rearranger.settings.migration&amp;quot;: &amp;quot;true&amp;quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlserver"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlserver&quot;
     ]
   }
+<<<<<<< HEAD
+=======
 }]]></component>
   <component name="RunManager" selected="Application.MainTest">
     <configuration name="HoaDonDoiHang_Impl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -140,6 +177,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+>>>>>>> origin/main
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -199,11 +237,17 @@
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< HEAD
+        <item itemvalue="Application.SachAndVPP_Test_Implement" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MainTest" />
+=======
         <item itemvalue="Application.MainTest" />
         <item itemvalue="Application.HoaDonDoiHang_Impl" />
         <item itemvalue="Application.HoaDonHoanTra_Impl" />
         <item itemvalue="Application.HoaDon_Impl" />
         <item itemvalue="Application.Main" />
+>>>>>>> origin/main
       </list>
     </recent_temporary>
   </component>
@@ -235,7 +279,12 @@
       <workItem from="1713621274919" duration="8465000" />
       <workItem from="1713691693525" duration="6110000" />
       <workItem from="1713753158611" duration="7442000" />
+<<<<<<< HEAD
+      <workItem from="1713849973783" duration="799000" />
+      <workItem from="1713857193993" duration="1265000" />
+=======
       <workItem from="1713848388777" duration="7135000" />
+>>>>>>> origin/main
     </task>
     <servers />
   </component>
