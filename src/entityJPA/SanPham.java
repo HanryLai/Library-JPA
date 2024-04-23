@@ -41,7 +41,10 @@ public abstract class SanPham implements Serializable {
 	private String tenSanPham;
 	protected int soLuongTon;
 	protected double donGiaNhap;
+
+	@Column(columnDefinition = "NVARCHAR(255)")
 	protected String moTa;
+	@Column(columnDefinition = "NVARCHAR(255)")
 	protected String tinhTrang;
 	protected double donGiaBan;
 	protected double VAT;

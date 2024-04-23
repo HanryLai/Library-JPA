@@ -23,13 +23,19 @@ public class BanBaoCao implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maBanBaoCao;
+
+	@Column(columnDefinition = "NVARCHAR(255)")
 	private String tenBanBaoCao;
+
+	@Column(columnDefinition = "NVARCHAR(255)")
 	private String tenNhanVien;
 	private double doanhThu;
+
+	@Column(columnDefinition = "NVARCHAR(255)")
 	private String thoiGianBaoCao;
 
 	@OneToMany(mappedBy = "banBaoCao")
-	private List<ChiTietBanBaoCao> chiTietBanBaoCaos;
+	private Set<ChiTietBanBaoCao> chiTietBanBaoCaos;
 
 	@Override
 	public String toString() {
