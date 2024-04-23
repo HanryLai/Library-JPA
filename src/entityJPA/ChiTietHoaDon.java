@@ -1,14 +1,17 @@
 package entityJPA;
 
+
 import java.io.Serializable;
 
 import jakarta.persistence.*;
 import lombok.*;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
 @EqualsAndHashCode
 @Table(name = "ChiTietHoaDon")
@@ -51,5 +54,6 @@ public class ChiTietHoaDon {
 
 
 }
+
 
 

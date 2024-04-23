@@ -25,8 +25,9 @@ public class VanPhongPham extends SanPham implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "mauSac")
 	private MauSac	mauSac;
-	
-  private String noiSanXuat;
+
+	@Column(columnDefinition = "NVARCHAR(255)")
+  	private String noiSanXuat;
 
 	@Override
 	public String toString() {

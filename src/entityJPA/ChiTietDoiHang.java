@@ -1,20 +1,14 @@
 package entityJPA;
 
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import entityJPA.otherID.ChiTietDoiHangID;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -27,13 +21,13 @@ public class ChiTietDoiHang {
 	private ChiTietDoiHangID id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "maHoaDonDoi",insertable=false, updatable=false)
+	@JoinColumn(name = "maHoaDonDoi", insertable = false, updatable = false)
 	private HoaDonDoiHang hoaDonDoiHang;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "maSanPham", insertable=false, updatable=false)
+	@JoinColumn(name = "maSanPham", insertable = false, updatable = false)
 	private SanPham sanPham;
-	
+
 	private int soLuong;
 	private float thanhTien;
 

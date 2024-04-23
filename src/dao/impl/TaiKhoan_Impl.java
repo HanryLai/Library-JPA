@@ -2,14 +2,13 @@ package dao.impl;
 
 import javax.swing.JOptionPane;
 
-import dao.Interface.TaiKhoanDao;
+import dao.Interface.TaiKhoan_Dao;
 import entityJPA.NhanVien;
 import entityJPA.TaiKhoan;
 import jakarta.persistence.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.List;
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -20,23 +19,23 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Random;
 
-public class TaiKhoanImpl extends UnicastRemoteObject implements TaiKhoanDao {
+public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 	private EntityManagerFactory emf;
 
-	private GenericImpl<TaiKhoan> generic;
+	private Generic_Impl<TaiKhoan> generic;
 
-	public TaiKhoanImpl(EntityManagerFactory emf) throws RemoteException {
+	public TaiKhoan_Impl(EntityManagerFactory emf) throws RemoteException {
 		super();
 		this.emf = emf;
 	}
 
-	public boolean xacThucNguoiDung(String tenDangNhap, String matKhau) {
+	public boolean xacThucNguoiDung(String tenDangNhap, String matKhau) throws RemoteException{
 		try {
-			String   query    = "SELECT c FROM TaiKhoan c WHERE email = :email";
+			String   query    = "SELECT c FROM TaiKhoan c WHERE tenDangNhap = :tenDangNhap";
 			TaiKhoan taiKhoan = null;
 			EntityManager em = emf.createEntityManager();
 			taiKhoan = em.createQuery(query, TaiKhoan.class)
-					.setParameter("email", tenDangNhap)
+					.setParameter("tenDangNhap", tenDangNhap)
 					.getSingleResult();
 			if (taiKhoan == null) {
 				JOptionPane.showMessageDialog(null, "Tên đăng nhập không tồn tại");
@@ -58,13 +57,13 @@ public class TaiKhoanImpl extends UnicastRemoteObject implements TaiKhoanDao {
 //				return false;
 //			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Error");
+//			e.printStackTrace();
+//			JOptionPane.showMessageDialog(null, "Error");
 			return false;
 		}
 	}
 
-	public int sendEmail(String email) {
+	public int sendEmail(String email) throws RemoteException{
 		final String from     = "ttrandanghieu42@gmail.com";
 		final String password = "tcth pwux kmfg aokb";
 
@@ -91,7 +90,7 @@ public class TaiKhoanImpl extends UnicastRemoteObject implements TaiKhoanDao {
 
 		try {
 			msg.addHeader("Content-type", "text/HTML;charset=UTF-8");
-			msg.setFrom(from);
+			msg.setFrom();
 			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));
 			msg.setSubject("OTP quên mật khẩu hiệu sách ONEEIGHT");
 			msg.setSentDate(new java.util.Date());
@@ -108,7 +107,7 @@ public class TaiKhoanImpl extends UnicastRemoteObject implements TaiKhoanDao {
 
 	}
 
-	public String phanQuyen(String email) {
+	public String phanQuyen(String email) throws RemoteException{
 		String tenDN = "";
 		try {
 			String query = "SELECT tenDangNhap FROM TaiKhoan WHERE email = :email";
@@ -127,7 +126,7 @@ public class TaiKhoanImpl extends UnicastRemoteObject implements TaiKhoanDao {
 		return tenDN;
 	}
 
-	public String getTenNguoiDung(String email) {
+	public String getTenNguoiDung(String email) throws RemoteException{
 		String tenND = "";
 		try {
 			String query = "SELECT hoTenNV FROM NhanVien WHERE email = :email";
@@ -146,18 +145,19 @@ public class TaiKhoanImpl extends UnicastRemoteObject implements TaiKhoanDao {
 		return tenND;
 	}
 
-	public void doiMatKhau(String email, String newPassword) {
+	public void doiMatKhau(String email, String newPassword) throws RemoteException{
 		try {
 			String query = "SELECT c FROM TaiKhoan c WHERE email = :email";
 			EntityManager em = emf.createEntityManager();
-			NhanVien nhanVien = em.createQuery(query, NhanVien.class)
+			TaiKhoan taiKhoan = em.createQuery(query, TaiKhoan.class)
 					.setParameter("email", email)
 					.getSingleResult();
-			if (nhanVien == null) {
-				JOptionPane.showMessageDialog(null, "Email Nhân viên không tồn tại.");
+			if (taiKhoan == null) {
+				JOptionPane.showMessageDialog(null, "Email nhân viên không tồn tại.");
 			}
+			em.getTransaction().begin();
 			String queryUpdatePwd = "UPDATE TaiKhoan SET matkhau = :matkhau WHERE email = :email ";
-			Query  updatePwdQuery = em.createQuery(queryUpdatePwd);
+			Query  updatePwdQuery = em.createNativeQuery(queryUpdatePwd);
 			updatePwdQuery.setParameter("matkhau", newPassword);
 			updatePwdQuery.setParameter("email", email);
 
@@ -168,6 +168,7 @@ public class TaiKhoanImpl extends UnicastRemoteObject implements TaiKhoanDao {
 			} else {
 				JOptionPane.showMessageDialog(null, "Có lỗi xảy ra khi đổi mật khẩu.");
 			}
+			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

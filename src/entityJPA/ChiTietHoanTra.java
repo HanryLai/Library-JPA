@@ -1,5 +1,6 @@
 package entityJPA;
 
+import entityJPA.otherID.ChiTietDoiHangID;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
