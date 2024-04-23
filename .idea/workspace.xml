@@ -71,6 +71,49 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+
+  <component name="RunManager" selected="Application.MainTest">
+    <configuration name="HoaDonDoiHang_Impl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.impl.HoaDonDoiHang_Impl" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HoaDonDoiHang_Impl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.impl.HoaDonDoiHang_Impl" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HoaDonHoanTra_Impl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.impl.HoaDonHoanTra_Impl" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\Project_Lib\Library-JPA\src" />
@@ -103,6 +146,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
     <configuration name="SachAndVPP_Test_Implement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="testPackage.implement.SachAndVPP_Test_Implement" />
       <module name="QuanLiNhaSachONEEIGHT" />
@@ -129,6 +173,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
