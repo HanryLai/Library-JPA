@@ -25,7 +25,6 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 	private Generic_Impl<TaiKhoan> generic;
 
 	public TaiKhoan_Impl(EntityManagerFactory emf) throws RemoteException {
-		super();
 		this.emf = emf;
 	}
 
