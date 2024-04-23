@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c21c59b-ebb7-46bf-9d07-1730e3294b05" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testPackage/data/SanPham_BaoCao_ChiTiet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/data/SanPham_BaoCao_ChiTiet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testPackage/implement/ChiTietBanBaoCao_Test_Implement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/implement/ChiTietBanBaoCao_Test_Implement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,26 +52,18 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Application.ChiTietHoaDon_Impl.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HoaDon_ChiTietHoaDon.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.NhanVien_Test_Implement.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SanPham_BaoCao_ChiTiet.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TaiKhoan_NhanVien_KhachHang.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TaiKhoan_Test_Implement.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;zy&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/HK2_23_24_nam3/Project_PhanTan/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Minh2&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Project_Lib/Library-JPA/lib/TEMP&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15820312&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.17546469&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -190,7 +187,9 @@
       <workItem from="1713691693525" duration="6110000" />
       <workItem from="1713753158611" duration="7442000" />
       <workItem from="1713848388777" duration="7135000" />
-      <workItem from="1713886433290" duration="7099000" />
+      <workItem from="1713886436237" duration="425000" />
+      <workItem from="1713887433268" duration="3698000" />
+      <workItem from="1713893098903" duration="2431000" />
     </task>
     <servers />
   </component>
