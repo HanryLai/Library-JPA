@@ -67,6 +67,9 @@ public class HoaDon_Impl extends UnicastRemoteObject implements HoaDon_Dao {
                 lsID.add(x.toString());
         });
 
+        em.close();
+
+
         return lsID;
 
     }
