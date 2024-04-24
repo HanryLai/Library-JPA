@@ -5,13 +5,14 @@ import entityJPA.KhachHang;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 public class KhachHang_Impl extends UnicastRemoteObject implements KhachHang_Dao {
     private EntityManagerFactory emf;
-    public KhachHang_Impl(EntityManagerFactory emf) throws Exception {
+    public KhachHang_Impl(EntityManagerFactory emf) throws RemoteException {
         super();
         this.emf = emf;
     }
@@ -96,6 +97,17 @@ public class KhachHang_Impl extends UnicastRemoteObject implements KhachHang_Dao
         }
         return list;
     }
+
+    @Override
+    public void capNhatNhomKhachHang() throws RemoteException {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        String query = "UPDATE KhachHang SET nhomKhachHang = 'KHACHVIP' WHERE tongTienMua >= 1000000";
+        em.createNativeQuery(query).executeUpdate();
+        em.getTransaction().commit();
+
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public List<KhachHang> getKhachHangTrong1Thang() throws RemoteException {
@@ -112,5 +124,17 @@ public class KhachHang_Impl extends UnicastRemoteObject implements KhachHang_Dao
             e.printStackTrace();
         }
         return list;
+    }
+
+    public int getLastId() throws RemoteException {
+        int id = 0;
+        try {
+            String        query = "SELECT MAX(maKhachHang) FROM KhachHang";
+            EntityManager em    = emf.createEntityManager();
+            id = (int) em.createNativeQuery(query).getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
     }
 }

@@ -15,9 +15,9 @@ public interface KhachHang_Dao extends Remote {
     public boolean updateKhachHang(KhachHang cus) throws RemoteException;
     public List<KhachHang> locDuLieuKhachHang(String data) throws RemoteException;
 
-    public static void capNhatNhomKhachHang() throws RemoteException {
-
-    }
+    public void capNhatNhomKhachHang() throws RemoteException;
     public List<KhachHang> getKhachHangTrong1Thang() throws RemoteException;
+
+    int getLastId() throws RemoteException;
 
 }

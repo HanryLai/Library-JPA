@@ -132,7 +132,7 @@ public class FrmChinh extends javax.swing.JFrame {
     public void chonMenu() {
         menu1.setEvent(new MenuEvent() {
             @Override
-            public void selected(int index, int subIndex) {
+            public void selected(int index, int subIndex) throws RemoteException {
                 if (index == 0) {
                     dispose();
                     new FrmChinh().setVisible(true);
@@ -160,6 +160,8 @@ public class FrmChinh extends javax.swing.JFrame {
                     } catch (SQLException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
+                    } catch (RemoteException e) {
+                        throw new RuntimeException(e);
                     }
                 } else if (index == 4) {
                     try {

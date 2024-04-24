@@ -8,24 +8,25 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
+import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
 public class NhaCungCap_Impl extends UnicastRemoteObject implements NhaCungCap_Dao {
     private  final EntityManagerFactory emf;
-    public NhaCungCap_Impl(EntityManagerFactory emf) throws Exception {
+    public NhaCungCap_Impl(EntityManagerFactory emf) throws RemoteException {
         super();
         this.emf = emf;
     }
     @Override
-    public ArrayList<NhaCungCap> getALLNhaCungCap() throws Exception {
+    public ArrayList<NhaCungCap> getALLNhaCungCap() throws RemoteException {
         Generic_Impl<NhaCungCap> ncc = new Generic_Impl<>(NhaCungCap.class, emf);
         return (ArrayList<NhaCungCap>) ncc.findAll();
     }
 
     @Override
-    public NhaCungCap getNCCTheoMa(String maNCC) throws Exception {
+    public NhaCungCap getNCCTheoMa(String maNCC) throws RemoteException {
         int intMNCC = Integer.parseInt(maNCC);
         Generic_Impl<NhaCungCap> nccGeneric = new Generic_Impl<>(NhaCungCap.class, emf);
         return nccGeneric.findById(intMNCC);
@@ -33,19 +34,19 @@ public class NhaCungCap_Impl extends UnicastRemoteObject implements NhaCungCap_D
     }
 
     @Override
-    public NhaCungCap getNCCTheoTen(String tenNCC) throws Exception {
+    public NhaCungCap getNCCTheoTen(String tenNCC) throws RemoteException {
         return null;
     }
 
     @Override
-    public void themNhaCungCap(NhaCungCap ncc) throws Exception {
+    public void themNhaCungCap(NhaCungCap ncc) throws RemoteException {
         Generic_Impl<NhaCungCap> nccGeneric = new Generic_Impl<>(NhaCungCap.class, emf);
         nccGeneric.save(ncc);
 
     }
 
     @Override
-    public boolean updateNhaCungCap(String maSua, NhaCungCap nccMoi) throws Exception {
+    public boolean updateNhaCungCap(String maSua, NhaCungCap nccMoi) throws RemoteException {
         Generic_Impl<NhaCungCap> nccGeneric = new Generic_Impl<>(NhaCungCap.class, emf);
         NhaCungCap nccCu = nccGeneric.findById(maSua);
         if (nccCu != null) {
@@ -62,7 +63,7 @@ public class NhaCungCap_Impl extends UnicastRemoteObject implements NhaCungCap_D
     }
 
     @Override
-    public ArrayList<NhaCungCap> locNhaCungCap(String duLieuTim) throws Exception {
+    public ArrayList<NhaCungCap> locNhaCungCap(String duLieuTim) throws RemoteException {
         EntityManager em = emf.createEntityManager();
         String query = "select maNCC, tenNCC, diaChiNCC, soDienThoai, email, ghiChu from NhaCungCap\n" +
                 "where maNCC like ? or \n" +
@@ -83,12 +84,12 @@ public class NhaCungCap_Impl extends UnicastRemoteObject implements NhaCungCap_D
     }
 
     @Override
-    public String getMaNhaCungCapDB() throws Exception {
+    public String getMaNhaCungCapDB() throws RemoteException {
         EntityManager em = emf.createEntityManager();
         return em.createNativeQuery("NhaCungCap.getMaNhaCungCapDB", String.class).getSingleResult().toString();
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws RemoteException {
         NhaCungCap_Impl ncc = new NhaCungCap_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         // save ncc
 //        List<SanPham> sachs = new ArrayList<>();
