@@ -6,7 +6,7 @@ package gui;
 
 import entity.BanBaoCao;
 import entity.ChiTietBanBaoCao;
-import entity.NhanVien;
+import entityJPA.NhanVien;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

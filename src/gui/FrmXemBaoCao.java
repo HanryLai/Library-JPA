@@ -4,14 +4,13 @@
  */
 package gui;
 
-import entity.BanBaoCao;
-import entity.ChiTietBanBaoCao;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -28,6 +27,13 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+
+import dao.Interface.BanBaoCao_Dao;
+import dao.Interface.ChiTietBaoCao_Dao;
+import dao.impl.BanBaoCao_Impl;
+import dao.impl.ChiTietBanBaoCao_Impl;
+import entityJPA.BanBaoCao;
+import entityJPA.ChiTietBanBaoCao;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -38,6 +44,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import dao.DAO_BanBaoCao;
 import dao.DAO_ChiTietBanBaoCao;
 import dao.DAO_HoaDon;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *
@@ -50,7 +57,7 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
      */
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
-    public FrmXemBaoCao() throws SQLException {
+    public FrmXemBaoCao() throws SQLException, RemoteException {
         initComponents();
         loadData();
         thread = new Thread(this::setTimeAuto);
@@ -68,15 +75,15 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
         txtTSP.setVisible(false);
         pnlBC2.setVisible(false);
     }
-    public void onField(){
+    public void onField() throws RemoteException {
         jLabel3.setText("Nhân viên báo cáo");
         lblDTCN.setVisible(true);
         txtDTCN.setVisible(true);
         txtNVBC.setVisible(true);
         lblTSP.setVisible(true);
         txtTSP.setVisible(true);
-        txtDTCN.setText(String.format("%s", dao_CTBC.getDoanhThuCaNgay(maBBC)));
-        txtTSP.setText(String.format("%s", dao_CTBC.getTongSPBanDuoc(maBBC)));
+        txtDTCN.setText(String.format("%s", dao_CTBC.getDoanhThuCaNgay(Integer.parseInt(maBBC))));
+        txtTSP.setText(String.format("%s", dao_CTBC.getTongSanPhamBanDuoc(Integer.parseInt(maBBC))));
         txtNVBC.setText(tenNVBC);
         pnlBC2.setVisible(true);
     }
@@ -92,14 +99,13 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
         DefaultTableModel dm = (DefaultTableModel) tableXemBC.getModel();
         dm.getDataVector().removeAllElements();
     }
-    
-    private DAO_BanBaoCao dao_BCDT;
+
+    private BanBaoCao_Dao dao_BCDT = new BanBaoCao_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     private ArrayList<BanBaoCao> data;
     
-    public void loadData() throws SQLException {
+    public void loadData() throws SQLException, RemoteException {
         deleteTable();
         DefaultTableModel model = (DefaultTableModel) tableXemBC.getModel();
-        dao_BCDT = new DAO_BanBaoCao();
         data = dao_BCDT.getALLBanBaoCao();
         int stt = 1;
         for (BanBaoCao bbc : data) {
@@ -124,13 +130,15 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
         return maHoaDonCheck;
     }
 
-    private DAO_ChiTietBanBaoCao dao_CTBC = new DAO_ChiTietBanBaoCao();
-    private DAO_BanBaoCao dao_BBC;
+//    private DAO_ChiTietBanBaoCao dao_CTBC = new DAO_ChiTietBanBaoCao();
+    ChiTietBaoCao_Dao dao_CTBC = new ChiTietBanBaoCao_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+//    private DAO_BanBaoCao dao_BBC;
+private BanBaoCao_Dao dao_BBC = new BanBaoCao_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     private ArrayList<ChiTietBanBaoCao> dataX;
     private ArrayList<ChiTietBanBaoCao> dataTTSach;
     private ArrayList<ChiTietBanBaoCao> dataTTVPP;
     
-    private void createChart() {
+    private void createChart() throws RemoteException {
         CategoryDataset dataset = createDataset();
         JFreeChart chart = ChartFactory.createBarChart(
             "Doanh thu theo ca",      // Chart title
@@ -152,7 +160,7 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
     }
     
     private DAO_HoaDon dao_hoadon = new DAO_HoaDon();
-    private CategoryDataset createDataset() {
+    private CategoryDataset createDataset() throws RemoteException {
         String ngayHienTai = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         System.out.println("day:"+ngayHienTai);
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -175,11 +183,9 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
     }
     
     
-    public void loadData2() throws SQLException, ParseException {
+    public void loadData2() throws SQLException, ParseException, RemoteException {
         deleteTable();
         DefaultTableModel model = (DefaultTableModel) tableBH.getModel();
-        dao_CTBC = new DAO_ChiTietBanBaoCao();
-        dao_BBC = new DAO_BanBaoCao();
         dataX = dao_CTBC.getChiTietBanBaoCao(dao_BBC.getMaBBCTheoTen(tenBBC));
         
         int stt1 = 1;
@@ -187,7 +193,7 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
             if(ctbc.getSoLuongNhap() ==0 && ctbc.getTonKho()== 0){
                     String[] newRow = {
                     String.format("%s", stt1),
-                    String.format("%s", ctbc.getTenSanPham()),
+                    String.format("%s", ctbc.getSanPham().getTenSanPham()),
                     String.format("%s", ctbc.getSoLuongBan()),
                     String.format("%s", ctbc.getThanhTien()),
                     String.format("%s", ctbc.getGhiChu()),
@@ -219,7 +225,7 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
         for (ChiTietBanBaoCao ctbc : dataTTSach) {
             String[] newRow = {
                 String.format("%s", stt2),
-                String.format("%s", ctbc.getTenSanPham()),
+                String.format("%s", ctbc.getSanPham().getTenSanPham()),
                 String.format("%s", ctbc.getSoLuongNhap()),
                 String.format("%s", ctbc.getTonKho()),
                 String.format("%s", ctbc.getGhiChu()),
@@ -230,7 +236,7 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
         for (ChiTietBanBaoCao ctbc : dataTTVPP) {
             String[] newRow = {
                 String.format("%s", stt2),
-                String.format("%s", ctbc.getTenSanPham()),
+                String.format("%s", ctbc.getSanPham().getTenSanPham()),
                 String.format("%s", ctbc.getSoLuongNhap()),
                 String.format("%s", ctbc.getTonKho()),
                 String.format("%s", ctbc.getGhiChu()),
@@ -1303,7 +1309,11 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
         btnXemBC.setPreferredSize(new java.awt.Dimension(72, 27));
         btnXemBC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXemBCActionPerformed(evt);
+                try {
+                    btnXemBCActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -1696,7 +1706,7 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
         lblNameLogin.setText(gui.FrmLogin.tenNguoiDung);
     }//GEN-LAST:event_lblNameLoginAncestorAdded
 
-    private void btnXemBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemBCActionPerformed
+    private void btnXemBCActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnXemBCActionPerformed
         if(tableXemBC.getSelectedRow()<0){
             JOptionPane.showMessageDialog(null, "Hãy chọn bản báo cáo cần xem");
         }
@@ -1740,7 +1750,7 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
         try {
             // TODO add your handling code here:
             loadData();
-        } catch (SQLException ex) {
+        } catch (SQLException | RemoteException ex) {
             Logger.getLogger(FrmXemBaoCao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnXemBC1ActionPerformed

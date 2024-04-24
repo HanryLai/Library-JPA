@@ -8,16 +8,19 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import connectDB.ConnectDB;
-import dao.DAO_MauSac;
-import dao.DAO_NhaCungCap;
-import dao.DAO_NhomSanPham;
-import dao.DAO_Sach;
-import dao.DAO_VanPhongPham;
-import entity.MauSac;
-import entity.NhaCungCap;
-import entity.NhomSanPham;
-import entity.Sach;
-import entity.VanPhongPham;
+//import dao.DAO_MauSac;
+//import dao.DAO_NhaCungCap;
+//import dao.DAO_NhomSanPham;
+//import dao.DAO_Sach;
+//import dao.DAO_VanPhongPham;
+import dao.Interface.*;
+import dao.impl.*;
+//import entity.MauSac;
+//import entity.NhaCungCap;
+//import entity.NhomSanPham;
+//import entity.Sach;
+//import entity.VanPhongPham;
+import entityJPA.*;
 import gui.FrmChinh;
 
 import java.awt.Graphics2D;
@@ -28,6 +31,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
@@ -72,6 +76,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *
@@ -86,14 +91,15 @@ public class FrmDSSanPham extends javax.swing.JPanel {
      * Creates new form FrmDSKhachHang
      */
     private FrmChinh frm = new FrmChinh();
-    private DAO_VanPhongPham dao_vpp = new DAO_VanPhongPham();
-    private DAO_Sach dao_sach = new DAO_Sach();
-    private DAO_NhomSanPham dao_nsp = new DAO_NhomSanPham();
-    private DAO_NhaCungCap dao_ncc = new DAO_NhaCungCap();
-    private DAO_MauSac dao_mausac = new DAO_MauSac();
+    private VanPhongPham_Dao dao_vpp = new VanPhongPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private Sach_Dao dao_sach = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private NhomSanPham_Dao dao_nsp = new NhomSanPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private NhaCungCap_Dao dao_ncc = new NhaCungCap_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private MauSac_Dao dao_mausac = new MauSac_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private SanPham_Dao dao_sanPham = new SanPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     private Thread thread = null;
 
-    public FrmDSSanPham() {
+    public FrmDSSanPham() throws RemoteException {
         ConnectDB.getInstance().connect();
         initComponents();
         // TODO Auto-generated catch block
@@ -133,23 +139,43 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         }
     }
 
-    public void updateVpp(VanPhongPham vpp) {
+    public void updateVpp(VanPhongPham vpp) throws RemoteException {
         String maVpp = txtTimKH62.getText();
         String tenVpp = txtTimKH58.getText();
-        int sl = Integer.parseInt(txtTimKH61.getText());
+        int         sl  = Integer.parseInt(txtTimKH61.getText());
         NhomSanPham nsp = dao_nsp.getNsptheoTen(jComboBox9.getSelectedItem().toString());
-        NhaCungCap ncc = new NhaCungCap(txtSuaVPPChonNCC.getText());
+
+        NhaCungCap ncc = new NhaCungCap();
+        ncc.setMaNCC(Integer.valueOf(txtSuaVPPChonNCC.getText()));
+
         double donGiaNhap = Double.parseDouble(txtTimKH66.getText());
         String moTa = jTextArea6.getText();
         String noiSx = txtTimKH63.getText();
         double donGiaBan = Double.parseDouble(txtTimKH65.getText());
         double vat = Double.parseDouble(txtTimKH64.getText());
         double giamGia = vpp.getGiamGia();
-        LocalDateTime ngayTao = vpp.getNgayTao();
-        MauSac mau = new MauSac(txtSuaVPPChonMau.getText());
-        String tinhTrang = sl > 0 ? "còn hàng" : "hết hàng";
-        VanPhongPham vppNew = new VanPhongPham(maVpp, tenVpp, nsp, ncc, sl, donGiaNhap, moTa, tinhTrang, donGiaBan, vat,
-                ngayTao, giamGia, mau, noiSx);
+        LocalDateTime ngayTao   = vpp.getNgayTao();
+        MauSac        mau       = new MauSac(txtSuaVPPChonMau.getText());
+
+        String        tinhTrang = sl > 0 ? "Còn hàng" : "Hết hàng";
+
+        VanPhongPham vppNew = new VanPhongPham();
+        vppNew.setMaSanPham(Integer.valueOf(maVpp));
+        vppNew.setTenSanPham(tenVpp);
+        vppNew.setNhomSanPham(nsp);
+        vppNew.setNhaCungCap(ncc);
+        vppNew.setSoLuongTon(sl);
+        vppNew.setDonGiaNhap(donGiaNhap);
+        vppNew.setMoTa(moTa);
+        vppNew.setTinhTrang(tinhTrang);
+        vppNew.setDonGiaBan(donGiaBan);
+        vppNew.setVAT(vat);
+        vppNew.setNgayTao(ngayTao);
+        vppNew.setGiamGia(giamGia);
+        vppNew.setMauSac(mau);
+        vppNew.setNoiSanXuat(noiSx);
+
+
         try {
             dao_vpp.update(vppNew);
         } catch (Exception e) {
@@ -157,15 +183,16 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         }
     }
 
-    public void updateS(Sach s) {
+    public void updateS(Sach s) throws RemoteException {
         String maS = txtTimKH49.getText();
         String tenS = txtTimKH3.getText();
         int sl = Integer.parseInt(txtTimKH48.getText());
         NhomSanPham nsp = dao_nsp.getNsptheoTen(jComboBox8.getSelectedItem().toString());
-        NhaCungCap ncc = new NhaCungCap(txtSuaSachChonNCC.getText());
+        NhaCungCap ncc = new NhaCungCap();
+        ncc.setMaNCC(Integer.valueOf(txtSuaSachChonNCC.getText()));
         double donGiaNhap = Double.parseDouble(txtTimKH54.getText());
         String moTa = jTextArea5.getText();
-        String tinhTrang = sl > 0 ? "còn hàng" : "hết hàng";
+        String tinhTrang = sl > 0 ? "Còn hàng" : "Hết hàng";
         double donGiaBan = Double.parseDouble(txtTimKH56.getText());
         double vat = Double.parseDouble(txtTimKH53.getText());
         LocalDateTime ngayTao = s.getNgayTao();
@@ -174,8 +201,25 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         int namXB = Integer.parseInt(txtTimKH5.getText());
         String nhaXB = txtTimKH50.getText();
         int soTrang = Integer.parseInt(txtTimKH57.getText());
-        Sach sNew = new Sach(maS, tenS, nsp, ncc, sl, donGiaNhap, moTa, tinhTrang, donGiaBan, vat, ngayTao, giamGia,
-                tacGia, namXB, nhaXB, soTrang);
+
+        Sach sNew = new Sach();
+        sNew.setMaSanPham(Integer.valueOf(maS));
+        sNew.setTenSanPham(tenS);
+        sNew.setNhomSanPham(nsp);
+        sNew.setNhaCungCap(ncc);
+        sNew.setSoLuongTon(sl);
+        sNew.setDonGiaNhap(donGiaNhap);
+        sNew.setMoTa(moTa);
+        sNew.setTinhTrang(tinhTrang);
+        sNew.setDonGiaBan(donGiaBan);
+        sNew.setVAT(vat);
+        sNew.setNgayTao(ngayTao);
+        sNew.setGiamGia(giamGia);
+        sNew.setTacGia(tacGia);
+        sNew.setNamXuatBan(namXB);
+        sNew.setNhaSanXuat(nhaXB);
+        sNew.setSoTrang(soTrang);
+
         try {
             dao_sach.updateSach(sNew);
         } catch (Exception e) {
@@ -183,7 +227,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         }
     }
 
-    public void loadDataNsp() {
+    public void loadDataNsp() throws RemoteException {
         DefaultTableModel modelNsp = (DefaultTableModel) jTable4.getModel();
         modelNsp.getDataVector().removeAllElements();
         modelNsp.fireTableDataChanged();
@@ -369,7 +413,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         sorter.setRowFilter(rowFilter);
     }
 
-    public void loadData() {
+    public void loadData() throws RemoteException {
         deleteTable();
         ArrayList<Sach> dsSach = dao_sach.getAlltbSach();
         ArrayList<VanPhongPham> dsVpp = dao_vpp.getAllVanPhongPhan();
@@ -384,7 +428,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
 //			} else {
 //				tinhTrang = "Hết hàng";
 //			}
-            NhomSanPham nsp = dao_nsp.getNspTheoMa(s.getNhomSanPham().getMaNhomSanPham());
+            NhomSanPham nsp = dao_nsp.getNspTheoMa(String.valueOf(s.getNhomSanPham().getMaNhomSanPham()));
             tableModal.addRow(new Object[]{stt, s.getMaSanPham(), s.getTenSanPham(), nsp.getTenNhomSanPham(),
                 s.getSoLuongTon(), formatter.format(s.getNgayTao()), s.getTinhTrang()
 
@@ -397,7 +441,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
 //			} else {
 //				tinhTrang = "Hết hàng";
 //			}
-            NhomSanPham nsp = dao_nsp.getNspTheoMa(vpp.getNhomSanPham().getMaNhomSanPham());
+            NhomSanPham nsp = dao_nsp.getNspTheoMa(String.valueOf(vpp.getNhomSanPham().getMaNhomSanPham()));
             tableModal.addRow(new Object[]{stt, vpp.getMaSanPham(), vpp.getTenSanPham(), nsp.getTenNhomSanPham(),
                 vpp.getSoLuongTon(), formatter.format(vpp.getNgayTao()), vpp.getTinhTrang()
 
@@ -407,7 +451,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
 
     }
 
-    public void loadDataChonNCC() {
+    public void loadDataChonNCC() throws RemoteException {
         DefaultTableModel dm = (DefaultTableModel) tableChonNCC.getModel();
         dm.getDataVector().removeAllElements();
         ArrayList<NhaCungCap> dsNCC = dao_ncc.getALLNhaCungCap();
@@ -419,7 +463,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         }
     }
 
-    public void loadDataChonMau() {
+    public void loadDataChonMau() throws RemoteException {
         DefaultTableModel dm = (DefaultTableModel) tableChonMau.getModel();
         dm.getDataVector().removeAllElements();
         ArrayList<MauSac> dsMau = dao_mausac.getAlltbMauSac();
@@ -533,9 +577,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
 //								getStringCellValue(cellIterator.next());
                                 String tenSp = getStringCellValue(cellIterator.next());
                                 String strNsp = getStringCellValue(cellIterator.next());
-                                NhomSanPham nsp = new NhomSanPham(strNsp);
+                                NhomSanPham nsp = new NhomSanPham();
+                                nsp.setMaNhomSanPham(Integer.parseInt(strNsp));
                                 String strNcc = getStringCellValue(cellIterator.next());
-                                NhaCungCap ncc = new NhaCungCap(strNcc);
+                                NhaCungCap ncc = new NhaCungCap();
+                                ncc.setMaNCC(Integer.parseInt(strNcc));
                                 int sl = getNumericCellValue(cellIterator.next()).intValue();
                                 double donGia = getNumericCellValue(cellIterator.next());
                                 String moTa = getStringCellValue(cellIterator.next());
@@ -550,8 +596,22 @@ public class FrmDSSanPham extends javax.swing.JPanel {
                                 LocalDateTime ngayTao = instantNgayTao.atZone(ZoneId.systemDefault()).toLocalDateTime();
                                 double giamGia = getNumericCellValue(cellIterator.next());
                                 String tinhTrang = getStringCellValue(cellIterator.next());
-                                VanPhongPham vpp = new VanPhongPham(maSp, tenSp, nsp, ncc, sl, donGia, moTa, tinhTrang,
-                                        donGiaBan, vat, ngayTao, giamGia, ms, noiSx);
+                                VanPhongPham vpp = new VanPhongPham();
+                                VanPhongPham vppNew = new VanPhongPham();
+                                vppNew.setMaSanPham(Integer.parseInt(maSp));
+                                vppNew.setTenSanPham(tenSp);
+                                vppNew.setNhomSanPham(nsp);
+                                vppNew.setNhaCungCap(ncc);
+                                vppNew.setSoLuongTon(sl);
+                                vppNew.setDonGiaNhap(donGia);
+                                vppNew.setMoTa(moTa);
+                                vppNew.setTinhTrang(tinhTrang);
+                                vppNew.setDonGiaBan(donGiaBan);
+                                vppNew.setVAT(vat);
+                                vppNew.setNgayTao(ngayTao);
+                                vppNew.setGiamGia(giamGia);
+                                vppNew.setMauSac(dao_mausac.getMauSactheoMa(maMau));
+                                vppNew.setNoiSanXuat(noiSx);
                                 dao_vpp.insertVpp(vpp);
                                 JOptionPane.showMessageDialog(null, "Nhập thành công");
                             }
@@ -566,9 +626,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
 //								getStringCellValue(cellIterator.next());
                                 String tenSp = getStringCellValue(cellIterator.next());
                                 String strNsp = getStringCellValue(cellIterator.next());
-                                NhomSanPham nsp = new NhomSanPham(strNsp);
+                                NhomSanPham nsp = new NhomSanPham();
+                                nsp.setMaNhomSanPham(Integer.parseInt(strNsp));
                                 String strNcc = getStringCellValue(cellIterator.next());
-                                NhaCungCap ncc = new NhaCungCap(strNcc);
+                                NhaCungCap ncc = new NhaCungCap();
+                                ncc.setMaNCC(Integer.parseInt(strNcc));
                                 int sl = getNumericCellValue(cellIterator.next()).intValue();
                                 double donGia = getNumericCellValue(cellIterator.next());
                                 String moTa = getStringCellValue(cellIterator.next());
@@ -585,8 +647,24 @@ public class FrmDSSanPham extends javax.swing.JPanel {
                                 LocalDateTime ngayTao = instantNgayTao.atZone(ZoneId.systemDefault()).toLocalDateTime();
                                 double giamGia = getNumericCellValue(cellIterator.next());
 
-                                Sach s = new Sach(maSp, tenSp, nsp, ncc, sl, donGia, moTa, tinhTrang, donGiaBan, vat,
-                                        ngayTao, giamGia, tacGia, namXB, nhaXB, soTrang);
+                                Sach s = new Sach();
+                                Sach sNew = new Sach();
+                                sNew.setMaSanPham(Integer.valueOf(maSp));
+                                sNew.setTenSanPham(tenSp);
+                                sNew.setNhomSanPham(nsp);
+                                sNew.setNhaCungCap(ncc);
+                                sNew.setSoLuongTon(sl);
+                                sNew.setDonGiaNhap(donGia);
+                                sNew.setMoTa(moTa);
+                                sNew.setTinhTrang(tinhTrang);
+                                sNew.setDonGiaBan(donGiaBan);
+                                sNew.setVAT(vat);
+                                sNew.setNgayTao(ngayTao);
+                                sNew.setGiamGia(giamGia);
+                                sNew.setTacGia(tacGia);
+                                sNew.setNamXuatBan(namXB);
+                                sNew.setNhaSanXuat(nhaXB);
+                                sNew.setSoTrang(soTrang);
                                 dao_sach.createSach(s);
                                 JOptionPane.showMessageDialog(null, "Nhập thành công");
                             }
@@ -625,7 +703,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         return cell.getCellType() == CellType.NUMERIC ? cell.getNumericCellValue() : 0.0;
     }
 
-    public void exportExcel() {
+    public void exportExcel() throws RemoteException {
         ArrayList<Sach> dsSach = dao_sach.getAlltbSach();
         ArrayList<VanPhongPham> dsVPP = dao_vpp.getAllVanPhongPhan();
         try {
@@ -719,7 +797,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
                     cell = row.createCell(14, CellType.STRING);
                     cell.setCellValue(dsSach.get(i).getNamXuatBan());
                     cell = row.createCell(15, CellType.STRING);
-                    cell.setCellValue(dsSach.get(i).getNhaXuatBan());
+                    cell.setCellValue(dsSach.get(i).getNhaSanXuat());
                     cell = row.createCell(16, CellType.STRING);
                     cell.setCellValue(dsSach.get(i).getSoTrang());
                 }
@@ -821,60 +899,13 @@ public class FrmDSSanPham extends javax.swing.JPanel {
 //           System.out.println(io);
 //        }
 //    }
-    public String createMaVpp() {
-//		LocalDate d = LocalDate.of(2023, 11, 9);
-        LocalDate d = LocalDate.now();
-        DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("ddMMyyyy");
-        String format = d.format(myFormatDate);
-        ArrayList<VanPhongPham> dsVpp = dao_vpp.getAllVanPhongPhan();
-        Integer count = 1;
-        String cusID = "";
+    public String createMaVpp() throws RemoteException {
+        return String.valueOf(dao_sanPham.getLastId());
 
-        do {
-            String tempID = count.toString().length() == 1 ? ("V" + format + "-000000" + count)
-                    : count.toString().length() == 2 ? ("V" + format + "-0000" + count)
-                    : count.toString().length() == 3 ? ("V" + format + "-000" + count)
-                    : count.toString().length() == 4 ? ("V" + format + "-00" + count)
-                    : count.toString().length() == 5 ? ("V" + format + "-0" + count)
-                    : ("V" + format + "-" + count);
-
-            VanPhongPham existingCustomer = dao_vpp.getVPPtheoMa(tempID);
-            if (existingCustomer == null) {
-                cusID = tempID;
-                break;
-            }
-            count++;
-        } while (true);
-
-        return cusID;
     }
 
-    public String createMaSach() {
-//		LocalDate d = LocalDate.of(2023, 11, 9);
-        LocalDate d = LocalDate.now();
-        DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("ddMMyyyy");
-        String format = d.format(myFormatDate);
-        ArrayList<Sach> dsSach = dao_sach.getAlltbSach();
-        Integer count = 1;
-        String cusID = "";
-
-        do {
-            String tempID = count.toString().length() == 1 ? ("S" + format + "-00000" + count)
-                    : count.toString().length() == 2 ? ("S" + format + "-0000" + count)
-                    : count.toString().length() == 3 ? ("S" + format + "-000" + count)
-                    : count.toString().length() == 4 ? ("S" + format + "-00" + count)
-                    : count.toString().length() == 5 ? ("S" + format + "-0" + count)
-                    : ("S" + format + "-" + count);
-
-            Sach existingCustomer = dao_sach.getSachtheoMa(tempID);
-            if (existingCustomer == null) {
-                cusID = tempID;
-                break;
-            }
-            count++;
-        } while (true);
-
-        return cusID;
+    public String createMaSach() throws RemoteException {
+        return String.valueOf(dao_sanPham.getLastId());
     }
 
     public void showPanelChange(JPanel a, JPanel b) {
@@ -960,7 +991,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() throws RemoteException {
 
         pnlNull = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -1792,7 +1823,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnLuuNV.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnLuuNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLuuNVActionPerformed(evt);
+                try {
+                    btnLuuNVActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -2311,7 +2346,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnLuuNV5.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnLuuNV5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLuuNV5ActionPerformed(evt);
+                try {
+                    btnLuuNV5ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -2451,7 +2490,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnThemSP1.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnThemSP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemSP1ActionPerformed(evt);
+                try {
+                    btnThemSP1ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -2463,7 +2506,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnSuaKH2.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnSuaKH2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaKH2ActionPerformed(evt);
+                try {
+                    btnSuaKH2ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -2682,7 +2729,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnQuayLai6.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnQuayLai6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuayLai6ActionPerformed(evt);
+                try {
+                    btnQuayLai6ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -3098,7 +3149,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnLuuNV7.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnLuuNV7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLuuNV7ActionPerformed(evt);
+                try {
+                    btnLuuNV7ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -3343,7 +3398,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnLuuNV1.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnLuuNV1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLuuNV1ActionPerformed(evt);
+                try {
+                    btnLuuNV1ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -3355,7 +3414,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnHuy1.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnHuy1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHuy1ActionPerformed(evt);
+                try {
+                    btnHuy1ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -3367,7 +3430,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnQuayLai7.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnQuayLai7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuayLai7ActionPerformed(evt);
+                try {
+                    btnQuayLai7ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -3594,7 +3661,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnLuuNV8.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnLuuNV8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLuuNV8ActionPerformed(evt);
+                try {
+                    btnLuuNV8ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -3659,7 +3730,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnChonMau2.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnChonMau2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChonMau2ActionPerformed(evt);
+                try {
+                    btnChonMau2ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -3875,7 +3950,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnLuuNV9.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnLuuNV9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLuuNV9ActionPerformed(evt);
+                try {
+                    btnLuuNV9ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -3887,7 +3966,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnHuy3.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnHuy3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHuy3ActionPerformed(evt);
+                try {
+                    btnHuy3ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -3899,7 +3982,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnQuayLai8.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnQuayLai8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuayLai8ActionPerformed(evt);
+                try {
+                    btnQuayLai8ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -4059,7 +4146,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         tableChonNCC.getTableHeader().setReorderingAllowed(false);
         tableChonNCC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableChonNCCMouseClicked(evt);
+                try {
+                    tableChonNCCMouseClicked(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         menuScrollPane9.setViewportView(tableChonNCC);
@@ -4168,7 +4259,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         tableChonMau.getTableHeader().setReorderingAllowed(false);
         tableChonMau.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableChonMauMouseClicked(evt);
+                try {
+                    tableChonMauMouseClicked(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         menuScrollPane11.setViewportView(tableChonMau);
@@ -4301,7 +4396,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnTatCa.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnTatCa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTatCaActionPerformed(evt);
+                try {
+                    btnTatCaActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -4431,7 +4530,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnThemSP.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnThemSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemSPActionPerformed(evt);
+                try {
+                    btnThemSPActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -4440,7 +4543,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnNhapFile.setText("Nhập file");
         btnNhapFile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnNhapFileMouseClicked(evt);
+                try {
+                    btnNhapFileMouseClicked(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -4449,7 +4556,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnXuatFile.setText("Xuất file");
         btnXuatFile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnXuatFileMouseClicked(evt);
+                try {
+                    btnXuatFileMouseClicked(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -4461,7 +4572,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnSuaKH1.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnSuaKH1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaKH1ActionPerformed(evt);
+                try {
+                    btnSuaKH1ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -5070,7 +5185,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         }
     }// GEN-LAST:event_txtTimKH63KeyReleased
 
-    private void btnNhapFileMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnNhapFileMouseClicked
+    private void btnNhapFileMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {// GEN-FIRST:event_btnNhapFileMouseClicked
         importExcel();
         loadData();
     }// GEN-LAST:event_btnNhapFileMouseClicked
@@ -5110,7 +5225,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
     }// GEN-LAST:event_txtTimNCCActionPerformed
 
-    private void tableChonNCCMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tableChonNCCMouseClicked
+    private void tableChonNCCMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {// GEN-FIRST:event_tableChonNCCMouseClicked
         // TODO add your handling code here:
         if (evt.getClickCount() == 2 && !evt.isConsumed()) {
             evt.consume();
@@ -5129,12 +5244,12 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         timJtable2();
     }// GEN-LAST:event_txtTimSPKeyReleased
 
-    private void btnXuatFileMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnXuatFileMouseClicked
+    private void btnXuatFileMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {// GEN-FIRST:event_btnXuatFileMouseClicked
         // TODO add your handling code here:
         exportExcel();
     }// GEN-LAST:event_btnXuatFileMouseClicked
 
-    private void tableChonMauMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tableChonMauMouseClicked
+    private void tableChonMauMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {// GEN-FIRST:event_tableChonMauMouseClicked
         // TODO add your handling code here:
         if (evt.getClickCount() == 2 && !evt.isConsumed()) {
             evt.consume();
@@ -5185,7 +5300,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
 
     }// GEN-LAST:event_txtTimSPActionPerformed
 
-    private void btnTatCaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnTatCaActionPerformed
+    private void btnTatCaActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnTatCaActionPerformed
         // TODO add your handling code here:
 
         int row = jTable2.getSelectedRow();
@@ -5196,7 +5311,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         if (maSP.startsWith("S")) {
             showPanelChange(pnlChange, pnlCenterSuaSach);
             Sach s = dao_sach.getSachtheoMa(maSP);
-            txtTimKH49.setText(s.getMaSanPham());
+            txtTimKH49.setText(String.valueOf(s.getMaSanPham()));
             txtTimKH3.setText(s.getTenSanPham());
             txtTimKH48.setText(Integer.toString(s.getSoLuongTon()));
             Instant inStantDate = s.getNgayTao().atZone(ZoneId.systemDefault()).toInstant();
@@ -5205,14 +5320,14 @@ public class FrmDSSanPham extends javax.swing.JPanel {
             NhomSanPham nsp = dao_nsp.getNsptheoTen(model.getValueAt(rowChooser, 3).toString());
             jComboBox8.setSelectedItem(nsp.getTenNhomSanPham());
             jTextArea5.setText(s.getMoTa());
-            txtSuaSachChonNCC.setText(s.getNhaCungCap().getMaNCC());
+            txtSuaSachChonNCC.setText(String.valueOf(s.getNhaCungCap().getMaNCC()));
             txtTimKH51.setText(s.getTacGia());
             txtTimKH54.setText(Double.toString(s.getDonGiaNhap()));
             txtTimKH56.setText(Double.toString(s.getDonGiaBan()));
             txtTimKH5.setText(Integer.toString(s.getNamXuatBan()));
             txtTimKH57.setText(Integer.toString(s.getSoTrang()));
             txtTimKH53.setText(Double.toString(s.getVAT()));
-            txtTimKH50.setText(s.getNhaXuatBan());
+            txtTimKH50.setText(s.getNhaSanXuat());
             txtTimKH52.setText(Double.toString(s.getGiamGia()));
             // set (*) -> ""
             jLabel154.setText("");
@@ -5226,7 +5341,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         } else {
             showPanelChange(pnlChange, pnlCenterSuaVPP);
             VanPhongPham vpp = dao_vpp.getVPPtheoMa(maSP);
-            txtTimKH62.setText(vpp.getMaSanPham());
+            txtTimKH62.setText(String.valueOf(vpp.getMaSanPham()));
             txtTimKH62.setEditable(false);
             txtTimKH58.setText(vpp.getTenSanPham());
             txtTimKH61.setText(Integer.toString(vpp.getSoLuongTon()));
@@ -5236,10 +5351,10 @@ public class FrmDSSanPham extends javax.swing.JPanel {
             NhomSanPham nsp = dao_nsp.getNsptheoTen(model.getValueAt(rowChooser, 3).toString());
             jComboBox9.setSelectedItem(nsp.getTenNhomSanPham());
             jTextArea6.setText(vpp.getMoTa());
-            txtSuaVPPChonNCC.setText(vpp.getNhaCungCap().getMaNCC());
+            txtSuaVPPChonNCC.setText(String.valueOf(vpp.getNhaCungCap().getMaNCC()));
             txtTimKH66.setText(Double.toString(vpp.getDonGiaNhap()));
             txtTimKH63.setText(vpp.getNoiSanXuat());
-            txtSuaVPPChonMau.setText(vpp.getMauSac().getMaMau());
+            txtSuaVPPChonMau.setText(String.valueOf(vpp.getMauSac().getMaMau()));
             txtTimKH65.setText(vpp.getDonGiaBan() + "");
             txtTimKH64.setText(Double.toString(vpp.getVAT()));
             // set (*) -> ""
@@ -5251,7 +5366,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
 
     }// GEN-LAST:event_btnTatCaActionPerformed
 
-    private void btnThemSPActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThemSPActionPerformed
+    private void btnThemSPActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnThemSPActionPerformed
         // TODO add your handling code here:
 //        JDialogThemSP d = new JDialogThemSP(frm, true);
 //        d.setVisible(true);
@@ -5261,7 +5376,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         loadDataChonNCC();
     }// GEN-LAST:event_btnThemSPActionPerformed
 
-    private void btnSuaKH1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSuaKH1ActionPerformed
+    private void btnSuaKH1ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnSuaKH1ActionPerformed
         // TODO add your handling code here:
         showPanelChange(pnlChange, pnlCenterNhomSP);
         loadDataNsp();
@@ -5279,7 +5394,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
     }// GEN-LAST:event_txtTimKH6ActionPerformed
 
-    private void btnLuuNVActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLuuNVActionPerformed
+    private void btnLuuNVActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnLuuNVActionPerformed
         // TODO add your handling code here:
         String maS = txtThemMaSPSach.getText();
         String tenS = txtThemTenSPSach.getText();
@@ -5298,10 +5413,26 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         String nhaXB = txtThemNhaXBSach.getText();
         double giamGia = Double.parseDouble(txtThemGiamGiaSach.getText());
         String tinhTrang = sl > 0 ? "còn hàng" : "hết hàng";
-        Sach s = new Sach(maS, tenS, nsp, ncc, sl, donGiaNhap, moTa, tinhTrang, donGiaBan, vat, ngayTao, giamGia,
-                tacGia, namXB, nhaXB, soStrang);
+
+        Sach sNew = new Sach();
+        sNew.setTenSanPham(tenS);
+        sNew.setNhomSanPham(nsp);
+        sNew.setNhaCungCap(ncc);
+        sNew.setSoLuongTon(sl);
+        sNew.setDonGiaNhap(donGiaNhap);
+        sNew.setMoTa(moTa);
+        sNew.setTinhTrang(tinhTrang);
+        sNew.setDonGiaBan(donGiaBan);
+        sNew.setVAT(vat);
+        sNew.setNgayTao(ngayTao);
+        sNew.setGiamGia(giamGia);
+        sNew.setTacGia(tacGia);
+        sNew.setNamXuatBan(namXB);
+        sNew.setNhaSanXuat(nhaXB);
+        sNew.setSoTrang(soStrang);
+
         if (valiDataThemSach()) {
-            dao_sach.createSach(s);
+            dao_sach.createSach(sNew);
             loadData();
             showPanelChange(pnlChange, pnlCenter);
         }
@@ -5383,7 +5514,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
     }// GEN-LAST:event_txtTimKH29ActionPerformed
 
-    private void btnLuuNV5ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnLuuNV5ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {
         String maVpp = txtTimKH23.getText();
         String tenVpp = txtTimKH18.getText();
         int sl = Integer.parseInt(txtTimKH22.getText());
@@ -5399,8 +5530,8 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         MauSac ms = dao_mausac.getMauSactheoTen(txtMauSac.getText());
         double giamGia = 0;
         String tinhTrang = sl > 0 ? "còn hàng" : "hết hàng";
-        VanPhongPham vpp = new VanPhongPham(maVpp, tenVpp, nsp, ncc, sl, donGiaNhap, moTa, tinhTrang, donGiaBan, vat,
-                ngayTao, giamGia, ms, noiSx);
+        VanPhongPham vpp = new VanPhongPham();
+
         if (valiDataThemVpp()) {
             dao_vpp.insertVpp(vpp);
             loadData();
@@ -5423,19 +5554,19 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
     }// GEN-LAST:event_txtTimKH20ActionPerformed
 
-    private void btnQuayLai1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnQuayLai1ActionPerformed
+    private void btnQuayLai1ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnQuayLai1ActionPerformed
         // TODO add your handling code here:
         loadData();
         showPanelChange(pnlChange, pnlCenter);
     }// GEN-LAST:event_btnQuayLai1ActionPerformed
 
-    private void btnQuayLai3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnQuayLai3ActionPerformed
+    private void btnQuayLai3ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnQuayLai3ActionPerformed
         // TODO add your handling code here:
         loadData();
         showPanelChange(pnlChange, pnlCenter);
     }// GEN-LAST:event_btnQuayLai3ActionPerformed
 
-    private void btnQuayLai4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnQuayLai4ActionPerformed
+    private void btnQuayLai4ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnQuayLai4ActionPerformed
         // TODO add your handling code here:
         showPanelChange(pnlChange, pnlCenterSuaSach);
         int row = jTable2.getSelectedRow();
@@ -5452,18 +5583,18 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         NhomSanPham nsp = dao_nsp.getNspTheoMa(modelS.getValueAt(row, 3).toString());
         jComboBox8.setSelectedItem(nsp.getTenNhomSanPham());
         jTextArea5.setText(s.getMoTa());
-        txtSuaSachChonNCC.setText(s.getNhaCungCap().getMaNCC());
+        txtSuaSachChonNCC.setText(String.valueOf(s.getNhaCungCap().getMaNCC()));
         txtTimKH51.setText(s.getTacGia());
         txtTimKH54.setText(Double.toString(s.getDonGiaNhap()));
         txtTimKH56.setText(Double.toString(s.getDonGiaBan()));
         txtTimKH5.setText(Integer.toString(s.getNamXuatBan()));
         txtTimKH57.setText(Integer.toString(s.getSoTrang()));
         txtTimKH53.setText(Double.toString(s.getVAT()));
-        txtTimKH50.setText(s.getNhaXuatBan());
+        txtTimKH50.setText(s.getNhaSanXuat());
         txtTimKH52.setText(Double.toString(s.getGiamGia()));
     }// GEN-LAST:event_btnQuayLai4ActionPerformed
 
-    private void btnQuayLai5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnQuayLai5ActionPerformed
+    private void btnQuayLai5ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnQuayLai5ActionPerformed
         // TODO add your handling code here:
         showPanelChange(pnlChange, pnlCenterSuaVPP);
         int row = jTable2.getSelectedRow();
@@ -5480,15 +5611,15 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         NhomSanPham nsp = dao_nsp.getNspTheoMa(modelVpp.getValueAt(row, 3).toString());
         jComboBox9.setSelectedItem(nsp.getTenNhomSanPham());
         jTextArea6.setText(vpp.getMoTa());
-        txtSuaVPPChonNCC.setText(vpp.getNhaCungCap().getMaNCC());
+        txtSuaVPPChonNCC.setText(String.valueOf(vpp.getNhaCungCap().getMaNCC()));
         txtTimKH66.setText(Double.toString(vpp.getDonGiaNhap()));
         txtTimKH63.setText(vpp.getNoiSanXuat());
-        txtSuaVPPChonMau.setText(vpp.getMauSac().getMaMau());
+        txtSuaVPPChonMau.setText(String.valueOf(vpp.getMauSac().getMaMau()));
         txtTimKH65.setText(Double.toString(vpp.getDonGiaBan()));
         txtTimKH64.setText(Double.toString(vpp.getVAT()));
     }// GEN-LAST:event_btnQuayLai5ActionPerformed
 
-    private void btnSuaKH2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSuaKH2ActionPerformed
+    private void btnSuaKH2ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnSuaKH2ActionPerformed
         // TODO add your handling code here:
         showPanelChange(pnlChange, pnlCenterThemVPP);
         jDialogChon.setVisible(false);
@@ -5505,7 +5636,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         txtTimKH27.setText("0.05");
     }// GEN-LAST:event_btnSuaKH2ActionPerformed
 
-    private void btnThemSP1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThemSP1ActionPerformed
+    private void btnThemSP1ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnThemSP1ActionPerformed
         showPanelChange(pnlChange, pnlCenterThemSach);
         Date d = new Date();
         jDateThemSach.setDate(d);
@@ -5532,7 +5663,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         jDialogThemNhomSP.setVisible(true);
     }// GEN-LAST:event_btnThemSP2ActionPerformed
 
-    private void btnQuayLai6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnQuayLai6ActionPerformed
+    private void btnQuayLai6ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnQuayLai6ActionPerformed
         // TODO add your handling code here:
         loadData();
         showPanelChange(pnlChange, pnlCenter);
@@ -5801,14 +5932,14 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
     }// GEN-LAST:event_txtTimKH57ActionPerformed
 
-    private void btnLuuNV7ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLuuNV7ActionPerformed
+    private void btnLuuNV7ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnLuuNV7ActionPerformed
         // TODO add your handling code here:
         loadDataChonNCC();
         jDialogChonNCC.setLocationRelativeTo(null);
         jDialogChonNCC.setVisible(true);
     }// GEN-LAST:event_btnLuuNV7ActionPerformed
 
-    private void btnLuuNV1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLuuNV1ActionPerformed
+    private void btnLuuNV1ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnLuuNV1ActionPerformed
         // TODO add your handling code here:
         Sach s = dao_sach.getSachtheoMa(txtTimKH49.getText());
         if (valiDataSuaSach()) {
@@ -5818,13 +5949,13 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         }
     }// GEN-LAST:event_btnLuuNV1ActionPerformed
 
-    private void btnHuy1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnHuy1ActionPerformed
+    private void btnHuy1ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnHuy1ActionPerformed
         // TODO add your handling code here:
         loadData();
         showPanelChange(pnlChange, pnlCenter);
     }// GEN-LAST:event_btnHuy1ActionPerformed
 
-    private void btnQuayLai7ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnQuayLai7ActionPerformed
+    private void btnQuayLai7ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnQuayLai7ActionPerformed
         // TODO add your handling code here:
         loadData();
         showPanelChange(pnlChange, pnlCenter);
@@ -5846,7 +5977,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
     }// GEN-LAST:event_txtTimKH61ActionPerformed
 
-    private void btnLuuNV8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLuuNV8ActionPerformed
+    private void btnLuuNV8ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnLuuNV8ActionPerformed
         // TODO add your handling code here:
         loadDataChonNCC();
         jDialogChonNCC.setLocationRelativeTo(null);
@@ -5870,7 +6001,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
     }// GEN-LAST:event_txtTimKH65ActionPerformed
 
-    private void btnChonMau2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnChonMau2ActionPerformed
+    private void btnChonMau2ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnChonMau2ActionPerformed
         // TODO add your handling code here:
         loadDataChonMau();
         jDialogChonMau.setLocationRelativeTo(null);
@@ -5881,7 +6012,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
     }// GEN-LAST:event_txtTimKH66ActionPerformed
 
-    private void btnLuuNV9ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLuuNV9ActionPerformed
+    private void btnLuuNV9ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnLuuNV9ActionPerformed
         // TODO add your handling code here:
         VanPhongPham vpp = dao_vpp.getVPPtheoMa(txtTimKH62.getText());
         if (valiDataSuaVpp()) {
@@ -5891,13 +6022,13 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         }
     }// GEN-LAST:event_btnLuuNV9ActionPerformed
 
-    private void btnHuy3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnHuy3ActionPerformed
+    private void btnHuy3ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnHuy3ActionPerformed
         // TODO add your handling code here:
         loadData();
         showPanelChange(pnlChange, pnlCenter);
     }// GEN-LAST:event_btnHuy3ActionPerformed
 
-    private void btnQuayLai8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnQuayLai8ActionPerformed
+    private void btnQuayLai8ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnQuayLai8ActionPerformed
         // TODO add your handling code here:
         loadData();
         showPanelChange(pnlChange, pnlCenter);

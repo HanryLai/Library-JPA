@@ -4,7 +4,7 @@
  */
 package gui;
 
-import entity.NhanVien;
+import entityJPA.NhanVien;
 import menuGui.MenuEvent;
 import menuGui.TableActionCellEditor;
 import menuGui.TableActionCellRender;
@@ -15,6 +15,7 @@ import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.Panel;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -131,7 +132,7 @@ public class FrmChinh extends javax.swing.JFrame {
     public void chonMenu() {
         menu1.setEvent(new MenuEvent() {
             @Override
-            public void selected(int index, int subIndex) {
+            public void selected(int index, int subIndex) throws RemoteException {
                 if (index == 0) {
                     dispose();
                     new FrmChinh().setVisible(true);
@@ -159,6 +160,8 @@ public class FrmChinh extends javax.swing.JFrame {
                     } catch (SQLException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
+                    } catch (RemoteException e) {
+                        throw new RuntimeException(e);
                     }
                 } else if (index == 4) {
                     try {
@@ -167,7 +170,7 @@ public class FrmChinh extends javax.swing.JFrame {
                         } else {
                             showForm(new FrmNhanVien());
                         }
-                    } catch (SQLException e) {
+                    } catch (SQLException | RemoteException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
@@ -199,7 +202,7 @@ public class FrmChinh extends javax.swing.JFrame {
                 } else if (index == 6 && subIndex == 2) {
                     try {
                         showForm(new FrmTaiKhoan());
-                    } catch (SQLException ex) {
+                    } catch (SQLException | RemoteException ex) {
                         Logger.getLogger(FrmChinh.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {

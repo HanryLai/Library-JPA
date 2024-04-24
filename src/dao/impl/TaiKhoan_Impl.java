@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -171,6 +172,18 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<TaiKhoan> getALLTaiKhoan() throws RemoteException {
+		List<TaiKhoan> list = null;
+		try{
+			Generic_Impl<TaiKhoan> generic = new Generic_Impl<>(TaiKhoan.class, emf);
+			list = generic.findAll();
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 

@@ -1,7 +1,7 @@
 package dao.Interface;
 
 import dao.DAO_ThongKe;
-import entity.MonthlyRevenueInfo;
+import otherEntity.MonthlyRevenueInfo;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

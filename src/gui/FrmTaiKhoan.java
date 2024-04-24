@@ -5,6 +5,7 @@
 package gui;
 
 import java.awt.Color;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -21,11 +22,12 @@ import connectDB.ConnectDB;
 import dao.DAO_NhaCungCap;
 import dao.DAO_NhanVien;
 import dao.Dao_TaiKhoan;
+import dao.impl.TaiKhoan_Impl;
 import entity.CaLamViec;
 import entity.ChucVu;
 import entity.NhaCungCap;
 import entity.NhanVien;
-import entity.TaiKhoan;
+
 
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
@@ -40,6 +42,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -50,11 +53,14 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
+
+import entityJPA.TaiKhoan;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *
@@ -67,10 +73,10 @@ public class FrmTaiKhoan extends javax.swing.JPanel {
      */
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
-    private Dao_TaiKhoan dao_TaiKhoan = new Dao_TaiKhoan();
+    //private Dao_TaiKhoan dao_TaiKhoan = new Dao_TaiKhoan();
+    private TaiKhoan_Impl dao_TaiKhoan = new TaiKhoan_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     
-    
-    public FrmTaiKhoan() throws SQLException {
+    public FrmTaiKhoan() throws SQLException, RemoteException {
     	ConnectDB.getInstance().connect();
         initComponents();
         thread = new Thread(this::setTimeAuto);
@@ -116,11 +122,11 @@ public class FrmTaiKhoan extends javax.swing.JPanel {
         dm.getDataVector().removeAllElements();
     }
     
-    public void loadDaTaTaiKhoan() {
+    public void loadDaTaTaiKhoan() throws RemoteException {
         // Xóa dữ liệu cũ trên bảng (giả sử đã có phương thức deleteTable được định nghĩa)
         deleteTable();
 
-        ArrayList<TaiKhoan> dsTaiKhoan = dao_TaiKhoan.getAllTaiKhoan();
+        List<TaiKhoan> dsTaiKhoan = dao_TaiKhoan.getALLTaiKhoan();
 
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
 
