@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -22,16 +23,22 @@ import javax.swing.table.DefaultTableModel;
 
 import connectDB.ConnectDB;
 import dao.DAO_KhachHang;
-import entity.KhachHang;
-import entity.NhomKhachHang;
+import dao.Interface.KhachHang_Dao;
+import dao.impl.KhachHang_Impl;
+//import entity.KhachHang;
+//import entity.NhomKhachHang;
 
 import java.time.Month;
 
 import javax.swing.table.TableRowSorter;
 
+import entityJPA.KhachHang;
+import entityJPA.NhomKhachHang;
+import jakarta.persistence.EntityManagerFactory;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -55,14 +62,14 @@ public class FrmKhachHang extends javax.swing.JPanel {
      * Creates new form FrmDSKhachHang
      */
     private FrmChinh frm = new FrmChinh();
-    private DAO_KhachHang dao_KhachHang = new DAO_KhachHang();
+    private KhachHang_Dao dao_KhachHang = new KhachHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
 	private boolean checkTenKH;
 	private boolean checkSDT;
 	private boolean checkMa= true;
 	private Object nhomKhachHangFilter;
     private Thread thread = null; 
         
-    public FrmKhachHang() throws SQLException {
+    public FrmKhachHang() throws SQLException, RemoteException {
 
         ConnectDB.getInstance().connect();
         initComponents();
@@ -79,7 +86,11 @@ public class FrmKhachHang extends javax.swing.JPanel {
         Action action1 = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	btnThemKHActionPerformed(e);
+                try {
+                    btnThemKHActionPerformed(e);
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         };
         btnThemKH.getActionMap().put("doSomething1", action1);
@@ -91,7 +102,11 @@ public class FrmKhachHang extends javax.swing.JPanel {
         Action action2 = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	btnSuaKH2ActionPerformed(e);
+                try {
+                    btnSuaKH2ActionPerformed(e);
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         };
         btnSuaKH2.getActionMap().put("doSomething2", action2);
@@ -104,7 +119,11 @@ public class FrmKhachHang extends javax.swing.JPanel {
         Action action3 = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	btnSuaKH3ActionPerformed(e);
+                try {
+                    btnSuaKH3ActionPerformed(e);
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         };
         btnSuaKH3.getActionMap().put("doSomething3", action3);
@@ -157,11 +176,11 @@ public class FrmKhachHang extends javax.swing.JPanel {
         }
     }
     
-    public void loadDataKhachHang() {
+    public void loadDataKhachHang() throws RemoteException {
         deleteTable();
         dao_KhachHang.capNhatNhomKhachHang();
-        ArrayList<KhachHang> dsKhachHang = dao_KhachHang.getAllKhachHang();
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        ArrayList<KhachHang> dsKhachHang = (ArrayList<KhachHang>) dao_KhachHang.getAllKhachHang();
+        DefaultTableModel    model       = (DefaultTableModel) jTable2.getModel();
         for (int i = 0; i < dsKhachHang.size(); i++) {
             KhachHang kh = dsKhachHang.get(i);
             if (!kh.getTenKhachHang().isEmpty() && !kh.getSoDienThoai().isEmpty()) {
@@ -187,31 +206,8 @@ public class FrmKhachHang extends javax.swing.JPanel {
     }
 
     // Hàm tự động tạo mã khách hàng    VD: KH01012023-000001
-    public String autoCreateMaKhachHang() {
-//        LocalDate d = LocalDate.of(2023, 11, 9);
-        LocalDate d = LocalDate.now();
-        DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("ddMMyyyy");
-        String format = d.format(myFormatDate);
-        Integer count = 1;
-        String cusID = "";
-
-        do {
-            String tempID = count.toString().length() == 1 ? ("KH" + format + "-00000" + count)
-                    : count.toString().length() == 2 ? ("KH" + format + "-0000" + count)
-                    : count.toString().length() == 3 ? ("KH" + format + "-000" + count)
-                    : count.toString().length() == 4 ? ("KH" + format + "-00" + count)
-                    : count.toString().length() == 5 ? ("KH" + format + "-0" + count)
-                    : ("KH" + format + "-" + count);
-
-            KhachHang existingCustomer = dao_KhachHang.getKHTheoMa(tempID);
-            if (existingCustomer == null) {
-                cusID = tempID;
-                break;
-            }
-            count++;
-        } while (true);
-
-        return cusID;
+    public String autoCreateMaKhachHang() throws RemoteException {
+        return dao_KhachHang.getLastId() + 1 + "";
     }
     
     
@@ -225,7 +221,7 @@ public class FrmKhachHang extends javax.swing.JPanel {
             model.setRowCount(0);
             jTable2.clearSelection();
             for (KhachHang cus : dao_KhachHang.locDuLieuKhachHang(dataFind)) {
-                String[] rowdata = {String.valueOf(stt), cus.getMaKhachHang(),
+                String[] rowdata = {String.valueOf(stt), String.valueOf(cus.getMaKhachHang()),
                     cus.getTenKhachHang(),
                     cus.getSoDienThoai(),
                     String.valueOf(cus.getNhomKhachHang()),
@@ -243,12 +239,12 @@ public class FrmKhachHang extends javax.swing.JPanel {
     }
 
     // Cập nhật thông tin khách hàng
-    public void capNhatKhachHang() {
+    public void capNhatKhachHang() throws RemoteException {
         String cusID = txtTimKH11.getText();
         String cusName = txtTimKH3.getText();
         String cusPhone = txtTimKH4.getText();
-        String selectedGroup = (String) jComboBox3.getSelectedItem();
-        NhomKhachHang cusGR = null;
+        String        selectedGroup = (String) jComboBox3.getSelectedItem();
+        NhomKhachHang cusGR         = null;
         if (selectedGroup.equals("Khách bình thường")) {
             cusGR = NhomKhachHang.KHACHBT;
         } else if (selectedGroup.equals("Khách vip")){
@@ -257,13 +253,21 @@ public class FrmKhachHang extends javax.swing.JPanel {
         	cusGR = NhomKhachHang.KHACHLE;
         double cusTotal = Double.parseDouble(txtTongChiTieu1.getText());
         int cusQuantity = Integer.parseInt(txtTongDonHang1.getText());
-        KhachHang newCus = new KhachHang(cusID, cusName, cusPhone, cusGR, cusTotal, cusQuantity);
+        KhachHang newCus = new KhachHang();
+
+        newCus.setMaKhachHang(Integer.parseInt(cusID));
+        newCus.setTenKhachHang(cusName);
+        newCus.setSoDienThoai(cusPhone);
+        newCus.setNhomKhachHang(cusGR);
+        newCus.setTongTienMua(cusTotal);
+        newCus.setSoLuongHoaDon(cusQuantity);
+
         dao_KhachHang.updateKhachHang(newCus);
 
     }
 
     //Hàm Thêm khách hàng.
-    public void themKhachHang() {
+    public void themKhachHang() throws RemoteException {
     	
         String cusID = txtTimKH11.getText();
         String cusName = txtTimKH3.getText();
@@ -288,13 +292,20 @@ public class FrmKhachHang extends javax.swing.JPanel {
         
         double cusTotal = Double.parseDouble(txtTongChiTieu1.getText());
         int cusQuantity = Integer.parseInt(txtTongDonHang1.getText());
-        KhachHang newCus = new KhachHang(cusID, cusName, cusPhone, cusGR, cusTotal, cusQuantity);
+        KhachHang newCus = new KhachHang();
+        newCus.setMaKhachHang(Integer.parseInt(cusID));
+        newCus.setTenKhachHang(cusName);
+        newCus.setSoDienThoai(cusPhone);
+        newCus.setNhomKhachHang(cusGR);
+        newCus.setTongTienMua(cusTotal);
+        newCus.setSoLuongHoaDon(cusQuantity);
+
         dao_KhachHang.themKhachHang(newCus);
 
     }
 
     //Hàm để Xóa rỗng các field
-    private void clearn() {
+    private void clearn() throws RemoteException {
         txtTimKH11.setText(autoCreateMaKhachHang()); // khi làm mới thì set lại ô mã Khách hàng để chuẩn bị thêm khách hàng 
         txtTimKH3.setText("");
         txtTimKH4.setText("");
@@ -309,11 +320,11 @@ public class FrmKhachHang extends javax.swing.JPanel {
         checkMa = true;
     }
     //hàm lọc khách hàng theo nhóm
-    private void locKhachHangTheoNhom() {
+    private void locKhachHangTheoNhom() throws RemoteException {
     	 DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
     	    model.setRowCount(0); // Xóa tất cả các hàng hiện có trong bảng
 
-    	    ArrayList<KhachHang> dsDaLoc = dao_KhachHang.getAllKhachHang();
+    	    ArrayList<KhachHang> dsDaLoc = (ArrayList<KhachHang>) dao_KhachHang.getAllKhachHang();
     	    int stt = 1;
     	    if (nhomKhachHangFilter != null) {
     	        dsDaLoc = dsDaLoc.stream()
@@ -375,7 +386,7 @@ public class FrmKhachHang extends javax.swing.JPanel {
                                 NhomKhachHang nhom = NhomKhachHang.valueOf(nhomStr);
                                 // Tạo đối tượng KhachHang
                                 KhachHang khachHang = new KhachHang();
-                                khachHang.setMaKhachHang(autoCreateMaKhachHang());
+                                khachHang.setMaKhachHang(Integer.parseInt(autoCreateMaKhachHang()));
                                 khachHang.setTenKhachHang(ten);
                                 khachHang.setSoDienThoai(sdt);
                                 khachHang.setNhomKhachHang(nhom);
@@ -573,7 +584,11 @@ public class FrmKhachHang extends javax.swing.JPanel {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Khách bình thường", "Khách vip" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                try {
+                    jComboBox1ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -660,7 +675,11 @@ public class FrmKhachHang extends javax.swing.JPanel {
         jTable2.getTableHeader().setReorderingAllowed(false);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
+                try {
+                    jTable2MouseClicked(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         menuScrollPane2.setViewportView(jTable2);
@@ -770,7 +789,11 @@ public class FrmKhachHang extends javax.swing.JPanel {
         btnThemKH.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnThemKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemKHActionPerformed(evt);
+                try {
+                    btnThemKHActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -782,7 +805,11 @@ public class FrmKhachHang extends javax.swing.JPanel {
         btnSuaKH2.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnSuaKH2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaKH2ActionPerformed(evt);
+                try {
+                    btnSuaKH2ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -794,7 +821,11 @@ public class FrmKhachHang extends javax.swing.JPanel {
         btnSuaKH3.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnSuaKH3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaKH3ActionPerformed(evt);
+                try {
+                    btnSuaKH3ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -942,7 +973,11 @@ public class FrmKhachHang extends javax.swing.JPanel {
         btnNhapFile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNhapFile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnNhapFileMouseClicked(evt);
+                try {
+                    btnNhapFileMouseClicked(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -1069,8 +1104,7 @@ public class FrmKhachHang extends javax.swing.JPanel {
     
     
 // -------------------------------------------------------------Sự Kiện nút thêm Khách Hàng -------------------------------------------------------
-    private void btnThemKHActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_btnThemKHActionPerformed
+    private void btnThemKHActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnThemKHActionPerformed
     	
     	if(!(txtTimKH3.getText().isEmpty()||txtTimKH4.getText().isEmpty()))
     	{
@@ -1095,7 +1129,7 @@ public class FrmKhachHang extends javax.swing.JPanel {
        
     }//GEN-LAST:event_txtTimKHActionPerformed
 
-    private void btnNhapFileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNhapFileMouseClicked
+    private void btnNhapFileMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_btnNhapFileMouseClicked
         // TODO add your handling code here:
     	importExcelKhachHang();
     	loadDataKhachHang();
@@ -1119,7 +1153,7 @@ public class FrmKhachHang extends javax.swing.JPanel {
         
     }//GEN-LAST:event_txtTimKHFocusLost
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
         if (evt.getClickCount() == 1 && !evt.isConsumed()) {
             evt.consume();
@@ -1127,7 +1161,7 @@ public class FrmKhachHang extends javax.swing.JPanel {
 //        showPanelChange(pnlChange, pnlCenterSua);
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         String maCUS = model.getValueAt(jTable2.getSelectedRow(), 1).toString();
-        KhachHang cus = dao_KhachHang.getKHTheoMa(maCUS);
+        KhachHang cus = dao_KhachHang.getKHTheoMa(Integer.parseInt(maCUS));
         txtTimKH11.setText(model.getValueAt(jTable2.getSelectedRow(), 1).toString());
         txtTimKH3.setText(model.getValueAt(jTable2.getSelectedRow(), 2).toString());
         txtTimKH4.setText(model.getValueAt(jTable2.getSelectedRow(), 3).toString());
@@ -1180,13 +1214,13 @@ public class FrmKhachHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel31MouseClicked
     
   //-------------------------------------------------sự kiện text mã khách hàng-----------------------------------------------------
-    private void txtTimKH11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKH11KeyReleased
+    private void txtTimKH11KeyReleased(java.awt.event.KeyEvent evt) throws RemoteException {//GEN-FIRST:event_txtTimKH11KeyReleased
         // TODO add your handling code here:
         	String maKhachHang = txtTimKH11.getText();
-            ArrayList<KhachHang> ds = dao_KhachHang.getAllKhachHang();
+            ArrayList<KhachHang> ds = (ArrayList<KhachHang>) dao_KhachHang.getAllKhachHang();
             for(KhachHang cus: ds )
             {
-            	if (cus.getMaKhachHang().equals(maKhachHang)) {
+            	if (String.valueOf(cus.getMaKhachHang()).equals(maKhachHang)) {
                     jLabel31.setText("Cần làm mới trước khi thêm");
                     jLabel31.setForeground(Color.RED);
                     checkMa =false; // Mã khách hàng đã tồn tại trong danh sách.
@@ -1205,7 +1239,7 @@ public class FrmKhachHang extends javax.swing.JPanel {
         lblNameLogin.setText(gui.FrmLogin.tenNguoiDung);
     }//GEN-LAST:event_lblNameLoginAncestorAdded
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
         String selectedOption = (String) jComboBox1.getSelectedItem();
         if ("Tất cả".equals(selectedOption)) {
@@ -1219,7 +1253,7 @@ public class FrmKhachHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
         // Sửa (F2)
-    private void btnSuaKH2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaKH2ActionPerformed
+    private void btnSuaKH2ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnSuaKH2ActionPerformed
         // TODO add your handling code here:
         if (checkSDT && checkTenKH) {
 //          if(true) { 
@@ -1232,7 +1266,7 @@ public class FrmKhachHang extends javax.swing.JPanel {
 	
     }//GEN-LAST:event_btnSuaKH2ActionPerformed
         // làm mới (F3)
-    private void btnSuaKH3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaKH3ActionPerformed
+    private void btnSuaKH3ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnSuaKH3ActionPerformed
         // TODO add your handling code here:
             clearn();
             loadDataKhachHang();

@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManagerFactory;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -102,16 +103,46 @@ public class ThongKe_Impl extends UnicastRemoteObject implements ThongKe_Dao {
 
     @Override
     public int thongKeTongSoHoaDonHoanTra() throws RemoteException {
-        return 0;
+        int tongSoHoaDonHoanTra = 0;
+        try{
+            String query = "SELECT COUNT(*) FROM HoaDonHoanTra";
+            EntityManager em = emf.createEntityManager();
+            tongSoHoaDonHoanTra = (int) em.createNativeQuery(query).getSingleResult();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return tongSoHoaDonHoanTra;
     }
 
     @Override
     public int thongKeTongSoLuongSanPhamDaBan() throws RemoteException {
-        return 0;
+        int soLuongSanPhamDaBan = 0;
+        EntityManager em = emf.createEntityManager();
+        try{
+            String query = "SELECT SUM(soLuong) AS SoLuongSanPhamDaBan FROM ChiTietHoaDon WHERE ChiTietHoaDon.maHoaDon IN (SELECT maHoaDon FROM HoaDon WHERE ngayLap  BETWEEN ? AND ?)";
+            soLuongSanPhamDaBan = (int) em.createNativeQuery(query)
+                    .setParameter(1, new Date())
+                    .setParameter(2, new Date())
+                    .getSingleResult();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return soLuongSanPhamDaBan;
     }
 
     @Override
     public List<Integer> getDistinctYears() throws RemoteException {
-        return null;
+        List<Integer> years = new ArrayList<>();
+        try {
+            String        query = "SELECT DISTINCT YEAR(ngayLap) AS nam FROM HoaDon";
+            EntityManager em    = emf.createEntityManager();
+            List<?>       list  = em.createNativeQuery(query).getResultList();
+            for(Object o : list){
+                years.add((int) o);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return years;
     }
 }
