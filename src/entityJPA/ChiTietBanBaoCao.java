@@ -38,8 +38,6 @@ public class ChiTietBanBaoCao implements Serializable{
 	public String toString() {
 		return "ChiTietBanBaoCao{" +
 				"id=" + id +
-				", banBaoCao=" + banBaoCao.getMaBanBaoCao() +
-				", sanPham=" + sanPham.getMaSanPham() +
 				", soLuongBan=" + soLuongBan +
 				", thanhTien=" + thanhTien +
 				", soLuongNhap=" + soLuongNhap +
