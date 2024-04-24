@@ -4,6 +4,8 @@
  */
 package gui;
 
+import dao.Interface.NhanVien_Dao;
+import dao.impl.NhanVien_Impl;
 import entityJPA.NhanVien;
 import menuGui.MenuEvent;
 import menuGui.TableActionCellEditor;
@@ -55,16 +57,16 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import dao.DAO_NhanVien;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 public class FrmChinh extends javax.swing.JFrame {
 
     private JLayeredPane layered = new JLayeredPane();
 
-    private DAO_NhanVien dao_nv = new DAO_NhanVien();
-
+    private NhanVien_Dao dao_nv = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     private Thread thread = null;
 
-    public FrmChinh() {
+    public FrmChinh() throws RemoteException {
         initComponents();
 
         layered.add(body, JLayeredPane.DEFAULT_LAYER);
@@ -132,7 +134,7 @@ public class FrmChinh extends javax.swing.JFrame {
     public void chonMenu() {
         menu1.setEvent(new MenuEvent() {
             @Override
-            public void selected(int index, int subIndex) throws RemoteException {
+            public void selected(int index, int subIndex) throws Exception {
                 if (index == 0) {
                     dispose();
                     new FrmChinh().setVisible(true);
@@ -1631,7 +1633,11 @@ public class FrmChinh extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmChinh().setVisible(true);
+                try {
+                    new FrmChinh().setVisible(true);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }

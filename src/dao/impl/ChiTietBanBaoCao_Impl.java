@@ -17,7 +17,7 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
         super();
         this.emf = emf;
     }
-    public void taoChiTietBanBaoCao(ChiTietBanBaoCao data){
+    public void taoChiTietBanBaoCao(ChiTietBanBaoCao data) throws RemoteException{
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         try {
@@ -77,12 +77,13 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
         thoiGianKetThuc = thoiGianKetThuc.replace("T", " ");
 
         String sql   = """
-                select v.maSanPham, sum(ct.soLuong) as soLuong, sum(thanhTien) as thanhTien\s
-                                  from VanPhongPham v
-                                inner join ChiTietHoaDon ct on ct.maSanPham = v.maSanPham
-                                inner join HoaDon hd on hd.maHoaDon = ct.maHoaDon
-                                   where hd.maHoaDon like ? and (ngayLap >= ? and ngayLap < ?)
-                                  group by v.maSanPham""";
+                select v.maSanPham, sum(ct.soLuong) as soLuong, sum(thanhTien) as thanhTiens
+                    from VanPhongPham v
+                  inner join ChiTietHoaDon ct on ct.maSanPham = v.maSanPham
+                  inner join HoaDon hd on hd.maHoaDon = ct.maHoaDon
+                    where ct.maHoaDon in (select maHoaDon from HoaDon where ngayLap like '2024-04-24%')
+                and (ngayLap >= '2024-04-24 06:00:00' and ngayLap < '2024-04-24 12:00:00')
+                  group by v.maSanPham""";
 
         EntityManager em = emf.createEntityManager();
 
