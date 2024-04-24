@@ -1309,7 +1309,11 @@ private BanBaoCao_Dao dao_BBC = new BanBaoCao_Impl(EntityManagerFactory_Static.g
         btnXemBC.setPreferredSize(new java.awt.Dimension(72, 27));
         btnXemBC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXemBCActionPerformed(evt);
+                try {
+                    btnXemBCActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
