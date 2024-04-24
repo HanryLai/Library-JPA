@@ -22,7 +22,9 @@ public class SanPham_BaoCao_ChiTiet {
 		MauSac mauSac2 = new MauSac();
 		mauSac2.setTenMau("Màu xanh");
 
+
 		VanPhongPham vpp = new VanPhongPham();
+
 		vpp.setTenSanPham("Văn phòng phẩm mẫu1");
 		vpp.setSoLuongTon(100);
 		vpp.setDonGiaNhap(15000);
