@@ -15,17 +15,16 @@ public class SanPham_BaoCao_ChiTiet {
 	public static void main(String[] args) throws RemoteException {
 		
 		EntityManager em = EntityManagerFactory_Static.getEntityManagerFactory().createEntityManager();
-		em.getTransaction().begin();
+
 		MauSac mauSac = new MauSac();
 		mauSac.setTenMau("Màu đỏ");
-
 
 		MauSac mauSac2 = new MauSac();
 		mauSac2.setTenMau("Màu xanh");
 
 
+		VanPhongPham vpp = new VanPhongPham();
 
-		VanPhongPham vanPhongPham = new VanPhongPham();
 		vpp.setTenSanPham("Văn phòng phẩm mẫu1");
 		vpp.setSoLuongTon(100);
 		vpp.setDonGiaNhap(15000);
@@ -102,19 +101,6 @@ public class SanPham_BaoCao_ChiTiet {
 		banBaoCao2.setThoiGianBaoCao("01/02/2022");
 
 
-		em.getTransaction().begin();
-
-		em.persist(mauSac);
-		em.persist(mauSac2);
-
-		em.persist(vpp);
-		em.persist(sach);
-		em.persist(vpp2);
-		em.persist(sach2);
-
-
-		em.persist(banBaoCao);
-		em.persist(banBaoCao2);
 
 
 		ChiTietBanBaoCao chiTietBanBaoCao = new ChiTietBanBaoCao();
@@ -148,6 +134,20 @@ public class SanPham_BaoCao_ChiTiet {
 		chiTietBanBaoCao4.setSoLuongNhap(20);
 		chiTietBanBaoCao4.setTonKho(30);
 
+		em.getTransaction().begin();
+
+		em.persist(mauSac);
+		em.persist(mauSac2);
+
+		em.persist(vpp);
+		em.persist(sach);
+		em.persist(vpp2);
+		em.persist(sach2);
+
+
+		em.persist(banBaoCao);
+		em.persist(banBaoCao2);
+
 
 		em.persist(chiTietBanBaoCao);
 		em.persist(chiTietBanBaoCao2);
@@ -163,7 +163,5 @@ public class SanPham_BaoCao_ChiTiet {
 
 		em.close();
 
-//		DO NOT CLOSE
-//		emf.close();
 	}
 }
