@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3840fe-7815-4ca2-bd69-f0e9f3e7cd1d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonHoanTraImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonHoanTraImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTra.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTraID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTraID.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testPackage/implement/TestThongKe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/implement/TestThongKe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmXemBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmXemBaoCao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +42,8 @@
     "Application.FrmNhaCungCap (1).executor": "Run",
     "Application.FrmNhaCungCap.executor": "Run",
     "Application.FrmThongKe.executor": "Run",
+    "Application.FrmXemBaoCao (1).executor": "Run",
+    "Application.FrmXemBaoCao.executor": "Run",
     "Application.Main_Create_Data.executor": "Run",
     "Application.NhaCungCap_Dao.executor": "Run",
     "Application.TestThongKe.executor": "Run",
@@ -66,26 +65,13 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.ChiTietHoaDonHoanTraImpl">
+  <component name="RunManager" selected="Application.FrmXemBaoCao (1)">
     <configuration name="ChiTietHoaDonHoanTraImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.impl.ChiTietHoaDonHoanTraImpl" />
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dao.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FrmNhaCungCap (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gui.FrmNhaCungCap" />
-      <module name="QuanLiNhaSachONEEIGHT" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="gui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -119,12 +105,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NhaCungCap_Dao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="testPackage.data.NhaCungCap_Dao" />
+    <configuration name="FrmXemBaoCao (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.FrmXemBaoCao" />
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="testPackage.data.*" />
+          <option name="PATTERN" value="gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FrmXemBaoCao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.FrmXemBaoCao" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -134,11 +133,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FrmXemBaoCao (1)" />
+        <item itemvalue="Application.FrmXemBaoCao" />
         <item itemvalue="Application.ChiTietHoaDonHoanTraImpl" />
         <item itemvalue="Application.FrmThongKe" />
         <item itemvalue="Application.FrmNhaCungCap" />
-        <item itemvalue="Application.FrmNhaCungCap (1)" />
-        <item itemvalue="Application.NhaCungCap_Dao" />
       </list>
     </recent_temporary>
   </component>
