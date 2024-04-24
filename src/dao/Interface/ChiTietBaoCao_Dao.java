@@ -20,9 +20,9 @@ public interface ChiTietBaoCao_Dao extends Remote {
 
     ArrayList<ChiTietBanBaoCao> getChiTietBanBaoCao(int maBanBaoCao) throws RemoteException;
 
-    double getDoanhThuCaNgay(String maBanBaoCao)throws RemoteException;
+    double getDoanhThuCaNgay(int maBanBaoCao)throws RemoteException;
 
-    int getTongSanPhamBanDuoc(String maBanBaoCao)throws RemoteException;
+    int getTongSanPhamBanDuoc(int maBanBaoCao)throws RemoteException;
 
     double getDoanhThuTheoTenBC(String tenBanBaoCao)throws RemoteException;
 }
