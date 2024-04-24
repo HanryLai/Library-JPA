@@ -2,9 +2,9 @@ package dao.impl;
 
 import dao.DAO_ThongKe;
 import dao.Interface.ThongKe_Dao;
-import entity.MonthlyRevenueInfo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import otherEntity.MonthlyRevenueInfo;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
