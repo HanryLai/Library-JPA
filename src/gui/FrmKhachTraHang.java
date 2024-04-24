@@ -27,7 +27,7 @@ import entity.HoaDonDoiHang;
 import entity.HoaDonHoanTra;
 import entity.KhachHang;
 import entity.KhuyenMai;
-import entity.NhanVien;
+import entityJPA.NhanVien;
 import entity.NhomKhachHang;
 import entity.NhomSanPham;
 import entity.Sach;
@@ -313,7 +313,8 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
         if (true) {
             if (tableInForSP.getRowCount() != 0) {
                 LocalDateTime ngayLap = LocalDateTime.now();
-                NhanVien nv = dao_nv.getNVTheoMa("QL23102023-000007");
+                int maNhanVien = 0; // Lấy mã nhân viên đang thực hiện hoàn trả sản phẩm
+                NhanVien nv = dao_nv.getNVTheoMa(maNhanVien);
                 HoaDon hd = dao_hd.getHoaDontheoMa(lblMaHoaDon.getText());
                 HoaDonHoanTra hdht = new HoaDonHoanTra(lblMaHoaDonHoanTra.getText(), ngayLap, nv, hd, jTextAreaGhiChuTraHang.getText(), 1, Double.parseDouble(lblTongTienHoan.getText()));
                 dao_hdht.createHoaDonHoanTra(hdht);

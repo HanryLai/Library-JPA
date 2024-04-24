@@ -15,7 +15,7 @@ import entity.ChiTietHoaDon;
 import entity.HoaDon;
 import entity.KhachHang;
 import entity.KhuyenMai;
-import entity.NhanVien;
+import entityJPA.NhanVien;
 import entity.NhomKhachHang;
 import entity.NhomSanPham;
 import entity.Sach;

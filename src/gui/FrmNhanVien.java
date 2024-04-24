@@ -5,6 +5,7 @@
 package gui;
 
 import java.awt.Color;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -19,13 +20,12 @@ import com.toedter.calendar.JDateChooser;
 
 import dao.DAO_NhaCungCap;
 import dao.DAO_NhanVien;
-import entity.CaLamViec;
-import entity.ChucVu;
-import entity.KhachHang;
-import entity.NhaCungCap;
-import entity.NhanVien;
-import entity.NhomKhachHang;
-import entity.TaiKhoan;
+import dao.impl.CaLamViec_Impl;
+import dao.impl.NhanVien_Impl;
+import entityJPA.CaLamViec;
+import entityJPA.ChucVu;
+import entityJPA.NhanVien;
+import entityJPA.TaiKhoan;
 
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
@@ -43,6 +43,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -61,6 +62,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *
@@ -73,8 +75,9 @@ public class FrmNhanVien extends javax.swing.JPanel {
      */
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
-    
-    public FrmNhanVien() throws SQLException {
+    private NhanVien_Impl dao_nhanvien = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private CaLamViec_Impl dao_calamviec = new CaLamViec_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    public FrmNhanVien() throws SQLException, RemoteException {
         initComponents();
         kiemTra();
         loadData();
@@ -362,14 +365,14 @@ public class FrmNhanVien extends javax.swing.JPanel {
 
     private LocalDateTime today = LocalDateTime.now();
     
-    public String thietLapCaLamViec(){
+    public int thietLapCaLamViec(){
         if(today.getHour()>=6 && (today.getHour()<=11 && today.getMinute()==0)){
-            return "CA01";
+            return 1;
         }
         else if(today.getHour()<=16 ){
-            return "CA02";
+            return 2;
         }
-        return "CA03";
+        return 3;
     }
     
     public void loadData() throws SQLException {
@@ -380,9 +383,9 @@ public class FrmNhanVien extends javax.swing.JPanel {
         jDateChooser3.setDate(new Date());
         int stt = 1;
         for (NhanVien nv : data) {
-            if (nv.getCaLamViec().getMaCa().equalsIgnoreCase("CA01")) {
+            if (nv.getCaLamViec().getMaCa() == 1) {
                 nv.getCaLamViec().setTenCa("Sáng");
-            } else if (nv.getCaLamViec().getMaCa().equalsIgnoreCase("CA02")) {
+            } else if (nv.getCaLamViec().getMaCa() == 2) {
                 nv.getCaLamViec().setTenCa("Chiều");
             } else {
                 nv.getCaLamViec().setTenCa("Tối");
@@ -2356,8 +2359,8 @@ public class FrmNhanVien extends javax.swing.JPanel {
 
 
     
-    public void exportExcel() {
-        ArrayList<NhanVien> dsNhanVien = dao_nhanvien.getAllNhanVien();
+    public void exportExcel() throws RemoteException {
+        List<NhanVien> dsNhanVien = dao_nhanvien.getAllNhanVien();
         try {
                 JFileChooser jFileChooser = new JFileChooser("excel");
                 jFileChooser.showSaveDialog(this);
@@ -2422,11 +2425,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
                             cell.setCellValue("Nghỉ việc");
                         }
                         
-                        if(dsNhanVien.get(i).getCaLamViec().getMaCa().equalsIgnoreCase("CA01")){
+                        if(dsNhanVien.get(i).getCaLamViec().getMaCa() == 1){
                             cell = row.createCell(8, CellType.STRING);
                             cell.setCellValue("Sáng");
                         }
-                        else if(dsNhanVien.get(i).getCaLamViec().getMaCa().equalsIgnoreCase("CA02")){
+                        else if(dsNhanVien.get(i).getCaLamViec().getMaCa() == 2){
                             cell = row.createCell(8, CellType.STRING);
                             cell.setCellValue("Chiều");
                         }
@@ -2455,7 +2458,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
         }
     }
     
-    private void locNhanVien() {
+    private void locNhanVien() throws RemoteException {
         String duLieuTim = txtTimKH.getText();
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         data = dao_nhanvien.locNhanVien(duLieuTim);
@@ -2464,9 +2467,9 @@ public class FrmNhanVien extends javax.swing.JPanel {
             model.setRowCount(0);
             jTable2.clearSelection();
             for (NhanVien nv : data) {
-                if (nv.getCaLamViec().getMaCa().equalsIgnoreCase("CA01")) {
+                if (nv.getCaLamViec().getMaCa() == 1) {
                     nv.getCaLamViec().setTenCa("Sáng");
-                } else if (nv.getCaLamViec().getMaCa().equalsIgnoreCase("CA02")) {
+                } else if (nv.getCaLamViec().getMaCa() == 2) {
                     nv.getCaLamViec().setTenCa("Chiều");
                 } else {
                     nv.getCaLamViec().setTenCa("Tối");
@@ -2515,9 +2518,9 @@ public class FrmNhanVien extends javax.swing.JPanel {
                 model.setRowCount(0);
                 jTable2.clearSelection();
                 for (NhanVien nv : data) {
-                    if (nv.getCaLamViec().getMaCa().equalsIgnoreCase("CA01")) {
+                    if (nv.getCaLamViec().getMaCa() == 1) {
                         nv.getCaLamViec().setTenCa("Sáng");
-                    } else if (nv.getCaLamViec().getMaCa().equalsIgnoreCase("CA02")) {
+                    } else if (nv.getCaLamViec().getMaCa() == 2) {
                         nv.getCaLamViec().setTenCa("Chiều");
                     } else {
                         nv.getCaLamViec().setTenCa("Tối");
@@ -2557,9 +2560,9 @@ public class FrmNhanVien extends javax.swing.JPanel {
                 model.setRowCount(0);
                 jTable2.clearSelection();
                 for (NhanVien nv : data) {
-                    if (nv.getCaLamViec().getMaCa().equalsIgnoreCase("CA01")) {
+                    if (nv.getCaLamViec().getMaCa() == 1) {
                         nv.getCaLamViec().setTenCa("Sáng");
-                    } else if (nv.getCaLamViec().getMaCa().equalsIgnoreCase("CA02")) {
+                    } else if (nv.getCaLamViec().getMaCa() == 2) {
                         nv.getCaLamViec().setTenCa("Chiều");
                     } else {
                         nv.getCaLamViec().setTenCa("Tối");
@@ -2595,12 +2598,10 @@ public class FrmNhanVien extends javax.swing.JPanel {
     }
     
     
-    private void btnThemNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemNVActionPerformed
+    private void btnThemNVActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnThemNVActionPerformed
         // TODO add your handling code here:
-  
-        NhanVien nv = new NhanVien();
 
-        String maNhanVien = txtTimKH11.getText();
+        int maNhanVien = Integer.parseInt(txtTimKH11.getText());
         String tenNhanVien = txtTimKH9.getText();
         
         Date selectedDate = jDateChooser3.getDate();
@@ -2609,7 +2610,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
         String soDienThoai = txtTimKH12.getText();
         String gioiTinh = String.valueOf(jComboBox12.getSelectedItem());
         String email = txtTimKH10.getText();
-        TaiKhoan taiKhoan = TaiKhoan.ChuyenString(maNhanVien);
+        TaiKhoan taiKhoan = new TaiKhoan();
 
         int tinhTrangLamViec = Integer.parseInt(String.valueOf(jComboBox2.getSelectedItem()));
         String caLv = String.valueOf(jComboBox5.getSelectedItem());
@@ -2617,13 +2618,13 @@ public class FrmNhanVien extends javax.swing.JPanel {
         String caLamViecStr = String.valueOf(jComboBox13.getSelectedItem());
         CaLamViec caLamViec;
         if(caLamViecStr.equalsIgnoreCase("Sáng")){
-            caLamViec = new CaLamViec("CA01");
+            caLamViec = dao_calamviec.getCaLamViecTheoTenCa("Sáng");
         }
         else if(caLamViecStr.equalsIgnoreCase("Chiều")){
-            caLamViec = new CaLamViec("CA02");
+            caLamViec = dao_calamviec.getCaLamViecTheoTenCa("Chiều");
         }
         else{
-            caLamViec = new CaLamViec("CA03");
+            caLamViec = dao_calamviec.getCaLamViecTheoTenCa("Tối");
         }
                
         String cVu = String.valueOf(jComboBox11.getSelectedItem());
@@ -2640,8 +2641,17 @@ public class FrmNhanVien extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Chưa nhập đầy đủ dữ liệu");
             
             else if (validData()) {
-                NhanVien nvThem = new NhanVien(maNhanVien, tenNhanVien, ngaySinh, soDienThoai, gioiTinh, email, taiKhoan.getTenDangNhap(),
-                        tinhTrangLamViec, caLamViec.getMaCa(), chucVu);
+                NhanVien nvThem = new NhanVien();
+                //nvThem.setMaNhanVien(maNhanVien);
+                nvThem.setHoTenNV(tenNhanVien);
+                nvThem.setNgaySinh(ngaySinh);
+                nvThem.setSoDienThoai(soDienThoai);
+                nvThem.setGioiTinh(gioiTinh);
+                nvThem.setEmail(email);
+                nvThem.setTaiKhoan(new TaiKhoan(email.substring(0, email.indexOf("@")), "1111", email));
+                nvThem.setTinhTrangLamViec(tinhTrangLamViec);
+                nvThem.setCaLamViec(caLamViec); // Sửa lại lấy ca làm việc từ db lên để set vào nhân viên
+                nvThem.setChucVu(chucVu);
                 dao_nhanvien.themNhanVien(nvThem);
                
             } 
@@ -2663,13 +2673,13 @@ public class FrmNhanVien extends javax.swing.JPanel {
         frm.placeHoderTextLost(txtTimKH);
     }//GEN-LAST:event_txtTimKHFocusLost
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
         if (evt.getClickCount() == 1 && !evt.isConsumed()) {
             evt.consume();
             DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-            dao_nhanvien = new DAO_NhanVien();
-            String maNhanVien = model.getValueAt(jTable2.getSelectedRow(), 1).toString();
+            //dao_nhanvien = new DAO_NhanVien();
+            int maNhanVien = Integer.parseInt(model.getValueAt(jTable2.getSelectedRow(), 1).toString());
             NhanVien nv = dao_nhanvien.getNVTheoMa(maNhanVien);
 
             txtTimKH11.setText(model.getValueAt(jTable2.getSelectedRow(), 1).toString());
@@ -2733,9 +2743,9 @@ public class FrmNhanVien extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKH12ActionPerformed
 
-    private void btnSuaNhanVien1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaNhanVien1ActionPerformed
+    private void btnSuaNhanVien1ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnSuaNhanVien1ActionPerformed
         // TODO add your handling code here:
-        String maNVSua = txtTimKH11.getText();
+        int maNVSua = Integer.parseInt(txtTimKH11.getText());
         String tenNVMoi = txtTimKH9.getText();
         String soDienThoaiMoi = txtTimKH12.getText();
         String emailMoi = txtTimKH10.getText();
@@ -2748,13 +2758,13 @@ public class FrmNhanVien extends javax.swing.JPanel {
         String caLamViecStr = String.valueOf(jComboBox13.getSelectedItem());
         CaLamViec caLamViec;
         if(caLamViecStr.equalsIgnoreCase("Sáng")){
-            caLamViec = new CaLamViec("CA01");
+            caLamViec = dao_calamviec.getCaLamViecTheoTenCa("Sáng");
         }
         else if(caLamViecStr.equalsIgnoreCase("Chiều")){
-            caLamViec = new CaLamViec("CA02");
+            caLamViec = dao_calamviec.getCaLamViecTheoTenCa("Chiều");
         }
         else{
-            caLamViec = new CaLamViec("CA03");
+            caLamViec = dao_calamviec.getCaLamViecTheoTenCa("Tối");
         }
                
         String cVu = String.valueOf(jComboBox11.getSelectedItem());
@@ -2774,14 +2784,23 @@ public class FrmNhanVien extends javax.swing.JPanel {
             tinhTrangLamViec = 0;
         }
         
-        TaiKhoan taiKhoan = TaiKhoan.ChuyenString(maNVSua);
-        NhanVien nvMoi = new NhanVien(maNVSua, tenNVMoi, ngaySinhMoi, soDienThoaiMoi, 
-                gioiTinh, emailMoi, tinhTrangLamViec, caLamViec.getMaCa(), chucVu);
+        TaiKhoan taiKhoan = new TaiKhoan(emailMoi.substring(0, emailMoi.indexOf("@")), "1111", emailMoi);
+        NhanVien nvMoi = new NhanVien();
+        nvMoi.setHoTenNV(tenNVMoi);
+        nvMoi.setNgaySinh(ngaySinhMoi);
+        nvMoi.setSoDienThoai(soDienThoaiMoi);
+        nvMoi.setGioiTinh(gioiTinh);
+        nvMoi.setEmail(emailMoi);
+        nvMoi.setTaiKhoan(taiKhoan);
+        nvMoi.setTinhTrangLamViec(tinhTrangLamViec);
+        nvMoi.setCaLamViec(caLamViec);
+        nvMoi.setChucVu(chucVu);
+
         if(jTable2.getSelectedRow()<0){
             JOptionPane.showMessageDialog(null, "Hãy chọn dòng cần sửa");
         }
         else if (validData()) {
-            dao_nhanvien.updateNhanVien(maNVSua, nvMoi);
+            dao_nhanvien.updateNhanVien(maNVSua);
             System.out.println("Update: "+nvMoi);
         }
         
@@ -2861,7 +2880,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
         showPanelChange(pnlChange, pnlCenterSua);
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         dao_nhanvien = new DAO_NhanVien();
-        String maNhanVien = model.getValueAt(jTable2.getSelectedRow(), 1).toString();
+        int maNhanVien = Integer.parseInt(model.getValueAt(jTable2.getSelectedRow(), 1).toString());
         NhanVien nv = dao_nhanvien.getNVTheoMa(maNhanVien);
 
         txtTimKH11.setText(model.getValueAt(jTable2.getSelectedRow(), 1).toString());
@@ -3088,6 +3107,5 @@ public class FrmNhanVien extends javax.swing.JPanel {
     private javax.swing.JTextField txtTimKH8;
     private javax.swing.JTextField txtTimKH9;
     // End of variables declaration//GEN-END:variables
-    private ArrayList<NhanVien> data;
-    private DAO_NhanVien dao_nhanvien;
+    private List<NhanVien> data;
 }
