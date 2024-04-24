@@ -17,18 +17,37 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
         super();
         this.emf = emf;
     }
+    public void taoChiTietBanBaoCao(ChiTietBanBaoCao data){
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            em.persist(data);
+            et.commit();
+        } catch (Exception e){
+            et.rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+
     public ArrayList<ChiTietBanBaoCao> getSachDaBan (int maHD, String thoiGianBatDau, String thoiGianKetThuc) throws RemoteException{
         ArrayList<ChiTietBanBaoCao> list = new ArrayList<>();
+
+        thoiGianBatDau = thoiGianBatDau.replace("T", " ");
+        thoiGianKetThuc = thoiGianKetThuc.replace("T", " ");
+
         String sql   = """
                 select s.maSanPham, sum(ct.soLuong) as soLuong, sum(thanhTien) as thanhTien
-                from Sach s
-                inner join ChiTietHoaDon ct on ct.sanPham = s.maSanPham
-                inner join HoaDon hd on hd.maHoaDon = ct.hoaDon
-                where hoaDon like ? and (ngayLap >= ? and ngayLap < ?)
-                group by s.maSanPham""";
+                                from Sach s
+                                inner join ChiTietHoaDon ct on ct.maSanPham = s.maSanPham
+                                inner join HoaDon hd on hd.maHoaDon = ct.maHoaDon
+                                where ct.maHoaDon = ? and (ngayLap >= ? and ngayLap < ?)
+                                group by s.maSanPham""";
 
         EntityManager em = emf.createEntityManager();
-        Query query = em.createNativeQuery(sql);
+        Query query = em.createNativeQuery(sql, Object.class);
         query.setParameter(1, maHD);
         query.setParameter(2, thoiGianBatDau);
         query.setParameter(3, thoiGianKetThuc);
@@ -53,17 +72,21 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
 
     public ArrayList<ChiTietBanBaoCao> getVPPDaBan (int maHD, String thoiGianBatDau, String thoiGianKetThuc)throws RemoteException{
         ArrayList<ChiTietBanBaoCao> list = new ArrayList<>();
+
+        thoiGianBatDau = thoiGianBatDau.replace("T", " ");
+        thoiGianKetThuc = thoiGianKetThuc.replace("T", " ");
+
         String sql   = """
-                select v.maSanPham, sum(ct.soLuong) as soLuong, sum(thanhTien) as thanhTien \s
-                  from VanPhongPham v
-                inner join ChiTietHoaDon ct on ct.sanPham = v.maSanPham
-                inner join HoaDon hd on hd.maHoaDon = ct.hoaDon
-                   where hoaDon like ? and (ngayLap >= ? and ngayLap < ?)
-                  group by v.maSanPham""";
+                select v.maSanPham, sum(ct.soLuong) as soLuong, sum(thanhTien) as thanhTien\s
+                                  from VanPhongPham v
+                                inner join ChiTietHoaDon ct on ct.maSanPham = v.maSanPham
+                                inner join HoaDon hd on hd.maHoaDon = ct.maHoaDon
+                                   where hd.maHoaDon like ? and (ngayLap >= ? and ngayLap < ?)
+                                  group by v.maSanPham""";
 
         EntityManager em = emf.createEntityManager();
 
-        Query query = em.createNativeQuery(sql);
+        Query query = em.createNativeQuery(sql, Object.class);
         query.setParameter(1, maHD);
         query.setParameter(2, thoiGianBatDau);
         query.setParameter(3, thoiGianKetThuc);
@@ -90,18 +113,20 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
 //    FIX
     public ArrayList<ChiTietBanBaoCao> getTinhTrangNhapSach(String ngayTao) throws RemoteException{
         ArrayList<ChiTietBanBaoCao> list = new ArrayList<>();
+        ngayTao = ngayTao.substring(0, 10);
+        System.out.println(ngayTao);
         String sql = """
                 WITH CumulativeSumCTE AS (
                 SELECT
-                    tenSanPham,
+                    Sach.maSanPham as maSanPham,
                     soLuongTon as soLuongNhap,
                     ngayTao,
                     SUM(soLuongTon) OVER (PARTITION BY tenSanPham ORDER BY ngayTao) AS CumulativeSoLuongTon
                 FROM
-                    Sach
+                    Sach inner join SanPham on Sach.maSanPham = SanPham.maSanPham
                 )
                 SELECT
-                    tenSanPham,
+                    maSanPham,
                     MAX(soLuongNhap) AS soLuongNhap,
                     MAX(CumulativeSoLuongTon) AS tonKho
                 FROM
@@ -109,7 +134,8 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
                 WHERE
                     CONVERT(DATE, ngayTao) = ?
                 GROUP BY
-                    tenSanPham;""";
+                    maSanPham
+""";
 
         EntityManager em = emf.createEntityManager();
         Query query = em.createNativeQuery(sql);
@@ -123,7 +149,7 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
 
             ct.setSanPham(sanPham);
             ct.setSoLuongBan((int) objArr[1]);
-            ct.setThanhTien((double) objArr[2]);
+            ct.setThanhTien((int) objArr[2] + 0.0);
             ct.setGhiChu("");
 
             list.add(ct);
@@ -135,26 +161,28 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
 
     public ArrayList<ChiTietBanBaoCao> getTinhTrangNhapVPP(String ngayTao)throws RemoteException{
         ArrayList<ChiTietBanBaoCao> list = new ArrayList<>();
+        ngayTao = ngayTao.substring(0, 10);
         String sql = """
-                WITH CumulativeSumCTE AS (
-                SELECT
-                    tenSanPham,
-                    soLuongTon as soLuongNhap,
-                    ngayTao,
-                    SUM(soLuongTon) OVER (PARTITION BY tenSanPham ORDER BY ngayTao) AS CumulativeSoLuongTon
-                FROM
-                    VanPhongPham
-                )
-                SELECT
-                    tenSanPham,
-                    MAX(soLuongNhap) AS soLuongNhap,
-                    MAX(CumulativeSoLuongTon) AS tonKho
-                FROM
-                    CumulativeSumCTE
-                WHERE
-                    CONVERT(DATE, ngayTao) = ?
-                GROUP BY
-                    tenSanPham;""";
+                    WITH CumulativeSumCTE AS (
+                    SELECT
+                        VanPhongPham.maSanPham as maSanPham,
+                        soLuongTon as soLuongNhap,
+                        ngayTao,
+                        SUM(soLuongTon) OVER (PARTITION BY tenSanPham ORDER BY ngayTao) AS CumulativeSoLuongTon
+                    FROM
+                        VanPhongPham inner join SanPham on VanPhongPham.maSanPham = SanPham.maSanPham
+                    )
+                    SELECT
+                        maSanPham,
+                        MAX(soLuongNhap) AS soLuongNhap,
+                        MAX(CumulativeSoLuongTon) AS tonKho
+                    FROM
+                        CumulativeSumCTE
+                    WHERE
+                        CONVERT(DATE, ngayTao) = ?
+                    GROUP BY
+                        maSanPham
+                        """;
         EntityManager em = emf.createEntityManager();
         Query query = em.createNativeQuery(sql);
         query.setParameter(1, ngayTao);
@@ -167,7 +195,7 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
 
             ct.setSanPham(sanPham);
             ct.setSoLuongBan((int) objArr[1]);
-            ct.setThanhTien((double) objArr[2]);
+            ct.setThanhTien((int) objArr[2] + 0.0);
             ct.setGhiChu("");
 
             list.add(ct);
@@ -179,13 +207,16 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
 
     public double getDoanhThuTheoCa(int maHD, String thoiGianBatDau, String thoiGianKetThuc)throws RemoteException{
         double doanhThu = 0;
+        thoiGianBatDau = thoiGianBatDau.replace("T", " ");
+        thoiGianKetThuc = thoiGianKetThuc.replace("T", " ");
         String sql = """
-                select sum(ThanhTien) as ThanhTien
+            select sum(ThanhTien) as ThanhTien
                 from HoaDon hd
-                inner join ChiTietHoaDon cthd on hd.maHoaDon = cthd.hoaDon
-                inner join NhanVien nv on nv.maNhanVien = hd.nhanVien
+                inner join ChiTietHoaDon cthd on hd.maHoaDon = cthd.maHoaDon
+                inner join NhanVien nv on nv.maNhanVien = hd.maNhanVien
                 where hd.maHoaDon like ? and (ngayLap >= ? and ngayLap < ?)
-                group by nv.caLamViec""";
+                group by nv.maCa
+                """;
 
         EntityManager em = emf.createEntityManager();
 
@@ -207,12 +238,12 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
         ArrayList<ChiTietBanBaoCao> list = new ArrayList<ChiTietBanBaoCao>();
 
         Generic_Impl<ChiTietBanBaoCao> generic = new Generic_Impl<>(ChiTietBanBaoCao.class, emf);
-        list = (ArrayList<ChiTietBanBaoCao>) generic.findByProperty("maBanBaoCao", maBanBaoCao);
+        list = (ArrayList<ChiTietBanBaoCao>) generic.findByProperty("id.maBanBaoCao", maBanBaoCao);
 
         return list;
     }
 
-    public double getDoanhThuCaNgay(String maBanBaoCao)throws RemoteException{
+    public double getDoanhThuCaNgay(int maBanBaoCao)throws RemoteException{
         double doanhThu = 0;
         String sql = """
                 select sum(ThanhTien) as ThanhTien
@@ -231,7 +262,7 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
         return doanhThu;
     }
 
-    public int getTongSanPhamBanDuoc(String maBanBaoCao)throws RemoteException{
+    public int getTongSanPhamBanDuoc(int maBanBaoCao)throws RemoteException{
         int soLuong = 0;
         String sql = """
                 select sum(SoLuongBan) as SoLuongBan
