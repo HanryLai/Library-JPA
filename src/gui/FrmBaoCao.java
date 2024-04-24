@@ -4,15 +4,22 @@
  */
 package gui;
 
-import entity.BanBaoCao;
-import entity.ChiTietBanBaoCao;
-import entity.NhanVien;
+import dao.Interface.BanBaoCao_Dao;
+import dao.Interface.ChiTietBaoCao_Dao;
+import dao.Interface.HoaDon_Dao;
+import dao.impl.BanBaoCao_Impl;
+import dao.impl.ChiTietBanBaoCao_Impl;
+import dao.impl.HoaDon_Impl;
+import entityJPA.BanBaoCao;
+import entityJPA.ChiTietBanBaoCao;
+import entityJPA.NhanVien;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -39,6 +46,7 @@ import dao.DAO_BanBaoCao;
 import dao.DAO_ChiTietBanBaoCao;
 import dao.DAO_HoaDon;
 import dao.DAO_NhanVien;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *
@@ -51,7 +59,7 @@ public class FrmBaoCao extends javax.swing.JPanel {
      */
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
-    public FrmBaoCao() throws SQLException {
+    public FrmBaoCao() throws SQLException, RemoteException {
         initComponents();
         loadData();
         thread = new Thread(this::setTimeAuto);
@@ -60,7 +68,7 @@ public class FrmBaoCao extends javax.swing.JPanel {
         createChart();
     }
     
-    private void createChart() {
+    private void createChart() throws RemoteException {
         CategoryDataset dataset = createDataset();
         JFreeChart chart = ChartFactory.createBarChart(
             "Doanh thu theo ca",      // Chart title
@@ -81,27 +89,27 @@ public class FrmBaoCao extends javax.swing.JPanel {
         jPanel17.validate();
     }
     
-    private DAO_HoaDon dao_hoadon = new DAO_HoaDon();
-    private CategoryDataset createDataset() {
+    private HoaDon_Dao dao_hoadon = new HoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private CategoryDataset createDataset() throws RemoteException {
         String ngayHienTai = jDateChooser3.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         System.out.println("day:"+ngayHienTai);
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         if (LocalDateTime.now().toLocalTime().isAfter(LocalTime.of(6, 0)) && LocalDateTime.now().toLocalTime().isBefore(LocalTime.of(11, 0))){
-            dataset.addValue(dao_CTBC.getDoanhThuTheoCa(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai), ngayHienTai+" 06:00:00", ngayHienTai+" 11:00:00"), 
+            dataset.addValue(dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).getFirst()), ngayHienTai+" 06:00:00", ngayHienTai+" 11:00:00"),
                 "Doanh thu", "Sáng");
             dataset.addValue(0, "Doanh thu", "Chiều");
             dataset.addValue(0, "Doanh thu", "Tối");
         }
         else if (LocalDateTime.now().toLocalTime().isAfter(LocalTime.of(11, 0)) && LocalDateTime.now().toLocalTime().isBefore(LocalTime.of(16, 0))){
             dataset.addValue(0, "Doanh thu", "Sáng");
-            dataset.addValue(dao_CTBC.getDoanhThuTheoCa(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai), ngayHienTai+" 11:00:00", ngayHienTai+" 16:00:00"), 
+            dataset.addValue(dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).getFirst()), ngayHienTai+" 11:00:00", ngayHienTai+" 16:00:00"),
                 "Doanh thu", "Chiều");
             dataset.addValue(0, "Doanh thu", "Tối");
         }
         else{
             dataset.addValue(0, "Doanh thu", "Sáng");
             dataset.addValue(0, "Doanh thu", "Chiều");
-            dataset.addValue(dao_CTBC.getDoanhThuTheoCa(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai), ngayHienTai+" 16:00:00", ngayHienTai+" 21:00:00"), 
+            dataset.addValue(dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).getFirst()), ngayHienTai+" 16:00:00", ngayHienTai+" 21:00:00"),
                 "Doanh thu", "Tối");
         }
         return dataset;
@@ -153,9 +161,9 @@ public class FrmBaoCao extends javax.swing.JPanel {
         jTable1.setModel(dm);
     }
     
-    private DAO_BanBaoCao dao_BCDT = new DAO_BanBaoCao();
-    private DAO_ChiTietBanBaoCao dao_CTBC;
-    private ArrayList<ChiTietBanBaoCao> dataSach;
+    private BanBaoCao_Dao dao_BCDT = new BanBaoCao_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private ChiTietBaoCao_Dao dao_CTBC = new ChiTietBanBaoCao_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private ArrayList<entityJPA.ChiTietBanBaoCao> dataSach;
     private ArrayList<ChiTietBanBaoCao> dataVPP;
     private ArrayList<ChiTietBanBaoCao> dataTTSach;
     private ArrayList<ChiTietBanBaoCao> dataTTVPP;
@@ -167,11 +175,10 @@ public class FrmBaoCao extends javax.swing.JPanel {
         return "HD" + ngayHienTaiStr + "%";
     }
     
-    public void loadData() throws SQLException {
+    public void loadData() throws SQLException, RemoteException {
         deleteTable();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        dao_CTBC = new DAO_ChiTietBanBaoCao();
-        
+
         LocalDateTime ngayHienTai = LocalDateTime.now();
         String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));System.out.println("datetime: "+today+" 06:00:00");
         System.out.println("today: "+today);
@@ -179,12 +186,12 @@ public class FrmBaoCao extends javax.swing.JPanel {
         
         int stt1 = 1;
         if (ngayHienTai.toLocalTime().isAfter(LocalTime.of(6, 0)) && ngayHienTai.toLocalTime().isBefore(LocalTime.of(11, 0))){
-            dataSach = dao_CTBC.getSachDaBan(thietLapMaHoaDon(), today+" 06:00:00", today+" 11:00:00");
+            dataSach = dao_CTBC.getSachDaBan(1, today+" 06:00:00", today+" 11:00:00");
             System.out.println("dataS1: "+dataSach);
             for (ChiTietBanBaoCao ctbc : dataSach) {
                 String[] newRow = {
                     String.format("%s", stt1),
-                    String.format("%s", ctbc.getTenSanPham()),
+                    String.format("%s", ctbc.getSanPham().getTenSanPham()),
                     String.format("%s", ctbc.getSoLuongBan()),
                     String.format("%s", ctbc.getThanhTien()),
                     String.format("%s", ctbc.getGhiChu()),
@@ -192,11 +199,11 @@ public class FrmBaoCao extends javax.swing.JPanel {
                 model.addRow(newRow);
                 stt1++;
             }
-            dataVPP = dao_CTBC.getVPPDaBan(thietLapMaHoaDon(), today+" 06:00:00", today+" 11:00:00");
+            dataVPP = dao_CTBC.getVPPDaBan(1, today+" 06:00:00", today+" 11:00:00");
             for (ChiTietBanBaoCao ctbc : dataVPP) {
                 String[] newRow = {
                     String.format("%s", stt1),
-                    String.format("%s", ctbc.getTenSanPham()),
+                    String.format("%s", ctbc.getSanPham().getTenSanPham()),
                     String.format("%s", ctbc.getSoLuongBan()),
                     String.format("%s", ctbc.getThanhTien()),
                     String.format("%s", ctbc.getGhiChu()),
@@ -206,12 +213,12 @@ public class FrmBaoCao extends javax.swing.JPanel {
             }
         }
         else if (ngayHienTai.toLocalTime().isAfter(LocalTime.of(11, 0)) && ngayHienTai.toLocalTime().isBefore(LocalTime.of(16, 0))){
-            dataSach = dao_CTBC.getSachDaBan(thietLapMaHoaDon(), today+" 11:00:00", today+" 16:00:00");
+            dataSach = dao_CTBC.getSachDaBan(1, today+" 11:00:00", today+" 16:00:00");
             System.out.println("dataS2: "+dataSach);
             for (ChiTietBanBaoCao ctbc : dataSach) {
                 String[] newRow = {
                     String.format("%s", stt1),
-                    String.format("%s", ctbc.getTenSanPham()),
+                    String.format("%s", ctbc.getSanPham().getTenSanPham()),
                     String.format("%s", ctbc.getSoLuongBan()),
                     String.format("%s", ctbc.getThanhTien()),
                     String.format("%s", ctbc.getGhiChu()),
@@ -219,11 +226,11 @@ public class FrmBaoCao extends javax.swing.JPanel {
                 model.addRow(newRow);
                 stt1++;
             }
-            dataVPP = dao_CTBC.getVPPDaBan(thietLapMaHoaDon(), today+" 11:00:00", today+" 16:00:00");
+            dataVPP = dao_CTBC.getVPPDaBan(1, today+" 11:00:00", today+" 16:00:00");
             for (ChiTietBanBaoCao ctbc : dataVPP) {
                 String[] newRow = {
                     String.format("%s", stt1),
-                    String.format("%s", ctbc.getTenSanPham()),
+                    String.format("%s", ctbc.getSanPham().getTenSanPham()),
                     String.format("%s", ctbc.getSoLuongBan()),
                     String.format("%s", ctbc.getThanhTien()),
                     String.format("%s", ctbc.getGhiChu()),
@@ -233,12 +240,12 @@ public class FrmBaoCao extends javax.swing.JPanel {
             }
         }
         else {
-            dataSach = dao_CTBC.getSachDaBan(thietLapMaHoaDon(), today+" 16:00:00", today+" 21:00:00");
+            dataSach = dao_CTBC.getSachDaBan(1, today+" 16:00:00", today+" 21:00:00");
             System.out.println("dataS3: "+dataSach);
             for (ChiTietBanBaoCao ctbc : dataSach) {
                 String[] newRow = {
                     String.format("%s", stt1),
-                    String.format("%s", ctbc.getTenSanPham()),
+                    String.format("%s", ctbc.getSanPham().getTenSanPham()),
                     String.format("%s", ctbc.getSoLuongBan()),
                     String.format("%s", ctbc.getThanhTien()),
                     String.format("%s", ctbc.getGhiChu()),
@@ -246,11 +253,11 @@ public class FrmBaoCao extends javax.swing.JPanel {
                 model.addRow(newRow);
                 stt1++;
             }
-            dataVPP = dao_CTBC.getVPPDaBan(thietLapMaHoaDon(), today+" 16:00:00", today+" 21:00:00");
+            dataVPP = dao_CTBC.getVPPDaBan(1, today+" 16:00:00", today+" 21:00:00");
             for (ChiTietBanBaoCao ctbc : dataVPP) {
                 String[] newRow = {
                     String.format("%s", stt1),
-                    String.format("%s", ctbc.getTenSanPham()),
+                    String.format("%s", ctbc.getSanPham().getTenSanPham()),
                     String.format("%s", ctbc.getSoLuongBan()),
                     String.format("%s", ctbc.getThanhTien()),
                     String.format("%s", ctbc.getGhiChu()),
@@ -271,7 +278,7 @@ public class FrmBaoCao extends javax.swing.JPanel {
         for (ChiTietBanBaoCao ctbc : dataTTSach) {
             String[] newRow = {
                 String.format("%s", stt2),
-                String.format("%s", ctbc.getTenSanPham()),
+                String.format("%s", ctbc.getSanPham().getTenSanPham()),
                 String.format("%s", ctbc.getSoLuongNhap()),
                 String.format("%s", ctbc.getTonKho()),
                 String.format("%s", ctbc.getGhiChu()),
@@ -282,7 +289,7 @@ public class FrmBaoCao extends javax.swing.JPanel {
         for (ChiTietBanBaoCao ctbc : dataTTVPP) {
             String[] newRow = {
                 String.format("%s", stt2),
-                String.format("%s", ctbc.getTenSanPham()),
+                String.format("%s", ctbc.getSanPham().getTenSanPham()),
                 String.format("%s", ctbc.getSoLuongNhap()),
                 String.format("%s", ctbc.getTonKho()),
                 String.format("%s", ctbc.getGhiChu()),
@@ -562,7 +569,11 @@ public class FrmBaoCao extends javax.swing.JPanel {
         jButton2.setText("Báo cáo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                try {
+                    jButton2ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -732,10 +743,11 @@ public class FrmBaoCao extends javax.swing.JPanel {
         lblNameLogin.setText(gui.FrmLogin.tenNguoiDung);
     }//GEN-LAST:event_lblNameLoginAncestorAdded
     private DAO_NhanVien dao_nhanvien = new DAO_NhanVien();
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         LocalDate today = jDateChooser3.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();        
         String todayString = today.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        String ngayHienTai = jDateChooser3.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         String caLv = "";
         if (LocalDateTime.now().toLocalTime().isAfter(LocalTime.of(6, 0)) && LocalDateTime.now().toLocalTime().isBefore(LocalTime.of(11, 0))) {
             caLv = "Sang";
@@ -755,22 +767,26 @@ public class FrmBaoCao extends javax.swing.JPanel {
         String thoiGianBC = todayString+"-"+caLv; // 30/11/2023 - Sáng
         double doanhThu = 0;
         if (LocalDateTime.now().toLocalTime().isAfter(LocalTime.of(6, 0)) && LocalDateTime.now().toLocalTime().isBefore(LocalTime.of(11, 0))) {
-            doanhThu = dao_CTBC.getDoanhThuTheoCa(dao_hoadon.getMaHoaDonTheoNgay(today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))), 
+            doanhThu = dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).getFirst()),
                     today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 06:00:00", today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 11:00:00");
         } else if (LocalDateTime.now().toLocalTime().isAfter(LocalTime.of(11, 0)) && LocalDateTime.now().toLocalTime().isBefore(LocalTime.of(16, 0))) {
-            doanhThu = dao_CTBC.getDoanhThuTheoCa(dao_hoadon.getMaHoaDonTheoNgay(today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))), 
+            doanhThu = dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).getFirst()),
                     today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 11:00:00", today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 16:00:00");
         } else {
-            doanhThu = dao_CTBC.getDoanhThuTheoCa(dao_hoadon.getMaHoaDonTheoNgay(today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))), 
+            doanhThu = dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).getFirst()),
                     today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 16:00:00", today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 21:00:00");
         }
-        
+
         String ghiChu = "";
-        BanBaoCao bbc = new BanBaoCao(maBBC, tenBBC, tenNV, thoiGianBC, doanhThu, ghiChu);
+        BanBaoCao bbc = new BanBaoCao();
+        bbc.setTenBanBaoCao(tenBBC);
+        bbc.setTenNhanVien(tenNV);
+        bbc.setThoiGianBaoCao(thoiGianBC);
+        bbc.setDoanhThu(doanhThu);
         dao_BCDT.taoBanBaoCao(bbc);
         
         
-        BanBaoCao bbc1 = new BanBaoCao(maBBC);
+        BanBaoCao bbc1 = new BanBaoCao();
         
         String tenSanPham = "";
         int soLuongBan = 0;
@@ -784,9 +800,13 @@ public class FrmBaoCao extends javax.swing.JPanel {
             thanhTien = Double.parseDouble(jTable1.getValueAt(i, 3).toString());
             ghiChuSP = jTable1.getValueAt(i, 4).toString();
             
-            ChiTietBanBaoCao ctbbc = new ChiTietBanBaoCao(bbc1, tenSanPham, soLuongBan, thanhTien, 
-                0, 0, ghiChuSP);
-            dao_CTBC.taoChiTietBanBaoCao(ctbbc);
+            ChiTietBanBaoCao ctbbc = new ChiTietBanBaoCao();
+            ctbbc.setBanBaoCao(bbc1);
+            ctbbc.getSanPham().setTenSanPham(tenSanPham);
+            ctbbc.setSoLuongBan(soLuongBan);
+            ctbbc.setThanhTien(thanhTien);
+            ctbbc.setGhiChu(ghiChuSP);
+            dao_CTBC.taoChiTietBaoCao(ctbbc);
             System.out.println("ctbbc: "+ctbbc);
         }
         for(int i=0;i<jTable2.getRowCount();i++){
@@ -795,9 +815,13 @@ public class FrmBaoCao extends javax.swing.JPanel {
             tonKho = Integer.parseInt(jTable2.getValueAt(i, 3).toString());
             ghiChuSP = jTable2.getValueAt(i, 4).toString();
             
-            ChiTietBanBaoCao ctbbc = new ChiTietBanBaoCao(bbc1, tenSanPham, 0, 0, 
-                soLuongNhap, tonKho, ghiChuSP);
-            dao_CTBC.taoChiTietBanBaoCao(ctbbc);
+            ChiTietBanBaoCao ctbbc = new ChiTietBanBaoCao();
+            ctbbc.setBanBaoCao(bbc1);
+            ctbbc.getSanPham().setTenSanPham(tenSanPham);
+            ctbbc.setSoLuongNhap(soLuongNhap);
+            ctbbc.setTonKho(tonKho);
+            ctbbc.setGhiChu(ghiChuSP);
+            dao_CTBC.taoChiTietBaoCao(ctbbc);
             System.out.println("ctbbc: "+ctbbc);
             if(i==jTable2.getRowCount())
                 JOptionPane.showMessageDialog(null, "Tạo thành công");

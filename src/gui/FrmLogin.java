@@ -1,15 +1,18 @@
 
 package gui;
 
+import dao.impl.TaiKhoan_Impl;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.rmi.RemoteException;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import connectDB.ConnectDB;
-import dao.Dao_TaiKhoan;
+
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -21,13 +24,13 @@ public class FrmLogin extends javax.swing.JFrame {
     public static String tenDN = "";
     public static String tenNguoiDung = "";
     public static String emailDN = "";
-    private Dao_TaiKhoan dao_TaiKhoan = new Dao_TaiKhoan();
+    private TaiKhoan_Impl dao_TaiKhoan = new TaiKhoan_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     private int otp;
 	/**
      * Creates new form FrmChinh
      */
-    public FrmLogin() {
-    	ConnectDB.getInstance().connect();
+    public FrmLogin() throws RemoteException {
+
         initComponents();
         
         jButton1.requestFocus();
@@ -38,7 +41,11 @@ public class FrmLogin extends javax.swing.JFrame {
         Action action1 = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                jButton1ActionPerformed(e);
+                try {
+                    jButton1ActionPerformed(e);
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         };
 
@@ -145,7 +152,11 @@ public class FrmLogin extends javax.swing.JFrame {
         btnGuiMa.setText("Gửi mã");
         btnGuiMa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuiMaActionPerformed(evt);
+                try {
+                    btnGuiMaActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -173,7 +184,11 @@ public class FrmLogin extends javax.swing.JFrame {
         jButton7.setText("Lưu");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                try {
+                    jButton7ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -321,7 +336,11 @@ public class FrmLogin extends javax.swing.JFrame {
         jButton1.setText("ĐĂNG NHẬP");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                try {
+                    jButton1ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -462,11 +481,11 @@ public class FrmLogin extends javax.swing.JFrame {
     
     
     //--------------------------------Sự kiện nút gửi mã
-    private void btnGuiMaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiMaActionPerformed
+    private void btnGuiMaActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnGuiMaActionPerformed
         // TODO add your handling code here:
 //    	dao_TaiKhoan.xacThucNguoiDung(txtEmail.getText(), "0000");
 //        System.out.println(txtEmail.getText());
-        dao_TaiKhoan = new Dao_TaiKhoan(); 
+        dao_TaiKhoan = new TaiKhoan_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         otp = dao_TaiKhoan.sendEmail(txtEmail.getText());// lấy mã otp
 //        System.out.println(otp);
     }//GEN-LAST:event_btnGuiMaActionPerformed
@@ -483,7 +502,7 @@ public class FrmLogin extends javax.swing.JFrame {
     
     
     //------------------------------------Sự kiện nút lưu khi đổi mật khẩu
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {
         // TODO add your handling code here:
     	 if (jTextField3.getText().equals(String.valueOf(otp))) {
              if (jTextField4.getText().equals(jTextField5.getText())) {
@@ -526,7 +545,11 @@ public class FrmLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmLogin().setVisible(true);
+                try {
+                    new FrmLogin().setVisible(true);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         
@@ -534,7 +557,7 @@ public class FrmLogin extends javax.swing.JFrame {
     }
     
     // ---------------------------------------Sự kiện nút đăng nhập
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {
         String tenDangNhap = jTextField1.getText();
         String matKhau = new String(jPasswordField1.getPassword());
         if(dao_TaiKhoan.xacThucNguoiDung(tenDangNhap, matKhau))

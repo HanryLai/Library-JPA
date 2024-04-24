@@ -1,5 +1,5 @@
 package entityJPA;
 
 public enum ChucVu {
-	QUANLY, NHANVIEN
+	QUANLY, THUNGAN
 }

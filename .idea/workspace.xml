@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="facf9ec6-01d6-40e4-a145-8ba0cd67ada3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/KhachHang_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/KhachHang_Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/NhaCungCap_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/NhaCungCap_Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/SanPham_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/SanPham_Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/KhachHang_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/KhachHang_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/NhaCungCap_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/NhaCungCap_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/SanPham_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/SanPham_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/ThongKe_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ThongKe_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmChinh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmChinh.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmDSSanPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmDSSanPham.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmKhachHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmKhachHang.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmKhachTraHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmKhachTraHang.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menuGui/MenuEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menuGui/MenuEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menuGui/TableActionEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menuGui/TableActionEvent.java" afterDir="false" />
-    </list>
+    <list default="true" id="7e3840fe-7815-4ca2-bd69-f0e9f3e7cd1d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,8 +13,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -41,19 +25,23 @@
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 0
 }</component>
-  <component name="ProjectId" id="2fXLHflCII3GFlE4XbTFDcI18m1" />
+  <component name="ProjectId" id="2fWeWuzxnx1porfyOV2gK5ITm6x" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main_Create_Data.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Minh2",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "F:/Project_Lib/Library-JPA/lib/TEMP",
+    "git-widget-placeholder": "loc",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/IUH/KH_II_2023_2024/PhanTanJava/project/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -61,53 +49,108 @@
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15820312",
-    "project.structure.side.proportion": "0.427907",
+    "project.structure.side.proportion": "0.17546469",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Library-JPA" />
+  <component name="RunManager" selected="Application.Main_Create_Data">
+    <configuration name="HoaDon_ChiTietHoaDon" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testPackage.data.HoaDon_ChiTietHoaDon" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testPackage.data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Library-JPA" />
-      <option name="filePath" />
+    <configuration name="Main_Create_Data" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testPackage.data.Main_Create_Data" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testPackage.data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SanPham_BaoCao_ChiTiet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testPackage.data.SanPham_BaoCao_ChiTiet" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testPackage.data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaiKhoan_NhanVien_KhachHang" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testPackage.data.TaiKhoan_NhanVien_KhachHang" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testPackage.data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main_Create_Data" />
+        <item itemvalue="Application.HoaDon_ChiTietHoaDon" />
+        <item itemvalue="Application.TaiKhoan_NhanVien_KhachHang" />
+        <item itemvalue="Application.SanPham_BaoCao_ChiTiet" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="facf9ec6-01d6-40e4-a145-8ba0cd67ada3" name="Changes" comment="" />
-      <created>1713942391786</created>
+      <changelist id="2edae997-5bea-41af-b6d9-230efb44e1b9" name="Changes" comment="" />
+      <created>1713921304250</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1713942391786</updated>
-      <workItem from="1713942393065" duration="681000" />
-      <workItem from="1713943534461" duration="31000" />
-      <workItem from="1713943597280" duration="46000" />
-      <workItem from="1713943657269" duration="115000" />
-      <workItem from="1713943775056" duration="15375000" />
+      <updated>1713921304250</updated>
+      <workItem from="1713921307780" duration="30000" />
+      <workItem from="1713921347746" duration="2428000" />
+      <workItem from="1713937072301" duration="29000" />
+      <workItem from="1713938023712" duration="3547000" />
+      <workItem from="1713943733195" duration="7420000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/gui/FrmDSSanPham.java</url>
-          <line>168</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

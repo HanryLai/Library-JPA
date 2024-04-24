@@ -35,8 +35,11 @@ import dao.impl.*;
 //import entity.Sach;
 //import entity.VanPhongPham;
 import entity.KhuyenMai;
-import entityJPA.*;
-import lombok.SneakyThrows;
+import entityJPA.NhanVien;
+import entity.NhomKhachHang;
+import entity.NhomSanPham;
+import entity.Sach;
+import entity.VanPhongPham;
 import menuGui.TableActionCellEditor;
 import menuGui.TableActionCellRender;
 import menuGui.TableActionEvent;
@@ -335,7 +338,8 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
         if (true) {
             if (tableInForSP.getRowCount() != 0) {
                 LocalDateTime ngayLap = LocalDateTime.now();
-                NhanVien nv = dao_nv.getNVTheoMa(Integer.parseInt("1"));
+                int maNhanVien = 0; // Lấy mã nhân viên đang thực hiện hoàn trả sản phẩm
+                NhanVien nv = dao_nv.getNVTheoMa(maNhanVien);
                 HoaDon hd = dao_hd.getHoaDontheoMa(lblMaHoaDon.getText());
                 HoaDonHoanTra hdht = new HoaDonHoanTra();
 //                lblMaHoaDonHoanTra.getText(),

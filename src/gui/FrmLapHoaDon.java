@@ -1,26 +1,8 @@
 package gui;
 
-import connectDB.ConnectDB;
-import dao.DAO_ChiTietHoaDon;
-import dao.DAO_HoaDon;
-import dao.DAO_KhachHang;
-import dao.DAO_KhuyenMai;
-import dao.DAO_MauSac;
-import dao.DAO_NhaCungCap;
-import dao.DAO_NhanVien;
-import dao.DAO_NhomSanPham;
-import dao.DAO_Sach;
-import dao.DAO_VanPhongPham;
-import entity.ChiTietHoaDon;
-import entity.HoaDon;
-import entity.KhachHang;
-import entity.KhuyenMai;
-import entity.NhanVien;
-import entity.NhomKhachHang;
-import entity.NhomSanPham;
-import entity.Sach;
-import entity.SanPham;
-import entity.VanPhongPham;
+
+import dao.impl.*;
+import entityJPA.*;
 import menuGui.TableActionCellEditor;
 import menuGui.TableActionCellRender;
 import menuGui.TableActionEvent;
@@ -29,6 +11,8 @@ import printReport.ParameterReport;
 import printReport.ReportManager;
 
 import com.barcodelib.barcode.Linear;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
+
 import java.awt.AWTEvent;
 import java.awt.Component;
 import java.awt.Toolkit;
@@ -41,6 +25,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -93,30 +78,19 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
      * Creates new form FrmDSKhachHang
      */
     private FrmChinh frm = new FrmChinh();
-    private DAO_VanPhongPham dao_vpp = new DAO_VanPhongPham();
-    private DAO_Sach dao_sach = new DAO_Sach();
-    private DAO_NhomSanPham dao_nsp = new DAO_NhomSanPham();
-    private DAO_NhaCungCap dao_ncc = new DAO_NhaCungCap();
-    private DAO_MauSac dao_mausac = new DAO_MauSac();
-    private DAO_KhachHang dao_kh = new DAO_KhachHang();
-    private DAO_HoaDon dao_hd = new DAO_HoaDon();
-    private DAO_ChiTietHoaDon dao_cthd = new DAO_ChiTietHoaDon();
-    private DAO_NhanVien dao_nv = new DAO_NhanVien();
+    private VanPhongPham_Impl dao_vpp = new VanPhongPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private Sach_Impl dao_sach = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private NhomSanPham_Impl dao_nsp = new NhomSanPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private NhaCungCap_Impl dao_ncc = new NhaCungCap_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private MauSac_Impl dao_mausac = new MauSac_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private KhachHang_Impl dao_kh = new KhachHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private HoaDon_Impl dao_hd = new HoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private ChiTietHoaDon_Impl dao_cthd = new ChiTietHoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private NhanVien_Impl dao_nv = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     private Thread thread = null;
-    private DAO_KhuyenMai dao_khuyenMai = new DAO_KhuyenMai();
+//    private DAO_KhuyenMai dao_khuyenMai = new DAO_KhuyenMai();
 
-    public FrmLapHoaDon() {
-        // report bill -------------------
-        try {
-            ReportManager.getInstance().compileReport();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // connect db -------------
-
-        ConnectDB.getInstance().connect();
-        //---------------
-
+    public FrmLapHoaDon() throws RemoteException {
         // TODO Auto-generated catch block
         initComponents();
 
@@ -177,7 +151,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         Action action1 = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnThanhToanHDActionPerformed(e);
+                try {
+                    btnThanhToanHDActionPerformed(e);
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         };
 
@@ -203,7 +181,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         Action action3 = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnThemDSChoActionPerformed(e);
+                try {
+                    btnThemDSChoActionPerformed(e);
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         };
 
@@ -216,7 +198,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         Action action4 = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnHoaDonMoiActionPerformed(e);
+                try {
+                    btnHoaDonMoiActionPerformed(e);
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         };
 
@@ -264,7 +250,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 
     }
 
-    public void sortTableChooseProDuct() {
+    public void sortTableChooseProDuct() throws RemoteException {
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tableChonSP.getModel());
         tableChonSP.setRowSorter(sorter);
         DefaultTableModel md = (DefaultTableModel) tableChonSP.getModel();
@@ -272,7 +258,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         md.fireTableDataChanged();
         String nhom = (String) cboSortTabelChonSP.getSelectedItem();
         ArrayList<Sach> dsSach = dao_sach.getAlltbSach();
-        ArrayList<VanPhongPham> dsVpp = dao_vpp.getAllVanPhongPhan();
+        ArrayList<entityJPA.VanPhongPham> dsVpp = dao_vpp.getAllVanPhongPhan();
         if (nhom.equalsIgnoreCase("Tất cả")) {
             int stt = 1;
             for (Sach s : dsSach) {
@@ -301,10 +287,10 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
             }
         } else {
             NhomSanPham nsp = dao_nsp.getNsptheoTen(nhom);
-            String ma = nsp.getMaNhomSanPham();
+            int ma = nsp.getMaNhomSanPham();
             int stt = 1;
             for (Sach s : dsSach) {
-                if (s.getNhomSanPham().getMaNhomSanPham().equalsIgnoreCase(ma) && s.getSoLuongTon() != 0) {
+                if (s.getNhomSanPham().getMaNhomSanPham() == ma && s.getSoLuongTon() != 0) {
                     md.addRow(new Object[]{stt, s.getMaSanPham(), s.getTenSanPham(), s.getDonGiaBan(),
                         s.getSoLuongTon(), s.getTinhTrang()
 
@@ -314,7 +300,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 
             }
             for (VanPhongPham vpp : dsVpp) {
-                if (vpp.getNhomSanPham().getMaNhomSanPham().equalsIgnoreCase(ma) && vpp.getSoLuongTon() != 0) {
+                if (vpp.getNhomSanPham().getMaNhomSanPham() == ma && vpp.getSoLuongTon() != 0) {
                     md.addRow(new Object[]{stt, vpp.getMaSanPham(), vpp.getTenSanPham(), vpp.getDonGiaBan(),
                         vpp.getSoLuongTon(), vpp.getTinhTrang()
 
@@ -331,7 +317,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
     public void tableAction() {
         TableActionEvent event = new TableActionEvent() {
             @Override
-            public void onPlus(int row) {
+            public void onPlus(int row) throws RemoteException {
                 if (tableInForSP.isEditing()) {
                     tableInForSP.getCellEditor().stopCellEditing();
                 }
@@ -362,7 +348,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
             }
 
             @Override
-            public void onDelete(int row) {
+            public void onDelete(int row) throws RemoteException {
                 if (tableInForSP.isEditing()) {
                     tableInForSP.getCellEditor().stopCellEditing();
                 }
@@ -382,7 +368,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
             }
 
             @Override
-            public void onMinus(int row) {
+            public void onMinus(int row) throws RemoteException {
                 if (tableInForSP.isEditing()) {
                     tableInForSP.getCellEditor().stopCellEditing();
                 }
@@ -412,30 +398,8 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
     }
 
     public String createMaKhachHang() {
-//        LocalDate d = LocalDate.of(2023, 11, 9);
-        LocalDate d = LocalDate.now();
-        DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("ddMMyyyy");
-        String format = d.format(myFormatDate);
-        Integer count = 1;
-        String cusID = "";
-
-        do {
-            String tempID = count.toString().length() == 1 ? ("KH" + format + "-00000" + count)
-                    : count.toString().length() == 2 ? ("KH" + format + "-0000" + count)
-                    : count.toString().length() == 3 ? ("KH" + format + "-000" + count)
-                    : count.toString().length() == 4 ? ("KH" + format + "-00" + count)
-                    : count.toString().length() == 5 ? ("KH" + format + "-0" + count)
-                    : ("KH" + format + "-" + count);
-
-            KhachHang existingCustomer = dao_kh.getKHTheoMa(tempID);
-            if (existingCustomer == null) {
-                cusID = tempID;
-                break;
-            }
-            count++;
-        } while (true);
-
-        return cusID;
+//
+        return null;
     }
 
     public int tongSanPhamMua() {
@@ -448,7 +412,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         return tong;
     }
 
-    public String createMaHoaDon() {
+    public String createMaHoaDon() throws RemoteException {
 //        LocalDate d = LocalDate.of(2023, 11, 13);
         LocalDate d = LocalDate.now();
         DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("ddMMyyyy");
@@ -481,7 +445,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         a.revalidate();
     }
 
-    public void loadChonSP() {
+    public void loadChonSP() throws RemoteException {
         ArrayList<Sach> dsSach = dao_sach.getAlltbSach();
         ArrayList<VanPhongPham> dsVpp = dao_vpp.getAllVanPhongPhan();
 
@@ -516,7 +480,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         }
     }
 
-    public void loadChonSPBarcode() {
+    public void loadChonSPBarcode() throws RemoteException {
         DefaultTableModel tableModal = (DefaultTableModel) tableChonSP.getModel();
         tableModal.getDataVector().removeAllElements();
         tableModal.fireTableDataChanged();
@@ -542,8 +506,8 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         return sl * dg;
     }
 
-    public void loadChonKH() {
-        ArrayList<KhachHang> dsKH = dao_kh.getAllKhachHang();
+    public void loadChonKH() throws RemoteException {
+        ArrayList<KhachHang> dsKH =(ArrayList<KhachHang>) dao_kh.getAllKhachHang();
         DefaultTableModel modal = (DefaultTableModel) tableChonKH.getModel();
         modal.getDataVector().removeAllElements();
         modal.fireTableDataChanged();
@@ -598,34 +562,35 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
     }
 
     public double apDungKhuyenMai() {
-        double tongTienKM = 0.0;
-        if (tableInForSP.getRowCount() != 0) {
-            KhuyenMai km = dao_khuyenMai.getKMtheoMa(txtMaKhuyenMai.getText());
-            if (km != null && km.getTienToiThieu() <= Double.parseDouble(lblTongTienDefault.getText())) {
-                tongTienKM = Double.parseDouble(lblTongTienDefault.getText()) * (km.getTiLeKM() / 100);
-                if (tongTienKM > km.getGiaTriMAX()) {
-                    tongTienKM = km.getGiaTriMAX();
-                    return tongTienKM;
-                }
-                return tongTienKM;
-            }
-        }
-        return tongTienKM;
+//        double tongTienKM = 0.0;
+//        if (tableInForSP.getRowCount() != 0) {
+//            KhuyenMai km = dao_khuyenMai.getKMtheoMa(txtMaKhuyenMai.getText());
+//            if (km != null && km.getTienToiThieu() <= Double.parseDouble(lblTongTienDefault.getText())) {
+//                tongTienKM = Double.parseDouble(lblTongTienDefault.getText()) * (km.getTiLeKM() / 100);
+//                if (tongTienKM > km.getGiaTriMAX()) {
+//                    tongTienKM = km.getGiaTriMAX();
+//                    return tongTienKM;
+//                }
+//                return tongTienKM;
+//            }
+//        }
+//        return tongTienKM;
+        return 0;
     }
 
     public void loadKhuyenMai() {
-        DefaultTableModel md = (DefaultTableModel) tableChonKH1.getModel();
-        md.getDataVector().removeAllElements();
-        ArrayList<KhuyenMai> listKM = dao_khuyenMai.getAlltbKM();
-        for (KhuyenMai km : listKM) {
-            if (km.getTrangThai().equalsIgnoreCase("Đang hoạt động")) {
-                md.addRow(new Object[]{km.getMaKhuyenMai(), km.getTenKhuyenMai(), km.getTiLeKM(), km.getTienToiThieu(), km.getGiaTriMAX(), km.getGhiChu()});
-            }
-
-        }
+//        DefaultTableModel md = (DefaultTableModel) tableChonKH1.getModel();
+//        md.getDataVector().removeAllElements();
+//        ArrayList<KhuyenMai> listKM = dao_khuyenMai.getAlltbKM();
+//        for (KhuyenMai km : listKM) {
+//            if (km.getTrangThai().equalsIgnoreCase("Đang hoạt động")) {
+//                md.addRow(new Object[]{km.getMaKhuyenMai(), km.getTenKhuyenMai(), km.getTiLeKM(), km.getTienToiThieu(), km.getGiaTriMAX(), km.getGhiChu()});
+//            }
+//
+//        }
     }
 
-    public void createInit() {
+    public void createInit() throws RemoteException {
         DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
         double tongTienThanhToan = 0;
         int tongSoLuongSp = 0;
@@ -635,7 +600,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         }
         lblTongTienDefault.setText(deciFormat.format(tongTienThanhToan));
         txtSoLuongSanPhamChon.setText("1");
-        KhachHang kh = dao_kh.getKHTheoMa(lblMaKH.getText());
+        KhachHang kh = dao_kh.getKHTheoMa(Integer.parseInt(lblMaKH.getText()));
         if (kh == null) {
             double tienKhuyenMai = apDungKhuyenMai();
             double chietKhau = 0.0;
@@ -678,21 +643,41 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 
     }
 
-        public void thanhToanHD() {
+        public void thanhToanHD() throws RemoteException {
         if (true) {
             if (tableInForSP.getRowCount() != 0) {
                 LocalDateTime ngayLap = LocalDateTime.now();
                 KhachHang kh = null;
                 if (lblTenKH.getText().equals("Khách lẻ")) {
-                    kh = new KhachHang(lblMaKH.getText(), "Khách lẻ", "", NhomKhachHang.KHACHLE, 0, 0);
+//                    lblMaKH.getText(), "Khách lẻ", "", NhomKhachHang.KHACHLE, 0, 0
+                    kh = new KhachHang();
+                    kh.setMaKhachHang(Integer.parseInt(lblMaKH.getText()));
+                    kh.setTenKhachHang("Khách lẻ");
+                    kh.setNhomKhachHang(NhomKhachHang.KHACHLE);
+                    kh.setSoLuongHoaDon(0);
+                    kh.setTongTienMua(0);
+
                     dao_kh.themKhachHang(kh);
                 } else {
-                    kh = dao_kh.getKHTheoMa(lblMaKH.getText());
+                    kh = dao_kh.getKHTheoMa(Integer.parseInt(lblMaKH.getText()));
                 }
                 System.out.println(kh.toString());
-                NhanVien nv = dao_nv.getNVTheoMa("QL23102023-000007");
-                HoaDon hd = new HoaDon(lblMaHoaDon.getText(), ngayLap, nv, kh, jTextAreaGhiChu.getText(), 1, Double.parseDouble(lblTongTienThanhToan.getText()), Double.parseDouble(txtTienChietKhau.getText()), txtMaKhuyenMai.getText());
+                NhanVien nv = dao_nv.getNVTheoMa(1);
+                HoaDon hd = new HoaDon();
+//              lblMaHoaDon.getText(), ngayLap, nv, kh, jTextAreaGhiChu.getText(), 1, Double.parseDouble(lblTongTienThanhToan.getText()), Double.parseDouble(txtTienChietKhau.getText()), txtMaKhuyenMai.getText()
+                hd.setMaHoaDon(Integer.parseInt(lblMaHoaDon.getText()));
+                hd.setNgayLap(ngayLap);
+                hd.setNhanVien(nv);
+                hd.setKhachHang(kh);
+                hd.setGhiChu(jTextAreaGhiChu.getText());
+                hd.setTinhTrangHoaDon(1);
+                hd.setTongTien(Float.parseFloat(lblTongTienThanhToan.getText()));
+
+//                hd.setMaKhuyenMai(txtMaKhuyenMai.getText());
+
+
                 dao_hd.createHoaDon(hd);
+
                 DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
                 String ma = "";
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
@@ -701,6 +686,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
                         Sach s = dao_sach.getSachtheoMa(ma);
                         ChiTietHoaDon cthd = new ChiTietHoaDon(hd, s, (int) tableInForSP.getValueAt(i, 4), (double) tableInForSP.getValueAt(i, 5));
                         dao_cthd.createChiTietHoaDon(cthd);
+
                         s.setSoLuongTon(s.getSoLuongTon() - (int) tableInForSP.getValueAt(i, 4));
                         if (s.getSoLuongTon() == 0) {
                             s.setTinhTrang("Hết hàng");
@@ -738,7 +724,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 //        showPanelChange(pnlChange, pnlCenter);
     }
 
-    public void lamMoiHoaDon() {
+    public void lamMoiHoaDon() throws RemoteException {
         DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
         md.getDataVector().removeAllElements();
         lblTenKH.setText("Khách lẻ");
@@ -761,21 +747,37 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         showPanelChange(pnlBotLeft, pnlBotLeftReturn);
     }
 
-    public void themDSCho() {
+    public void themDSCho() throws RemoteException {
         if (true) {
             if (tableInForSP.getRowCount() != 0) {
                 LocalDateTime ngayLap = LocalDateTime.now();
 
                 KhachHang kh = null;
                 if (lblTenKH.getText().equals("Khách lẻ")) {
-                    kh = new KhachHang(lblMaKH.getText(), "Khách lẻ", "", NhomKhachHang.KHACHLE, 0, 0);
+                    kh = new KhachHang();
+//                    lblMaKH.getText(), "Khách lẻ", "", NhomKhachHang.KHACHLE, 0, 0
+                    kh.setMaKhachHang(Integer.parseInt(lblMaKH.getText()));
+                    kh.setTenKhachHang("Khách lẻ");
+                    kh.setNhomKhachHang(NhomKhachHang.KHACHLE);
+                    kh.setSoLuongHoaDon(0);
+                    kh.setTongTienMua(0);
+
                     dao_kh.themKhachHang(kh);
                 } else {
-                    kh = dao_kh.getKHTheoMa(lblMaKH.getText());
+                    kh = dao_kh.getKHTheoMa(Integer.parseInt(lblMaKH.getText()));
                 }
                 System.out.println(kh.toString());
-                NhanVien nv = dao_nv.getNVTheoMa("QL23102023-000007");
-                HoaDon hd = new HoaDon(lblMaHoaDon.getText(), ngayLap, nv, kh, jTextAreaGhiChu.getText(), 0, Double.parseDouble(lblTongTienThanhToan.getText()), Double.parseDouble(txtTienChietKhau.getText()), txtMaKhuyenMai.getText());
+                NhanVien nv = dao_nv.getNVTheoMa(1);
+                HoaDon hd = new HoaDon();
+//                lblMaHoaDon.getText(), ngayLap, nv, kh, jTextAreaGhiChu.getText(), 0, Double.parseDouble(lblTongTienThanhToan.getText()), Double.parseDouble(txtTienChietKhau.getText()), txtMaKhuyenMai.getText()
+                hd.setMaHoaDon(Integer.parseInt(lblMaHoaDon.getText()));
+                hd.setNgayLap(ngayLap);
+                hd.setNhanVien(nv);
+                hd.setKhachHang(kh);
+                hd.setGhiChu(jTextAreaGhiChu.getText());
+                hd.setTinhTrangHoaDon(0);
+                hd.setTongTien(Float.parseFloat(lblTongTienThanhToan.getText()));
+
                 dao_hd.createHoaDon(hd);
                 DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
                 String ma = "";
@@ -813,7 +815,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         }
     }
 
-    public boolean themSP() {
+    public boolean themSP() throws RemoteException {
         String maSP = txtTimSanPhamChon.getText().trim();
         DecimalFormat df = new DecimalFormat("#,##0");
         //**********
@@ -854,7 +856,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() throws RemoteException {
 
         pnlBotLeftChange = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -991,7 +993,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         jButton4.setMargin(new java.awt.Insets(2, 10, 3, 10));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                try {
+                    jButton4ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -1006,7 +1012,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         jButton9.setMargin(new java.awt.Insets(2, 10, 3, 10));
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                try {
+                    jButton9ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -1275,7 +1285,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         tableChonKH.getTableHeader().setReorderingAllowed(false);
         tableChonKH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableChonKHMouseClicked(evt);
+                try {
+                    tableChonKHMouseClicked(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         menuScrollPane10.setViewportView(tableChonKH);
@@ -1467,7 +1481,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         btnXacNhanSoLuong.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnXacNhanSoLuong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXacNhanSoLuongActionPerformed(evt);
+                try {
+                    btnXacNhanSoLuongActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -1562,7 +1580,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         tableChonKH1.getTableHeader().setReorderingAllowed(false);
         tableChonKH1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableChonKH1MouseClicked(evt);
+                try {
+                    tableChonKH1MouseClicked(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         menuScrollPane12.setViewportView(tableChonKH1);
@@ -1687,7 +1709,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         btnThanhToanHD.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnThanhToanHD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThanhToanHDActionPerformed(evt);
+                try {
+                    btnThanhToanHDActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         btnThanhToanHD.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1720,7 +1746,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         btnThemDSCho.setMargin(new java.awt.Insets(2, 5, 3, 5));
         btnThemDSCho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemDSChoActionPerformed(evt);
+                try {
+                    btnThemDSChoActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -1753,7 +1783,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         btnHoaDonMoi.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnHoaDonMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHoaDonMoiActionPerformed(evt);
+                try {
+                    btnHoaDonMoiActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -1816,7 +1850,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         });
         txtTienChietKhau.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtTienChietKhauKeyReleased(evt);
+                try {
+                    txtTienChietKhauKeyReleased(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -1849,7 +1887,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         btnXoaKhuyenMai.setMargin(new java.awt.Insets(2, 5, 3, 5));
         btnXoaKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaKhuyenMaiActionPerformed(evt);
+                try {
+                    btnXoaKhuyenMaiActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -2019,7 +2061,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         btnKhachLe.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnKhachLe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKhachLeActionPerformed(evt);
+                try {
+                    btnKhachLeActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -2032,7 +2078,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         jButton3.setMargin(new java.awt.Insets(2, 10, 3, 10));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                try {
+                    jButton3ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -2174,7 +2224,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         });
         txtTimSanPhamChon.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtTimSanPhamChonKeyReleased(evt);
+                try {
+                    txtTimSanPhamChonKeyReleased(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -2182,7 +2236,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         cboSortTabelChonSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả" }));
         cboSortTabelChonSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboSortTabelChonSPActionPerformed(evt);
+                try {
+                    cboSortTabelChonSPActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -2437,7 +2495,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         inHoaDon();
     }//GEN-LAST:event_btnInHoaDonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         jDialogChonKH.setLocationRelativeTo(null);
         jDialogChonKH.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -2502,12 +2560,12 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tableChonSPMouseClicked
 
-    private void btnThanhToanHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanHDActionPerformed
+    private void btnThanhToanHDActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnThanhToanHDActionPerformed
         // TODO add your handling code here:
         thanhToanHD();
     }//GEN-LAST:event_btnThanhToanHDActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         jDialogChonKH.setLocationRelativeTo(null);
         jDialogChonKH.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -2516,7 +2574,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         loadChonKH();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void tableChonKHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableChonKHMouseClicked
+    private void tableChonKHMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_tableChonKHMouseClicked
         // TODO add your handling code here:
         if (evt.getClickCount() == 1 && !evt.isConsumed()) {
             evt.consume();
@@ -2524,7 +2582,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
             int rowChooser = tableChonKH.convertRowIndexToModel(row);
             DefaultTableModel modelChonKH = (DefaultTableModel) tableChonKH.getModel();
             String maKH = modelChonKH.getValueAt(rowChooser, 1).toString();
-            KhachHang kh = dao_kh.getKHTheoMa(maKH);
+            KhachHang kh = dao_kh.getKHTheoMa(Integer.parseInt(maKH));
             //********
             lblTenKH.setText(kh.getTenKhachHang());
             lblSDTKH.setText(kh.getSoDienThoai());
@@ -2540,7 +2598,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tableChonKHMouseClicked
 
-    private void btnKhachLeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachLeActionPerformed
+    private void btnKhachLeActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnKhachLeActionPerformed
         // TODO add your handling code here:
         showPanelChange(pnlBotLeft, pnlBotLeftReturn);
         lblTenKH.setText("Khách lẻ");
@@ -2548,7 +2606,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         createInit();
     }//GEN-LAST:event_btnKhachLeActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         showPanelChange(pnlBotLeft, pnlBotLeftReturn);
         lblTenKH.setText("Khách lẻ");
@@ -2556,7 +2614,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         createInit();
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void btnThemDSChoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemDSChoActionPerformed
+    private void btnThemDSChoActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnThemDSChoActionPerformed
         // TODO add your handling code here:
         if (tableInForSP.getRowCount() == 0) {
         } else {
@@ -2565,12 +2623,12 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnThemDSChoActionPerformed
 
-    private void btnHoaDonMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonMoiActionPerformed
+    private void btnHoaDonMoiActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnHoaDonMoiActionPerformed
         // TODO add your handling code here:
         lamMoiHoaDon();
     }//GEN-LAST:event_btnHoaDonMoiActionPerformed
 
-    private void txtTimSanPhamChonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimSanPhamChonKeyReleased
+    private void txtTimSanPhamChonKeyReleased(java.awt.event.KeyEvent evt) throws RemoteException {//GEN-FIRST:event_txtTimSanPhamChonKeyReleased
         // TODO add your handling code here:     
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             themSP();
@@ -2597,7 +2655,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtTienKhachDuaKeyReleased
 
-    private void btnXacNhanSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanSoLuongActionPerformed
+    private void btnXacNhanSoLuongActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnXacNhanSoLuongActionPerformed
         // TODO add your handling code here:
         if (!txtSoLuongSanPhamChon.getText().equalsIgnoreCase("")) {
             int row = tableChonSP.getSelectedRow();
@@ -2644,7 +2702,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         jDialogChonKH.setVisible(false);
     }//GEN-LAST:event_jDialogChonKHWindowLostFocus
 
-    private void cboSortTabelChonSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSortTabelChonSPActionPerformed
+    private void cboSortTabelChonSPActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_cboSortTabelChonSPActionPerformed
         // TODO add your handling code here:
         sortTableChooseProDuct();
     }//GEN-LAST:event_cboSortTabelChonSPActionPerformed
@@ -2657,7 +2715,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThanhToanHDKeyTyped
 
-    private void txtTienChietKhauKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienChietKhauKeyReleased
+    private void txtTienChietKhauKeyReleased(java.awt.event.KeyEvent evt) throws RemoteException {//GEN-FIRST:event_txtTienChietKhauKeyReleased
         // TODO add your handling code here:
         if (txtTienChietKhau.getText().equals("")) {
             txtTienChietKhau.setText("");
@@ -2721,7 +2779,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         lblNameLogin.setText(gui.FrmLogin.tenNguoiDung);
     }//GEN-LAST:event_lblNameLoginAncestorAdded
 
-    private void tableChonKH1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableChonKH1MouseClicked
+    private void tableChonKH1MouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_tableChonKH1MouseClicked
         // TODO add your handling code here:
         int row = tableChonKH1.getSelectedRow();
         String ma = (String) tableChonKH1.getValueAt(row, 0);
@@ -2757,7 +2815,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         jDialogChonKhuyenMai.setVisible(false);
     }//GEN-LAST:event_jDialogChonKhuyenMaiWindowLostFocus
 
-    private void btnXoaKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaKhuyenMaiActionPerformed
+    private void btnXoaKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnXoaKhuyenMaiActionPerformed
         // TODO add your handling code here:
         txtMaKhuyenMai.setText("");
         createInit();
