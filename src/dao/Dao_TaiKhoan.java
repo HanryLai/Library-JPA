@@ -1,6 +1,7 @@
 package dao;
 
 
+import java.rmi.RemoteException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import connectDB.ConnectDB;
@@ -60,8 +61,10 @@ public class Dao_TaiKhoan {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Lỗi SQL");
 			return false;
-		}
-	}
+		} catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 	public String phanQuyen(String email) {
 	    String tenDN = "";

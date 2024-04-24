@@ -32,6 +32,11 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
         }
     }
 
+    @Override
+    public void taoChiTietBaoCao(ChiTietBanBaoCao entity) throws RemoteException {
+
+    }
+
     public ArrayList<ChiTietBanBaoCao> getSachDaBan (int maHD, String thoiGianBatDau, String thoiGianKetThuc) throws RemoteException{
         ArrayList<ChiTietBanBaoCao> list = new ArrayList<>();
 

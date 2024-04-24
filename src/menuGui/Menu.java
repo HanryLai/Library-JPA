@@ -88,7 +88,11 @@ public class Menu extends JComponent {
                     }
                 } else {
                     if (event != null) {
-                        event.selected(index, 0);
+                        try {
+                            event.selected(index, 0);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             }
@@ -108,7 +112,11 @@ public class Menu extends JComponent {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
                     if (event != null) {
-                        event.selected(index, subItem.getIndex());
+                        try {
+                            event.selected(index, subItem.getIndex());
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             });

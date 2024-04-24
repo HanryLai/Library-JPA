@@ -36,28 +36,9 @@ public class ChiTietHoaDonDoi_Impl extends UnicastRemoteObject implements ChiTie
     @Override
     public boolean createChiTietDonDoi(ChiTietHoaDonDoi cthd) throws Exception {
         try {
-//            Generic_Impl<entityJPA.ChiTietHoaDonDoi> generic = new Generic_Impl<>(entityJPA.ChiTietHoaDonDoi.class, emf);
-//            entityJPA.ChiTietHoaDonDoi cthd1 = new entityJPA.ChiTietHoaDonDoi();
-//            cthd1.setHoaDonDoiHang(cthd.getHoaDonDoiHang());
-//            cthd1.setSanPham(cthd.getSanPham());
-//            cthd1.setSoLuong(cthd.getSoLuong());
-//            cthd1.setThanhTien(cthd.getThanhTien());
-//            generic.save(cthd1);
+            Generic_Impl<ChiTietHoaDonDoi> generic = new Generic_Impl<>(ChiTietHoaDonDoi.class, emf);
+            return generic.save(cthd);
 
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-mssql");
-            EntityManager em = emf.createEntityManager();
-
-            String query = "INSERT INTO ChiTietHoaDonDoi VALUES(?,?,?,?)";
-            em.getTransaction().begin();
-            em.createNativeQuery(query)
-                    .setParameter(1, cthd.getHoaDonDoiHang().getMaHoaDonDoi())
-                    .setParameter(2, cthd.getSanPham().getMaSanPham())
-                    .setParameter(3, cthd.getSoLuong())
-                    .setParameter(4, cthd.getThanhTien())
-                    .executeUpdate();
-            em.getTransaction().commit();
-            em.close();
-            return true;
         }
         catch (Exception e) {
             e.printStackTrace();

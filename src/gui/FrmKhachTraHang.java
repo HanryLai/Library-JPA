@@ -34,12 +34,9 @@ import dao.impl.*;
 //import entity.NhomSanPham;
 //import entity.Sach;
 //import entity.VanPhongPham;
+
 import entity.KhuyenMai;
-import entityJPA.NhanVien;
-import entity.NhomKhachHang;
-import entity.NhomSanPham;
-import entity.Sach;
-import entity.VanPhongPham;
+import entityJPA.*;
 import menuGui.TableActionCellEditor;
 import menuGui.TableActionCellRender;
 import menuGui.TableActionEvent;
@@ -237,8 +234,8 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
 
             int stt = 1;
             for (ChiTietHoaDonDoi cthd : dsCTHD_get) {
-                SanPham         sp       = cthd.getSanPham();
-                Sach sach = dao_sach.getSachtheoMa(String.valueOf(sp.getMaSanPham()));
+                SanPham sp   = cthd.getSanPham();
+                Sach    sach = dao_sach.getSachtheoMa(String.valueOf(sp.getMaSanPham()));
                 if (sach != null) {
                     mdSP.addRow(new Object[]{stt, cthd.getSanPham().getMaSanPham(), sach.getTenSanPham(), sach.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
                 } else {
@@ -3801,7 +3798,11 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
         jButton9.setMargin(new java.awt.Insets(2, 10, 3, 10));
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                try {
+                    jButton9ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -3979,8 +3980,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tableDSDonTraMouseClicked
 
-    @SneakyThrows
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         loadDataHD();
         jDialogChonDonTraHang.setVisible(true);
