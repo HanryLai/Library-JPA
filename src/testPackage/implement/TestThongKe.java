@@ -29,5 +29,6 @@ public class TestThongKe {
 //        System.out.println(thongKe_dao.thongKeDoanhThu(dateBatDau, dateKetThuc));
 //        System.out.println(thongKe_dao.thongKeSoHoaDon(dateBatDau, dateKetThuc));
         System.out.println(thongKe_dao.thongKeSoHoaDonHoanTra(dateBatDau, dateKetThuc));
+
     }
 }

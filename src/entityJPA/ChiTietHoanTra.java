@@ -15,15 +15,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @NoArgsConstructor
 
 @Entity
 @Table(name = "ChiTietHoanTra")
-public class ChiTietHoanTra {
+public class ChiTietHoanTra implements Serializable {
 	@EmbeddedId
-	private ChiTietDoiHangID id;
+	private ChiTietHoanTraID id;
 	
 	@ManyToOne()
 	@JoinColumn(name = "maSanPham",insertable=false, updatable=false)
@@ -31,14 +33,14 @@ public class ChiTietHoanTra {
 	
 
 	@ManyToOne()
-	@JoinColumn(name = "hoaDonHoanTra",insertable=false, updatable=false)
+	@JoinColumn(name = "maHoaDonHoanTra",insertable=false, updatable=false)
 	private HoaDonHoanTra hoaDonHoanTra;
 	
 	private int soLuong;
 	private double thanhTien;
 
-	public ChiTietHoanTra(ChiTietDoiHangID id, SanPham sanPham, HoaDonHoanTra hoaDonHoanTra, int soLuong, double thanhTien) {
-		this.id = id;
+	public ChiTietHoanTra(HoaDonHoanTra hoaDonHoanTra,SanPham sanPham,  int soLuong, double thanhTien) {
+		this.id = new ChiTietHoanTraID(hoaDonHoanTra.getMaHoaDonHoanTra(), sanPham.getMaSanPham());
 		this.sanPham = sanPham;
 		this.hoaDonHoanTra = hoaDonHoanTra;
 		this.soLuong = soLuong;
