@@ -5,6 +5,7 @@
 package gui;
 
 import java.awt.Color;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -98,7 +99,7 @@ public class FrmKhuyenMai extends javax.swing.JPanel {
 	private FrmChinh frm = new FrmChinh();
 	private Thread thread = null;
 
-	public FrmKhuyenMai() throws SQLException {
+	public FrmKhuyenMai() throws SQLException, RemoteException {
 		ConnectDB.getInstance().connect();
 		initComponents();
 		thread = new Thread(this::setTimeAuto);

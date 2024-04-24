@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import dao.Interface.TaiKhoan_Dao;
 import entityJPA.NhanVien;
 import entityJPA.TaiKhoan;
+import gui.FrmChinh;
 import jakarta.persistence.*;
 
 import java.rmi.RemoteException;
@@ -41,24 +42,24 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 				JOptionPane.showMessageDialog(null, "Tên đăng nhập không tồn tại");
 				return false;
 			}
-			return true;
-//			if (taiKhoan != null) {
-//				String xacThucMatKhau = taiKhoan.getMatKhau();
-//				if (xacThucMatKhau.equals(matKhau)) {
-//					FrmChinh frmChinh = new FrmChinh();
-//					frmChinh.setVisible(true);
-//					return true;
-//				} else {
-//					JOptionPane.showMessageDialog(null, "Sai mật khẩu");
-//					return false;
-//				}
-//			} else {
-//				JOptionPane.showMessageDialog(null, "Tên đăng nhập không tồn tại");
-//				return false;
-//			}
+
+			if (taiKhoan != null) {
+				String xacThucMatKhau = taiKhoan.getMatKhau();
+				if (xacThucMatKhau.equals(matKhau)) {
+					FrmChinh frmChinh = new FrmChinh();
+					frmChinh.setVisible(true);
+					return true;
+				} else {
+					JOptionPane.showMessageDialog(null, "Sai mật khẩu");
+					return false;
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Tên đăng nhập không tồn tại");
+				return false;
+			}
 		} catch (Exception e) {
-//			e.printStackTrace();
-//			JOptionPane.showMessageDialog(null, "Error");
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error");
 			return false;
 		}
 	}

@@ -6,7 +6,7 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
 import java.rmi.RemoteException;
 
 public class Main_Create_Data {
-    public static void main(String[] args) throws RemoteException {
+    public static void main(String[] args) throws Exception {
 //        CREATE DATA (Change persistence to create-drop)
 
 //        PLEASE CHANGE PERSISTENCE UNIT TO create-drop
@@ -23,6 +23,14 @@ public class Main_Create_Data {
 
         HoaDon_ChiTietHoaDon.main(args);
         System.out.println("--------------------CREATE DATA--------------------");
+
+        NhaCungCap_Dao.main(args);
+        System.out.println("--------------------CREATE DATA--------------------");
+
+        ChiTietHoaDonDoi_Data.main(args);
+        System.out.println("--------------------CREATE DATA--------------------");
+
+
 
 //        DO NOT CLOSE EntityManagerFactory
 

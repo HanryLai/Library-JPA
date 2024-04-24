@@ -18,8 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
 
-import dao.DAO_NhaCungCap;
-import dao.DAO_NhanVien;
+
 import dao.impl.CaLamViec_Impl;
 import dao.impl.NhanVien_Impl;
 import entityJPA.CaLamViec;
@@ -55,6 +54,8 @@ import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import lombok.SneakyThrows;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -89,7 +90,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    locTheoChucVu();
+                    try {
+                        locTheoChucVu();
+                    } catch (RemoteException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
         });
@@ -99,17 +104,29 @@ public class FrmNhanVien extends javax.swing.JPanel {
         txtTimKH.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                locNhanVien();
+                try {
+                    locNhanVien();
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                locNhanVien();
+                try {
+                    locNhanVien();
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                locNhanVien();
+                try {
+                    locNhanVien();
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         
@@ -122,7 +139,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
                         thietLapMaNhanVienTN();
                     }
                     else{
-                        thietLapMaNhanVienQL();
+                        try {
+                            thietLapMaNhanVienQL();
+                        } catch (RemoteException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 }
             }
@@ -135,7 +156,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
         Action action1 = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnThemNVActionPerformed(e);
+                try {
+                    btnThemNVActionPerformed(e);
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         };
 
@@ -148,7 +173,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
         Action action2 = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnSuaNhanVien1ActionPerformed(e);
+                try {
+                    btnSuaNhanVien1ActionPerformed(e);
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         };
         btnSuaNhanVien1.getActionMap().put("doSomething2", action2);
@@ -160,7 +189,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
         Action action3 = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnSuaNhanVien2ActionPerformed(e);
+                try {
+                    btnSuaNhanVien2ActionPerformed(e);
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         };
         btnSuaNhanVien2.getActionMap().put("doSomething3", action3);
@@ -375,10 +408,10 @@ public class FrmNhanVien extends javax.swing.JPanel {
         return 3;
     }
     
-    public void loadData() throws SQLException {
+    public void loadData() throws SQLException, RemoteException {
         deleteTable();
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        dao_nhanvien = new DAO_NhanVien();
+        dao_nhanvien = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         data = dao_nhanvien.getAllNhanVienTheoCa(thietLapCaLamViec());
         jDateChooser3.setDate(new Date());
         int stt = 1;
@@ -1319,7 +1352,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
         btnSuaNhanVien.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnSuaNhanVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaNhanVienActionPerformed(evt);
+                try {
+                    btnSuaNhanVienActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -1752,7 +1789,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
         jTable2.getTableHeader().setReorderingAllowed(false);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
+                try {
+                    jTable2MouseClicked(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         menuScrollPane2.setViewportView(jTable2);
@@ -1866,7 +1907,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
         btnThemNV.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnThemNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemNVActionPerformed(evt);
+                try {
+                    btnThemNVActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -1878,7 +1923,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
         btnSuaNhanVien1.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnSuaNhanVien1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaNhanVien1ActionPerformed(evt);
+                try {
+                    btnSuaNhanVien1ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -1890,7 +1939,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
         btnSuaNhanVien2.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnSuaNhanVien2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaNhanVien2ActionPerformed(evt);
+                try {
+                    btnSuaNhanVien2ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -2072,7 +2125,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
         jLabel2.setText("Xuất file");
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                try {
+                    jLabel2MouseClicked(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -2199,12 +2256,21 @@ public class FrmNhanVien extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    public void thietLapMaNhanVienQL() {
+    public void thietLapMaNhanVienQL() throws RemoteException {
         // Lấy ngày hiện tại và lấy mã nhân viên từ DAO
         LocalDate ngayHienTai = LocalDate.now();
         String ngayHienTaiStr = ngayHienTai.format(DateTimeFormatter.ofPattern("ddMMyyyy"));
-        String maNhanVienQLDB = dao_nhanvien.getMaNhanVienQLDB();
-        String maNhanVienTNDB = dao_nhanvien.getMaNhanVienTNDB();
+        String maNhanVienQLDB = null;
+        try {
+            maNhanVienQLDB = dao_nhanvien.getMaNhanVienQLDB();
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            String maNhanVienTNDB = dao_nhanvien.getMaNhanVienTNDB();
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
 
         String phanSTTQL = maNhanVienQLDB.substring(maNhanVienQLDB.length() - 6, maNhanVienQLDB.length()); // Lấy 6 kí tự cuối của maNhanVien
         int index = Integer.parseInt(phanSTTQL); // Chuyển 6 kí tự cuối về int
@@ -2227,6 +2293,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
         txtTimKH11.setEnabled(false);
     }
     
+    @SneakyThrows
     public void thietLapMaNhanVienTN() {
         // Lấy ngày hiện tại và lấy mã nhân viên từ DAO
         LocalDate ngayHienTai = LocalDate.now();
@@ -2264,98 +2331,116 @@ public class FrmNhanVien extends javax.swing.JPanel {
         }
     }
     
-    public void importExcelNhanVien() {
-    DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-    File excelFile;
-    FileInputStream excelFIS = null;
-    BufferedInputStream excelBIS = null;
-    XSSFWorkbook workBook = null;
-    String currentPath = "C:\\User\\Authentic\\Desktop";
-    JFileChooser excelFileChooser = new JFileChooser(currentPath);
-    excelFileChooser.setDialogTitle("Chọn file Excel");
-    FileNameExtensionFilter fnef = new FileNameExtensionFilter("FILE EXCEL", "xls", "xlsx", "xlsm");
-    excelFileChooser.setFileFilter(fnef);
-    int excelChooser = excelFileChooser.showOpenDialog(null);
-    if (excelChooser == JFileChooser.APPROVE_OPTION) {
-        try {
-            excelFile = excelFileChooser.getSelectedFile();
-            excelFIS = new FileInputStream(excelFile);
-            excelBIS = new BufferedInputStream(excelFIS);
-
-            workBook = new XSSFWorkbook(excelBIS);
-            XSSFSheet excelSheet = workBook.getSheetAt(0);
-
-            Iterator<Row> rowIterator = excelSheet.iterator();
-            if (rowIterator.hasNext()) {
-                Row head = rowIterator.next();
-                int columnCount = head.getPhysicalNumberOfCells();
-                // Kiểm tra số lượng cột trong file Excel có khớp với định dạng không
-                if (columnCount == 9) {
-                    while (rowIterator.hasNext()) {
-                        Row currentRow = rowIterator.next();
-                        Iterator<Cell> cellIterator = currentRow.cellIterator();
-                        DataFormatter dataFormatter = new DataFormatter();
-                        if (cellIterator.hasNext()) {
-                            // Thêm xử lý dữ liệu tương ứng với các cột trong file Excel
-                            int stt = (int) cellIterator.next().getNumericCellValue();
-                            String maNhanVien = dataFormatter.formatCellValue(cellIterator.next());
-                            String tenNhanVien = dataFormatter.formatCellValue(cellIterator.next());
-                            String ngaySinh = dataFormatter.formatCellValue(cellIterator.next());
-                            String soDienThoai = dataFormatter.formatCellValue(cellIterator.next());
-                            String gioiTinh = dataFormatter.formatCellValue(cellIterator.next());
-                            String email = dataFormatter.formatCellValue(cellIterator.next());
-                            String taiKhoan = dataFormatter.formatCellValue(cellIterator.next());
-
-                            int tinhTrangLamViec = 0; // Mặc định là Nghỉ việc
-                            String tinhTrangStr = dataFormatter.formatCellValue(cellIterator.next());
-                            if ("Đang làm việc".equalsIgnoreCase(tinhTrangStr)) {
-                                tinhTrangLamViec = 1;
-                            }
-
-                            String caLamViec = dataFormatter.formatCellValue(cellIterator.next());
-                            // Xử lý dữ liệu cho caLamViec, có thể là "Sáng", "Chiều", "Tối"
-
-                            String chucVu = dataFormatter.formatCellValue(cellIterator.next());
-                            // Xử lý dữ liệu cho chucVu, có thể là "Nhân viên", "Quản lý",...
-                            
-                            ChucVu cVu = null;
-                            if(chucVu.equalsIgnoreCase("THUNGAN"))
-                               cVu = cVu.THUNGAN;
-                            else
-                               cVu = cVu.QUANLY;
-                            NhanVien nhanVien = new NhanVien(maNhanVien, gioiTinh, LocalDate.parse(ngaySinh), soDienThoai, gioiTinh, email, taiKhoan, 
-                                    tinhTrangLamViec, caLamViec, cVu);
-                            dao_nhanvien.themNhanVien(nhanVien);
-                            System.out.println("NhanVien: "+nhanVien);
-                        }
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "File Excel không đúng định dạng cho Nhân Viên.",
-                            "Lỗi Định Dạng", JOptionPane.ERROR_MESSAGE);
-                    
-                }
-            }
-            workBook.close();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Lỗi Đọc File", JOptionPane.ERROR_MESSAGE);
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } finally {
-            try {
-                if (excelFIS != null) {
-                    excelFIS.close();
-                }
-                if (excelBIS != null) {
-                    excelBIS.close();
-                }
-                if (workBook != null) {
-                    workBook.close();
-                }
-            } catch (IOException e2) {
-                JOptionPane.showMessageDialog(null, e2.getMessage(), "Lỗi Đóng File", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }
-}
+//    public void importExcelNhanVien() {
+//    DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+//    File excelFile;
+//    FileInputStream excelFIS = null;
+//    BufferedInputStream excelBIS = null;
+//    XSSFWorkbook workBook = null;
+//    String currentPath = "C:\\User\\Authentic\\Desktop";
+//    JFileChooser excelFileChooser = new JFileChooser(currentPath);
+//    excelFileChooser.setDialogTitle("Chọn file Excel");
+//    FileNameExtensionFilter fnef = new FileNameExtensionFilter("FILE EXCEL", "xls", "xlsx", "xlsm");
+//    excelFileChooser.setFileFilter(fnef);
+//    int excelChooser = excelFileChooser.showOpenDialog(null);
+//    if (excelChooser == JFileChooser.APPROVE_OPTION) {
+//        try {
+//            excelFile = excelFileChooser.getSelectedFile();
+//            excelFIS = new FileInputStream(excelFile);
+//            excelBIS = new BufferedInputStream(excelFIS);
+//
+//            workBook = new XSSFWorkbook(excelBIS);
+//            XSSFSheet excelSheet = workBook.getSheetAt(0);
+//
+//            Iterator<Row> rowIterator = excelSheet.iterator();
+//            if (rowIterator.hasNext()) {
+//                Row head = rowIterator.next();
+//                int columnCount = head.getPhysicalNumberOfCells();
+//                // Kiểm tra số lượng cột trong file Excel có khớp với định dạng không
+//                if (columnCount == 9) {
+//                    while (rowIterator.hasNext()) {
+//                        Row currentRow = rowIterator.next();
+//                        Iterator<Cell> cellIterator = currentRow.cellIterator();
+//                        DataFormatter dataFormatter = new DataFormatter();
+//                        if (cellIterator.hasNext()) {
+//                            // Thêm xử lý dữ liệu tương ứng với các cột trong file Excel
+//                            int stt = (int) cellIterator.next().getNumericCellValue();
+//                            String maNhanVien = dataFormatter.formatCellValue(cellIterator.next());
+//                            String tenNhanVien = dataFormatter.formatCellValue(cellIterator.next());
+//                            String ngaySinh = dataFormatter.formatCellValue(cellIterator.next());
+//                            String soDienThoai = dataFormatter.formatCellValue(cellIterator.next());
+//                            String gioiTinh = dataFormatter.formatCellValue(cellIterator.next());
+//                            String email = dataFormatter.formatCellValue(cellIterator.next());
+//                            String taiKhoan = dataFormatter.formatCellValue(cellIterator.next());
+//
+//                            int tinhTrangLamViec = 0; // Mặc định là Nghỉ việc
+//                            String tinhTrangStr = dataFormatter.formatCellValue(cellIterator.next());
+//                            if ("Đang làm việc".equalsIgnoreCase(tinhTrangStr)) {
+//                                tinhTrangLamViec = 1;
+//                            }
+//
+//                            String caLamViec = dataFormatter.formatCellValue(cellIterator.next());
+//                            // Xử lý dữ liệu cho caLamViec, có thể là "Sáng", "Chiều", "Tối"
+//
+//                            String chucVu = dataFormatter.formatCellValue(cellIterator.next());
+//                            // Xử lý dữ liệu cho chucVu, có thể là "Nhân viên", "Quản lý",...
+//
+//                            ChucVu cVu = null;
+//                            if(chucVu.equalsIgnoreCase("THUNGAN"))
+//                               cVu = cVu.THUNGAN;
+//                            else
+//                               cVu = cVu.QUANLY;
+//                            NhanVien nhanVien = new NhanVien();
+////                            maNhanVien, gioiTinh, LocalDate.parse(ngaySinh), soDienThoai, gioiTinh, email, taiKhoan,
+////                                    tinhTrangLamViec, caLamViec, cVu
+//                            TaiKhoan taiKhoan2 = new TaiKhoan();
+//                            taiKhoan2.setTenDangNhap(email);
+//                            taiKhoan2.setMatKhau("123456");
+//                            taiKhoan2.setEmail(email);
+//
+//
+//                            nhanVien.setMaNhanVien(Integer.parseInt(maNhanVien));
+//                            nhanVien.setHoTenNV(tenNhanVien);
+//                            nhanVien.setNgaySinh(LocalDate.parse(ngaySinh));
+//                            nhanVien.setSoDienThoai(soDienThoai);
+//                            nhanVien.setGioiTinh(gioiTinh);
+//                            nhanVien.setEmail(email);
+//                            nhanVien.setTaiKhoan();
+//                            nhanVien.setTinhTrangLamViec(tinhTrangLamViec);
+//                            nhanVien.setCaLamViec();
+//                            nhanVien.setChucVu(cVu);
+//
+//                            dao_nhanvien.themNhanVien(nhanVien);
+//                            System.out.println("NhanVien: "+nhanVien);
+//                        }
+//                    }
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "File Excel không đúng định dạng cho Nhân Viên.",
+//                            "Lỗi Định Dạng", JOptionPane.ERROR_MESSAGE);
+//
+//                }
+//            }
+//            workBook.close();
+//        } catch (IOException e) {
+//            JOptionPane.showMessageDialog(null, e.getMessage(), "Lỗi Đọc File", JOptionPane.ERROR_MESSAGE);
+//            JOptionPane.showMessageDialog(null, e.getMessage());
+//        } finally {
+//            try {
+//                if (excelFIS != null) {
+//                    excelFIS.close();
+//                }
+//                if (excelBIS != null) {
+//                    excelBIS.close();
+//                }
+//                if (workBook != null) {
+//                    workBook.close();
+//                }
+//            } catch (IOException e2) {
+//                JOptionPane.showMessageDialog(null, e2.getMessage(), "Lỗi Đóng File", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
+//    }
+//}
 
 
     
@@ -2502,11 +2587,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
         }
     }
     
-    public void locTheoChucVu(){
+    public void locTheoChucVu() throws RemoteException {
         if(jComboBox1.getSelectedIndex()==0){
             try {
                 loadData();
-            } catch (SQLException ex) {
+            } catch (SQLException | RemoteException ex) {
                 Logger.getLogger(FrmNhanVien.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -2554,7 +2639,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
         }
         else{
             DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-            data = dao_nhanvien.locNhanVienTheoChucVu("QUANLY");
+            try {
+                data = dao_nhanvien.locNhanVienTheoChucVu("QUANLY");
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
             int iD = 1;
             try {
                 model.setRowCount(0);
@@ -2816,11 +2905,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
         jComboBox13.setSelectedIndex(0); 
     }
     
-    private void btnSuaNhanVien2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaNhanVien2ActionPerformed
+    private void btnSuaNhanVien2ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnSuaNhanVien2ActionPerformed
 
         try {
             loadData();
-        } catch (SQLException ex) {
+        } catch (SQLException | RemoteException ex) {
             Logger.getLogger(FrmNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(String.valueOf(jComboBox11.getSelectedItem()).equalsIgnoreCase("Thu ngân")){
@@ -2839,7 +2928,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jComboBox11ActionPerformed
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
         exportExcel();
     }//GEN-LAST:event_jLabel2MouseClicked
@@ -2874,12 +2963,12 @@ public class FrmNhanVien extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnLuuNV1ActionPerformed
 
-    private void btnSuaNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaNhanVienActionPerformed
+    private void btnSuaNhanVienActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnSuaNhanVienActionPerformed
         // TODO add your handling code here:
 
         showPanelChange(pnlChange, pnlCenterSua);
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        dao_nhanvien = new DAO_NhanVien();
+        dao_nhanvien = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         int maNhanVien = Integer.parseInt(model.getValueAt(jTable2.getSelectedRow(), 1).toString());
         NhanVien nv = dao_nhanvien.getNVTheoMa(maNhanVien);
 

@@ -2,6 +2,7 @@ package menuGui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 /**
  *
@@ -20,19 +21,31 @@ public class PanelAction extends javax.swing.JPanel {
         actionPlus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                event.onPlus(row);
+                try {
+                    event.onPlus(row);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         actionMinus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                event.onMinus(row);
+                try {
+                    event.onMinus(row);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         actionDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                event.onDelete(row);
+                try {
+                    event.onDelete(row);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
