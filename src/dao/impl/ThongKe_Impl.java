@@ -25,7 +25,9 @@ public class ThongKe_Impl extends UnicastRemoteObject implements ThongKe_Dao {
 
     @Override
     public double tongDoanhThu(int currentYear) throws RemoteException {
-        return 0;
+        String query = "SELECT SUM(tongTien) FROM HoaDon WHERE YEAR(ngayLap) = ?";
+        EntityManager em = emf.createEntityManager();
+        return (double) em.createNativeQuery(query).setParameter(1, currentYear).getSingleResult();
     }
 
     @Override
@@ -45,17 +47,36 @@ public class ThongKe_Impl extends UnicastRemoteObject implements ThongKe_Dao {
 
     @Override
     public double thongKeDoanhThu(Date ngayBatDau, Date ngayKetThuc) throws RemoteException {
-        return 0;
+        String query = "SELECT SUM(tongTien) FROM HoaDon WHERE ngayLap BETWEEN ? AND ?";
+        EntityManager em = emf.createEntityManager();
+        return (double) em.createNativeQuery(query)
+                .setParameter(1, ngayBatDau)
+                .setParameter(2, ngayKetThuc)
+                .getSingleResult();
+
     }
 
     @Override
     public int thongKeSoHoaDon(Date ngayBatDau, Date ngayKetThuc) throws RemoteException {
-        return 0;
+        String query = "SELECT COUNT(*) FROM HoaDon WHERE ngayLap BETWEEN ? AND ?";
+        EntityManager em = emf.createEntityManager();
+        return (int) em.createNativeQuery(query)
+                .setParameter(1, ngayBatDau)
+                .setParameter(2, ngayKetThuc)
+                .getSingleResult();
+
+
     }
 
     @Override
     public int thongKeSoHoaDonHoanTra(Date ngayBatDau, Date ngayKetThuc) throws RemoteException {
-        return 0;
+        String query = "SELECT COUNT(*) AS SoLuongHoaDonHoanTra FROM HoaDonHoanTra WHERE ngayHoan BETWEEN ? AND ?";
+        EntityManager em = emf.createEntityManager();
+        return (int) em.createNativeQuery(query)
+                .setParameter(1, ngayBatDau)
+                .setParameter(2, ngayKetThuc)
+                .getSingleResult();
+
     }
 
     @Override
