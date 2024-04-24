@@ -8,19 +8,25 @@ import connectDB.ConnectDB;
 import dao.DAO_Sach;
 import dao.DAO_ThongKe;
 import dao.DAO_VanPhongPham;
-import entity.MonthlyRevenueInfo;
-import entity.Sach;
-import entity.VanPhongPham;
-import groovyjarjarcommonscli.ParseException;
+import dao.Interface.Sach_Dao;
+import dao.Interface.ThongKe_Dao;
+import dao.Interface.VanPhongPham_Dao;
+import dao.impl.Sach_Impl;
+import dao.impl.ThongKe_Impl;
+import dao.impl.VanPhongPham_Impl;
+import entityJPA.Sach;
+import entityJPA.VanPhongPham;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -40,6 +46,8 @@ import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.statistics.HistogramDataset;
+import otherEntity.MonthlyRevenueInfo;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *
@@ -51,14 +59,14 @@ public class FrmThongKe extends javax.swing.JPanel {
     /**
      * Creates new form FrmDSKhachHang
      */
-    private DAO_VanPhongPham dao_vpp = new DAO_VanPhongPham();
-    private DAO_Sach dao_sach = new DAO_Sach();
-    private DAO_ThongKe dao_thongKe = new DAO_ThongKe();
+    private VanPhongPham_Dao dao_vpp = new VanPhongPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private Sach_Dao dao_sach = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private ThongKe_Dao dao_thongKe = new ThongKe_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
 
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
 
-    public FrmThongKe() {
+    public FrmThongKe() throws RemoteException {
         ConnectDB.getInstance().connect();
         initComponents();
         showPieChart();
@@ -105,7 +113,7 @@ public class FrmThongKe extends javax.swing.JPanel {
         }
     }
 
-    public void showPieChart() {
+    public void showPieChart() throws RemoteException {
         DefaultPieDataset barDataset = new DefaultPieDataset();
         
         List<DAO_ThongKe.ProductInfo> topProducts = dao_thongKe.getTopSellingProducts();
@@ -138,7 +146,7 @@ public class FrmThongKe extends javax.swing.JPanel {
     }
 
     /*=============================================================================*/
-    public void showLineChart() {
+    public void showLineChart() throws RemoteException {
         //create dataset for the graph
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         List<MonthlyRevenueInfo> monthlyRevenueList = dao_thongKe.tongTienTheoThang();
@@ -253,7 +261,7 @@ public class FrmThongKe extends javax.swing.JPanel {
             int soSanPhamDaBan = dao_thongKe.thongKeSoLuongSanPhamDaBan(dateBatDau, dateKetThuc);
             lblTongSanPhamBan.setText(soSanPhamDaBan+"");
             
-        } catch (java.text.ParseException ex) {
+        } catch (ParseException | RemoteException ex) {
             JOptionPane.showMessageDialog(this, "Định dạng ngày không hợp lệ");
             ex.printStackTrace();
         }
@@ -262,7 +270,7 @@ public class FrmThongKe extends javax.swing.JPanel {
 
     
     //Hàm THống kê theo tháng
-    private void thongKeTheoThang() {
+    private void thongKeTheoThang() throws RemoteException {
         String thangBatDau = cboSortTabelChonSP7.getSelectedItem().toString();
         String thangKetThuc = cboSortTabelChonSP8.getSelectedItem().toString();
         String nam = cboSortTabelChonSP6.getSelectedItem().toString();
@@ -321,15 +329,14 @@ public class FrmThongKe extends javax.swing.JPanel {
 	         lblTongSanPhamBan.setText(dao_thongKe.thongKeSoLuongSanPhamDaBan(namBD, namKT)+"");
 			
 			
-		} catch (java.text.ParseException e) {
+		} catch (ParseException | RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	jRadioButton2.setSelected(true);
     }
     
-    private void thongKeToanBo()
-    {
+    private void thongKeToanBo() throws RemoteException {
     	lblTongDoanhThu.setText(deciFormat.format(dao_thongKe.ThongKeTongDoanhThu()));
         lblTongHoaDon.setText(dao_thongKe.thongKeTongSoHoaDon()+"");
         lblTongHoaDonTra.setText(dao_thongKe.thongKeTongSoHoaDonHoanTra()+"");
@@ -338,7 +345,7 @@ public class FrmThongKe extends javax.swing.JPanel {
     }
     
     
-     public void ganNamVaoCbo() {
+     public void ganNamVaoCbo() throws RemoteException {
         List<Integer> years = dao_thongKe.getDistinctYears();
 
         for (int year : years) {
@@ -651,7 +658,11 @@ public class FrmThongKe extends javax.swing.JPanel {
         jRadioButton1.setText("Thống kê theo tháng:");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                try {
+                    jRadioButton1ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -679,7 +690,11 @@ public class FrmThongKe extends javax.swing.JPanel {
         jRadioButton4.setText("Toàn bộ");
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                try {
+                    jRadioButton4ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -715,7 +730,11 @@ public class FrmThongKe extends javax.swing.JPanel {
         cboSortTabelChonSP6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021", "2022" }));
         cboSortTabelChonSP6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboSortTabelChonSP6ActionPerformed(evt);
+                try {
+                    cboSortTabelChonSP6ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -723,7 +742,11 @@ public class FrmThongKe extends javax.swing.JPanel {
         cboSortTabelChonSP7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         cboSortTabelChonSP7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboSortTabelChonSP7ActionPerformed(evt);
+                try {
+                    cboSortTabelChonSP7ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -731,7 +754,11 @@ public class FrmThongKe extends javax.swing.JPanel {
         cboSortTabelChonSP8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         cboSortTabelChonSP8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboSortTabelChonSP8ActionPerformed(evt);
+                try {
+                    cboSortTabelChonSP8ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -1058,17 +1085,17 @@ public class FrmThongKe extends javax.swing.JPanel {
         thongKeTheoNgay();
     }//GEN-LAST:event_cboSortTabelChonSP3ActionPerformed
 
-    private void cboSortTabelChonSP6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSortTabelChonSP6ActionPerformed
+    private void cboSortTabelChonSP6ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_cboSortTabelChonSP6ActionPerformed
         // TODO add your handling code here:
         thongKeTheoThang();
     }//GEN-LAST:event_cboSortTabelChonSP6ActionPerformed
 
-    private void cboSortTabelChonSP7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSortTabelChonSP7ActionPerformed
+    private void cboSortTabelChonSP7ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_cboSortTabelChonSP7ActionPerformed
         // TODO add your handling code here:
         thongKeTheoThang();
     }//GEN-LAST:event_cboSortTabelChonSP7ActionPerformed
 
-    private void cboSortTabelChonSP8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSortTabelChonSP8ActionPerformed
+    private void cboSortTabelChonSP8ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_cboSortTabelChonSP8ActionPerformed
         // TODO add your handling code here:
         thongKeTheoThang();
     }//GEN-LAST:event_cboSortTabelChonSP8ActionPerformed
@@ -1088,7 +1115,7 @@ public class FrmThongKe extends javax.swing.JPanel {
         lblNameLogin.setText(gui.FrmLogin.tenNguoiDung);
     }//GEN-LAST:event_lblNameLoginAncestorAdded
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_jRadioButton4ActionPerformed
         // TODO add your handling code here:
         thongKeToanBo();
     }//GEN-LAST:event_jRadioButton4ActionPerformed
@@ -1098,7 +1125,7 @@ public class FrmThongKe extends javax.swing.JPanel {
         thongKeTheoNgay();
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
         thongKeTheoThang();
     }//GEN-LAST:event_jRadioButton1ActionPerformed

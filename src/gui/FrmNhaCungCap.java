@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
+import dao.Interface.NhaCungCap_Dao;
+import dao.impl.NhaCungCap_Impl;
 import entity.HoaDon;
-import entity.NhaCungCap;
 
 import java.awt.Color;
 import java.awt.Desktop;
@@ -49,6 +50,8 @@ import javax.swing.KeyStroke;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import entityJPA.NhaCungCap;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -57,6 +60,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import dao.DAO_NhaCungCap;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *
@@ -67,13 +71,14 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
     /**
      * Creates new form FrmDSKhachHang
      */
-    private DAO_NhaCungCap dao_ncc = new DAO_NhaCungCap();
+//    private DAO_NhaCungCap dao_ncc = new DAO_NhaCungCap();
+    private NhaCungCap_Dao dao_ncc = new NhaCungCap_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     private ArrayList<NhaCungCap> data = new ArrayList<NhaCungCap>();
 
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
     
-    public FrmNhaCungCap() {
+    public FrmNhaCungCap() throws Exception {
         initComponents();
         kiemTraThem();
         loadData();
@@ -85,17 +90,29 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         txtTimKH.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                locNhaCungCap();
+                try {
+                    locNhaCungCap();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                locNhaCungCap();
+                try {
+                    locNhaCungCap();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                locNhaCungCap();
+                try {
+                    locNhaCungCap();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             } 
         });
         
@@ -106,7 +123,11 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         Action action1 = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnThemSPActionPerformed(e);
+                try {
+                    btnThemSPActionPerformed(e);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         };
 
@@ -119,7 +140,11 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         Action action2 = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnSuaKH2ActionPerformed(e);
+                try {
+                    btnSuaKH2ActionPerformed(e);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         };
         btnSuaKH2.getActionMap().put("doSomething2", action2);
@@ -131,7 +156,11 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         Action action3 = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnSuaKH3ActionPerformed(e);
+                try {
+                    btnSuaKH3ActionPerformed(e);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         };
         btnSuaKH3.getActionMap().put("doSomething3", action3);
@@ -172,7 +201,7 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         a.revalidate();
     }
 
-    public void updateData() {
+    public void updateData() throws Exception {
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         model.setRowCount(0);
         loadData();
@@ -183,10 +212,10 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         dm.getDataVector().removeAllElements();
     }
 
-    public void loadData() {
+    public void loadData() throws Exception {
         deleteTable();
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        dao_ncc = new DAO_NhaCungCap();
+
         data = dao_ncc.getALLNhaCungCap();
         int stt = 1;
         for (NhaCungCap ncc : data) {
@@ -364,7 +393,7 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
             return cell.getCellType() == CellType.NUMERIC ? cell.getNumericCellValue() : 0.0;
     }
     
-    public void exportExcel() {
+    public void exportExcel() throws Exception {
         ArrayList<NhaCungCap> dsNCC = dao_ncc.getALLNhaCungCap();
         try {
                 JFileChooser jFileChooser = new JFileChooser();
@@ -431,7 +460,7 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         }
     }
     
-    private void locNhaCungCap() {
+    private void locNhaCungCap() throws Exception {
         String duLieuTim = txtTimKH.getText();
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         data = dao_ncc.locNhaCungCap(duLieuTim);
@@ -441,7 +470,7 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
             jTable2.clearSelection();
             for (NhaCungCap ncc : data) {
                 model.addRow(new String[]{String.valueOf(iD),
-                    ncc.getMaNCC(),
+                        String.valueOf(ncc.getMaNCC()),
                     ncc.getTenNCC(),
                     ncc.getEmail(),
                     ncc.getSoDienThoai()
@@ -652,7 +681,11 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         jTable2.getTableHeader().setReorderingAllowed(false);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
+                try {
+                    jTable2MouseClicked(evt);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         menuScrollPane2.setViewportView(jTable2);
@@ -673,7 +706,11 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         txtTimKH13.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtTimKH13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTimKH13ActionPerformed(evt);
+                try {
+                    txtTimKH13ActionPerformed(evt);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -747,7 +784,11 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         btnThemSP.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnThemSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemSPActionPerformed(evt);
+                try {
+                    btnThemSPActionPerformed(evt);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -759,7 +800,11 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         btnSuaKH2.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnSuaKH2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaKH2ActionPerformed(evt);
+                try {
+                    btnSuaKH2ActionPerformed(evt);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -771,7 +816,11 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         btnSuaKH3.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnSuaKH3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaKH3ActionPerformed(evt);
+                try {
+                    btnSuaKH3ActionPerformed(evt);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -944,7 +993,11 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         jLabel2.setText("Xuất file");
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                try {
+                    jLabel2MouseClicked(evt);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -1062,7 +1115,7 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         
     }//GEN-LAST:event_txtTimKHActionPerformed
 
-    public void thietLapMaNCC() {
+    public void thietLapMaNCC() throws Exception {
         // Lấy ngày hiện tại và lấy mã nhân viên từ DAO
         LocalDate ngayHienTai = LocalDate.now();
         String ngayHienTaiStr = ngayHienTai.format(DateTimeFormatter.ofPattern("ddMMyyyy"));
@@ -1090,32 +1143,32 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         txtTimKH13.setEnabled(false);
     }
     
-    public String thietLapMaNCCStr() {
-        // Lấy ngày hiện tại và lấy mã nhân viên từ DAO
-        LocalDate ngayHienTai = LocalDate.now();
-        String ngayHienTaiStr = ngayHienTai.format(DateTimeFormatter.ofPattern("ddMMyyyy"));
-        String maNCCDB = dao_ncc.getMaNhaCungCapDB();
-        System.out.println(maNCCDB);
-
-        String phanSTT = maNCCDB.substring(maNCCDB.length() - 6, maNCCDB.length()); // Lấy 6 kí tự cuối của maNhanVien
-        int index = Integer.parseInt(phanSTT); // Chuyển 6 kí tự cuối về int
-
-        // Tạo stt tăng nếu ngày là ngày hôm sau và set 6 kí số phía sau về dạng "-000001"
-        int iStart = 1;
-        String sttStart = String.format("%06d", iStart);
-
-        String check = "NCC" + ngayHienTaiStr + "-" + String.format("%06d", index);
-        // Mã đã có trong db thì tăng mã lên 1
-        if (check.equalsIgnoreCase(maNCCDB)) {
-            index++;
-            String stt = String.format("%06d", index);
-            String sttTangTN = "NCC" + ngayHienTaiStr + "-" + stt;
-            return sttTangTN;
-        } // Chưa có thì set là 1
-        return String.format("%s", "NCC" + ngayHienTaiStr + "-" + sttStart);
-    }
+//    public String thietLapMaNCCStr() {
+//        // Lấy ngày hiện tại và lấy mã nhân viên từ DAO
+//        LocalDate ngayHienTai = LocalDate.now();
+//        String ngayHienTaiStr = ngayHienTai.format(DateTimeFormatter.ofPattern("ddMMyyyy"));
+//        String maNCCDB = dao_ncc.getMaNhaCungCapDB();
+//        System.out.println(maNCCDB);
+//
+//        String phanSTT = maNCCDB.substring(maNCCDB.length() - 6, maNCCDB.length()); // Lấy 6 kí tự cuối của maNhanVien
+//        int index = Integer.parseInt(phanSTT); // Chuyển 6 kí tự cuối về int
+//
+//        // Tạo stt tăng nếu ngày là ngày hôm sau và set 6 kí số phía sau về dạng "-000001"
+//        int iStart = 1;
+//        String sttStart = String.format("%06d", iStart);
+//
+//        String check = "NCC" + ngayHienTaiStr + "-" + String.format("%06d", index);
+//        // Mã đã có trong db thì tăng mã lên 1
+//        if (check.equalsIgnoreCase(maNCCDB)) {
+//            index++;
+//            String stt = String.format("%06d", index);
+//            String sttTangTN = "NCC" + ngayHienTaiStr + "-" + stt;
+//            return sttTangTN;
+//        } // Chưa có thì set là 1
+//        return String.format("%s", "NCC" + ngayHienTaiStr + "-" + sttStart);
+//    }
  
-    private void btnThemSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSPActionPerformed
+    private void btnThemSPActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_btnThemSPActionPerformed
         // TODO add your handling code here:
         
 //        thietLapMaNCC();
@@ -1131,7 +1184,14 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
             JOptionPane.showMessageDialog(null, "Chưa nhập đầy đủ dữ liệu");
         }
         else if(validData()){
-            NhaCungCap nccThem = new NhaCungCap(maNCC, tenNCC, diaChi, soDienThoai, email, ghiChu);
+//            NhaCungCap nccThem = new NhaCungCap(maNCC, tenNCC, diaChi, soDienThoai, email, ghiChu);
+            NhaCungCap nccThem = new NhaCungCap();
+            nccThem.setTenNCC(tenNCC);
+            nccThem.setDiaChiNCC(diaChi);
+            nccThem.setSoDienThoai(soDienThoai);
+            nccThem.setEmail(email);
+            nccThem.setGhiChu(ghiChu);
+
             dao_ncc.themNhaCungCap(nccThem);
         }
 
@@ -1149,14 +1209,14 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         frm.placeHoderTextLost(txtTimKH);
     }//GEN-LAST:event_txtTimKHFocusLost
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
 
         if (evt.getClickCount() == 1 && !evt.isConsumed()) {
             evt.consume();
 //            showPanelChange(pnlChange, pnlCenterSua);
             DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-            dao_ncc = new DAO_NhaCungCap();
+//            dao_ncc = new DAO_NhaCungCap();
             String maNCC = model.getValueAt(jTable2.getSelectedRow(), 1).toString();
             NhaCungCap ncc = dao_ncc.getNCCTheoMa(maNCC);
             txtTimKH13.setText(model.getValueAt(jTable2.getSelectedRow(), 1).toString());
@@ -1198,13 +1258,13 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKH9ActionPerformed
 
-    private void txtTimKH13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKH13ActionPerformed
+    private void txtTimKH13ActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_txtTimKH13ActionPerformed
         // TODO add your handling code here:
         thietLapMaNCC();
         
     }//GEN-LAST:event_txtTimKH13ActionPerformed
 
-    private void btnSuaKH2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaKH2ActionPerformed
+    private void btnSuaKH2ActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_btnSuaKH2ActionPerformed
         // TODO add your handling code here:
         
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
@@ -1214,7 +1274,13 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         String emailMoi = txtTimKH6.getText();
         String diaChiMoi = jTextArea5.getText();
         String ghiChuMoi = jTextArea6.getText();
-        NhaCungCap nccMoi = new NhaCungCap(maNCCSua, tenNCCMoi, diaChiMoi, soDienThoaiMoi, emailMoi, ghiChuMoi);
+//        NhaCungCap nccMoi = new NhaCungCap(maNCCSua, tenNCCMoi, diaChiMoi, soDienThoaiMoi, emailMoi, ghiChuMoi);
+        NhaCungCap nccMoi = new NhaCungCap();
+        nccMoi.setTenNCC(tenNCCMoi);
+        nccMoi.setTenNCC(tenNCCMoi);
+        nccMoi.setDiaChiNCC(diaChiMoi);
+        nccMoi.setSoDienThoai(soDienThoaiMoi);
+        nccMoi.setGhiChu(ghiChuMoi);
         if(jTable2.getSelectedRow()<0)
             JOptionPane.showMessageDialog(null, "Hãy chọn dòng cần sửa");
         else if (validData()) {
@@ -1232,14 +1298,14 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         jTextArea6.setText("");
     }
     
-    private void btnSuaKH3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaKH3ActionPerformed
+    private void btnSuaKH3ActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_btnSuaKH3ActionPerformed
         // TODO add your handling code here:
         loadData();
         thietLapMaNCC();
         xoaRong();
     }//GEN-LAST:event_btnSuaKH3ActionPerformed
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
         exportExcel();
     }//GEN-LAST:event_jLabel2MouseClicked
