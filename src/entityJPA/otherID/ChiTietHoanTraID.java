@@ -1,4 +1,4 @@
-package entityJPA;
+package entityJPA.otherID;
 
 import java.io.Serializable;
 
