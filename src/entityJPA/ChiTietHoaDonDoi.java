@@ -10,13 +10,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @Table(name = "ChiTietHoaDonDoi")
-public class ChiTietHoaDonDoi {
-	
+public class ChiTietHoaDonDoi  {
+
 	@EmbeddedId
 	private ChiTietHoaDonDoiID id;
 	

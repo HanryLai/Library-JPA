@@ -15,8 +15,10 @@ import lombok.*;
 @Entity
 @EqualsAndHashCode
 @Table(name = "ChiTietHoaDon")
+
 public class ChiTietHoaDon implements Serializable{
 	private static final long serialVersionUID = 1L;
+
 	@EmbeddedId
 	private ChiTietHoaDonID id;
 
