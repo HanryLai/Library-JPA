@@ -1,6 +1,7 @@
 package entityJPA;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -34,7 +35,7 @@ public class NhomSanPham implements Serializable {
 	private String tenNhomSanPham;
 	
 	@OneToMany(mappedBy = "nhomSanPham")
-	private Set<SanPham> sanPham;
+	private List<SanPham> sanPham;
 	
 	@Override
 	public String toString() {

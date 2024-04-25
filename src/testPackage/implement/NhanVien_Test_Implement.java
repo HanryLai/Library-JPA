@@ -1,10 +1,11 @@
 package testPackage.implement;
 
-import dao.impl.NhanVien_Impl;
 import entityJPA.NhanVien;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 import java.rmi.RemoteException;
+
+import dao.impl.NhanVien_Impl;
 
 public class NhanVien_Test_Implement {
     public static void main(String[] args) throws RemoteException {

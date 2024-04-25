@@ -1,7 +1,5 @@
 package testPackage.data;
 
-import dao.impl.Generic_Impl;
-import dao.impl.NhaCungCap_Impl;
 import entityJPA.NhaCungCap;
 import entityJPA.Sach;
 import entityJPA.SanPham;
@@ -11,6 +9,9 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+
+import dao.impl.Generic_Impl;
+import dao.impl.NhaCungCap_Impl;
 
 public class NhaCungCap_Dao {
     public static void main(String[] args) throws Exception {

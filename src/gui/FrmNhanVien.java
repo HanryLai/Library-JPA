@@ -18,7 +18,6 @@ import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
 
-
 import dao.impl.CaLamViec_Impl;
 import dao.impl.Generic_Impl;
 import dao.impl.NhanVien_Impl;
