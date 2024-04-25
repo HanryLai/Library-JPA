@@ -1,5 +1,6 @@
 package entityJPA;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -22,7 +23,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "KhachHang")
-public class KhachHang {
+public class KhachHang implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maKhachHang;
