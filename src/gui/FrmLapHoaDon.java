@@ -13,9 +13,7 @@ import printReport.ReportManager;
 import com.barcodelib.barcode.Linear;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
-import java.awt.AWTEvent;
-import java.awt.Component;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.AWTEventListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
@@ -36,10 +34,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.text.SimpleDateFormat;
@@ -48,15 +43,6 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Pattern;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.InputMap;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.KeyStroke;
-import javax.swing.RowFilter;
-import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.TableModel;
@@ -66,7 +52,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author nguyen chau tai
  */
-public class FrmLapHoaDon extends javax.swing.JPanel {
+public class FrmLapHoaDon extends JPanel {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     DecimalFormat deciFormat = new DecimalFormat("###.###");
@@ -106,7 +92,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         thread = new Thread(this::setTimeAuto);
         thread.start();
 
-        lblMaHoaDon.setText(createMaHoaDon());
+//        lblMaHoaDon.setText(createMaHoaDon());
         lblTenKH.setText("Khách lẻ");
         lblMaKH.setText(createMaKhachHang());
 
@@ -115,6 +101,8 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         tableAction();
 
     }
+
+
 
     public void setTimeAuto() {
         try {
@@ -414,28 +402,29 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 
     public String createMaHoaDon() throws RemoteException {
 //        LocalDate d = LocalDate.of(2023, 11, 13);
-        LocalDate d = LocalDate.now();
-        DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("ddMMyyyy");
-        String format = d.format(myFormatDate);
-        Integer count = 1;
-        String hdID = "";
-        do {
-            String tempID = count.toString().length() == 1 ? ("HD" + format + "-00000" + count)
-                    : count.toString().length() == 2 ? ("HD" + format + "-0000" + count)
-                    : count.toString().length() == 3 ? ("HD" + format + "-000" + count)
-                    : count.toString().length() == 4 ? ("HD" + format + "-00" + count)
-                    : count.toString().length() == 5 ? ("HD" + format + "-0" + count)
-                    : ("HD" + format + "-" + count);
-
-            HoaDon existingBill = dao_hd.getHoaDontheoMa(tempID);
-            if (existingBill == null) {
-                hdID = tempID;
-                break;
-            }
-            count++;
-        } while (true);
-
-        return hdID;
+//        LocalDate d = LocalDate.now();
+//        DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("ddMMyyyy");
+//        String format = d.format(myFormatDate);
+//        Integer count = 1;
+//        String hdID = "";
+//        do {
+//            String tempID = count.toString().length() == 1 ? ("HD" + format + "-00000" + count)
+//                    : count.toString().length() == 2 ? ("HD" + format + "-0000" + count)
+//                    : count.toString().length() == 3 ? ("HD" + format + "-000" + count)
+//                    : count.toString().length() == 4 ? ("HD" + format + "-00" + count)
+//                    : count.toString().length() == 5 ? ("HD" + format + "-0" + count)
+//                    : ("HD" + format + "-" + count);
+//
+//            HoaDon existingBill = dao_hd.getHoaDontheoMa(tempID);
+//            if (existingBill == null) {
+//                hdID = tempID;
+//                break;
+//            }
+//            count++;
+//        } while (true);
+//
+//        return hdID;
+        return "";
     }
 
     private void showPanelChange(JPanel a, JPanel b) {
