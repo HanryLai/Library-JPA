@@ -42,23 +42,23 @@ public class NhanVien implements Serializable {
 	private String gioiTinh;
 	@Column(columnDefinition = "nvarchar(100)")
 	private String email;
-	
+
 	@OneToOne
 	@JoinColumn(name = "tenDangNhap", unique = true)
 	private TaiKhoan taiKhoan;
 	private int tinhTrangLamViec;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "maCa")
 	private CaLamViec caLamViec;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "nvarchar(10)")
 	private ChucVu chucVu;
-	
+
 	@OneToMany
 	private List<HoaDon> hoaDons;
-	
+
 	@OneToMany
 	private List<HoaDonHoanTra> hoaDonHoanTras;
 
