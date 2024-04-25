@@ -9,6 +9,7 @@ import otherEntity.MonthlyRevenueInfo;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,36 @@ public class ThongKe_Impl extends UnicastRemoteObject implements ThongKe_Dao {
     }
     @Override
     public List<DAO_ThongKe.ProductInfo> getTopSellingProducts() throws RemoteException {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        Date startDate = calendar.getTime();
+        calendar.add(Calendar.MONTH, 1);
+        calendar.add(Calendar.DATE, -1);
+        Date endDate = calendar.getTime();
+
+        String query = "SELECT TOP 5 od.sanPham, SUM(od.soLuong) AS total_quantity "
+                + "FROM ChiTietHoaDon od "
+                + "JOIN HoaDon o ON od.hoaDon = o.maHoaDon "
+                + "WHERE o.ngayLap BETWEEN ? AND ? "
+                + "GROUP BY od.sanPham "
+                + "ORDER BY total_quantity DESC ";
+        EntityManager em = emf.createEntityManager();
+        List<DAO_ThongKe.ProductInfo> topProducts = new ArrayList<>();
+        try {
+
+            List<Object[]> resultList = em.createNativeQuery(query)
+                    .setParameter(1, startDate)
+                    .setParameter(2, endDate)
+                    .getResultList();
+            for (Object[] o : resultList) {
+                String productId = o[0].toString();
+                int totalQuantity = Integer.parseInt(o[1].toString());
+                topProducts.add(new DAO_ThongKe.ProductInfo(productId, totalQuantity));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 

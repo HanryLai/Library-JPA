@@ -282,7 +282,7 @@ public class DAO_ThongKe {
         return monthlyRevenueList;
     }
 
-    public class ProductInfo {
+    public static class ProductInfo {
 
         private String productId;
         private int totalQuantity;
@@ -300,15 +300,7 @@ public class DAO_ThongKe {
             return totalQuantity;
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     // Thực hiện thống kê theo ngày từ ngayBatDau đến ngayKetThuc 
     public double thongKeDoanhThu(Date ngayBatDau, Date ngayKetThuc) {
         double tongDoanhThu = 0.0;
@@ -527,19 +519,8 @@ public class DAO_ThongKe {
 
         return years;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
 }
 
 
