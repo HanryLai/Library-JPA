@@ -112,7 +112,8 @@ public class FrmThongKe extends javax.swing.JPanel {
         
         List<ProductInfo> topProducts = dao_thongKe.getTopSellingProducts();
         for (ProductInfo product : topProducts) {
-            if(product.getProductId().startsWith("S")) {
+            Sach sach = dao_sach.getSachtheoMa(product.getProductId());
+            if(sach != null) {
                 Sach s = dao_sach.getSachtheoMa(product.getProductId());
                 barDataset.setValue(s.getTenSanPham(), Double.valueOf(product.getTotalQuantity())); 
             } else {
@@ -240,8 +241,8 @@ public class FrmThongKe extends javax.swing.JPanel {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             Date dateBatDau = sdf.parse(ngayBatDau.trim());
             Date dateKetThuc = sdf.parse(ngayKetThuc.trim());
-//            System.out.println("Ngay bat đau: "+ngayBatDau);
-//            System.out.println("Ngay ket thuc :"+ngayKetThuc);
+            System.out.println("Ngay bat đau: "+dateBatDau);
+            System.out.println("Ngay ket thuc :"+dateKetThuc);
 
             // Thực hiện thống kê và cập nhật Label
             double tongDoanhThu = dao_thongKe.thongKeDoanhThu(dateBatDau, dateKetThuc);
