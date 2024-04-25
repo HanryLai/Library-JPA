@@ -1,8 +1,5 @@
 package testPackage.data;
 
-import dao.impl.Sach_Impl;
-import dao.impl.TaiKhoan_Impl;
-import dao.impl.VanPhongPham_Impl;
 import entityJPA.*;
 import entityJPA.otherID.ChiTietBanBaoCaoID;
 import jakarta.persistence.EntityManager;
@@ -12,6 +9,10 @@ import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+
+import dao.impl.Sach_Impl;
+import dao.impl.TaiKhoan_Impl;
+import dao.impl.VanPhongPham_Impl;
 
 public class SanPham_BaoCao_ChiTiet {
 	public static void main(String[] args) throws RemoteException {

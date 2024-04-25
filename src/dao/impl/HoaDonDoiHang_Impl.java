@@ -71,7 +71,7 @@ public class HoaDonDoiHang_Impl extends UnicastRemoteObject implements HoaDonDoi
             List<HoaDonDoiHang> temp = hdGeneric.findAll();
             if (temp.size() == 0)
                 return 1;
-            id = hdGeneric.findAll().getLast().getMaHoaDonDoi();
+            id = temp.get(temp.size()-1).getMaHoaDonDoi();
         } catch (Exception e) {
             e.printStackTrace();
             return id;

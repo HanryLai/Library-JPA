@@ -1,7 +1,6 @@
 package gui;
 
 
-import dao.impl.*;
 import entityJPA.*;
 import menuGui.TableActionCellEditor;
 import menuGui.TableActionCellRender;
@@ -11,6 +10,8 @@ import printReport.ParameterReport;
 import printReport.ReportManager;
 
 import com.barcodelib.barcode.Linear;
+
+import dao.impl.*;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 import java.awt.*;

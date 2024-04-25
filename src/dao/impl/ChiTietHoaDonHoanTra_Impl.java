@@ -14,10 +14,10 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class ChiTietHoaDonHoanTraImpl extends UnicastRemoteObject implements ChiTietHoaDonHoanTra_Dao {
+public class ChiTietHoaDonHoanTra_Impl extends UnicastRemoteObject implements ChiTietHoaDonHoanTra_Dao {
 
     private final EntityManagerFactory emf;
-    public ChiTietHoaDonHoanTraImpl(EntityManagerFactory emf) throws RemoteException {
+    public ChiTietHoaDonHoanTra_Impl(EntityManagerFactory emf) throws RemoteException {
         this.emf = emf;
     }
 
@@ -59,7 +59,7 @@ public class ChiTietHoaDonHoanTraImpl extends UnicastRemoteObject implements Chi
     public static void main(String[] args) throws RemoteException {
         HoaDonHoanTra_Dao daoht = new HoaDonHoanTra_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         Sach_Dao sach_dao = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-        ChiTietHoaDonHoanTra_Dao daoctht = new ChiTietHoaDonHoanTraImpl(EntityManagerFactory_Static.getEntityManagerFactory());
+        ChiTietHoaDonHoanTra_Dao daoctht = new ChiTietHoaDonHoanTra_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
 //        HoaDonDoiHang daohddh = new ChiTietHoaDonDoiImpl(EntityManagerFactory_Static.getEntityManagerFactory());
 
         HoaDonHoanTra hdht = daoht.getHoaDonHoanTratheoMa("1");

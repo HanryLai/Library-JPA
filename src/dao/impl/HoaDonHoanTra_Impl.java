@@ -55,7 +55,7 @@ public class HoaDonHoanTra_Impl extends UnicastRemoteObject implements HoaDonHoa
             List<HoaDonHoanTra> temp = hdGeneric.findAll();
             if (temp.size() == 0)
                 return 1;
-            id = temp.getLast().getMaHoaDonHoanTra();
+            id = temp.get(temp.size()-1).getMaHoaDonHoanTra();
         } catch (Exception e) {
             e.printStackTrace();
             return id;

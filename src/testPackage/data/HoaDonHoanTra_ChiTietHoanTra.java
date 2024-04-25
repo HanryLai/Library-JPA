@@ -17,7 +17,7 @@ public class HoaDonHoanTra_ChiTietHoanTra {
         HoaDonHoanTra_Dao daoht = new HoaDonHoanTra_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         Sach_Dao sach_dao = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         VanPhongPham_Dao vvp_dao = new VanPhongPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-        ChiTietHoaDonHoanTra_Dao daoctht = new ChiTietHoaDonHoanTraImpl(EntityManagerFactory_Static.getEntityManagerFactory());
+        ChiTietHoaDonHoanTra_Dao daoctht = new ChiTietHoaDonHoanTra_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         HoaDon_Dao daohd= new HoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
 
 

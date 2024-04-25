@@ -1,7 +1,6 @@
 
 package gui;
 
-import dao.impl.TaiKhoan_Impl;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 import java.awt.event.ActionEvent;
@@ -19,6 +18,8 @@ import javax.swing.Action;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
+
+import dao.impl.TaiKhoan_Impl;
 
 public class FrmLogin extends javax.swing.JFrame {
     public static String tenDN = "";

@@ -1,10 +1,11 @@
 package testPackage.implement;
 
-import dao.impl.BanBaoCao_Impl;
 import entityJPA.BanBaoCao;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 import java.rmi.RemoteException;
+
+import dao.impl.BanBaoCao_Impl;
 
 public class BanBaoCao_Test_Implement {
     public static void main(String[] args) throws RemoteException {
