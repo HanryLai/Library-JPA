@@ -130,43 +130,43 @@ public class DAO_KhuyenMai {
     }
     
     public KhuyenMai getKMtheoMa(String ma) {
-        KhuyenMai km = null;
-        ConnectDB.getInstance();
-        Connection con = ConnectDB.getConnection();
-        PreparedStatement state = null;
-        try {
-            String sql = "select * from KhuyenMai where maKhuyenMai = ?";
-            state = con.prepareStatement(sql);
-            state.setString(1, ma);
-            ResultSet rs = state.executeQuery();
-            while (rs.next()) {
-                String maKM = rs.getString(1);
-                String tenKM = rs.getString(2);
-                String ghiChu = rs.getString(3);
-                String trangThai = rs.getString(4);
-                double tiLeKM = rs.getDouble(5);
-                double tienToiThieu = rs.getDouble(6);
-                double giaTriMAX = rs.getDouble(7);
-                Timestamp time = rs.getTimestamp(8);
-                LocalDateTime ngayBD = time.toLocalDateTime();
-                Timestamp time2 = rs.getTimestamp(9);
-                LocalDateTime ngayKT = time2.toLocalDateTime();
-
-                km = new KhuyenMai(maKM, tenKM, ghiChu, trangThai, tiLeKM, 
-                        tienToiThieu, giaTriMAX, ngayBD, ngayKT);
-            }
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        } finally {
-            try {
-                state.close();
-            } catch (Exception e2) {
-                // TODO: handle exception
-                e2.printStackTrace();
-            }
-        }
-        return km;
+//        KhuyenMai km = null;
+//        ConnectDB.getInstance();
+//        Connection con = ConnectDB.getConnection();
+//        PreparedStatement state = null;
+//        try {
+//            String sql = "select * from KhuyenMai where maKhuyenMai = ?";
+//            state = con.prepareStatement(sql);
+//            state.setString(1, ma);
+//            ResultSet rs = state.executeQuery();
+//            while (rs.next()) {
+//                String maKM = rs.getString(1);
+//                String tenKM = rs.getString(2);
+//                String ghiChu = rs.getString(3);
+//                String trangThai = rs.getString(4);
+//                double tiLeKM = rs.getDouble(5);
+//                double tienToiThieu = rs.getDouble(6);
+//                double giaTriMAX = rs.getDouble(7);
+//                Timestamp time = rs.getTimestamp(8);
+//                LocalDateTime ngayBD = time.toLocalDateTime();
+//                Timestamp time2 = rs.getTimestamp(9);
+//                LocalDateTime ngayKT = time2.toLocalDateTime();
+//
+//                km = new KhuyenMai(maKM, tenKM, ghiChu, trangThai, tiLeKM,
+//                        tienToiThieu, giaTriMAX, ngayBD, ngayKT);
+//            }
+//        } catch (Exception e) {
+//            // TODO: handle exception
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                state.close();
+//            } catch (Exception e2) {
+//                // TODO: handle exception
+//                e2.printStackTrace();
+//            }
+//        }
+        return null;
     }
     public void updateKhuyenMai(KhuyenMai s) {
         ConnectDB.getInstance().connect();

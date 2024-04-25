@@ -10,6 +10,7 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 import java.rmi.RemoteException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class HoaDonHoanTra_ChiTietHoanTra {
     public static void main(String[] args) throws RemoteException {

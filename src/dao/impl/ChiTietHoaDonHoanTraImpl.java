@@ -1,12 +1,12 @@
 package dao.impl;
 
 import dao.Interface.ChiTietHoaDonHoanTra_Dao;
-import dao.Interface.HoaDonDoiHang_Dao;
 import dao.Interface.HoaDonHoanTra_Dao;
 
 import dao.Interface.Sach_Dao;
 import entityJPA.*;
 
+import entityJPA.otherID.ChiTietHoanTraID;
 import jakarta.persistence.EntityManagerFactory;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
@@ -52,7 +52,7 @@ public class ChiTietHoaDonHoanTraImpl extends UnicastRemoteObject implements Chi
     @Override
     public ChiTietHoanTra getHoaDontheoMa(String ma1, String ma2) throws RemoteException {
         Generic_Impl<ChiTietHoanTra> gen = new Generic_Impl<>(ChiTietHoanTra.class, emf);
-        ChiTietHoanTraID id = new ChiTietHoanTraID(Integer.parseInt(ma1), Integer.parseInt(ma2));
+        ChiTietHoanTraID             id  = new ChiTietHoanTraID(Integer.parseInt(ma1), Integer.parseInt(ma2));
         return gen.findById(id);
     }
 
