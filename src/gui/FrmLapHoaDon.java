@@ -657,7 +657,7 @@ public class FrmLapHoaDon extends JPanel {
                 if (lblTenKH.getText().equals("Khách lẻ")) {
 //                    lblMaKH.getText(), "Khách lẻ", "", NhomKhachHang.KHACHLE, 0, 0
                     kh = new KhachHang();
-                    kh.setMaKhachHang(Integer.parseInt(lblMaKH.getText()));
+//                    kh.setMaKhachHang(Integer.parseInt(lblMaKH.getText()));
                     kh.setTenKhachHang("Khách lẻ");
                     kh.setNhomKhachHang(NhomKhachHang.KHACHLE);
                     kh.setSoLuongHoaDon(0);
@@ -684,13 +684,16 @@ public class FrmLapHoaDon extends JPanel {
 
                 dao_hd.createHoaDon(hd);
 
+                hd = dao_hd.getAllHoaDon().getLast();
+                System.out.println(hd);
+
                 DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
                 String ma = "";
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
                     ma = tableInForSP.getValueAt(i, 1).toString();
 
                     Sach sach = dao_sach.getSachtheoMa(ma);
-
+                    System.out.println(sach);
                     if (sach != null) {
                         Sach s = dao_sach.getSachtheoMa(ma);
                         ChiTietHoaDon cthd = new ChiTietHoaDon(hd, s, (int) tableInForSP.getValueAt(i, 4), (double) tableInForSP.getValueAt(i, 5));
@@ -841,6 +844,8 @@ public class FrmLapHoaDon extends JPanel {
             }
 
         }
+
+
 
         if (maSP.startsWith("S")) {
             Sach s = dao_sach.getSachtheoMa(maSP);
@@ -2676,7 +2681,9 @@ public class FrmLapHoaDon extends JPanel {
             DefaultTableModel modelInfo = (DefaultTableModel) tableInForSP.getModel();
             DecimalFormat df = new DecimalFormat("#,##0");
             int sl = Integer.parseInt(txtSoLuongSanPhamChon.getText());
-            if (maSP.startsWith("S")) {
+            Sach sach = dao_sach.getSachtheoMa(maSP);
+            if (sach!=null) {
+//            if (maSP.startsWith("S")) {
                 Sach s = dao_sach.getSachtheoMa(maSP);
                 if (sl >= s.getSoLuongTon()) {
                     sl = s.getSoLuongTon();

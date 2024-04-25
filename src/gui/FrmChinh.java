@@ -6,6 +6,7 @@ package gui;
 
 import dao.Interface.NhanVien_Dao;
 
+import entityJPA.ChucVu;
 import entityJPA.NhanVien;
 import menuGui.MenuEvent;
 import menuGui.TableActionCellEditor;
@@ -64,6 +65,7 @@ public class FrmChinh extends javax.swing.JFrame {
 
     private NhanVien_Dao dao_nv = Dao_Package_Static.dao_NhanVien;
     private Thread thread = null;
+    private ChucVu chucVu = null;
 
     public FrmChinh() throws RemoteException {
         initComponents();
@@ -176,7 +178,8 @@ public class FrmChinh extends javax.swing.JFrame {
                         e.printStackTrace();
                     }
                 } else if (index == 5 && subIndex == 1) {
-                    if (gui.FrmLogin.tenDN.startsWith("TN")) {
+                    System.out.println(dao_nv.getChucVuTheoTen(gui.FrmLogin.tenDN));
+                    if (dao_nv.getChucVuTheoTen(gui.FrmLogin.tenDN).equalsIgnoreCase("THUNGAN")) {
                         System.out.println("Value of tenDN 1: " + gui.FrmLogin.tenDN);
                         try {
                             showForm(new FrmBaoCao());

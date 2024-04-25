@@ -6,12 +6,7 @@ import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.KeyStroke;
+import javax.swing.*;
 
 import client_Dao.Dao_Package_Static;
 import dao.Interface.TaiKhoan_Dao;
@@ -311,7 +306,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField1.setText("nguyentanloc1108@gmail.com");
+        jTextField1.setText("nguyentanloc1108");
         jTextField1.setToolTipText("");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -320,7 +315,7 @@ public class FrmLogin extends javax.swing.JFrame {
         });
 
         jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jPasswordField1.setText("NTL@11082003");
+        jPasswordField1.setText("1234");
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
@@ -503,7 +498,12 @@ public class FrmLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     	 if (jTextField3.getText().equals(String.valueOf(otp))) {
              if (jTextField4.getText().equals(jTextField5.getText())) {
-                 dao_TaiKhoan.doiMatKhau(txtEmail.getText(), jTextField4.getText());
+                 if(dao_TaiKhoan.doiMatKhau(txtEmail.getText(), jTextField4.getText())){
+                     JOptionPane.showMessageDialog(null, "Đổi mật khẩu thành công");
+                 }
+                 else {
+                        JOptionPane.showMessageDialog(null, "Đổi mật khẩu thất bại");
+                 }
                  showPanelChange(jPanel1, jPanel2);
                  jTextField1.setText(txtEmail.getText());
              }
@@ -565,6 +565,8 @@ public class FrmLogin extends javax.swing.JFrame {
         	FrmChinh frmChinh = new FrmChinh();
         	frmChinh.setVisible(true);
         	this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Sai tên đăng nhập hoặc mật khẩu");
         }
 //        Dao_TaiKhoan dao_TaiKhoan = new Dao_TaiKhoan();
         tenDN = dao_TaiKhoan.phanQuyen(tenDangNhap+"@gmail.com");

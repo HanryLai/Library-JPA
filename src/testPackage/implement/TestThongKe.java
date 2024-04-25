@@ -21,15 +21,17 @@ public class TestThongKe {
 //        System.out.println(dateBatDau);
 
         String ngaBatDau = "01/01/2004";
-        String ngayKetThuc = "01/02/2025";
+        String ngayKetThuc = "01/02/2003";
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date dateBatDau = sdf.parse(ngaBatDau.trim());
         Date dateKetThuc = sdf.parse(ngayKetThuc.trim());
+        System.out.println(dateBatDau);
 
-//        System.out.println(thongKe_dao.thongKeDoanhThu(dateBatDau, dateKetThuc));
+        System.out.println(thongKe_dao.thongKeDoanhThu(dateBatDau, dateKetThuc));
+
 //        System.out.println(thongKe_dao.thongKeSoHoaDon(dateBatDau, dateKetThuc));
 //        System.out.println(thongKe_dao.thongKeSoHoaDonHoanTra(dateBatDau, dateKetThuc));
-        System.out.println(thongKe_dao.tienHoanTheoThang());
+//        System.out.println(thongKe_dao.tienHoanTheoThang());
 
 
     }

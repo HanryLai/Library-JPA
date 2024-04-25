@@ -38,7 +38,7 @@ public class HoaDon_ChiTietHoaDon {
         hd1.setNgayLap(LocalDateTime.now());
         hd1.setGhiChu("Ghi chú 1");
         hd1.setTinhTrangHoaDon(1);
-        hd1.setTongTien(1000);
+        hd1.setTongTien(5500);
         hd1.setChietKhau(0);
         hd1.setKhuyenMai("Không");
         hd1.setKhachHang(kh1);
