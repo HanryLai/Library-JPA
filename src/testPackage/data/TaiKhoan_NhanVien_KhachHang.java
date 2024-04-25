@@ -15,6 +15,7 @@ public class TaiKhoan_NhanVien_KhachHang {
         TaiKhoan taiKhoan2 = new TaiKhoan("phunganhminh", "5678", "phunganhminh@gmail.com");
         TaiKhoan taiKhoan3 = new TaiKhoan("tranthithuyvy", "1111", "tranthithuyvy@gmail.com");
         TaiKhoan taiKhoan4 = new TaiKhoan("laiduongminhhieu", "2222", "laiduongminhhieu@gmail.com");
+        TaiKhoan taiKhoan5 = new TaiKhoan("nguyenvana", "1111", "nguyenvana@gmail.com");
         // CaLamViec
         CaLamViec ca1 = new CaLamViec("Sáng", new Time(6,0,0), new Time(11,59,59));
         CaLamViec ca2 = new CaLamViec("Chiều", new Time(12,0,0), new Time(17,59,59));
@@ -28,6 +29,8 @@ public class TaiKhoan_NhanVien_KhachHang {
                 "0123456789", "Nữ", "tranthithuyvy@gmail.com", taiKhoan3, 1, ca2, ChucVu.QUANLY);
         NhanVien nhanVien4 = new NhanVien("Lại Dương Minh Hiếu", LocalDate.of(2003, 1, 1),
                 "0123456789", "Nam", "laiduongminhhieu@gmail.com", taiKhoan4, 1, ca3, ChucVu.QUANLY);
+        NhanVien nhanVien5 = new NhanVien("Nguyen Van A", LocalDate.of(1999, 1, 1),
+                "0333666999", "Nam", "nguyenvana@gmail.com", taiKhoan5, 1, ca3, ChucVu.THUNGAN);
         // KhachHang
         KhachHang khachHang1 = new KhachHang();
         khachHang1.setTenKhachHang("Nguyễn Van A");
@@ -49,6 +52,7 @@ public class TaiKhoan_NhanVien_KhachHang {
         em.persist(taiKhoan2);
         em.persist(taiKhoan3);
         em.persist(taiKhoan4);
+        em.persist(taiKhoan5);
         // CaLamViec
         em.persist(ca1);
         em.persist(ca2);
@@ -58,6 +62,7 @@ public class TaiKhoan_NhanVien_KhachHang {
         em.persist(nhanVien2);
         em.persist(nhanVien3);
         em.persist(nhanVien4);
+        em.persist(nhanVien5);
         // KhachHang
         em.persist(khachHang1);
         em.persist(khachHang2);

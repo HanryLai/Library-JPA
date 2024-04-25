@@ -12,7 +12,8 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "ChiTietBanBaoCao")
-public class ChiTietBanBaoCao {
+public class ChiTietBanBaoCao implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
 	private ChiTietBanBaoCaoID id;

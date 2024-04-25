@@ -2840,7 +2840,11 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         btnThemSP3.setMargin(new java.awt.Insets(2, 10, 3, 10));
         btnThemSP3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemSP3ActionPerformed(evt);
+                try {
+                    btnThemSP3ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -2862,6 +2866,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         jLabel94.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel94.setText("Tên nhóm sản phẩm");
 
+
         txtTimKH43.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtTimKH43.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtTimKH43.addActionListener(new java.awt.event.ActionListener() {
@@ -2869,6 +2874,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
                 txtTimKH43ActionPerformed(evt);
             }
         });
+        txtTimKH43.setEnabled(false);
 
         txtTimKH44.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtTimKH44.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -5429,9 +5435,6 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         sNew.setNamXuatBan(namXB);
         sNew.setNhaSanXuat(nhaXB);
         sNew.setSoTrang(soStrang);
-        System.out.println("---------------------------------------------------");
-        System.out.println(sNew);
-        System.out.println("---------------------------------------------------");
 
         if (valiDataThemSach()) {
             dao_sach.createSach(sNew);
@@ -5688,9 +5691,22 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         showPanelChange(pnlChange, pnlCenter);
     }// GEN-LAST:event_btnQuayLai6ActionPerformed
 
-    private void btnThemSP3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThemSP3ActionPerformed
+    private void btnThemSP3ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {// GEN-FIRST:event_btnThemSP3ActionPerformed
         // TODO add your handling code here:
-        jDialogThemNhomSP.setVisible(false);
+
+        if (txtTimKH43.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập tên nhóm sản phẩm");
+        }
+        else{
+            String name = txtTimKH43.getText();
+            NhaCungCap result = new NhaCungCap();
+            result.setTenNCC(name);
+
+            dao_ncc.themNhaCungCap(result);
+            jDialogThemNhomSP.setVisible(false);
+        }
+
+
     }// GEN-LAST:event_btnThemSP3ActionPerformed
 
     private void btnSuaKH3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSuaKH3ActionPerformed

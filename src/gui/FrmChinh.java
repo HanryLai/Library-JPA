@@ -6,6 +6,7 @@ package gui;
 
 import dao.Interface.NhanVien_Dao;
 
+import entityJPA.ChucVu;
 import entityJPA.NhanVien;
 import menuGui.MenuEvent;
 import menuGui.TableActionCellEditor;
@@ -64,6 +65,7 @@ public class FrmChinh extends javax.swing.JFrame {
 
     private NhanVien_Dao dao_nv = Dao_Package_Static.dao_NhanVien;
     private Thread thread = null;
+    private ChucVu chucVu = null;
 
     public FrmChinh() throws RemoteException {
         initComponents();
@@ -136,7 +138,7 @@ public class FrmChinh extends javax.swing.JFrame {
             public void selected(int index, int subIndex) throws Exception {
                 if (index == 0) {
                     dispose();
-                    new FrmChinh().setVisible(true);
+//                    new FrmChinh().setVisible(true);
                 } else if (index == 1 && subIndex == 1) {
                     showForm(new FrmLapHoaDon());
                 } else if (index == 1 && subIndex == 2) {
@@ -176,7 +178,8 @@ public class FrmChinh extends javax.swing.JFrame {
                         e.printStackTrace();
                     }
                 } else if (index == 5 && subIndex == 1) {
-                    if (gui.FrmLogin.tenDN.startsWith("TN")) {
+                    System.out.println(dao_nv.getChucVuTheoTen(gui.FrmLogin.tenDN));
+                    if (dao_nv.getChucVuTheoTen(gui.FrmLogin.tenDN).equalsIgnoreCase("THUNGAN")) {
                         System.out.println("Value of tenDN 1: " + gui.FrmLogin.tenDN);
                         try {
                             showForm(new FrmBaoCao());
@@ -1598,44 +1601,44 @@ public class FrmChinh extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new FrmChinh().setVisible(true);
-                } catch (RemoteException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(FrmChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(FrmChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(FrmChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(FrmChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                try {
+//                    new FrmChinh().setVisible(true);
+//                } catch (RemoteException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel body;

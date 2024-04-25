@@ -149,26 +149,34 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 			TaiKhoan taiKhoan = em.createQuery(query, TaiKhoan.class)
 					.setParameter("email", email)
 					.getSingleResult();
+			System.out.println(taiKhoan);
 			if (taiKhoan == null) {
-				JOptionPane.showMessageDialog(null, "Email nhân viên không tồn tại.");
+				return false;
 			}
-			em.getTransaction().begin();
+			em.close();
+			//em.getTransaction().begin();
 			String queryUpdatePwd = "UPDATE TaiKhoan SET matkhau = :matkhau WHERE email = :email ";
-			Query  updatePwdQuery = em.createNativeQuery(queryUpdatePwd);
-			updatePwdQuery.setParameter("matkhau", newPassword);
-			updatePwdQuery.setParameter("email", email);
+			taiKhoan.setMatKhau(newPassword);
+//			Query  updatePwdQuery = em.createNativeQuery(queryUpdatePwd);
+//			updatePwdQuery.setParameter("matkhau", newPassword);
+//			updatePwdQuery.setParameter("email", email);
+			Generic_Impl<TaiKhoan> generic = new Generic_Impl<>(TaiKhoan.class, emf);
+//			generic.update(taiKhoan);
+//			int rowsAffected = updatePwdQuery.executeUpdate();
 
-			int rowsAffected = updatePwdQuery.executeUpdate();
-
-			if (rowsAffected > 0) {
+			//em.getTransaction().commit();
+			//em.close();
+			if (generic.update(taiKhoan)) {
 				return true;
 			} else {
 				return false;
 			}
+
         } catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
+
 	}
 
 	@Override
