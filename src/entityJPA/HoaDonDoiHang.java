@@ -1,5 +1,6 @@
 package entityJPA;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -16,26 +17,28 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "HoaDonDoiHang")
-public class HoaDonDoiHang {
+public class HoaDonDoiHang implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maHoaDonDoi;
 	
-	@OneToMany(mappedBy = "hoaDonDoiHang")
-	private Set<ChiTietDoiHang> chiTietDoiHang;
+	@OneToMany(mappedBy = "hoaDonDoiHang",fetch = FetchType.LAZY)
+	private List<ChiTietDoiHang> chiTietDoiHang;
+
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "maHoaDonHoanTra")
     private HoaDonHoanTra hoaDonHoanTra;
 
 	@Column(columnDefinition = "nvarchar(500)")
 	private String ghiChu;
-	private float tienHoanTra;
-	private float chietKhau;
+	private Double tienHoanTra;
+	private Double chietKhau;
 	@Column(columnDefinition = "nvarchar(50)")
 	private String khuyenMai;
 
-	public HoaDonDoiHang(HoaDonHoanTra hoaDonHoanTra, String ghiChu, float tienHoanTra, float chietKhau, String khuyenMai) {
+	public HoaDonDoiHang(HoaDonHoanTra hoaDonHoanTra, String ghiChu, Double tienHoanTra, Double chietKhau, String khuyenMai) {
 		this.hoaDonHoanTra = hoaDonHoanTra;
 		this.ghiChu = ghiChu;
 		this.tienHoanTra = tienHoanTra;

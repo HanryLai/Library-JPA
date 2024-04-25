@@ -14,7 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "TaiKhoan")
-public class TaiKhoan {
+public class TaiKhoan  {
 	@Id
 	@Column(columnDefinition = "nvarchar(100)")
 	private String tenDangNhap;

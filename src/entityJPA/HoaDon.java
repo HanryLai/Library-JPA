@@ -1,5 +1,6 @@
 package entityJPA;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,7 +24,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @Table(name = "HoaDon")
-public class HoaDon {
+public class HoaDon implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maHoaDon;

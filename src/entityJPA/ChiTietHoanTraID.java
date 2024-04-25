@@ -12,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @Embeddable
 public class ChiTietHoanTraID implements Serializable{
-
+	private static final long serialVersionUID = 1L;
 	private int maHoaDonHoaTra;
 	private int maSanPham;
 

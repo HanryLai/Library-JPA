@@ -32,7 +32,7 @@ public class ChiTietHoaDonDoi_Data {
         HoaDonDoiHang_Dao daodh = new HoaDonDoiHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         HoaDonHoanTra     hdht  = daoht.getHoaDonHoanTratheoMa("1");
 
-        HoaDonDoiHang hddh = new HoaDonDoiHang(hdht, "ghi chu", 50f, 0.1f, "khum");
+        HoaDonDoiHang hddh = new HoaDonDoiHang(hdht, "ghi chu", 50.0, 0.1, "khum");
 
         System.out.println(daodh.createHoaDonDoiHang(hddh));
 

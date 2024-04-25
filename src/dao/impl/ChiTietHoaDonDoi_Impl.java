@@ -3,10 +3,8 @@ package dao.impl;
 import dao.Interface.ChiTietHoaDonDoi_Dao;
 import dao.Interface.HoaDonHoanTra_Dao;
 import dao.Interface.HoaDon_Dao;
-import entityJPA.ChiTietHoaDonDoi;
-import entityJPA.HoaDonDoiHang;
-import entityJPA.Sach;
-import entityJPA.SanPham;
+import entityJPA.*;
+import entityJPA.otherID.ChiTietHoaDonDoiID;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -15,6 +13,7 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChiTietHoaDonDoi_Impl extends UnicastRemoteObject implements ChiTietHoaDonDoi_Dao {
     private final EntityManagerFactory emf;
@@ -49,21 +48,15 @@ public class ChiTietHoaDonDoi_Impl extends UnicastRemoteObject implements ChiTie
 
     @Override
     public void deleteChiTietDonDoi(String maHD) throws Exception {
-       try {
-           EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-mssql");
-           EntityManager em = emf.createEntityManager();
-           String query = "DELETE FROM ChiTietHoaDonDoi WHERE maHoaDonDoi = ?1";
-           em.getTransaction().begin();
-           em.createNativeQuery(query)
-                   .setParameter(1, maHD)
-                   .executeUpdate();
-           em.getTransaction().commit();
-           em.close();
-       } catch (Exception e) {
-           e.printStackTrace();
+       Generic_Impl<ChiTietHoaDonDoi> generic = new Generic_Impl<>(ChiTietHoaDonDoi.class, emf);
+       List<ChiTietHoaDonDoi> temp = generic.findByProperty("id.maHoaDonDoi",maHD);
+       for(ChiTietHoaDonDoi cthd : temp){
+           generic.delete(cthd.getId());
        }
-
     }
+
+
+
 
     @Override
     public ChiTietHoaDonDoi getHoaDontheoMa(String ma1, String ma2) throws Exception {
@@ -104,7 +97,8 @@ public class ChiTietHoaDonDoi_Impl extends UnicastRemoteObject implements ChiTie
 //        HoaDonDoiHang hoaDonDoiHang = hoaDonDoiHang_dao.getHoaDonDoiHangtheoMa("1");
 //        Sach_Impl sach_dao = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
 //        SanPham sanPham = sach_dao.getSachtheoMa("2");
-//        ChiTietHoaDonDoi cthd = new ChiTietHoaDonDoi(hoaDonDoiHang, sanPham, 1, 1);
+//        ChiTietHoaDonDoi cthd = new ChiTietHoaDonDoi();
+//        cthd.setId(new ChiTietHoaDonDoiID(1,1));
 //        System.out.println(dao.createChiTietDonDoi(cthd));
          // get all
 //        for (ChiTietHoaDonDoi cthd : dao.getAllChiTietDonDoi()) {
@@ -113,6 +107,6 @@ public class ChiTietHoaDonDoi_Impl extends UnicastRemoteObject implements ChiTie
 //       // find by id
 //       System.out.printf(dao.getHoaDontheoMa("1", "2").toString());
         // delete
-        dao.deleteChiTietDonDoi("1");
+//        dao.deleteChiTietDonDoi("1");
     }
 }

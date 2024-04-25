@@ -15,7 +15,8 @@ import lombok.*;
 @Entity
 @EqualsAndHashCode
 @Table(name = "ChiTietHoaDon")
-public class ChiTietHoaDon {
+public class ChiTietHoaDon  {
+
 	
 	@EmbeddedId
 	private ChiTietHoaDonID id;

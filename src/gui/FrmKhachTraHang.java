@@ -290,8 +290,8 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
 //                txtMaKhuyenMai.getText()
                 hddh.setMaHoaDonDoi(Integer.parseInt(lblMaHoaDonDoiHang.getText()));
                 hddh.setGhiChu(jTextAreaGhiChuDoiHang.getText());
-                hddh.setTienHoanTra(Float.parseFloat(lblTongTienThanhToanDoi.getText()));
-                hddh.setChietKhau(Float.parseFloat(txtTienChietKhau.getText()));
+                hddh.setTienHoanTra(Double.parseDouble(lblTongTienThanhToanDoi.getText()));
+                hddh.setChietKhau(Double.parseDouble(txtTienChietKhau.getText()));
                 hddh.setKhuyenMai(txtMaKhuyenMai.getText());
 
                 dao_hddh.createHoaDonDoiHang(hddh);
@@ -349,11 +349,12 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
 
                 hdht.setMaHoaDonHoanTra(Integer.parseInt(lblMaHoaDonHoanTra.getText()));
                 hdht.setNgayHoan(LocalDate.from(ngayLap));
-                hdht.setNhanVien(nv.getMaNhanVien());
+                NhanVien nhanVien = dao_nv.getNVTheoMa(maNhanVien);
+                hdht.setNhanVien(nhanVien);
                 hdht.setHoaDon(hd);
                 hdht.setGhiChu(jTextAreaGhiChuTraHang.getText());
                 hdht.setTinhTrangHoaDon(1);
-                hdht.setTienHoanTra(Float.parseFloat(lblTongTienHoan.getText()));
+                hdht.setTienHoanTra(Double.parseDouble(lblTongTienHoan.getText()));
 
                 dao_hdht.createHoaDonHoanTra(hdht);
                 DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();

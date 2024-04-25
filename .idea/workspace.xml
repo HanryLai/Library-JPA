@@ -6,8 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3840fe-7815-4ca2-bd69-f0e9f3e7cd1d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmLapHoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmLapHoaDon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/printReport/ReportManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/printReport/ReportManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/NewClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonDoi_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonDoi_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/CaLamViec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/CaLamViec.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietHoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietHoaDon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietHoaDonDoi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietHoaDonDoi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTraID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTraID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDonDoiHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDonDoiHang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDonHoanTra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDonHoanTra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/KhachHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/KhachHang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/MauSac.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/MauSac.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/NhaCungCap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/NhaCungCap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/NhanVien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/NhanVien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/NhomSanPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/NhomSanPham.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/TaiKhoan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/TaiKhoan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/otherID/ChiTietDoiHangID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/otherID/ChiTietDoiHangID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmKhachTraHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmKhachTraHang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testPackage/data/ChiTietHoaDonDoi_Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/data/ChiTietHoaDonDoi_Data.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +56,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ChiTietHoaDonDoi_Impl.executor": "Run",
     "Application.FrmLapHoaDon.executor": "Run",
     "Application.MainTest.executor": "Run",
     "Application.Main_Create_Data.executor": "Run",
@@ -61,13 +79,13 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.MainTest">
-    <configuration name="FrmLapHoaDon" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gui.FrmLapHoaDon" />
+  <component name="RunManager" selected="Application.Main_Create_Data">
+    <configuration name="ChiTietHoaDonDoi_Impl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.impl.ChiTietHoaDonDoi_Impl" />
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="gui.*" />
+          <option name="PATTERN" value="dao.impl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -75,8 +93,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FrmLogin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gui.FrmLogin" />
+    <configuration name="FrmLapHoaDon" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.FrmLapHoaDon" />
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
@@ -129,11 +147,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main_Create_Data" />
+        <item itemvalue="Application.ChiTietHoaDonDoi_Impl" />
         <item itemvalue="Application.MainTest" />
         <item itemvalue="Application.TaiKhoan_NhanVien_KhachHang" />
         <item itemvalue="Application.FrmLapHoaDon" />
-        <item itemvalue="Application.FrmLogin" />
-        <item itemvalue="Application.Main_Create_Data" />
       </list>
     </recent_temporary>
   </component>
@@ -158,6 +176,7 @@
       <workItem from="1713938023712" duration="3547000" />
       <workItem from="1713943733195" duration="7420000" />
       <workItem from="1714009515172" duration="2311000" />
+      <workItem from="1714033194732" duration="3254000" />
     </task>
     <servers />
   </component>
