@@ -71,8 +71,7 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
  *
  * @author nguyen chau tai
  */
-//public class FrmNhanVien extends javax.swing.JPanel {
-public class FrmNhanVien extends javax.swing.JFrame {
+public class FrmNhanVien extends javax.swing.JPanel {
 
     /**
      * Creates new form FrmDSKhachHang

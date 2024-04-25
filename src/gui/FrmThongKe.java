@@ -53,7 +53,7 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
  *
  * @author nguyen chau tai
  */
-public class FrmThongKe extends javax.swing.JFrame {
+public class FrmThongKe extends javax.swing.JPanel {
 
     DecimalFormat deciFormat = new DecimalFormat("###.###");
     /**
