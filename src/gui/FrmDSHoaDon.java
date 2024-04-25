@@ -81,14 +81,15 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import client_Dao.Dao_Package_Static;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *
  * @author nguyen chau tai
  */
-//public class FrmDSHoaDon extends javax.swing.JPanel {
-public class FrmDSHoaDon extends javax.swing.JFrame {
+public class FrmDSHoaDon extends javax.swing.JPanel {
     /**
      * Creates new form FrmDSKhachHang
      */
@@ -100,23 +101,18 @@ public class FrmDSHoaDon extends javax.swing.JFrame {
      * Creates new form FrmDSKhachHang
      */
     private FrmChinh frm = new FrmChinh();
-    private VanPhongPham_Dao dao_vpp = new VanPhongPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private Sach_Dao dao_sach = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhomSanPham_Dao dao_nsp = new NhomSanPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhaCungCap_Dao dao_ncc = new NhaCungCap_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    //private MauSac_Dao dao_mausac = new MauSac_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private KhachHang_Dao dao_kh = new KhachHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private HoaDon_Dao dao_hd = new HoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private ChiTietHoaDon_Dao dao_cthd = new ChiTietHoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhanVien_Dao dao_nv = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private VanPhongPham_Dao dao_vpp = Dao_Package_Static.dao_VanPhongPham;
+    private Sach_Dao dao_sach = Dao_Package_Static.dao_Sach;
+    private NhomSanPham_Dao dao_nsp = Dao_Package_Static.dao_NhomSanPham;
+    private NhaCungCap_Dao dao_ncc = Dao_Package_Static.dao_NhaCungCap;
+    private MauSac_Dao dao_mausac = Dao_Package_Static.dao_MauSac;
+    private KhachHang_Dao dao_kh = Dao_Package_Static.dao_KhachHang;
+    private HoaDon_Dao dao_hd = Dao_Package_Static.dao_HoaDon;
+    private ChiTietHoaDon_Dao dao_cthd = Dao_Package_Static.dao_ChiTietHoaDon;
+    private NhanVien_Dao dao_nv = Dao_Package_Static.dao_NhanVien;
     private Thread thread = null;
     private DAO_KhuyenMai dao_khuyenMai = new DAO_KhuyenMai();
 
-    public static void main(String[] args) throws Exception {
-        FrmDSHoaDon frm = new FrmDSHoaDon();
-        frm.setSize(500,300);
-        frm.setVisible(true);
-    }
 
     public FrmDSHoaDon() throws Exception {
         try {

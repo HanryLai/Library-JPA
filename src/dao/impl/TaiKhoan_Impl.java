@@ -24,12 +24,10 @@ import java.util.Random;
 public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 	private EntityManagerFactory emf;
 
-	private Generic_Impl<TaiKhoan> generic;
-
 	public TaiKhoan_Impl(EntityManagerFactory emf) throws RemoteException {
 		this.emf = emf;
 	}
-
+	@Override
 	public boolean xacThucNguoiDung(String tenDangNhap, String matKhau) throws RemoteException{
 		try {
 			String   query    = "SELECT c FROM TaiKhoan c WHERE tenDangNhap = :tenDangNhap";
@@ -63,7 +61,7 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 			return false;
 		}
 	}
-
+	@Override
 	public int sendEmail(String email) throws RemoteException{
 		final String from     = "ttrandanghieu42@gmail.com";
 		final String password = "tcth pwux kmfg aokb";
@@ -107,7 +105,7 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 		}
 
 	}
-
+	@Override
 	public String phanQuyen(String email) throws RemoteException{
 		String tenDN = "";
 		try {
@@ -126,7 +124,7 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 		}
 		return tenDN;
 	}
-
+	@Override
 	public String getTenNguoiDung(String email) throws RemoteException{
 		String tenND = "";
 		try {
@@ -145,7 +143,7 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 		}
 		return tenND;
 	}
-
+	@Override
 	public void doiMatKhau(String email, String newPassword) throws RemoteException{
 		try {
 			String query = "SELECT c FROM TaiKhoan c WHERE email = :email";
@@ -185,6 +183,17 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public boolean createTaiKhoan(TaiKhoan taiKhoan) throws RemoteException {
+		try {
+			Generic_Impl<TaiKhoan> generic = new Generic_Impl<>(TaiKhoan.class, emf);
+			return generic.save(taiKhoan);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 

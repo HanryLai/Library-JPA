@@ -5,66 +5,59 @@
 package gui;
 
 import java.awt.Color;
-import java.rmi.RemoteException;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
-
-import com.toedter.calendar.JDateChooser;
-
-import dao.impl.CaLamViec_Impl;
-import dao.impl.Generic_Impl;
-import dao.impl.NhanVien_Impl;
-import entityJPA.CaLamViec;
-import entityJPA.ChucVu;
-import entityJPA.NhanVien;
-import entityJPA.TaiKhoan;
-
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import lombok.SneakyThrows;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import client_Dao.Dao_Package_Static;
+import dao.Dao_TaiKhoan;
+import dao.Interface.CaLamViec_Dao;
+import dao.Interface.NhanVien_Dao;
+import dao.Interface.TaiKhoan_Dao;
+import dao.impl.Generic_Impl;
+import dao.impl.NhanVien_Impl;
+import entityJPA.CaLamViec;
+import entityJPA.ChucVu;
+import entityJPA.NhanVien;
+import entityJPA.TaiKhoan;
+import jakarta.persistence.EntityManager;
+import lombok.SneakyThrows;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
@@ -79,8 +72,8 @@ public class FrmNhanVien extends javax.swing.JFrame {
      */
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
-    private NhanVien_Impl dao_nhanvien = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private CaLamViec_Impl dao_calamviec = new CaLamViec_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private NhanVien_Dao dao_nhanvien = Dao_Package_Static.dao_NhanVien;
+    private CaLamViec_Dao dao_calamviec = Dao_Package_Static.dao_CaLamViec;
 
     public static void main(String[] args) throws SQLException, RemoteException {
         FrmNhanVien frm = new FrmNhanVien();
@@ -416,7 +409,7 @@ public class FrmNhanVien extends javax.swing.JFrame {
     public void loadData() throws SQLException, RemoteException {
         deleteTable();
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        dao_nhanvien = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+        dao_nhanvien = Dao_Package_Static.dao_NhanVien;
         data = dao_nhanvien.getAllNhanVienTheoCa(thietLapCaLamViec());
         jDateChooser3.setDate(new Date());
         int stt = 1;
@@ -2706,9 +2699,9 @@ public class FrmNhanVien extends javax.swing.JFrame {
         String email = txtTimKH10.getText();
         // Them taiKhoan truoc khi them nhan vien
         TaiKhoan taiKhoan = new TaiKhoan(email.substring(0, email.indexOf("@")), "1111", email);
-        EntityManager em = EntityManagerFactory_Static.getEntityManagerFactory().createEntityManager();
-        Generic_Impl<TaiKhoan> generic_Impl = new Generic_Impl<>(TaiKhoan.class, EntityManagerFactory_Static.getEntityManagerFactory());
-        generic_Impl.save(taiKhoan);
+  
+        TaiKhoan_Dao dao_taikhoan = Dao_Package_Static.dao_TaiKhoan;
+        dao_taikhoan.createTaiKhoan(taiKhoan);
 
         int tinhTrangLamViec = Integer.parseInt(String.valueOf(jComboBox2.getSelectedItem()));
         String caLv = String.valueOf(jComboBox5.getSelectedItem());
@@ -2979,7 +2972,7 @@ public class FrmNhanVien extends javax.swing.JFrame {
 
         showPanelChange(pnlChange, pnlCenterSua);
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        dao_nhanvien = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+        dao_nhanvien = Dao_Package_Static.dao_NhanVien;
         int maNhanVien = Integer.parseInt(model.getValueAt(jTable2.getSelectedRow(), 1).toString());
         NhanVien nv = dao_nhanvien.getNVTheoMa(maNhanVien);
 

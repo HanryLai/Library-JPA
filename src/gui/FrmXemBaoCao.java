@@ -43,6 +43,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import client_Dao.Dao_Package_Static;
 import dao.DAO_ChiTietBanBaoCao;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
@@ -50,7 +51,7 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
  *
  * @author nguyen chau tai
  */
-public class FrmXemBaoCao extends javax.swing.JFrame {
+public class FrmXemBaoCao extends javax.swing.JPanel {
 
     /**
      * Creates new form FrmDSKhachHang
@@ -58,7 +59,6 @@ public class FrmXemBaoCao extends javax.swing.JFrame {
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
     public FrmXemBaoCao() throws SQLException, RemoteException {
-        setSize(1920, 1080);
         initComponents();
         loadData();
         thread = new Thread(this::setTimeAuto);
@@ -68,10 +68,6 @@ public class FrmXemBaoCao extends javax.swing.JFrame {
         
     }
 
-    public static void main(String[] args) throws SQLException, RemoteException {
-        new FrmXemBaoCao().setVisible(true);
-    }
-    
     public void offField(){
         lblDTCN.setVisible(false);
         txtDTCN.setVisible(false);
@@ -105,7 +101,7 @@ public class FrmXemBaoCao extends javax.swing.JFrame {
         dm.getDataVector().removeAllElements();
     }
 
-    private BanBaoCao_Dao dao_BCDT = new BanBaoCao_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private BanBaoCao_Dao dao_BCDT = Dao_Package_Static.dao_BanBaoCao;
     private ArrayList<BanBaoCao> data;
     
     public void loadData() throws SQLException, RemoteException {
@@ -136,9 +132,9 @@ public class FrmXemBaoCao extends javax.swing.JFrame {
     }
 
 //    private DAO_ChiTietBanBaoCao dao_CTBC = new DAO_ChiTietBanBaoCao();
-    ChiTietBaoCao_Dao dao_CTBC = new ChiTietBanBaoCao_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    ChiTietBaoCao_Dao dao_CTBC = Dao_Package_Static.dao_ChiTietBaoCao;
 //    private DAO_BanBaoCao dao_BBC;
-private BanBaoCao_Dao dao_BBC = new BanBaoCao_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+private BanBaoCao_Dao dao_BBC = Dao_Package_Static.dao_BanBaoCao;
     private ArrayList<ChiTietBanBaoCao> dataX;
     private ArrayList<ChiTietBanBaoCao> dataTTSach;
     private ArrayList<ChiTietBanBaoCao> dataTTVPP;
@@ -165,7 +161,7 @@ private BanBaoCao_Dao dao_BBC = new BanBaoCao_Impl(EntityManagerFactory_Static.g
     }
     
 //    private DAO_HoaDon dao_hoadon = new DAO_HoaDon();
-    private HoaDon_Dao dao_hoadon = new HoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private HoaDon_Dao dao_hoadon = Dao_Package_Static.dao_HoaDon;
     private CategoryDataset createDataset() throws RemoteException {
         String ngayHienTai = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         System.out.println("day:"+ngayHienTai);
@@ -1745,7 +1741,7 @@ private BanBaoCao_Dao dao_BBC = new BanBaoCao_Impl(EntityManagerFactory_Static.g
     public static String tenNVBC = "";
     public static String thoiGianBC="";
 //    private DAO_BanBaoCao dao_BBC1 = new DAO_BanBaoCao();
-    private BanBaoCao_Dao dao_BBC1 = new BanBaoCao_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private BanBaoCao_Dao dao_BBC1 = Dao_Package_Static.dao_BanBaoCao;
     private void tableXemBCMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_tableXemBCMouseClicked
         // TODO add your handling code here:
         if(evt.getSource().equals(tableXemBC)){

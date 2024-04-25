@@ -53,6 +53,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import client_Dao.Dao_Package_Static;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
@@ -68,19 +70,19 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
      * Creates new form FrmDSKhachHang
      */
     private FrmChinh frm = new FrmChinh();
-    private VanPhongPham_Dao dao_vpp = new VanPhongPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private Sach_Dao dao_sach = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhomSanPham_Dao dao_nsp = new NhomSanPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhaCungCap_Dao dao_ncc = new NhaCungCap_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private MauSac_Dao dao_mausac = new MauSac_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private KhachHang_Dao dao_kh = new KhachHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private HoaDon_Dao dao_hd = new HoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private ChiTietHoaDon_Dao dao_cthd = new ChiTietHoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhanVien_Dao dao_nv = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private HoaDonHoanTra_Dao dao_hdht = new HoaDonHoanTra_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private ChiTietHoaDonHoanTra_Dao dao_ctht = new ChiTietHoaDonHoanTra_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private HoaDonDoiHang_Dao dao_hddh = new HoaDonDoiHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private ChiTietHoaDonDoi_Dao dao_ctdd = new ChiTietHoaDonDoi_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private VanPhongPham_Dao dao_vpp = Dao_Package_Static.dao_VanPhongPham;
+    private Sach_Dao dao_sach = Dao_Package_Static.dao_Sach;
+    private NhomSanPham_Dao dao_nsp = Dao_Package_Static.dao_NhomSanPham;
+    private NhaCungCap_Dao dao_ncc = Dao_Package_Static.dao_NhaCungCap;
+    private MauSac_Dao dao_mausac = Dao_Package_Static.dao_MauSac;
+    private KhachHang_Dao dao_kh = Dao_Package_Static.dao_KhachHang;
+    private HoaDon_Dao dao_hd = Dao_Package_Static.dao_HoaDon;
+    private ChiTietHoaDon_Dao dao_cthd = Dao_Package_Static.dao_ChiTietHoaDon;
+    private NhanVien_Dao dao_nv = Dao_Package_Static.dao_NhanVien;
+    private HoaDonHoanTra_Dao dao_hdht = Dao_Package_Static.dao_HoaDonHoanTra;
+    private ChiTietHoaDonHoanTra_Dao dao_ctht = Dao_Package_Static.dao_ChiTietHoaDonHoanTra;
+    private HoaDonDoiHang_Dao dao_hddh = Dao_Package_Static.dao_HoaDonDoiHang;
+    private ChiTietHoaDonDoi_Dao dao_ctdd = Dao_Package_Static.dao_ChiTietHoaDonDoi;
     private Thread thread = null;
     private Thread thread1 = null;
     private DAO_KhuyenMai dao_khuyenMai = new DAO_KhuyenMai();

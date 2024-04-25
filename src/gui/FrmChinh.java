@@ -56,6 +56,7 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import client_Dao.Dao_Package_Static;
 import dao.DAO_NhanVien;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
@@ -63,7 +64,7 @@ public class FrmChinh extends javax.swing.JFrame {
 
     private JLayeredPane layered = new JLayeredPane();
 
-    private NhanVien_Dao dao_nv = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private NhanVien_Dao dao_nv = Dao_Package_Static.dao_NhanVien;
     private Thread thread = null;
 
     public FrmChinh() throws RemoteException {

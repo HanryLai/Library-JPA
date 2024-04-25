@@ -81,7 +81,7 @@ public class Server {
 
 
 
-        LocateRegistry.createRegistry(1900);
+        LocateRegistry.createRegistry(7878);
 
         Naming.bind(localHost + "BanBaoCao", dao_BanBaoCao);
         Naming.bind(localHost + "CaLamViec", dao_CaLamViec);

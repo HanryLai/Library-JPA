@@ -59,6 +59,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import client_Dao.Dao_Package_Static;
 import dao.DAO_NhaCungCap;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
@@ -66,24 +67,20 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
  *
  * @author nguyen chau tai
  */
-public class FrmNhaCungCap extends javax.swing.JFrame implements MouseListener {
+public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
 
     /**
      * Creates new form FrmDSKhachHang
      */
 //    private DAO_NhaCungCap dao_ncc = new DAO_NhaCungCap();
-    private NhaCungCap_Dao dao_ncc = new NhaCungCap_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private NhaCungCap_Dao dao_ncc = Dao_Package_Static.dao_NhaCungCap;
     private ArrayList<NhaCungCap> data = new ArrayList<NhaCungCap>();
 
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
 
-    public static void main(String[] args) throws Exception {
-        new FrmNhaCungCap().setVisible(true);
-    }
     
     public FrmNhaCungCap() throws Exception {
-        setSize(1690, 787);
         initComponents();
         kiemTraThem();
         loadData();

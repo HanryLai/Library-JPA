@@ -1,53 +1,76 @@
 package gui;
 
 
-import entityJPA.*;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.rmi.RemoteException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.regex.Pattern;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.KeyStroke;
+import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
+import com.barcodelib.barcode.Linear;
+
+import client_Dao.Dao_Package_Static;
+import dao.Interface.ChiTietHoaDon_Dao;
+import dao.Interface.HoaDon_Dao;
+import dao.Interface.KhachHang_Dao;
+import dao.Interface.MauSac_Dao;
+import dao.Interface.NhaCungCap_Dao;
+import dao.Interface.NhanVien_Dao;
+import dao.Interface.NhomSanPham_Dao;
+import dao.Interface.Sach_Dao;
+import dao.Interface.VanPhongPham_Dao;
+import dao.impl.ChiTietHoaDon_Impl;
+import dao.impl.HoaDon_Impl;
+import dao.impl.KhachHang_Impl;
+import dao.impl.MauSac_Impl;
+import dao.impl.NhaCungCap_Impl;
+import dao.impl.NhanVien_Impl;
+import dao.impl.NhomSanPham_Impl;
+import dao.impl.Sach_Impl;
+import entityJPA.ChiTietHoaDon;
+import entityJPA.HoaDon;
+import entityJPA.KhachHang;
+import entityJPA.NhanVien;
+import entityJPA.NhomKhachHang;
+import entityJPA.NhomSanPham;
+import entityJPA.Sach;
+import entityJPA.VanPhongPham;
 import menuGui.TableActionCellEditor;
 import menuGui.TableActionCellRender;
 import menuGui.TableActionEvent;
 import printReport.FieldReport;
 import printReport.ParameterReport;
 import printReport.ReportManager;
-
-import com.barcodelib.barcode.Linear;
-
-import dao.impl.*;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
-
-import java.awt.*;
-import java.awt.event.AWTEventListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowFocusListener;
-import java.rmi.RemoteException;
-import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.regex.Pattern;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -65,15 +88,15 @@ public class FrmLapHoaDon extends JPanel {
      * Creates new form FrmDSKhachHang
      */
     private FrmChinh frm = new FrmChinh();
-    private VanPhongPham_Impl dao_vpp = new VanPhongPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private Sach_Impl dao_sach = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhomSanPham_Impl dao_nsp = new NhomSanPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhaCungCap_Impl dao_ncc = new NhaCungCap_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private MauSac_Impl dao_mausac = new MauSac_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private KhachHang_Impl dao_kh = new KhachHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private HoaDon_Impl dao_hd = new HoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private ChiTietHoaDon_Impl dao_cthd = new ChiTietHoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhanVien_Impl dao_nv = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private VanPhongPham_Dao dao_vpp = Dao_Package_Static.dao_VanPhongPham;
+    private Sach_Dao dao_sach = Dao_Package_Static.dao_Sach;
+    private NhomSanPham_Dao dao_nsp = Dao_Package_Static.dao_NhomSanPham;
+    private NhaCungCap_Dao dao_ncc = Dao_Package_Static.dao_NhaCungCap;
+    private MauSac_Dao dao_mausac = Dao_Package_Static.dao_MauSac;
+    private KhachHang_Dao dao_kh = Dao_Package_Static.dao_KhachHang;
+    private HoaDon_Dao dao_hd = Dao_Package_Static.dao_HoaDon;
+    private ChiTietHoaDon_Dao dao_cthd = Dao_Package_Static.dao_ChiTietHoaDon;
+    private NhanVien_Dao dao_nv = Dao_Package_Static.dao_NhanVien;
     private Thread thread = null;
 //    private DAO_KhuyenMai dao_khuyenMai = new DAO_KhuyenMai();
 

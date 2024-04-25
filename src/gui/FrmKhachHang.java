@@ -36,6 +36,8 @@ import entityJPA.NhomKhachHang;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import client_Dao.Dao_Package_Static;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 import javax.swing.*;
@@ -61,7 +63,7 @@ public class FrmKhachHang extends javax.swing.JPanel {
      * Creates new form FrmDSKhachHang
      */
     private FrmChinh frm = new FrmChinh();
-    private KhachHang_Dao dao_KhachHang = new KhachHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private KhachHang_Dao dao_KhachHang = Dao_Package_Static.dao_KhachHang;
 	private boolean checkTenKH;
 	private boolean checkSDT;
 	private boolean checkMa= true;

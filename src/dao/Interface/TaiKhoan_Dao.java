@@ -12,7 +12,8 @@ public interface TaiKhoan_Dao extends Remote {
 	public String getTenNguoiDung(String email) throws RemoteException;
 	public void doiMatKhau(String email, String newPassword) throws RemoteException;
 	public List<TaiKhoan> getALLTaiKhoan() throws RemoteException;
-
+	public int sendEmail(String email) throws RemoteException;
+	public boolean createTaiKhoan(TaiKhoan tk) throws RemoteException;
 
 
 

@@ -1,36 +1,34 @@
 
 package gui;
 
-import untils.entityManagerFactory.EntityManagerFactory_Static;
-
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
-
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import client_Dao.Dao_Package_Static;
+import dao.Interface.TaiKhoan_Dao;
 import dao.impl.TaiKhoan_Impl;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 public class FrmLogin extends javax.swing.JFrame {
     public static String tenDN = "";
     public static String tenNguoiDung = "";
     public static String emailDN = "";
-    private TaiKhoan_Impl dao_TaiKhoan = new TaiKhoan_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private TaiKhoan_Dao dao_TaiKhoan = Dao_Package_Static.dao_TaiKhoan;
     private int otp;
 	/**
      * Creates new form FrmChinh
      */
     public FrmLogin() throws RemoteException {
+
 
         initComponents();
         
@@ -486,7 +484,7 @@ public class FrmLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
 //    	dao_TaiKhoan.xacThucNguoiDung(txtEmail.getText(), "0000");
 //        System.out.println(txtEmail.getText());
-        dao_TaiKhoan = new TaiKhoan_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+        dao_TaiKhoan = Dao_Package_Static.dao_TaiKhoan;
         otp = dao_TaiKhoan.sendEmail(txtEmail.getText());// lấy mã otp
 //        System.out.println(otp);
     }//GEN-LAST:event_btnGuiMaActionPerformed
@@ -515,8 +513,11 @@ public class FrmLogin extends javax.swing.JFrame {
     }  
     /**
      * @param args the command line arguments
+     * @throws NotBoundException 
+     * @throws RemoteException 
+     * @throws MalformedURLException 
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws MalformedURLException, RemoteException, NotBoundException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

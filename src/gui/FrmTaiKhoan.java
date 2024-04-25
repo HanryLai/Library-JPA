@@ -18,10 +18,12 @@ import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
 
+import client_Dao.Dao_Package_Static;
 import connectDB.ConnectDB;
 import dao.DAO_NhaCungCap;
 import dao.DAO_NhanVien;
 import dao.Dao_TaiKhoan;
+import dao.Interface.TaiKhoan_Dao;
 import dao.impl.TaiKhoan_Impl;
 import entity.CaLamViec;
 import entity.ChucVu;
@@ -74,10 +76,9 @@ public class FrmTaiKhoan extends javax.swing.JPanel {
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
     //private Dao_TaiKhoan dao_TaiKhoan = new Dao_TaiKhoan();
-    private TaiKhoan_Impl dao_TaiKhoan = new TaiKhoan_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private TaiKhoan_Dao dao_TaiKhoan = Dao_Package_Static.dao_TaiKhoan;
     
     public FrmTaiKhoan() throws SQLException, RemoteException {
-    	ConnectDB.getInstance().connect();
         initComponents();
         thread = new Thread(this::setTimeAuto);
         thread.start();

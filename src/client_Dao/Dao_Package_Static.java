@@ -24,9 +24,7 @@ import dao.Interface.SanPham_Dao;
 import dao.Interface.TaiKhoan_Dao;
 import dao.Interface.ThongKe_Dao;
 import dao.Interface.VanPhongPham_Dao;
-import lombok.Getter;
 
-@Getter
 
 public class Dao_Package_Static {
 
@@ -49,27 +47,31 @@ public class Dao_Package_Static {
     public static TaiKhoan_Dao dao_TaiKhoan;
     public static ThongKe_Dao dao_ThongKe;
     public static VanPhongPham_Dao dao_VanPhongPham;
+    
+    public static String serverName;
 
-    public static void init() throws MalformedURLException, NotBoundException, RemoteException {
-        dao_BanBaoCao            = (BanBaoCao_Dao) Naming.lookup("rmi://localhost:7878/BanBaoCao");
-        dao_CaLamViec            = (CaLamViec_Dao) Naming.lookup("rmi://localhost:7878/CaLamViec");
-        dao_ChiTietBaoCao        = (ChiTietBaoCao_Dao) Naming.lookup("rmi://localhost:7878/ChiTietBaoCao");
-        dao_ChiTietHoaDon        = (ChiTietHoaDon_Dao) Naming.lookup("rmi://localhost:7878/ChiTietHoaDon");
-        dao_ChiTietHoaDonDoi     = (ChiTietHoaDonDoi_Dao) Naming.lookup("rmi://localhost:7878/ChiTietHoaDonDoi");
-        dao_ChiTietHoaDonHoanTra = (ChiTietHoaDonHoanTra_Dao) Naming.lookup("rmi://localhost:7878/ChiTietHoaDonHoanTra");
-        dao_HoaDon               = (HoaDon_Dao) Naming.lookup("rmi://localhost:7878/HoaDon");
-        dao_HoaDonDoiHang        = (HoaDonDoiHang_Dao) Naming.lookup("rmi://localhost:7878/HoaDonDoiHang");
-        dao_HoaDonHoanTra        = (HoaDonHoanTra_Dao) Naming.lookup("rmi://localhost:7878/HoaDonHoanTra");
-        dao_KhachHang            = (KhachHang_Dao) Naming.lookup("rmi://localhost:7878/KhachHang");
-        dao_MauSac               = (MauSac_Dao) Naming.lookup("rmi://localhost:7878/MauSac");
-        dao_NhaCungCap           = (NhaCungCap_Dao) Naming.lookup("rmi://localhost:7878/NhaCungCap");
-        dao_NhanVien             = (NhanVien_Dao) Naming.lookup("rmi://localhost:7878/NhanVien");
-        dao_NhomSanPham          = (NhomSanPham_Dao) Naming.lookup("rmi://localhost:7878/NhomSanPham");
-        dao_Sach                 = (Sach_Dao) Naming.lookup("rmi://localhost:7878/Sach");
-        dao_SanPham              = (SanPham_Dao) Naming.lookup("rmi://localhost:7878/SanPham");
-        dao_TaiKhoan             = (TaiKhoan_Dao) Naming.lookup("rmi://localhost:7878/TaiKhoan");
-        dao_ThongKe              = (ThongKe_Dao) Naming.lookup("rmi://localhost:7878/ThongKe");
-        dao_VanPhongPham         = (VanPhongPham_Dao) Naming.lookup("rmi://localhost:7878/VanPhongPham");
+    public static void init(String sever) throws MalformedURLException, NotBoundException, RemoteException {
+    	serverName = sever;
+    	
+    	dao_BanBaoCao = (BanBaoCao_Dao) Naming.lookup(serverName +"BanBaoCao");
+    	dao_CaLamViec = (CaLamViec_Dao) Naming.lookup(serverName +"CaLamViec");
+    	dao_ChiTietBaoCao = (ChiTietBaoCao_Dao) Naming.lookup(serverName +"ChiTietBaoCao");
+    	dao_ChiTietHoaDon = (ChiTietHoaDon_Dao) Naming.lookup(serverName +"ChiTietHoaDon");
+    	dao_ChiTietHoaDonDoi = (ChiTietHoaDonDoi_Dao) Naming.lookup(serverName +"ChiTietHoaDonDoi");
+    	dao_ChiTietHoaDonHoanTra = (ChiTietHoaDonHoanTra_Dao) Naming.lookup(serverName +"ChiTietHoaDonHoanTra");
+    	dao_HoaDon = (HoaDon_Dao) Naming.lookup(serverName +"HoaDon");
+    	dao_HoaDonDoiHang = (HoaDonDoiHang_Dao) Naming.lookup(serverName +"HoaDonDoiHang");
+    	dao_HoaDonHoanTra = (HoaDonHoanTra_Dao) Naming.lookup(serverName +"HoaDonHoanTra");
+    	dao_KhachHang = (KhachHang_Dao) Naming.lookup(serverName +"KhachHang");
+    	dao_MauSac = (MauSac_Dao) Naming.lookup(serverName +"MauSac");
+    	dao_NhaCungCap = (NhaCungCap_Dao) Naming.lookup(serverName +"NhaCungCap");
+    	dao_NhanVien = (NhanVien_Dao) Naming.lookup(serverName +"NhanVien");
+    	dao_NhomSanPham = (NhomSanPham_Dao) Naming.lookup(serverName +"NhomSanPham");
+    	dao_Sach = (Sach_Dao) Naming.lookup(serverName +"Sach");
+    	dao_SanPham = (SanPham_Dao) Naming.lookup(serverName +"SanPham");
+    	dao_TaiKhoan = (TaiKhoan_Dao) Naming.lookup(serverName +"TaiKhoan");
+    	dao_ThongKe = (ThongKe_Dao) Naming.lookup(serverName +"ThongKe");
+    	dao_VanPhongPham = (VanPhongPham_Dao) Naming.lookup(serverName +"VanPhongPham");
     }
 
 
