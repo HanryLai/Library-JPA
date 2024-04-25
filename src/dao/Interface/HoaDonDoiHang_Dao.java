@@ -18,4 +18,6 @@ public interface HoaDonDoiHang_Dao extends Remote {
 
     public boolean deleteHoaDonDoi(String ma) throws RemoteException;
 
+    int getLastId() throws RemoteException;
+
 }

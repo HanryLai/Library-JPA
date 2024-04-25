@@ -9,6 +9,7 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.List;
 
 public class HoaDonHoanTra_Impl extends UnicastRemoteObject implements HoaDonHoanTra_Dao {
     private final EntityManagerFactory emf;
@@ -44,6 +45,22 @@ public class HoaDonHoanTra_Impl extends UnicastRemoteObject implements HoaDonHoa
     @Override
     public void deleteHoaDonHoanTra(String ma) throws RemoteException {
 
+    }
+
+    @Override
+    public int getLastId() throws RemoteException {
+        Generic_Impl<HoaDonHoanTra> hdGeneric = new Generic_Impl<>(HoaDonHoanTra.class, emf);
+        int                         id        = 0;
+        try {
+            List<HoaDonHoanTra> temp = hdGeneric.findAll();
+            if (temp.size() == 0)
+                return 1;
+            id = temp.getLast().getMaHoaDonHoanTra();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return id;
+        }
+        return id;
     }
 
     public static void main(String[] args) throws RemoteException {

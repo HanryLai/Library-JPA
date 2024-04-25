@@ -35,9 +35,11 @@ public class HoaDonHoanTra implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY,mappedBy = "hoaDonHoanTra")
 	private HoaDonDoiHang hoaDonDoiHang;
 
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "maHoaDon")
 	private HoaDon hoaDon;
+
 	private String ghiChu;
 	private int tinhTrangHoaDon;
 	private Double tienHoanTra;

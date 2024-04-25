@@ -63,6 +63,21 @@ public class HoaDonDoiHang_Impl extends UnicastRemoteObject implements HoaDonDoi
     public boolean deleteHoaDonDoi(String ma) throws RemoteException {
         return false;
     }
+    @Override
+    public int getLastId() throws RemoteException {
+        Generic_Impl<HoaDonDoiHang> hdGeneric = new Generic_Impl<>(HoaDonDoiHang.class, emf);
+        int                         id        = 0;
+        try {
+            List<HoaDonDoiHang> temp = hdGeneric.findAll();
+            if (temp.size() == 0)
+                return 1;
+            id = hdGeneric.findAll().getLast().getMaHoaDonDoi();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return id;
+        }
+        return id;
+    }
 
     public static void main(String[] args) throws RemoteException {
         HoaDonHoanTra_Dao daoht = new HoaDonHoanTra_Impl(EntityManagerFactory_Static.getEntityManagerFactory());

@@ -25,8 +25,7 @@ import connectDB.ConnectDB;
 import dao.DAO_KhachHang;
 import dao.Interface.KhachHang_Dao;
 import dao.impl.KhachHang_Impl;
-//import entity.KhachHang;
-//import entity.NhomKhachHang;
+
 
 import java.time.Month;
 
@@ -34,7 +33,7 @@ import javax.swing.table.TableRowSorter;
 
 import entityJPA.KhachHang;
 import entityJPA.NhomKhachHang;
-import jakarta.persistence.EntityManagerFactory;
+
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -58,6 +57,7 @@ import java.util.Iterator;
  */
 public class FrmKhachHang extends javax.swing.JPanel {
 
+
     /**
      * Creates new form FrmDSKhachHang
      */
@@ -67,11 +67,10 @@ public class FrmKhachHang extends javax.swing.JPanel {
 	private boolean checkSDT;
 	private boolean checkMa= true;
 	private Object nhomKhachHangFilter;
-    private Thread thread = null; 
+    private Thread thread = null;
         
     public FrmKhachHang() throws SQLException, RemoteException {
 
-        ConnectDB.getInstance().connect();
         initComponents();
         loadDataKhachHang();
         txtTimKH11.setText(autoCreateMaKhachHang());
