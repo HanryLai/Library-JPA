@@ -1,8 +1,4 @@
 package otherEntity;
-
-import lombok.ToString;
-
-@ToString
 public class MonthlyRevenueInfo {
 
     private int month;

@@ -1,9 +1,6 @@
 package dao.impl;
 
 import dao.Interface.NhanVien_Dao;
-import entity.CaLamViec;
-import entity.ChucVu;
-import entity.TaiKhoan;
 import entityJPA.NhanVien;
 import entityJPA.VanPhongPham;
 import jakarta.persistence.EntityManager;

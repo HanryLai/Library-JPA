@@ -7,9 +7,7 @@ package gui;
 import dao.Interface.BanBaoCao_Dao;
 import dao.Interface.ChiTietBaoCao_Dao;
 import dao.Interface.HoaDon_Dao;
-import dao.impl.BanBaoCao_Impl;
-import dao.impl.ChiTietBanBaoCao_Impl;
-import dao.impl.HoaDon_Impl;
+import dao.Interface.NhanVien_Dao;
 import entityJPA.BanBaoCao;
 import entityJPA.ChiTietBanBaoCao;
 import entityJPA.NhanVien;
@@ -42,16 +40,15 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import dao.DAO_BanBaoCao;
-import dao.DAO_ChiTietBanBaoCao;
-import dao.DAO_HoaDon;
-import dao.DAO_NhanVien;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
+import client_Dao.Dao_Package_Static;
+
+
 
 /**
  *
  * @author nguyen chau tai
  */
+
 public class FrmBaoCao extends javax.swing.JPanel {
     /**
      * Creates new form FrmDSKhachHang
@@ -59,11 +56,7 @@ public class FrmBaoCao extends javax.swing.JPanel {
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
 
-    public static void main(String[] args) throws SQLException, RemoteException {
-        FrmBaoCao frm = new FrmBaoCao();
-        frm.setSize(1690, 787);
-        frm.setVisible(true);
-    }
+ 
     public FrmBaoCao() throws SQLException, RemoteException {
         initComponents();
         loadData();
@@ -94,27 +87,27 @@ public class FrmBaoCao extends javax.swing.JPanel {
         jPanel17.validate();
     }
     
-    private HoaDon_Dao dao_hoadon = new HoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private HoaDon_Dao dao_hoadon = Dao_Package_Static.dao_HoaDon;
     private CategoryDataset createDataset() throws RemoteException {
         String ngayHienTai = jDateChooser3.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         System.out.println("day:"+ngayHienTai);
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         if (LocalDateTime.now().toLocalTime().isAfter(LocalTime.of(6, 0)) && LocalDateTime.now().toLocalTime().isBefore(LocalTime.of(11, 0))){
-            dataset.addValue(dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).getFirst()), ngayHienTai+" 06:00:00", ngayHienTai+" 11:00:00"),
+            dataset.addValue(dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).get(0)), ngayHienTai+" 06:00:00", ngayHienTai+" 11:00:00"),
                 "Doanh thu", "Sáng");
             dataset.addValue(0, "Doanh thu", "Chiều");
             dataset.addValue(0, "Doanh thu", "Tối");
         }
         else if (LocalDateTime.now().toLocalTime().isAfter(LocalTime.of(11, 0)) && LocalDateTime.now().toLocalTime().isBefore(LocalTime.of(16, 0))){
             dataset.addValue(0, "Doanh thu", "Sáng");
-            dataset.addValue(dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).getFirst()), ngayHienTai+" 11:00:00", ngayHienTai+" 16:00:00"),
+            dataset.addValue(dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).get(0)), ngayHienTai+" 11:00:00", ngayHienTai+" 16:00:00"),
                 "Doanh thu", "Chiều");
             dataset.addValue(0, "Doanh thu", "Tối");
         }
         else{
             dataset.addValue(0, "Doanh thu", "Sáng");
             dataset.addValue(0, "Doanh thu", "Chiều");
-            dataset.addValue(dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).getFirst()), ngayHienTai+" 16:00:00", ngayHienTai+" 21:00:00"),
+            dataset.addValue(dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).get(0)), ngayHienTai+" 16:00:00", ngayHienTai+" 21:00:00"),
                 "Doanh thu", "Tối");
         }
         return dataset;
@@ -166,8 +159,8 @@ public class FrmBaoCao extends javax.swing.JPanel {
         jTable1.setModel(dm);
     }
     
-    private BanBaoCao_Dao dao_BCDT = new BanBaoCao_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private ChiTietBaoCao_Dao dao_CTBC = new ChiTietBanBaoCao_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private BanBaoCao_Dao dao_BCDT = Dao_Package_Static.dao_BanBaoCao;
+    private ChiTietBaoCao_Dao dao_CTBC = Dao_Package_Static.dao_ChiTietBaoCao;
     private ArrayList<entityJPA.ChiTietBanBaoCao> dataSach;
     private ArrayList<ChiTietBanBaoCao> dataVPP;
     private ArrayList<ChiTietBanBaoCao> dataTTSach;
@@ -747,7 +740,7 @@ public class FrmBaoCao extends javax.swing.JPanel {
         // TODO add your handling code here:
         lblNameLogin.setText(gui.FrmLogin.tenNguoiDung);
     }//GEN-LAST:event_lblNameLoginAncestorAdded
-    private DAO_NhanVien dao_nhanvien = new DAO_NhanVien();
+    private NhanVien_Dao dao_nhanvien = Dao_Package_Static.dao_NhanVien;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         LocalDate today = jDateChooser3.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();        
@@ -772,13 +765,13 @@ public class FrmBaoCao extends javax.swing.JPanel {
         String thoiGianBC = todayString+"-"+caLv; // 30/11/2023 - Sáng
         double doanhThu = 0;
         if (LocalDateTime.now().toLocalTime().isAfter(LocalTime.of(6, 0)) && LocalDateTime.now().toLocalTime().isBefore(LocalTime.of(11, 0))) {
-            doanhThu = dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).getFirst()),
+            doanhThu = dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).get(0)),
                     today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 06:00:00", today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 11:00:00");
         } else if (LocalDateTime.now().toLocalTime().isAfter(LocalTime.of(11, 0)) && LocalDateTime.now().toLocalTime().isBefore(LocalTime.of(16, 0))) {
-            doanhThu = dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).getFirst()),
+            doanhThu = dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).get(0)),
                     today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 11:00:00", today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 16:00:00");
         } else {
-            doanhThu = dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).getFirst()),
+            doanhThu = dao_CTBC.getDoanhThuTheoCa(Integer.parseInt(dao_hoadon.getMaHoaDonTheoNgay(ngayHienTai).get(0)),
                     today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 16:00:00", today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 21:00:00");
         }
 

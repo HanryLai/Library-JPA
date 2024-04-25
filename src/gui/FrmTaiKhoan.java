@@ -18,15 +18,11 @@ import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
 
-import connectDB.ConnectDB;
-import dao.DAO_NhaCungCap;
-import dao.DAO_NhanVien;
-import dao.Dao_TaiKhoan;
-import dao.impl.TaiKhoan_Impl;
-import entity.CaLamViec;
-import entity.ChucVu;
-import entity.NhaCungCap;
-import entity.NhanVien;
+import client_Dao.Dao_Package_Static;
+
+import dao.Interface.TaiKhoan_Dao;
+
+
 
 
 import java.awt.Desktop;
@@ -54,13 +50,13 @@ import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 
+import entityJPA.NhanVien;
 import entityJPA.TaiKhoan;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *
@@ -74,10 +70,9 @@ public class FrmTaiKhoan extends javax.swing.JPanel {
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
     //private Dao_TaiKhoan dao_TaiKhoan = new Dao_TaiKhoan();
-    private TaiKhoan_Impl dao_TaiKhoan = new TaiKhoan_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private TaiKhoan_Dao dao_TaiKhoan = Dao_Package_Static.dao_TaiKhoan;
     
     public FrmTaiKhoan() throws SQLException, RemoteException {
-    	ConnectDB.getInstance().connect();
         initComponents();
         thread = new Thread(this::setTimeAuto);
         thread.start();
@@ -1858,5 +1853,5 @@ public class FrmTaiKhoan extends javax.swing.JPanel {
     private javax.swing.JTextField txtTimKH8;
     // End of variables declaration//GEN-END:variables
     private ArrayList<NhanVien> data;
-    private DAO_NhanVien dao_nhanvien;
+    private dao.Interface.NhanVien_Dao dao_nhanvien;
 }

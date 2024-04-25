@@ -52,7 +52,7 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 
 public class Server {
-    public static String localHost = "rmi://localhost:7878/";
+    public static String localHost = "rmi://26.139.190.148:7878/";
     public static void main(String[] args) throws
                                            NamingException,
                                            RemoteException,
@@ -81,7 +81,7 @@ public class Server {
 
 
 
-        LocateRegistry.createRegistry(1900);
+        LocateRegistry.createRegistry(7878);
 
         Naming.bind(localHost + "BanBaoCao", dao_BanBaoCao);
         Naming.bind(localHost + "CaLamViec", dao_CaLamViec);

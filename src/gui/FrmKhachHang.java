@@ -21,10 +21,7 @@ import java.util.stream.Collectors;
 
 import javax.swing.table.DefaultTableModel;
 
-import connectDB.ConnectDB;
-import dao.DAO_KhachHang;
 import dao.Interface.KhachHang_Dao;
-import dao.impl.KhachHang_Impl;
 
 import java.time.Month;
 
@@ -36,7 +33,8 @@ import entityJPA.NhomKhachHang;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
+
+import client_Dao.Dao_Package_Static;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -61,7 +59,7 @@ public class FrmKhachHang extends javax.swing.JPanel {
      * Creates new form FrmDSKhachHang
      */
     private FrmChinh frm = new FrmChinh();
-    private KhachHang_Dao dao_KhachHang = new KhachHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private KhachHang_Dao dao_KhachHang = Dao_Package_Static.dao_KhachHang;
 	private boolean checkTenKH;
 	private boolean checkSDT;
 	private boolean checkMa= true;

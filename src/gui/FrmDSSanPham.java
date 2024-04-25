@@ -7,19 +7,8 @@ import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import connectDB.ConnectDB;
-//import dao.DAO_MauSac;
-//import dao.DAO_NhaCungCap;
-//import dao.DAO_NhomSanPham;
-//import dao.DAO_Sach;
-//import dao.DAO_VanPhongPham;
 import dao.Interface.*;
-import dao.impl.*;
-//import entity.MauSac;
-//import entity.NhaCungCap;
-//import entity.NhomSanPham;
-//import entity.Sach;
-//import entity.VanPhongPham;
+
 import entityJPA.*;
 import gui.FrmChinh;
 
@@ -47,6 +36,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 import com.barcodelib.barcode.Linear;
+
+import client_Dao.Dao_Package_Static;
+
 import java.awt.Desktop;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionListener;
@@ -74,7 +66,6 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *
@@ -88,12 +79,12 @@ public class FrmDSSanPham extends javax.swing.JPanel {
      * Creates new form FrmDSKhachHang
      */
     private FrmChinh frm = new FrmChinh();
-    private VanPhongPham_Dao dao_vpp = new VanPhongPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private Sach_Dao dao_sach = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhomSanPham_Dao dao_nsp = new NhomSanPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhaCungCap_Dao dao_ncc = new NhaCungCap_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private MauSac_Dao dao_mausac = new MauSac_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private SanPham_Dao dao_sanPham = new SanPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private VanPhongPham_Dao dao_vpp = Dao_Package_Static.dao_VanPhongPham;
+    private Sach_Dao dao_sach = Dao_Package_Static.dao_Sach;
+    private NhomSanPham_Dao dao_nsp = Dao_Package_Static.dao_NhomSanPham;
+    private NhaCungCap_Dao dao_ncc = Dao_Package_Static.dao_NhaCungCap;
+    private MauSac_Dao dao_mausac = Dao_Package_Static.dao_MauSac;
+    private SanPham_Dao dao_sanPham = Dao_Package_Static.dao_SanPham;
     private Thread thread = null;
 
 
