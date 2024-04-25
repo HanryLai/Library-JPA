@@ -44,8 +44,8 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 			if (taiKhoan != null) {
 				String xacThucMatKhau = taiKhoan.getMatKhau();
 				if (xacThucMatKhau.equals(matKhau)) {
-					FrmChinh frmChinh = new FrmChinh();
-					frmChinh.setVisible(true);
+//					FrmChinh frmChinh = new FrmChinh();
+//					frmChinh.setVisible(true);
 					return true;
 				} else {
 					return false;
@@ -105,6 +105,7 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 	@Override
 	public String phanQuyen(String email) throws RemoteException{
 		String tenDN = "";
+		System.out.println(email);
 		try {
 			String query = "SELECT tenDangNhap FROM TaiKhoan WHERE email = :email";
 			EntityManager em = emf.createEntityManager();

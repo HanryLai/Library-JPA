@@ -6,13 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="652cd2fa-2f1d-4ac0-8780-39360dbb3902" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/ThongKe_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ThongKe_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmThongKe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmThongKe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/otherEntity/KhuyenMai.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/otherEntity/KhuyenMai.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/otherEntity/MonthlyRevenueInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/otherEntity/MonthlyRevenueInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/otherEntity/ProductInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/otherEntity/ProductInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testPackage/implement/TestThongKe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/implement/TestThongKe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/NhomKhachHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/NhomKhachHang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/TaiKhoan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/TaiKhoan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmKhachHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmKhachHang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmNhaCungCap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmNhaCungCap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmNhanVien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmNhanVien.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +32,7 @@
     "Application.Server.executor": "Run",
     "Application.TestThongKe.executor": "Run",
     "Application.ThongKe_Impl.executor": "Run",
-    "git-widget-placeholder": "hieu",
+    "git-widget-placeholder": "main",
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>

@@ -289,14 +289,14 @@ public class FrmKhachHang extends javax.swing.JPanel {
         double cusTotal = Double.parseDouble(txtTongChiTieu1.getText());
         int cusQuantity = Integer.parseInt(txtTongDonHang1.getText());
         KhachHang newCus = new KhachHang();
-        newCus.setMaKhachHang(Integer.parseInt(cusID));
+//        newCus.setMaKhachHang(Integer.parseInt(cusID));
         newCus.setTenKhachHang(cusName);
         newCus.setSoDienThoai(cusPhone);
         newCus.setNhomKhachHang(cusGR);
         newCus.setTongTienMua(cusTotal);
         newCus.setSoLuongHoaDon(cusQuantity);
-
-        dao_KhachHang.themKhachHang(newCus);
+        System.out.println(newCus);
+        System.out.println(dao_KhachHang.themKhachHang(newCus));
 
     }
 
