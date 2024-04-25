@@ -6,30 +6,126 @@
   <component name="ChangeListManager">
     <list default="true" id="09d232bf-1bd3-4215-8105-7c180b8bf2e5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client_Dao/Dao_Package_Static.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client_Dao/Dao_Package_Static.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/TaiKhoan_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/TaiKhoan_Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmBaoCao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmChinh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmChinh.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmDSHoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmDSHoaDon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmDSSanPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmDSSanPham.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmKhachHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmKhachHang.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmKhachTraHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmKhachTraHang.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmLapHoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmLapHoaDon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmNhaCungCap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmNhaCungCap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmNhanVien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmNhanVien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmTaiKhoan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmTaiKhoan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmThongKe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmThongKe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmXemBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmXemBaoCao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testPackage/data/HoaDonHoanTra_ChiTietHoanTra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/data/HoaDonHoanTra_ChiTietHoanTra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client_Dao/Dao_Package_Static.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/connectDB/ConnectDB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_BanBaoCao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_ChiTietBanBaoCao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_ChiTietHoaDon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_ChiTietHoaDonDoi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_ChiTietHoaDonHoanTra.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_HoaDon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_HoaDonDoiHang.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_HoaDonHoanTra.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_KhachHang.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_KhuyenMai.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_MauSac.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_NhaCungCap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_NhanVien.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_NhomKhuyenMai.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_NhomSanPham.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_Sach.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_ThongKe.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_VanPhongPham.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Dao_TaiKhoan.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/BanBaoCao_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/CaLamViec_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/ChiTietBaoCao_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/ChiTietHoaDonDoi_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/ChiTietHoaDonHoanTra_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/ChiTietHoaDon_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/Generic_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/HoaDonDoiHang_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/HoaDonHoanTra_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/HoaDon_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/KhachHang_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/MauSac_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/NhaCungCap_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/NhanVien_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/NhomSanPham_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/Sach_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/SanPham_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/TaiKhoan_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/ThongKe_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/VanPhongPham_Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/BanBaoCao_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/CaLamViec_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietBanBaoCao_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonDoi_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonHoanTra_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDon_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/Generic_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/HoaDonDoiHang_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/HoaDonHoanTra_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/HoaDon_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/KhachHang_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/MauSac_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/NhaCungCap_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/NhanVien_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/NhomSanPham_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/Sach_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/SanPham_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ThongKe_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/VanPhongPham_Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmBaoCao.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmBaoCao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmChinh.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmChinh.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmDSHoaDon.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmDSHoaDon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmDSSanPham.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmDSSanPham.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmKhachHang.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmKhachHang.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmKhachTraHang.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmKhachTraHang.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmKhuyenMai.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmKhuyenMai.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmLapHoaDon.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmLapHoaDon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmLogin.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmLogin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmNhaCungCap.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmNhaCungCap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmNhanVien.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmNhanVien.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmTaiKhoan.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmTaiKhoan.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmThongKe.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmThongKe.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmXemBaoCao.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmXemBaoCao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/MainTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/NewJPanel.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/NewJPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menuGui/ActionButton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menuGui/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menuGui/MenuAnimation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menuGui/MenuEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menuGui/MenuItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menuGui/MenuScoll.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menuGui/MenuScollBar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menuGui/MenuScrollPane.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menuGui/PanelAction.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menuGui/PanelAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menuGui/RippleEffect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menuGui/TableActionCellEditor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menuGui/TableActionCellRender.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menuGui/TableActionEvent.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />

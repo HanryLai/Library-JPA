@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 import dao.Interface.TaiKhoan_Dao;
 import entityJPA.NhanVien;
 import entityJPA.TaiKhoan;
-import gui.FrmChinh;
+
 import jakarta.persistence.*;
 
 import java.rmi.RemoteException;
@@ -44,8 +44,6 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 			if (taiKhoan != null) {
 				String xacThucMatKhau = taiKhoan.getMatKhau();
 				if (xacThucMatKhau.equals(matKhau)) {
-					FrmChinh frmChinh = new FrmChinh();
-					frmChinh.setVisible(true);
 					return true;
 				} else {
 					JOptionPane.showMessageDialog(null, "Sai mật khẩu");

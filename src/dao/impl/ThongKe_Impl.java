@@ -1,7 +1,8 @@
 package dao.impl;
 
-import dao.DAO_ThongKe;
+
 import dao.Interface.ThongKe_Dao;
+import entity.ProductInfo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import otherEntity.MonthlyRevenueInfo;
@@ -20,7 +21,7 @@ public class ThongKe_Impl extends UnicastRemoteObject implements ThongKe_Dao {
         this.emf = emf;
     }
     @Override
-    public List<DAO_ThongKe.ProductInfo> getTopSellingProducts() throws RemoteException {
+    public List<ProductInfo> getTopSellingProducts() throws RemoteException {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH, 1);
         Date startDate = calendar.getTime();
@@ -35,7 +36,7 @@ public class ThongKe_Impl extends UnicastRemoteObject implements ThongKe_Dao {
                 + "GROUP BY od.sanPham "
                 + "ORDER BY total_quantity DESC ";
         EntityManager em = emf.createEntityManager();
-        List<DAO_ThongKe.ProductInfo> topProducts = new ArrayList<>();
+        List<ProductInfo> topProducts = new ArrayList<>();
         try {
 
             List<Object[]> resultList = em.createNativeQuery(query)
@@ -45,7 +46,7 @@ public class ThongKe_Impl extends UnicastRemoteObject implements ThongKe_Dao {
             for (Object[] o : resultList) {
                 String productId = o[0].toString();
                 int totalQuantity = Integer.parseInt(o[1].toString());
-                topProducts.add(new DAO_ThongKe.ProductInfo(productId, totalQuantity));
+                topProducts.add(new ProductInfo(productId, totalQuantity));
             }
         } catch (Exception e) {
             e.printStackTrace();
