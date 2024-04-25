@@ -9,6 +9,7 @@ import otherEntity.MonthlyRevenueInfo;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -42,7 +43,20 @@ public class ThongKe_Impl extends UnicastRemoteObject implements ThongKe_Dao {
 
     @Override
     public List<MonthlyRevenueInfo> tienHoanTheoThang() throws RemoteException {
-        return null;
+        String query = "SELECT MONTH(ngayHoan) AS month, SUM(tienHoanTra) AS total_revenue\n" +
+                "FROM hoaDonHoanTra\n" +
+                "WHERE YEAR(ngayHoan) = ? " +
+                "GROUP BY MONTH(ngayHoan)";
+        EntityManager em = emf.createEntityManager();
+        List<MonthlyRevenueInfo> result = new ArrayList<>();
+        System.out.println(new Date().getYear());
+        List<?> list = em.createNativeQuery(query).setParameter(1, Calendar.getInstance().get(Calendar.YEAR)).getResultList();
+        System.out.println(list.size());
+        for(Object o : list){
+            Object[] arr = (Object[]) o;
+            result.add(new MonthlyRevenueInfo((int) arr[0], (double) arr[1]));
+        }
+        return result;
     }
 
     @Override

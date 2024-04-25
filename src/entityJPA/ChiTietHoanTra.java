@@ -1,13 +1,7 @@
 package entityJPA;
 
 import entityJPA.otherID.ChiTietDoiHangID;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,15 +18,16 @@ import java.io.Serializable;
 @Entity
 @Table(name = "ChiTietHoanTra")
 public class ChiTietHoanTra implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@EmbeddedId
 	private ChiTietHoanTraID id;
 	
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "maSanPham",insertable=false, updatable=false)
 	private SanPham sanPham;
 	
 
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "maHoaDonHoanTra",insertable=false, updatable=false)
 	private HoaDonHoanTra hoaDonHoanTra;
 	

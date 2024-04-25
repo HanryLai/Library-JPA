@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e3840fe-7815-4ca2-bd69-f0e9f3e7cd1d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmXemBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmXemBaoCao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DAO_HoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DAO_HoaDon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ThongKe_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ThongKe_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietHoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietHoaDon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietHoanTra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/HoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/HoaDon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/NhaCungCap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/NhaCungCap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/otherEntity/MonthlyRevenueInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/otherEntity/MonthlyRevenueInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testPackage/implement/TestThongKe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/implement/TestThongKe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +60,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "zy",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/IUH/KH_II_2023_2024/PhanTanJava/project/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
+    "last_opened_file_path": "D:/HK2_23_24_nam3/Project_PhanTan/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -65,26 +73,13 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.FrmXemBaoCao (1)">
+  <component name="RunManager" selected="Application.FrmXemBaoCao">
     <configuration name="ChiTietHoaDonHoanTraImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.impl.ChiTietHoaDonHoanTraImpl" />
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dao.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FrmNhaCungCap" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gui.FrmNhaCungCap" />
-      <module name="QuanLiNhaSachONEEIGHT" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="gui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -131,13 +126,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestThongKe" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testPackage.implement.TestThongKe" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testPackage.implement.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FrmXemBaoCao (1)" />
         <item itemvalue="Application.FrmXemBaoCao" />
+        <item itemvalue="Application.TestThongKe" />
+        <item itemvalue="Application.FrmXemBaoCao (1)" />
         <item itemvalue="Application.ChiTietHoaDonHoanTraImpl" />
         <item itemvalue="Application.FrmThongKe" />
-        <item itemvalue="Application.FrmNhaCungCap" />
       </list>
     </recent_temporary>
   </component>
@@ -145,14 +153,13 @@
     <attachedChunks>
       <set>
         <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2edae997-5bea-41af-b6d9-230efb44e1b9" name="Changes" comment="" />
+      <changelist id="7e3840fe-7815-4ca2-bd69-f0e9f3e7cd1d" name="Changes" comment="" />
       <created>1713921304250</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
