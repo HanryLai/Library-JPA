@@ -21,10 +21,7 @@ import java.util.stream.Collectors;
 
 import javax.swing.table.DefaultTableModel;
 
-import connectDB.ConnectDB;
-import dao.DAO_KhachHang;
 import dao.Interface.KhachHang_Dao;
-import dao.impl.KhachHang_Impl;
 
 import java.time.Month;
 
@@ -38,7 +35,6 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import client_Dao.Dao_Package_Static;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;

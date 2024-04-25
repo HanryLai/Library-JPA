@@ -5,15 +5,9 @@
 package gui;
 
 import connectDB.ConnectDB;
-import dao.DAO_Sach;
-import dao.DAO_ThongKe;
-import dao.DAO_VanPhongPham;
 import dao.Interface.Sach_Dao;
 import dao.Interface.ThongKe_Dao;
 import dao.Interface.VanPhongPham_Dao;
-import dao.impl.Sach_Impl;
-import dao.impl.ThongKe_Impl;
-import dao.impl.VanPhongPham_Impl;
 import entityJPA.Sach;
 import entityJPA.VanPhongPham;
 
@@ -49,7 +43,7 @@ import org.jfree.data.statistics.HistogramDataset;
 
 import client_Dao.Dao_Package_Static;
 import otherEntity.MonthlyRevenueInfo;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
+import otherEntity.ProductInfo;
 
 /**
  *
@@ -118,8 +112,8 @@ public class FrmThongKe extends javax.swing.JPanel {
     public void showPieChart() throws RemoteException {
         DefaultPieDataset barDataset = new DefaultPieDataset();
         
-        List<DAO_ThongKe.ProductInfo> topProducts = dao_thongKe.getTopSellingProducts();
-        for (DAO_ThongKe.ProductInfo product : topProducts) {
+        List<ProductInfo> topProducts = dao_thongKe.getTopSellingProducts();
+        for (ProductInfo product : topProducts) {
             if(product.getProductId().startsWith("S")) {
                 Sach s = dao_sach.getSachtheoMa(product.getProductId());
                 barDataset.setValue(s.getTenSanPham(), Double.valueOf(product.getTotalQuantity())); 

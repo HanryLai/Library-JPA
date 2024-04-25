@@ -31,9 +31,6 @@ import javax.swing.table.DefaultTableModel;
 import dao.Interface.BanBaoCao_Dao;
 import dao.Interface.ChiTietBaoCao_Dao;
 import dao.Interface.HoaDon_Dao;
-import dao.impl.BanBaoCao_Impl;
-import dao.impl.ChiTietBanBaoCao_Impl;
-import dao.impl.HoaDon_Impl;
 import entityJPA.BanBaoCao;
 import entityJPA.ChiTietBanBaoCao;
 import org.jfree.chart.ChartFactory;
@@ -44,8 +41,7 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import client_Dao.Dao_Package_Static;
-import dao.DAO_ChiTietBanBaoCao;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
+
 
 /**
  *

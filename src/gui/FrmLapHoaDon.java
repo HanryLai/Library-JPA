@@ -48,14 +48,7 @@ import dao.Interface.NhanVien_Dao;
 import dao.Interface.NhomSanPham_Dao;
 import dao.Interface.Sach_Dao;
 import dao.Interface.VanPhongPham_Dao;
-import dao.impl.ChiTietHoaDon_Impl;
-import dao.impl.HoaDon_Impl;
-import dao.impl.KhachHang_Impl;
-import dao.impl.MauSac_Impl;
-import dao.impl.NhaCungCap_Impl;
-import dao.impl.NhanVien_Impl;
-import dao.impl.NhomSanPham_Impl;
-import dao.impl.Sach_Impl;
+
 import entityJPA.ChiTietHoaDon;
 import entityJPA.HoaDon;
 import entityJPA.KhachHang;
@@ -70,7 +63,6 @@ import menuGui.TableActionEvent;
 import printReport.FieldReport;
 import printReport.ParameterReport;
 import printReport.ReportManager;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *

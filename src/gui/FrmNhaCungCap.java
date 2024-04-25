@@ -9,8 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 import dao.Interface.NhaCungCap_Dao;
-import dao.impl.NhaCungCap_Impl;
-import entity.HoaDon;
+
 
 import java.awt.Color;
 import java.awt.Desktop;
@@ -60,8 +59,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import client_Dao.Dao_Package_Static;
-import dao.DAO_NhaCungCap;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
+
 
 /**
  *

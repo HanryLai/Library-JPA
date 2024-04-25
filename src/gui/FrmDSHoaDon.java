@@ -5,23 +5,12 @@
 package gui;
 
 import connectDB.ConnectDB;
-import dao.DAO_ChiTietHoaDon;
-import dao.DAO_HoaDon;
-import dao.DAO_KhachHang;
-import dao.DAO_KhuyenMai;
-import dao.DAO_MauSac;
-import dao.DAO_NhaCungCap;
-import dao.DAO_NhanVien;
-import dao.DAO_NhomSanPham;
-import dao.DAO_Sach;
-import dao.DAO_VanPhongPham;
+
 import dao.Interface.*;
-import dao.impl.*;
+import otherEntity.KhuyenMai;
 import entityJPA.ChiTietHoaDon;
 import entityJPA.HoaDon;
 import entityJPA.KhachHang;
-import entity.KhuyenMai;
-import entity.NhaCungCap;
 import entityJPA.NhanVien;
 import entityJPA.NhomKhachHang;
 import entityJPA.NhomSanPham;
@@ -83,7 +72,6 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import client_Dao.Dao_Package_Static;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *
@@ -111,7 +99,6 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
     private ChiTietHoaDon_Dao dao_cthd = Dao_Package_Static.dao_ChiTietHoaDon;
     private NhanVien_Dao dao_nv = Dao_Package_Static.dao_NhanVien;
     private Thread thread = null;
-    private DAO_KhuyenMai dao_khuyenMai = new DAO_KhuyenMai();
 
 
     public FrmDSHoaDon() throws Exception {
@@ -1003,15 +990,15 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
     }
 
     public void loadKhuyenMai() {
-        DefaultTableModel md = (DefaultTableModel) tableChonKH1.getModel();
-        md.getDataVector().removeAllElements();
-        ArrayList<KhuyenMai> listKM = dao_khuyenMai.getAlltbKM();
-        for (KhuyenMai km : listKM) {
-            if (km.getTrangThai().equalsIgnoreCase("Đang hoạt động")) {
-                md.addRow(new Object[]{km.getMaKhuyenMai(), km.getTenKhuyenMai(), km.getGhiChu()});
-            }
-
-        }
+//        DefaultTableModel md = (DefaultTableModel) tableChonKH1.getModel();
+//        md.getDataVector().removeAllElements();
+////        ArrayList<KhuyenMai> listKM = dao_khuyenMai.getAlltbKM();
+//        for (KhuyenMai km : listKM) {
+//            if (km.getTrangThai().equalsIgnoreCase("Đang hoạt động")) {
+//                md.addRow(new Object[]{km.getMaKhuyenMai(), km.getTenKhuyenMai(), km.getGhiChu()});
+//            }
+//
+//        }
     }
 
     public void loadChonSPBarcode() throws RemoteException {

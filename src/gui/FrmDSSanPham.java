@@ -7,19 +7,8 @@ import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import connectDB.ConnectDB;
-//import dao.DAO_MauSac;
-//import dao.DAO_NhaCungCap;
-//import dao.DAO_NhomSanPham;
-//import dao.DAO_Sach;
-//import dao.DAO_VanPhongPham;
 import dao.Interface.*;
-import dao.impl.*;
-//import entity.MauSac;
-//import entity.NhaCungCap;
-//import entity.NhomSanPham;
-//import entity.Sach;
-//import entity.VanPhongPham;
+
 import entityJPA.*;
 import gui.FrmChinh;
 
@@ -77,7 +66,6 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *

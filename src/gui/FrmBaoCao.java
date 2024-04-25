@@ -7,9 +7,7 @@ package gui;
 import dao.Interface.BanBaoCao_Dao;
 import dao.Interface.ChiTietBaoCao_Dao;
 import dao.Interface.HoaDon_Dao;
-import dao.impl.BanBaoCao_Impl;
-import dao.impl.ChiTietBanBaoCao_Impl;
-import dao.impl.HoaDon_Impl;
+import dao.Interface.NhanVien_Dao;
 import entityJPA.BanBaoCao;
 import entityJPA.ChiTietBanBaoCao;
 import entityJPA.NhanVien;
@@ -43,11 +41,8 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import client_Dao.Dao_Package_Static;
-import dao.DAO_BanBaoCao;
-import dao.DAO_ChiTietBanBaoCao;
-import dao.DAO_HoaDon;
-import dao.DAO_NhanVien;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
+
+
 
 /**
  *
@@ -745,7 +740,7 @@ public class FrmBaoCao extends javax.swing.JPanel {
         // TODO add your handling code here:
         lblNameLogin.setText(gui.FrmLogin.tenNguoiDung);
     }//GEN-LAST:event_lblNameLoginAncestorAdded
-    private DAO_NhanVien dao_nhanvien = new DAO_NhanVien();
+    private NhanVien_Dao dao_nhanvien = Dao_Package_Static.dao_NhanVien;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         LocalDate today = jDateChooser3.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();        

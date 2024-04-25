@@ -6,8 +6,7 @@ package gui;
 
 import dao.DAO_KhuyenMai;
 import dao.Interface.*;
-import dao.impl.*;
-import entity.KhuyenMai;
+import otherEntity.KhuyenMai;
 import entityJPA.*;
 import entityJPA.otherID.ChiTietHoaDonDoiID;
 import entityJPA.otherID.ChiTietHoanTraID;
@@ -55,7 +54,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import client_Dao.Dao_Package_Static;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *

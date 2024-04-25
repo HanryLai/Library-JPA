@@ -20,15 +20,10 @@ import com.toedter.calendar.JDateChooser;
 
 import client_Dao.Dao_Package_Static;
 import connectDB.ConnectDB;
-import dao.DAO_NhaCungCap;
-import dao.DAO_NhanVien;
-import dao.Dao_TaiKhoan;
+
 import dao.Interface.TaiKhoan_Dao;
-import dao.impl.TaiKhoan_Impl;
-import entity.CaLamViec;
-import entity.ChucVu;
-import entity.NhaCungCap;
-import entity.NhanVien;
+
+
 
 
 import java.awt.Desktop;
@@ -56,13 +51,13 @@ import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 
+import entityJPA.NhanVien;
 import entityJPA.TaiKhoan;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *
@@ -1859,5 +1854,5 @@ public class FrmTaiKhoan extends javax.swing.JPanel {
     private javax.swing.JTextField txtTimKH8;
     // End of variables declaration//GEN-END:variables
     private ArrayList<NhanVien> data;
-    private DAO_NhanVien dao_nhanvien;
+    private dao.Interface.NhanVien_Dao dao_nhanvien;
 }

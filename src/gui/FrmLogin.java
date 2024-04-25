@@ -15,8 +15,6 @@ import javax.swing.KeyStroke;
 
 import client_Dao.Dao_Package_Static;
 import dao.Interface.TaiKhoan_Dao;
-import dao.impl.TaiKhoan_Impl;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 public class FrmLogin extends javax.swing.JFrame {
     public static String tenDN = "";
@@ -564,6 +562,8 @@ public class FrmLogin extends javax.swing.JFrame {
         String matKhau = new String(jPasswordField1.getPassword());
         if(dao_TaiKhoan.xacThucNguoiDung(tenDangNhap, matKhau))
         {
+        	FrmChinh frmChinh = new FrmChinh();
+        	frmChinh.setVisible(true);
         	this.dispose();
         }
 //        Dao_TaiKhoan dao_TaiKhoan = new Dao_TaiKhoan();

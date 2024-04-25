@@ -5,7 +5,7 @@
 package gui;
 
 import dao.Interface.NhanVien_Dao;
-import dao.impl.NhanVien_Impl;
+
 import entityJPA.NhanVien;
 import menuGui.MenuEvent;
 import menuGui.TableActionCellEditor;
@@ -57,8 +57,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import client_Dao.Dao_Package_Static;
-import dao.DAO_NhanVien;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 public class FrmChinh extends javax.swing.JFrame {
 
@@ -197,11 +195,7 @@ public class FrmChinh extends javax.swing.JFrame {
                 } else if (index == 5 && subIndex == 2) {
                     showForm(new FrmThongKe());
                 } else if (index == 6 && subIndex == 1) {
-                    try {
-                        showForm(new FrmKhuyenMai());
-                    } catch (SQLException ex) {
-                        Logger.getLogger(FrmChinh.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    
                 } else if (index == 6 && subIndex == 2) {
                     try {
                         showForm(new FrmTaiKhoan());

@@ -6,12 +6,8 @@ package dao;
 
 import com.ctc.wstx.shaded.msv_core.reader.trex.ng.NGNameState;
 import connectDB.ConnectDB;
-import entity.CaLamViec;
-import entity.ChucVu;
-import entity.KhuyenMai;
-import entity.NhanVien;
-import entity.NhomSanPham;
-import entity.TaiKhoan;
+import otherEntity.KhuyenMai;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
