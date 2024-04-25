@@ -1,6 +1,6 @@
 package dao.Interface;
 
-import entity.ProductInfo;
+import dao.DAO_ThongKe;
 import otherEntity.MonthlyRevenueInfo;
 
 import java.rmi.Remote;
@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface ThongKe_Dao extends Remote {
-    public List<ProductInfo> getTopSellingProducts() throws RemoteException;
+    public List<DAO_ThongKe.ProductInfo> getTopSellingProducts() throws RemoteException;
     public double tongDoanhThu(int currentYear) throws RemoteException;
     public double tongHoanTra(int currentYear) throws RemoteException;
     public List<MonthlyRevenueInfo> tongTienTheoThang() throws RemoteException;
