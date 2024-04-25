@@ -565,8 +565,8 @@ public class FrmLogin extends javax.swing.JFrame {
         	this.dispose();
         }
 //        Dao_TaiKhoan dao_TaiKhoan = new Dao_TaiKhoan();
-        tenDN = dao_TaiKhoan.phanQuyen(tenDangNhap);
-        this.tenNguoiDung = dao_TaiKhoan.getTenNguoiDung(tenDangNhap);
+        tenDN = dao_TaiKhoan.phanQuyen(tenDangNhap+"@gmail.com");
+        tenNguoiDung = dao_TaiKhoan.getTenNguoiDung(tenDangNhap+"@gmail.com");
         emailDN = tenDangNhap;
     }
    

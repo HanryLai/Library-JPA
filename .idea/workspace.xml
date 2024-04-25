@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3840fe-7815-4ca2-bd69-f0e9f3e7cd1d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmLapHoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmLapHoaDon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/printReport/ReportManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/printReport/ReportManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietBanBaoCao_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietBanBaoCao_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmBaoCao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmDSHoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmDSHoaDon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmNhanVien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmNhanVien.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,16 +42,20 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.FrmBaoCao.executor": "Run",
+    "Application.FrmDSHoaDon.executor": "Run",
     "Application.FrmLapHoaDon.executor": "Run",
+    "Application.FrmLogin.executor": "Run",
+    "Application.FrmNhanVien.executor": "Run",
     "Application.MainTest.executor": "Run",
     "Application.Main_Create_Data.executor": "Run",
     "Application.TaiKhoan_NhanVien_KhachHang.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "hieu",
+    "git-widget-placeholder": "loc",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/IUH/KH_II_2023_2024/PhanTanJava/project/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
+    "last_opened_file_path": "D:/IUH/2023-2024/HK2-2324/PTJava/Project-Intellij/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -61,9 +68,22 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.MainTest">
-    <configuration name="FrmLapHoaDon" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gui.FrmLapHoaDon" />
+  <component name="RunManager" selected="Application.FrmLogin">
+    <configuration name="FrmBaoCao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.FrmBaoCao" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FrmDSHoaDon" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.FrmDSHoaDon" />
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
@@ -88,6 +108,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FrmNhanVien" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.FrmNhanVien" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MainTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gui.MainTest" />
       <module name="QuanLiNhaSachONEEIGHT" />
@@ -101,39 +134,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main_Create_Data" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="testPackage.data.Main_Create_Data" />
-      <module name="QuanLiNhaSachONEEIGHT" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="testPackage.data.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TaiKhoan_NhanVien_KhachHang" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="testPackage.data.TaiKhoan_NhanVien_KhachHang" />
-      <module name="QuanLiNhaSachONEEIGHT" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="testPackage.data.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainTest" />
-        <item itemvalue="Application.TaiKhoan_NhanVien_KhachHang" />
-        <item itemvalue="Application.FrmLapHoaDon" />
         <item itemvalue="Application.FrmLogin" />
-        <item itemvalue="Application.Main_Create_Data" />
+        <item itemvalue="Application.FrmDSHoaDon" />
+        <item itemvalue="Application.FrmBaoCao" />
+        <item itemvalue="Application.FrmNhanVien" />
+        <item itemvalue="Application.MainTest" />
       </list>
     </recent_temporary>
   </component>
@@ -141,6 +148,7 @@
     <attachedChunks>
       <set>
         <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
       </set>
     </attachedChunks>
   </component>
@@ -158,6 +166,7 @@
       <workItem from="1713938023712" duration="3547000" />
       <workItem from="1713943733195" duration="7420000" />
       <workItem from="1714009515172" duration="2311000" />
+      <workItem from="1714021624349" duration="2670000" />
     </task>
     <servers />
   </component>
