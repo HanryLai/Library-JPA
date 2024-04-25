@@ -7,20 +7,6 @@ package gui;
 import dao.DAO_KhuyenMai;
 import dao.Interface.*;
 import dao.impl.*;
-//import entity.ChiTietHoaDon;
-//import entity.ChiTietHoaDonDoi;
-//import entity.ChiTietHoanTra;
-//import entity.HoaDon;
-//import entity.HoaDonDoiHang;
-//import entity.HoaDonHoanTra;
-//import entity.KhachHang;
-//import entity.KhuyenMai;
-//import entity.NhanVien;
-//import entity.NhomKhachHang;
-//import entity.NhomSanPham;
-//import entity.Sach;
-//import entity.VanPhongPham;
-
 import entity.KhuyenMai;
 import entityJPA.*;
 import entityJPA.otherID.ChiTietHoaDonDoiID;
@@ -73,9 +59,7 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
  *
  * @author nguyen chau tai
  */
-//public class FrmKhachTraHang extends javax.swing.JPanel {
-
-public class FrmKhachTraHang extends javax.swing.JFrame {
+public class FrmKhachTraHang extends javax.swing.JPanel {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     DecimalFormat deciFormat = new DecimalFormat("###.###");
     int soLuong = 1;
@@ -94,7 +78,7 @@ public class FrmKhachTraHang extends javax.swing.JFrame {
     private ChiTietHoaDon_Dao dao_cthd = new ChiTietHoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     private NhanVien_Dao dao_nv = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     private HoaDonHoanTra_Dao dao_hdht = new HoaDonHoanTra_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private ChiTietHoaDonHoanTra_Dao dao_ctht = new ChiTietHoaDonHoanTraImpl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private ChiTietHoaDonHoanTra_Dao dao_ctht = new ChiTietHoaDonHoanTra_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     private HoaDonDoiHang_Dao dao_hddh = new HoaDonDoiHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     private ChiTietHoaDonDoi_Dao dao_ctdd = new ChiTietHoaDonDoi_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     private Thread thread = null;
@@ -102,12 +86,7 @@ public class FrmKhachTraHang extends javax.swing.JFrame {
     private DAO_KhuyenMai dao_khuyenMai = new DAO_KhuyenMai();
 
 
-    public static void main(String[] args) throws RemoteException {
-        new FrmKhachTraHang().setVisible(true);
-    }
-
     public FrmKhachTraHang() throws RemoteException {
-        this.setSize(1400, 800);
         initComponents();
         thread = new Thread(this::setTimeAuto);
         thread.start();

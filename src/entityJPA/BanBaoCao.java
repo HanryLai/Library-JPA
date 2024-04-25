@@ -35,7 +35,7 @@ public class BanBaoCao implements Serializable {
 	private String thoiGianBaoCao;
 
 	@OneToMany(mappedBy = "banBaoCao")
-	private Set<ChiTietBanBaoCao> chiTietBanBaoCaos;
+	private List<ChiTietBanBaoCao> chiTietBanBaoCaos;
 
 	@Override
 	public String toString() {
