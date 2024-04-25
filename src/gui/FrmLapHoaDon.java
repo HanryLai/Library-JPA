@@ -791,11 +791,14 @@ public class FrmLapHoaDon extends JPanel {
                 hd.setTongTien(Float.parseFloat(lblTongTienThanhToan.getText()));
 
                 dao_hd.createHoaDon(hd);
+                hd = dao_hd.getAllHoaDon().getLast();
                 DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
                 String ma = "";
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
                     ma =  tableInForSP.getValueAt(i, 1).toString();
-                    if (ma.startsWith("S")) {
+                    Sach sach = dao_sach.getSachtheoMa(ma);
+                    if (sach!=null) {
+//                    if (ma.startsWith("S")) {
                         Sach s = dao_sach.getSachtheoMa(ma);
                         ChiTietHoaDon cthd = new ChiTietHoaDon(hd, s, (int) tableInForSP.getValueAt(i, 4), (double) tableInForSP.getValueAt(i, 5));
                         dao_cthd.createChiTietHoaDon(cthd);
