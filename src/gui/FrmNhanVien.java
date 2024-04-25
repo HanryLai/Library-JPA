@@ -20,6 +20,7 @@ import com.toedter.calendar.JDateChooser;
 
 
 import dao.impl.CaLamViec_Impl;
+import dao.impl.Generic_Impl;
 import dao.impl.NhanVien_Impl;
 import entityJPA.CaLamViec;
 import entityJPA.ChucVu;
@@ -55,6 +56,8 @@ import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import lombok.SneakyThrows;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -69,7 +72,8 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
  *
  * @author nguyen chau tai
  */
-public class FrmNhanVien extends javax.swing.JPanel {
+//public class FrmNhanVien extends javax.swing.JPanel {
+public class FrmNhanVien extends javax.swing.JFrame {
 
     /**
      * Creates new form FrmDSKhachHang
@@ -144,11 +148,8 @@ public class FrmNhanVien extends javax.swing.JPanel {
                         //thietLapMaNhanVienTN();
                     }
                     else{
-                        try {
-                            thietLapMaNhanVienQL();
-                        } catch (RemoteException ex) {
-                            throw new RuntimeException(ex);
-                        }
+                        //thietLapMaNhanVienQL();
+                        System.out.println("thietLapMaNhanVienQL");
                     }
                 }
             }
@@ -2704,7 +2705,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
         String soDienThoai = txtTimKH12.getText();
         String gioiTinh = String.valueOf(jComboBox12.getSelectedItem());
         String email = txtTimKH10.getText();
-        TaiKhoan taiKhoan = new TaiKhoan();
+        // Them taiKhoan truoc khi them nhan vien
+        TaiKhoan taiKhoan = new TaiKhoan(email.substring(0, email.indexOf("@")), "1111", email);
+        EntityManager em = EntityManagerFactory_Static.getEntityManagerFactory().createEntityManager();
+        Generic_Impl<TaiKhoan> generic_Impl = new Generic_Impl<>(TaiKhoan.class, EntityManagerFactory_Static.getEntityManagerFactory());
+        generic_Impl.save(taiKhoan);
 
         int tinhTrangLamViec = Integer.parseInt(String.valueOf(jComboBox2.getSelectedItem()));
         String caLv = String.valueOf(jComboBox5.getSelectedItem());
@@ -2742,7 +2747,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
                 nvThem.setSoDienThoai(soDienThoai);
                 nvThem.setGioiTinh(gioiTinh);
                 nvThem.setEmail(email);
-                nvThem.setTaiKhoan(new TaiKhoan(email.substring(0, email.indexOf("@")), "1111", email));
+                nvThem.setTaiKhoan(taiKhoan);
                 nvThem.setTinhTrangLamViec(tinhTrangLamViec);
                 nvThem.setCaLamViec(caLamViec); // Sửa lại lấy ca làm việc từ db lên để set vào nhân viên
                 nvThem.setChucVu(chucVu);
@@ -2880,6 +2885,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
         
         TaiKhoan taiKhoan = new TaiKhoan(emailMoi.substring(0, emailMoi.indexOf("@")), "1111", emailMoi);
         NhanVien nvMoi = new NhanVien();
+        nvMoi.setMaNhanVien(maNVSua);
         nvMoi.setHoTenNV(tenNVMoi);
         nvMoi.setNgaySinh(ngaySinhMoi);
         nvMoi.setSoDienThoai(soDienThoaiMoi);
@@ -2894,7 +2900,8 @@ public class FrmNhanVien extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Hãy chọn dòng cần sửa");
         }
         else if (validData()) {
-            dao_nhanvien.updateNhanVien(maNVSua);
+            dao_nhanvien.updateNhanVien(nvMoi);
+            JOptionPane.showMessageDialog(null, "Sửa thành công");
             System.out.println("Update: "+nvMoi);
         }
         

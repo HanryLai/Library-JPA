@@ -2,15 +2,7 @@ package entityJPA;
 
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,7 +27,7 @@ public class KhachHang {
 	private NhomKhachHang nhomKhachHang;
 	private double tongTienMua;
 	private int soLuongHoaDon;
-	@OneToMany(mappedBy = "khachHang")
+	@OneToMany(mappedBy = "khachHang",fetch = FetchType.LAZY)
 	private List<HoaDon> hoaDons;
 	
 	@Override

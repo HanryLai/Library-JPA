@@ -23,7 +23,7 @@ public class CaLamViec {
 	private Time thoiGianBatDau;
 	@Column(columnDefinition = "time")
 	private Time thoiGianKetThuc;
-	@OneToMany(mappedBy = "caLamViec")
+	@OneToMany(mappedBy = "caLamViec", fetch = FetchType.LAZY)
 	private List<NhanVien> nhanViens;
 
 	public CaLamViec(String tenCa, Time thoiGianBatDau, Time thoiGianKetThuc) {

@@ -42,7 +42,7 @@ public class NhanVien {
 	private String email;
 	
 	@OneToOne
-	@JoinColumn(name = "tenDangNhap", unique = true, nullable = false)
+	@JoinColumn(name = "tenDangNhap", unique = true)
 	private TaiKhoan taiKhoan;
 	private int tinhTrangLamViec;
 	

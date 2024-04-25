@@ -372,6 +372,7 @@ public class FrmDSHoaDon extends javax.swing.JFrame {
 
     public void createInit() throws RemoteException {
         DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
+        System.out.println(md.toString());
         double tongTienThanhToan = 0;
         int tongSoLuongSp = 0;
         for (int i = 0; i < md.getRowCount(); i++) {
