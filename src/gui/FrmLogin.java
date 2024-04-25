@@ -315,7 +315,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField1.setText("nguyentanloc1108@gmail.com");
+        jTextField1.setText("nguyentanloc1108");
         jTextField1.setToolTipText("");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -324,7 +324,7 @@ public class FrmLogin extends javax.swing.JFrame {
         });
 
         jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jPasswordField1.setText("NTL@11082003");
+        jPasswordField1.setText("1234");
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
