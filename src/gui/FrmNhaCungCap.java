@@ -66,7 +66,7 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
  *
  * @author nguyen chau tai
  */
-public class FrmNhaCungCap extends javax.swing.JFrame implements MouseListener {
+public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
 
     /**
      * Creates new form FrmDSKhachHang
