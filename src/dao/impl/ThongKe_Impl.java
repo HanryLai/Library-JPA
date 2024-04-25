@@ -1,5 +1,6 @@
 package dao.impl;
 
+import connectDB.ConnectDB;
 import dao.DAO_ThongKe;
 import dao.Interface.ThongKe_Dao;
 import jakarta.persistence.EntityManager;
@@ -8,6 +9,9 @@ import otherEntity.MonthlyRevenueInfo;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -33,12 +37,66 @@ public class ThongKe_Impl extends UnicastRemoteObject implements ThongKe_Dao {
 
     @Override
     public double tongHoanTra(int currentYear) throws RemoteException {
-        return 0;
+        String query = "SELECT SUM(tienHoanTra) AS total_revenue FROM hoaDonHoanTra "
+                + "WHERE YEAR(ngayHoan) = ? "
+                + "GROUP BY MONTH(ngayHoan)";
+        double totalRevenue = 0.0;
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.MONTH, Calendar.JANUARY);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        Date startDate = calendar.getTime();
+        calendar.set(Calendar.MONTH, Calendar.DECEMBER);
+        calendar.set(Calendar.DAY_OF_MONTH, 31);
+        Date endDate = calendar.getTime();
+        try {
+            EntityManager em = emf.createEntityManager();
+            totalRevenue = (Double) em.createNativeQuery(query)
+                    .setParameter(1, currentYear)
+                    .getSingleResult();
+            return totalRevenue;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     @Override
     public List<MonthlyRevenueInfo> tongTienTheoThang() throws RemoteException {
-        return null;
+        List<entity.MonthlyRevenueInfo> monthlyRevenueList = new ArrayList<>();
+        for (int month = 1; month <= 12; month++) {
+            monthlyRevenueList.add(new entity.MonthlyRevenueInfo(month, 0.0));
+        }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.MONTH, Calendar.JANUARY);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        Date startDate = calendar.getTime();
+        calendar.set(Calendar.MONTH, Calendar.DECEMBER);
+        calendar.set(Calendar.DAY_OF_MONTH, 31);
+        Date endDate = calendar.getTime();
+
+        String sql = "SELECT MONTH(ngayLap) AS month, COALESCE(SUM(tongTien), 0.0) AS total_revenue "
+                + "FROM hoaDon "
+                + "WHERE YEAR(ngayLap) = ? "
+                + "GROUP BY MONTH(ngayLap)";
+
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+
+        try {
+            EntityManager em = emf.createEntityManager();
+            List<?> list = em.createNativeQuery(sql)
+                    .setParameter(1, currentYear)
+                    .getResultList();
+            for (Object o : list) {
+                Object[] arr = (Object[]) o;
+                int month = (int) arr[0];
+                double totalRevenue = (double) arr[1];
+                monthlyRevenueList.add(new entity.MonthlyRevenueInfo(month, totalRevenue));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
