@@ -1,5 +1,6 @@
 package entityJPA;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -25,7 +26,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "NhanVien")
-public class NhanVien {
+public class NhanVien implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maNhanVien;
@@ -42,7 +44,7 @@ public class NhanVien {
 	private String email;
 
 	@OneToOne
-	@JoinColumn(name = "tenDangNhap", unique = true, nullable = false)
+	@JoinColumn(name = "tenDangNhap", unique = true)
 	private TaiKhoan taiKhoan;
 	private int tinhTrangLamViec;
 

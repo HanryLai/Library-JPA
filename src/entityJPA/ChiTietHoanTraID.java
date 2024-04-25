@@ -9,11 +9,16 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString
-@AllArgsConstructor
 @Embeddable
 public class ChiTietHoanTraID implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private int maHoaDonHoaTra;
+
 	private int maSanPham;
 
+	public ChiTietHoanTraID(int maHoaDonHoaTra, int maSanPham) {
+		this.maHoaDonHoanTra = maHoaDonHoaTra;
+		this.maSanPham = maSanPham;
+	}
 }

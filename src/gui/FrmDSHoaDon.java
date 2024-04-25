@@ -87,8 +87,8 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
  *
  * @author nguyen chau tai
  */
-public class FrmDSHoaDon extends javax.swing.JPanel {
-
+//public class FrmDSHoaDon extends javax.swing.JPanel {
+public class FrmDSHoaDon extends javax.swing.JFrame {
     /**
      * Creates new form FrmDSKhachHang
      */
@@ -112,13 +112,19 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
     private Thread thread = null;
     private DAO_KhuyenMai dao_khuyenMai = new DAO_KhuyenMai();
 
+    public static void main(String[] args) throws Exception {
+        FrmDSHoaDon frm = new FrmDSHoaDon();
+        frm.setSize(500,300);
+        frm.setVisible(true);
+    }
+
     public FrmDSHoaDon() throws Exception {
         try {
             ReportManager.getInstance().compileReport();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ConnectDB.getInstance().connect();
+        //ConnectDB.getInstance().connect();
         initComponents();
 
         Timer timer = new Timer();
@@ -366,10 +372,11 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
 
     public void createInit() throws RemoteException {
         DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
+        System.out.println(md.toString());
         double tongTienThanhToan = 0;
         int tongSoLuongSp = 0;
         for (int i = 0; i < md.getRowCount(); i++) {
-            tongTienThanhToan += (double) md.getValueAt(i, 5);
+            tongTienThanhToan += (double) md.getValueAt(i, 5)* (int) md.getValueAt(i, 4);
             tongSoLuongSp += (int) md.getValueAt(i, 4);
         }
         lblTongTienDefault.setText(deciFormat.format(tongTienThanhToan));
@@ -984,19 +991,19 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
     }
 
     public double apDungKhuyenMai() {
-        double tongTienKM = 0.0;
-        if (tableInForSP.getRowCount() != 0) {
-            KhuyenMai km = dao_khuyenMai.getKMtheoMa(txtMaKhuyenMai.getText());
-            if (km != null && km.getTienToiThieu() <= Double.parseDouble(lblTongTienDefault.getText())) {
-                tongTienKM = Double.parseDouble(lblTongTienDefault.getText()) * (km.getTiLeKM() / 100);
-                if (tongTienKM > km.getGiaTriMAX()) {
-                    tongTienKM = km.getGiaTriMAX();
-                    return tongTienKM;
-                }
-                return tongTienKM;
-            }
-        }
-        return tongTienKM;
+//        double tongTienKM = 0.0;
+//        if (tableInForSP.getRowCount() != 0) {
+//            KhuyenMai km = dao_khuyenMai.getKMtheoMa(txtMaKhuyenMai.getText());
+//            if (km != null && km.getTienToiThieu() <= Double.parseDouble(lblTongTienDefault.getText())) {
+//                tongTienKM = Double.parseDouble(lblTongTienDefault.getText()) * (km.getTiLeKM() / 100);
+//                if (tongTienKM > km.getGiaTriMAX()) {
+//                    tongTienKM = km.getGiaTriMAX();
+//                    return tongTienKM;
+//                }
+//                return tongTienKM;
+//            }
+//        }
+        return 0;
     }
 
     public void loadKhuyenMai() {
