@@ -37,6 +37,7 @@ import dao.impl.*;
 
 import entity.KhuyenMai;
 import entityJPA.*;
+import entityJPA.otherID.ChiTietHoaDonDoiID;
 import menuGui.TableActionCellEditor;
 import menuGui.TableActionCellRender;
 import menuGui.TableActionEvent;
@@ -294,7 +295,7 @@ public class FrmKhachTraHang extends javax.swing.JFrame {
 //                Double.parseDouble(lblTongTienThanhToanDoi.getText()),
 //                Double.parseDouble(txtTienChietKhau.getText()),
 //                txtMaKhuyenMai.getText()
-                hddh.setMaHoaDonDoi(Integer.parseInt(lblMaHoaDonDoiHang.getText()));
+
                 hddh.setGhiChu(jTextAreaGhiChuDoiHang.getText());
                 hddh.setTienHoanTra(Double.parseDouble(lblTongTienThanhToanDoi.getText()));
                 hddh.setChietKhau(Double.parseDouble(txtTienChietKhau.getText()));
@@ -305,9 +306,13 @@ public class FrmKhachTraHang extends javax.swing.JFrame {
                 String ma = "";
                 for (int i = 0; i < tableInForSPDoi.getRowCount(); i++) {   
                     ma = String.valueOf(tableInForSPDoi.getValueAt(i, 1));
-                    if (ma.startsWith("S")) {
+                    Sach sach = dao_sach.getSachtheoMa(ma);
+
+                    if (sach != null) {
                         Sach s = dao_sach.getSachtheoMa(ma);
                         ChiTietHoaDonDoi ctdd = new ChiTietHoaDonDoi(hddh, s, (int) tableInForSPDoi.getValueAt(i, 4), (double) tableInForSPDoi.getValueAt(i, 5));
+                        ctdd.setId(new ChiTietHoaDonDoiID(hddh.getMaHoaDonDoi(), s.getMaSanPham()));
+
                         dao_ctdd.createChiTietDonDoi(ctdd);
                         s.setSoLuongTon(s.getSoLuongTon() - (int) tableInForSPDoi.getValueAt(i, 4));
                         if (s.getSoLuongTon() == 0) {
@@ -317,6 +322,8 @@ public class FrmKhachTraHang extends javax.swing.JFrame {
                     } else {
                         VanPhongPham vpp = dao_vpp.getVPPtheoMa(ma);
                         ChiTietHoaDonDoi ctdd = new ChiTietHoaDonDoi(hddh, vpp, (int) tableInForSPDoi.getValueAt(i, 4), (double) tableInForSPDoi.getValueAt(i, 5));
+                        ctdd.setId(new ChiTietHoaDonDoiID(hddh.getMaHoaDonDoi(), vpp.getMaSanPham()));
+
                         dao_ctdd.createChiTietDonDoi(ctdd);
                         vpp.setSoLuongTon(vpp.getSoLuongTon() - (int) tableInForSPDoi.getValueAt(i, 4));
                         if (vpp.getSoLuongTon() == 0) {
@@ -353,8 +360,7 @@ public class FrmKhachTraHang extends javax.swing.JFrame {
 //                1,
 //                Double.parseDouble(lblTongTienHoan.getText())
 
-                hdht.setMaHoaDonHoanTra(Integer.parseInt(lblMaHoaDonHoanTra.getText()));
-                hdht.setNgayHoan(LocalDate.from(ngayLap));
+                hdht.setNgayHoan(LocalDate.from(ngayLap).atStartOfDay());
                 NhanVien nhanVien = dao_nv.getNVTheoMa(maNhanVien);
                 hdht.setNhanVien(nhanVien);
                 hdht.setHoaDon(hd);
@@ -367,12 +373,15 @@ public class FrmKhachTraHang extends javax.swing.JFrame {
                 String ma = "";
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
                     ma = (String.valueOf( tableInForSP.getValueAt(i, 1)));
-                    if (ma.startsWith("S")) {
+
+                    Sach sach = dao_sach.getSachtheoMa(ma);
+
+                    if (sach != null) {
                         Sach s = dao_sach.getSachtheoMa(ma);
                         ChiTietHoanTra ctht = new ChiTietHoanTra();
 //                        hdht, s, (int) tableInForSP.getValueAt(i, 4), (double) tableInForSP.getValueAt(i, 5)
+                        ctht.setId(new ChiTietHoanTraID(hdht.getMaHoaDonHoanTra(), sach.getMaSanPham()));
                         ctht.setHoaDonHoanTra(hdht);
-                        ctht.setSanPham(s);
                         ctht.setSoLuong((int) tableInForSP.getValueAt(i, 4));
                         ctht.setThanhTien((double) tableInForSP.getValueAt(i, 5));
 
@@ -383,8 +392,8 @@ public class FrmKhachTraHang extends javax.swing.JFrame {
                         VanPhongPham vpp = dao_vpp.getVPPtheoMa(ma);
                         ChiTietHoanTra ctht = new ChiTietHoanTra();
 //                        hdht, vpp, (int) tableInForSP.getValueAt(i, 4), (double) tableInForSP.getValueAt(i, 5)
-                        ctht.setHoaDonHoanTra(hdht);
-                        ctht.setSanPham(vpp);
+                        ctht.setId(new ChiTietHoanTraID(hdht.getMaHoaDonHoanTra(), vpp.getMaSanPham()));
+
                         ctht.setSoLuong((int) tableInForSP.getValueAt(i, 4));
                         ctht.setThanhTien((double) tableInForSP.getValueAt(i, 5));
                         dao_ctht.createChiTietHoanTra(ctht);
@@ -4220,7 +4229,10 @@ public class FrmKhachTraHang extends javax.swing.JFrame {
             DefaultTableModel modelInfo = (DefaultTableModel) tableInForSPDoi.getModel();
             DecimalFormat df = new DecimalFormat("#,##0");
             int sl = Integer.parseInt(txtSoLuongSanPhamChon1.getText());
-            if (maSP.startsWith("S")) {
+
+            Sach sach = dao_sach.getSachtheoMa(maSP);
+
+            if (sach != null) {
                 Sach s = dao_sach.getSachtheoMa(maSP);
                 if (sl >= s.getSoLuongTon()) {
                     sl = s.getSoLuongTon();

@@ -32,6 +32,9 @@ public class Main_Create_Data {
         System.out.println("--------------------CREATE DATA--------------------");
 
 
+        HoaDonHoanTra_ChiTietHoanTra.main(args);
+        System.out.println("--------------------CREATE DATA--------------------");
+
 
 //        DO NOT CLOSE EntityManagerFactory
 
