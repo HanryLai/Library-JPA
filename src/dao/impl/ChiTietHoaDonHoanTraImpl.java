@@ -1,8 +1,10 @@
 package dao.impl;
 
 import dao.Interface.ChiTietHoaDonHoanTra_Dao;
+import dao.Interface.HoaDonDoiHang_Dao;
 import dao.Interface.HoaDonHoanTra_Dao;
 
+import dao.Interface.Sach_Dao;
 import entityJPA.*;
 
 import jakarta.persistence.EntityManagerFactory;
@@ -56,18 +58,17 @@ public class ChiTietHoaDonHoanTraImpl extends UnicastRemoteObject implements Chi
 
     public static void main(String[] args) throws RemoteException {
         HoaDonHoanTra_Dao daoht = new HoaDonHoanTra_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+        Sach_Dao sach_dao = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         ChiTietHoaDonHoanTra_Dao daoctht = new ChiTietHoaDonHoanTraImpl(EntityManagerFactory_Static.getEntityManagerFactory());
 //        HoaDonDoiHang daohddh = new ChiTietHoaDonDoiImpl(EntityManagerFactory_Static.getEntityManagerFactory());
 
         HoaDonHoanTra hdht = daoht.getHoaDonHoanTratheoMa("1");
         System.out.println(hdht);
 
-//        ChiTietDoiHangID id, SanPham sanPham, HoaDonHoanTra hoaDonHoanTra, int soLuong, double thanhTien
-        ChiTietHoanTra ctht = new ChiTietHoanTra();
-        ctht.setHoaDonHoanTra(hdht);
-        ctht.setSoLuong(5);
-        ctht.setThanhTien(50f);
+        SanPham sach = sach_dao.getSachtheoMa("2");
+        ChiTietHoanTra ctht = new ChiTietHoanTra(hdht, sach, 5, 50f);
 
+        System.out.println(ctht);
         System.out.println(daoctht.createChiTietHoanTra(ctht));
 
     }

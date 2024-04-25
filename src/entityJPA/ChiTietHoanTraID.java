@@ -9,11 +9,13 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString
-@AllArgsConstructor
 @Embeddable
 public class ChiTietHoanTraID implements Serializable{
-
-	private int maHoaDonHoaTra;
+	private int maHoaDonHoanTra;
 	private int maSanPham;
 
+	public ChiTietHoanTraID(int maHoaDonHoaTra, int maSanPham) {
+		this.maHoaDonHoanTra = maHoaDonHoaTra;
+		this.maSanPham = maSanPham;
+	}
 }

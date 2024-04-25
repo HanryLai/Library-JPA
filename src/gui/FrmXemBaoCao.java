@@ -30,8 +30,10 @@ import javax.swing.table.DefaultTableModel;
 
 import dao.Interface.BanBaoCao_Dao;
 import dao.Interface.ChiTietBaoCao_Dao;
+import dao.Interface.HoaDon_Dao;
 import dao.impl.BanBaoCao_Impl;
 import dao.impl.ChiTietBanBaoCao_Impl;
+import dao.impl.HoaDon_Impl;
 import entityJPA.BanBaoCao;
 import entityJPA.ChiTietBanBaoCao;
 import org.jfree.chart.ChartFactory;
@@ -41,16 +43,14 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import dao.DAO_BanBaoCao;
 import dao.DAO_ChiTietBanBaoCao;
-import dao.DAO_HoaDon;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *
  * @author nguyen chau tai
  */
-public class FrmXemBaoCao extends javax.swing.JPanel {
+public class FrmXemBaoCao extends javax.swing.JFrame {
 
     /**
      * Creates new form FrmDSKhachHang
@@ -58,6 +58,7 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
     public FrmXemBaoCao() throws SQLException, RemoteException {
+        setSize(1920, 1080);
         initComponents();
         loadData();
         thread = new Thread(this::setTimeAuto);
@@ -65,6 +66,10 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
        
         offField();
         
+    }
+
+    public static void main(String[] args) throws SQLException, RemoteException {
+        new FrmXemBaoCao().setVisible(true);
     }
     
     public void offField(){
@@ -159,7 +164,8 @@ private BanBaoCao_Dao dao_BBC = new BanBaoCao_Impl(EntityManagerFactory_Static.g
         jPanel17.validate();
     }
     
-    private DAO_HoaDon dao_hoadon = new DAO_HoaDon();
+//    private DAO_HoaDon dao_hoadon = new DAO_HoaDon();
+    private HoaDon_Dao dao_hoadon = new HoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     private CategoryDataset createDataset() throws RemoteException {
         String ngayHienTai = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         System.out.println("day:"+ngayHienTai);
@@ -1292,7 +1298,11 @@ private BanBaoCao_Dao dao_BBC = new BanBaoCao_Impl(EntityManagerFactory_Static.g
         tableXemBC.setRowHeight(50);
         tableXemBC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableXemBCMouseClicked(evt);
+                try {
+                    tableXemBCMouseClicked(evt);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         jScrollPane1.setViewportView(tableXemBC);
@@ -1734,12 +1744,13 @@ private BanBaoCao_Dao dao_BBC = new BanBaoCao_Impl(EntityManagerFactory_Static.g
     public static String maBBC = "";
     public static String tenNVBC = "";
     public static String thoiGianBC="";
-    private DAO_BanBaoCao dao_BBC1 = new DAO_BanBaoCao();
-    private void tableXemBCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableXemBCMouseClicked
+//    private DAO_BanBaoCao dao_BBC1 = new DAO_BanBaoCao();
+    private BanBaoCao_Dao dao_BBC1 = new BanBaoCao_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private void tableXemBCMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_tableXemBCMouseClicked
         // TODO add your handling code here:
         if(evt.getSource().equals(tableXemBC)){
             tenBBC = tableXemBC.getValueAt(tableXemBC.getSelectedRow(), 1).toString();
-            maBBC = dao_BBC1.getMaBBCTheoTen(tableXemBC.getValueAt(tableXemBC.getSelectedRow(), 1).toString());
+            maBBC = String.valueOf(dao_BBC1.getMaBBCTheoTen(tableXemBC.getValueAt(tableXemBC.getSelectedRow(), 1) + ""));
             tenNVBC = tableXemBC.getValueAt(tableXemBC.getSelectedRow(), 2).toString();
             thoiGianBC = tableXemBC.getValueAt(tableXemBC.getSelectedRow(), 3).toString();
         }
