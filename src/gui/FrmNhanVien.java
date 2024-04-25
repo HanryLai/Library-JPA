@@ -78,11 +78,16 @@ public class FrmNhanVien extends javax.swing.JPanel {
     private Thread thread = null;
     private NhanVien_Impl dao_nhanvien = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
     private CaLamViec_Impl dao_calamviec = new CaLamViec_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+
+    public static void main(String[] args) throws SQLException, RemoteException {
+        FrmNhanVien frm = new FrmNhanVien();
+        frm.setVisible(true);
+    }
     public FrmNhanVien() throws SQLException, RemoteException {
         initComponents();
         kiemTra();
         loadData();
-        thietLapMaNhanVienTN();
+        //thietLapMaNhanVienTN();
         thread = new Thread(this::setTimeAuto);
         thread.start();
         // Su Kiem Loc theo Chuc Vu
@@ -136,7 +141,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED){
                     if(jComboBox11.getSelectedIndex()==0){
-                        thietLapMaNhanVienTN();
+                        //thietLapMaNhanVienTN();
                     }
                     else{
                         try {
@@ -2907,19 +2912,19 @@ public class FrmNhanVien extends javax.swing.JPanel {
     
     private void btnSuaNhanVien2ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnSuaNhanVien2ActionPerformed
 
-        try {
-            loadData();
-        } catch (SQLException | RemoteException ex) {
-            Logger.getLogger(FrmNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if(String.valueOf(jComboBox11.getSelectedItem()).equalsIgnoreCase("Thu ngân")){
-            thietLapMaNhanVienTN();
-        }
-        else{
-            thietLapMaNhanVienQL();
-        }
-        txtTimKH11.setEnabled(false);
-        xoaRong();
+//        try {
+//            loadData();
+//        } catch (SQLException | RemoteException ex) {
+//            Logger.getLogger(FrmNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        if(String.valueOf(jComboBox11.getSelectedItem()).equalsIgnoreCase("Thu ngân")){
+//            thietLapMaNhanVienTN();
+//        }
+//        else{
+//            thietLapMaNhanVienQL();
+//        }
+//        txtTimKH11.setEnabled(false);
+//        xoaRong();
             
     }//GEN-LAST:event_btnSuaNhanVien2ActionPerformed
 

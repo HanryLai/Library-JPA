@@ -5,20 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e3840fe-7815-4ca2-bd69-f0e9f3e7cd1d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Dao_TaiKhoan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Dao_TaiKhoan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietBanBaoCao_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietBanBaoCao_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonDoi_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ChiTietHoaDonDoi_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmKhachTraHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmKhachTraHang.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmKhuyenMai.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmKhuyenMai.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmBaoCao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmDSHoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmDSHoaDon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/FrmNhanVien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmNhanVien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menuGui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menuGui/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menuGui/PanelAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menuGui/PanelAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testPackage/data/ChiTietHoaDonDoi_Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/data/ChiTietHoaDonDoi_Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testPackage/data/Main_Create_Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/data/Main_Create_Data.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,13 +42,20 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.FrmBaoCao.executor": "Run",
+    "Application.FrmDSHoaDon.executor": "Run",
+    "Application.FrmLapHoaDon.executor": "Run",
+    "Application.FrmLogin.executor": "Run",
+    "Application.FrmNhanVien.executor": "Run",
+    "Application.MainTest.executor": "Run",
     "Application.Main_Create_Data.executor": "Run",
+    "Application.TaiKhoan_NhanVien_KhachHang.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Minh2",
+    "git-widget-placeholder": "loc",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/IUH/KH_II_2023_2024/PhanTanJava/project/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
+    "last_opened_file_path": "D:/IUH/2023-2024/HK2-2324/PTJava/Project-Intellij/Library-JPA/lib/TEMP/zxing-j2se-1.7.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -70,12 +69,12 @@
   }
 }]]></component>
   <component name="RunManager" selected="Application.FrmLogin">
-    <configuration name="ChiTietHoaDonDoi_Data" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="testPackage.data.ChiTietHoaDonDoi_Data" />
+    <configuration name="FrmBaoCao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.FrmBaoCao" />
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="testPackage.data.*" />
+          <option name="PATTERN" value="gui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -83,8 +82,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FrmChinh" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gui.FrmChinh" />
+    <configuration name="FrmDSHoaDon" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.FrmDSHoaDon" />
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
@@ -109,12 +108,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HoaDon_ChiTietHoaDon" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="testPackage.data.HoaDon_ChiTietHoaDon" />
+    <configuration name="FrmNhanVien" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.FrmNhanVien" />
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="testPackage.data.*" />
+          <option name="PATTERN" value="gui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -122,12 +121,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main_Create_Data" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="testPackage.data.Main_Create_Data" />
+    <configuration name="MainTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.MainTest" />
       <module name="QuanLiNhaSachONEEIGHT" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="testPackage.data.*" />
+          <option name="PATTERN" value="gui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -138,10 +137,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.FrmLogin" />
-        <item itemvalue="Application.Main_Create_Data" />
-        <item itemvalue="Application.ChiTietHoaDonDoi_Data" />
-        <item itemvalue="Application.FrmChinh" />
-        <item itemvalue="Application.HoaDon_ChiTietHoaDon" />
+        <item itemvalue="Application.FrmDSHoaDon" />
+        <item itemvalue="Application.FrmBaoCao" />
+        <item itemvalue="Application.FrmNhanVien" />
+        <item itemvalue="Application.MainTest" />
       </list>
     </recent_temporary>
   </component>
@@ -156,7 +155,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2edae997-5bea-41af-b6d9-230efb44e1b9" name="Changes" comment="" />
+      <changelist id="7e3840fe-7815-4ca2-bd69-f0e9f3e7cd1d" name="Changes" comment="" />
       <created>1713921304250</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -166,6 +165,8 @@
       <workItem from="1713937072301" duration="29000" />
       <workItem from="1713938023712" duration="3547000" />
       <workItem from="1713943733195" duration="7420000" />
+      <workItem from="1714009515172" duration="2311000" />
+      <workItem from="1714021624349" duration="2670000" />
     </task>
     <servers />
   </component>
