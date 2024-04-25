@@ -2,6 +2,7 @@ package entityJPA;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -23,7 +24,7 @@ public class HoaDonHoanTra implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maHoaDonHoanTra;
 	
-	private LocalDate ngayHoan;
+	private LocalDateTime ngayHoan;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "maNhanVien")
@@ -45,7 +46,7 @@ public class HoaDonHoanTra implements Serializable {
 	private Double tienHoanTra;
 
 
-	public HoaDonHoanTra(LocalDate ngayHoan, HoaDon hoaDon, String ghiChu, int tinhTrangHoaDon, Double tienHoanTra) {
+	public HoaDonHoanTra(LocalDateTime ngayHoan, HoaDon hoaDon, String ghiChu, int tinhTrangHoaDon, Double tienHoanTra) {
 		this.ngayHoan = ngayHoan;
 		this.hoaDon = hoaDon;
 		this.ghiChu = ghiChu;
