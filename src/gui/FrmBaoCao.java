@@ -52,19 +52,24 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
  *
  * @author nguyen chau tai
  */
-public class FrmBaoCao extends javax.swing.JPanel {
-
+//public class FrmBaoCao extends javax.swing.JPanel {
+public class FrmBaoCao extends javax.swing.JFrame {
     /**
      * Creates new form FrmDSKhachHang
      */
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
+
+    public static void main(String[] args) throws SQLException, RemoteException {
+        FrmBaoCao frm = new FrmBaoCao();
+        frm.setVisible(true);
+    }
     public FrmBaoCao() throws SQLException, RemoteException {
         initComponents();
         loadData();
         thread = new Thread(this::setTimeAuto);
         thread.start();
-        
+        frm.setSize(1690, 787);
         createChart();
     }
     
