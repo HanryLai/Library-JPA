@@ -408,10 +408,10 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
             SanPham         sp       = cthd.getMaSanPham();
             Sach sach = dao_sach.getSachtheoMa(String.valueOf(sp.getMaSanPham()));
             if (sach != null) {
-                mdSPBan.addRow(new Object[]{stt, cthd.getId().getMaSanPham(), sach.getTenSanPham(), sach.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
+                mdSPBan.addRow(new Object[]{stt, cthd.getMaSanPham().getMaSanPham(), sach.getTenSanPham(), sach.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
             } else {
                 VanPhongPham vPP = dao_vpp.getVPPtheoMa(String.valueOf(sp.getMaSanPham()));
-                mdSPBan.addRow(new Object[]{stt, cthd.getId().getMaSanPham(), vPP.getTenSanPham(), vPP.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
+                mdSPBan.addRow(new Object[]{stt, cthd.getMaSanPham().getMaSanPham(), vPP.getTenSanPham(), vPP.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
             }
             stt++;
         }
@@ -438,10 +438,10 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
             SanPham         sp       = cthd.getMaSanPham();
             Sach sach = dao_sach.getSachtheoMa(String.valueOf(sp.getMaSanPham()));
             if (sach != null) {
-                mdSPBan.addRow(new Object[]{stt, cthd.getId().getMaSanPham(), sach.getTenSanPham(), sach.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
+                mdSPBan.addRow(new Object[]{stt, cthd.getMaSanPham().getMaSanPham(), sach.getTenSanPham(), sach.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
             } else {
                 VanPhongPham vPP = dao_vpp.getVPPtheoMa(String.valueOf(sp.getMaSanPham()));
-                mdSPBan.addRow(new Object[]{stt, cthd.getId().getMaSanPham(), vPP.getTenSanPham(), vPP.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
+                mdSPBan.addRow(new Object[]{stt, cthd.getMaSanPham().getMaSanPham(), vPP.getTenSanPham(), vPP.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
             }
             stt++;
         }

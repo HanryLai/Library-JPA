@@ -52,7 +52,7 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 
 public class Server {
-    public static String localHost = "rmi://localhost:7878/";
+    public static String localHost = "rmi://TANLOC:7878/";
     public static void main(String[] args) throws
                                            NamingException,
                                            RemoteException,

@@ -280,7 +280,7 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
             try {
                 List<FieldReport> fields = new ArrayList<>();
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
-                    String ten = String.valueOf(tableInForSP.getValueAt(i, 2));
+                    String ten = (String) tableInForSP.getValueAt(i, 2);
                     double dg = (double) tableInForSP.getValueAt(i, 3);
                     int sl = (int) tableInForSP.getValueAt(i, 4);
                     double tien = (double) tableInForSP.getValueAt(i, 5);
@@ -305,7 +305,7 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
         tableChonSP.setRowSorter(sorter);
         DefaultTableModel md = (DefaultTableModel) tableChonSP.getModel();
         md.getDataVector().removeAllElements();
-        String nhom = String.valueOf(cboSortTabelChonSP.getSelectedItem());
+        String nhom = (String) cboSortTabelChonSP.getSelectedItem();
         List<Sach> dsSach = dao_sach.getAlltbSach();
         ArrayList<VanPhongPham> dsVpp = dao_vpp.getAllVanPhongPhan();
         if (nhom.equalsIgnoreCase("Tất cả")) {
@@ -539,32 +539,28 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
         btnXoaKhuyenMai.setEnabled(true);
         //******** load San pham
         int row = tableDSHoaDon.getSelectedRow();
-        String maHD = String.valueOf(tableDSHoaDon.getValueAt(row, 1));
+        String maHD = (String) tableDSHoaDon.getValueAt(row, 1);
         ArrayList<ChiTietHoaDon> dsCTHD = dao_cthd.getAllChiTietHoaDon();
-        ArrayList<ChiTietHoaDon> dsCTHD_get = dao_cthd.getAllChiTietHoaDonByMaHD(maHD);
-
+        ArrayList<ChiTietHoaDon> dsCTHD_get = new ArrayList<ChiTietHoaDon>();
         HoaDon hd = dao_hd.getHoaDontheoMa(maHD);
 
-
-
-//        for (ChiTietHoaDon cthd : dsCTHD) {
-//            if (maHD.equalsIgnoreCase(String.valueOf(cthd.getId().getMaHoaDon()))) {
-//                dsCTHD_get.add(cthd);
-//            }
-//        }
-        System.out.println(dsCTHD_get.size());
+        for (ChiTietHoaDon cthd : dsCTHD) {
+            if (maHD.equalsIgnoreCase(String.valueOf(cthd.getMaHoaDon()))) {
+                dsCTHD_get.add(cthd);
+            }
+        }
 
         DefaultTableModel mdSP = (DefaultTableModel) tableInForSP.getModel();
         mdSP.getDataVector().removeAllElements();
 
         int stt = 1;
         for (ChiTietHoaDon cthd : dsCTHD_get) {
-            if (dao_sach.getSachtheoMa(String.valueOf(cthd.getId().getMaSanPham())) != null) {
-                Sach s = dao_sach.getSachtheoMa(String.valueOf(cthd.getId().getMaSanPham()));
-                mdSP.addRow(new Object[]{stt, cthd.getId().getMaSanPham(), s.getTenSanPham(), s.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
+            if (dao_sach.getSachtheoMa(String.valueOf(cthd.getMaSanPham().getMaSanPham())) != null) {
+                Sach s = dao_sach.getSachtheoMa(String.valueOf(cthd.getMaSanPham().getMaSanPham()));
+                mdSP.addRow(new Object[]{stt, cthd.getMaSanPham().getMaSanPham(), s.getTenSanPham(), s.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
             } else {
-                VanPhongPham vpp = dao_vpp.getVPPtheoMa(String.valueOf(cthd.getId().getMaSanPham()));
-                mdSP.addRow(new Object[]{stt, cthd.getId().getMaSanPham(), vpp.getTenSanPham(), vpp.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
+                VanPhongPham vpp = dao_vpp.getVPPtheoMa(String.valueOf(cthd.getMaSanPham().getMaSanPham()));
+                mdSP.addRow(new Object[]{stt, cthd.getMaSanPham().getMaSanPham(), vpp.getTenSanPham(), vpp.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
             }
             stt++;
         }
@@ -651,12 +647,12 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
 
         int stt = 1;
         for (ChiTietHoaDon cthd : dsCTHD_get) {
-            if (dao_sach.getSachtheoMa(String.valueOf(cthd.getId().getMaSanPham())) != null) {
-                Sach s = dao_sach.getSachtheoMa(String.valueOf(cthd.getId().getMaSanPham()));
-                mdSP.addRow(new Object[]{stt, cthd.getId().getMaSanPham(), s.getTenSanPham(), s.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
+            if (dao_sach.getSachtheoMa(String.valueOf(cthd.getMaSanPham().getMaSanPham())) != null) {
+                Sach s = dao_sach.getSachtheoMa(String.valueOf(cthd.getMaSanPham().getMaSanPham()));
+                mdSP.addRow(new Object[]{stt, cthd.getMaSanPham().getMaSanPham(), s.getTenSanPham(), s.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
             } else {
-                VanPhongPham vpp = dao_vpp.getVPPtheoMa(String.valueOf(cthd.getId().getMaSanPham()));
-                mdSP.addRow(new Object[]{stt, cthd.getId().getMaSanPham(), vpp.getTenSanPham(), vpp.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
+                VanPhongPham vpp = dao_vpp.getVPPtheoMa(String.valueOf(cthd.getMaSanPham().getMaSanPham()));
+                mdSP.addRow(new Object[]{stt, cthd.getMaSanPham().getMaSanPham(), vpp.getTenSanPham(), vpp.getDonGiaBan(), cthd.getSoLuong(), cthd.getThanhTien()});
             }
             stt++;
         }
@@ -735,9 +731,8 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
                 DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
                 String ma = "";
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
-                    ma = String.valueOf(tableInForSP.getValueAt(i, 1));
-                    Sach sach = dao_sach.getSachtheoMa(ma);
-                    if (sach != null) {
+                    ma = (String) tableInForSP.getValueAt(i, 1);
+                    if (ma.startsWith("S")) {
                         Sach s = dao_sach.getSachtheoMa(ma);
                         ChiTietHoaDon cthd = new ChiTietHoaDon(hd, s, (int) tableInForSP.getValueAt(i, 4), (double) tableInForSP.getValueAt(i, 5));
                         dao_cthd.createChiTietHoaDon(cthd);
@@ -815,8 +810,7 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
                 String maSP = (String) tableInForSP.getValueAt(row, 1);
                 int sl = (int) tableInForSP.getValueAt(row, 4);
                 double dg = (double) tableInForSP.getValueAt(row, 3);
-                Sach sach = dao_sach.getSachtheoMa(maSP);
-                if (sach != null) {
+                if (maSP.startsWith("S")) {
                     Sach s = dao_sach.getSachtheoMa(maSP);
                     if (sl < s.getSoLuongTon()) {
                         sl++;
@@ -1046,9 +1040,8 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
             }
 
         }
-        Sach sach = dao_sach.getSachtheoMa(maSP);
 
-        if (sach != null) {
+        if (maSP.startsWith("S")) {
             Sach s = dao_sach.getSachtheoMa(maSP);
             modelInfo.addRow(new Object[]{sttSP, s.getMaSanPham(), s.getTenSanPham(),
                 s.getDonGiaBan(), 1, tinhThanhTien(1, s.getDonGiaBan())});
@@ -3396,9 +3389,7 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
             DefaultTableModel modelInfo = (DefaultTableModel) tableInForSP.getModel();
             DecimalFormat df = new DecimalFormat("#,##0");
             int sl = Integer.parseInt(txtSoLuongSanPhamChon.getText());
-            Sach sach = dao_sach.getSachtheoMa(maSP);
-            if (sach != null) {
-//            if (maSP.startsWith("S")) {
+            if (maSP.startsWith("S")) {
                 Sach s = dao_sach.getSachtheoMa(maSP);
                 if (sl >= s.getSoLuongTon()) {
                     sl = s.getSoLuongTon();
@@ -3502,7 +3493,7 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
     private void tableChonKH1MouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_tableChonKH1MouseClicked
         // TODO add your handling code here:
         int row = tableChonKH1.getSelectedRow();
-        String ma = String.valueOf(tableChonKH1.getValueAt(row, 0));
+        String ma = (String) tableChonKH1.getValueAt(row, 0);
         txtMaKhuyenMai.setText(ma);
         createInit();
         jDialogChonKhuyenMai.setVisible(false);

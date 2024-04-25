@@ -4,36 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="652cd2fa-2f1d-4ac0-8780-39360dbb3902" name="Changes" comment="">
+    <list default="true" id="5f2ae875-a319-4aab-906e-e9966f181cd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/ThongKe_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/ThongKe_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmThongKe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmThongKe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/otherEntity/KhuyenMai.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/otherEntity/KhuyenMai.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/otherEntity/MonthlyRevenueInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/otherEntity/MonthlyRevenueInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/otherEntity/ProductInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/otherEntity/ProductInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testPackage/implement/TestThongKe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/implement/TestThongKe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/NhanVien_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/NhanVien_Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/NhanVien_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/NhanVien_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/TaiKhoan_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmChinh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmChinh.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testPackage/data/HoaDon_ChiTietHoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/data/HoaDon_ChiTietHoaDon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testPackage/data/TaiKhoan_NhanVien_KhachHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testPackage/data/TaiKhoan_NhanVien_KhachHang.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Client.executor": "Run",
+    "Application.FrmLogin.executor": "Run",
     "Application.Main_Create_Data.executor": "Run",
     "Application.Server.executor": "Run",
-    "Application.TestThongKe.executor": "Run",
-    "Application.ThongKe_Impl.executor": "Run",
-    "git-widget-placeholder": "hieu",
+    "git-widget-placeholder": "loc3",
+    "last_opened_file_path": "D:/IUH/2023-2024/HK2-2324/PTJava/Project-Intellij/Library_JPA_Client",
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
@@ -44,6 +43,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FrmLogin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.FrmLogin" />
+      <module name="QuanLiNhaSachONEEIGHT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -107,9 +119,8 @@
       <list>
         <item itemvalue="Application.Client" />
         <item itemvalue="Application.Server" />
-        <item itemvalue="Application.TestThongKe" />
-        <item itemvalue="Application.ThongKe_Impl" />
         <item itemvalue="Application.Main_Create_Data" />
+        <item itemvalue="Application.FrmLogin" />
       </list>
     </recent_temporary>
   </component>
