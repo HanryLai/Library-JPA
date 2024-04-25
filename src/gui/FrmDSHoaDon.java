@@ -4,7 +4,7 @@
  */
 package gui;
 
-import connectDB.ConnectDB;
+
 
 import dao.Interface.*;
 import otherEntity.KhuyenMai;

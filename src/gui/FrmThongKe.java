@@ -4,7 +4,6 @@
  */
 package gui;
 
-import connectDB.ConnectDB;
 import dao.Interface.Sach_Dao;
 import dao.Interface.ThongKe_Dao;
 import dao.Interface.VanPhongPham_Dao;
@@ -63,7 +62,6 @@ public class FrmThongKe extends javax.swing.JPanel {
     private Thread thread = null;
 
     public FrmThongKe() throws RemoteException {
-        ConnectDB.getInstance().connect();
         initComponents();
         showPieChart();
         showLineChart();
