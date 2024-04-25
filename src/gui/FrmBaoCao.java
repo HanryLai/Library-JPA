@@ -48,7 +48,7 @@ import client_Dao.Dao_Package_Static;
  *
  * @author nguyen chau tai
  */
-//public class FrmBaoCao extends javax.swing.JPanel {
+
 public class FrmBaoCao extends javax.swing.JPanel {
     /**
      * Creates new form FrmDSKhachHang
