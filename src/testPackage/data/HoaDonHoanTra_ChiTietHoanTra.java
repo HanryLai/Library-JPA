@@ -23,7 +23,7 @@ public class HoaDonHoanTra_ChiTietHoanTra {
 
         HoaDon hd = daohd.getHoaDontheoMa("1");
 
-        HoaDonHoanTra hdht = new HoaDonHoanTra(LocalDateTime.of(2024,11,4,2,3,2,0), hd, "ghi chu", 1, 100.0);
+        HoaDonHoanTra hdht = new HoaDonHoanTra(LocalDate.now(), hd, "ghi chu", 1, 100d);
         System.out.println(daoht.createHoaDonHoanTra(hdht));
 
         SanPham sach = sach_dao.getSachtheoMa("2");

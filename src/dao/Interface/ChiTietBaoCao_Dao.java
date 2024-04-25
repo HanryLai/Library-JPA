@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public interface ChiTietBaoCao_Dao extends Remote {
     public void taoChiTietBaoCao(ChiTietBanBaoCao entity) throws RemoteException;
 
-    ArrayList<ChiTietBanBaoCao> getSachDaBan(int maHD, String thoiGianBatDau, String thoiGianKetThuc) throws RemoteException;
+    ArrayList<ChiTietBanBaoCao> getSachDaBan(String thoiGianBatDau, String thoiGianKetThuc) throws RemoteException;
 
-    ArrayList<ChiTietBanBaoCao> getVPPDaBan(int maHD, String thoiGianBatDau, String thoiGianKetThuc) throws RemoteException;
+    ArrayList<ChiTietBanBaoCao> getVPPDaBan(String thoiGianBatDau, String thoiGianKetThuc) throws RemoteException;
 
     ArrayList<ChiTietBanBaoCao> getTinhTrangNhapSach(String ngayTao) throws RemoteException;
 
