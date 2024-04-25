@@ -62,6 +62,7 @@ public class FrmBaoCao extends javax.swing.JFrame {
 
     public static void main(String[] args) throws SQLException, RemoteException {
         FrmBaoCao frm = new FrmBaoCao();
+        frm.setSize(1690, 787);
         frm.setVisible(true);
     }
     public FrmBaoCao() throws SQLException, RemoteException {
@@ -191,7 +192,7 @@ public class FrmBaoCao extends javax.swing.JFrame {
         
         int stt1 = 1;
         if (ngayHienTai.toLocalTime().isAfter(LocalTime.of(6, 0)) && ngayHienTai.toLocalTime().isBefore(LocalTime.of(11, 0))){
-            dataSach = dao_CTBC.getSachDaBan(1, today+" 06:00:00", today+" 11:00:00");
+            dataSach = dao_CTBC.getSachDaBan(today+" 06:00:00", today+" 11:00:00");
             System.out.println("dataS1: "+dataSach);
             for (ChiTietBanBaoCao ctbc : dataSach) {
                 String[] newRow = {
@@ -204,7 +205,7 @@ public class FrmBaoCao extends javax.swing.JFrame {
                 model.addRow(newRow);
                 stt1++;
             }
-            dataVPP = dao_CTBC.getVPPDaBan(1, today+" 06:00:00", today+" 11:00:00");
+            dataVPP = dao_CTBC.getVPPDaBan(today+" 06:00:00", today+" 11:00:00");
             for (ChiTietBanBaoCao ctbc : dataVPP) {
                 String[] newRow = {
                     String.format("%s", stt1),
@@ -218,7 +219,7 @@ public class FrmBaoCao extends javax.swing.JFrame {
             }
         }
         else if (ngayHienTai.toLocalTime().isAfter(LocalTime.of(11, 0)) && ngayHienTai.toLocalTime().isBefore(LocalTime.of(16, 0))){
-            dataSach = dao_CTBC.getSachDaBan(1, today+" 11:00:00", today+" 16:00:00");
+            dataSach = dao_CTBC.getSachDaBan(today+" 11:00:00", today+" 16:00:00");
             System.out.println("dataS2: "+dataSach);
             for (ChiTietBanBaoCao ctbc : dataSach) {
                 String[] newRow = {
@@ -231,7 +232,7 @@ public class FrmBaoCao extends javax.swing.JFrame {
                 model.addRow(newRow);
                 stt1++;
             }
-            dataVPP = dao_CTBC.getVPPDaBan(1, today+" 11:00:00", today+" 16:00:00");
+            dataVPP = dao_CTBC.getVPPDaBan(today+" 11:00:00", today+" 16:00:00");
             for (ChiTietBanBaoCao ctbc : dataVPP) {
                 String[] newRow = {
                     String.format("%s", stt1),
@@ -245,7 +246,7 @@ public class FrmBaoCao extends javax.swing.JFrame {
             }
         }
         else {
-            dataSach = dao_CTBC.getSachDaBan(1, today+" 16:00:00", today+" 21:00:00");
+            dataSach = dao_CTBC.getSachDaBan(today+" 16:00:00", today+" 21:00:00");
             System.out.println("dataS3: "+dataSach);
             for (ChiTietBanBaoCao ctbc : dataSach) {
                 String[] newRow = {
@@ -258,7 +259,7 @@ public class FrmBaoCao extends javax.swing.JFrame {
                 model.addRow(newRow);
                 stt1++;
             }
-            dataVPP = dao_CTBC.getVPPDaBan(1, today+" 16:00:00", today+" 21:00:00");
+            dataVPP = dao_CTBC.getVPPDaBan(today+" 16:00:00", today+" 21:00:00");
             for (ChiTietBanBaoCao ctbc : dataVPP) {
                 String[] newRow = {
                     String.format("%s", stt1),
