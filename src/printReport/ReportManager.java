@@ -45,7 +45,6 @@ public class ReportManager {
         para.put("phaiTra", data.getKhachTra());
         para.put("ngay", data.getNgay());
         para.put("ghiChu", data.getGhiChu());
-        para.put("khuyenMai", data.getKhuyenMai());
         DefaultJasperReportsContext.getInstance();
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(data.getListFields());
         JasperPrint print = JasperFillManager.fillReport(reportPay, para, dataSource);

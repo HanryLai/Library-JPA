@@ -580,6 +580,7 @@ public class FrmLapHoaDon extends JPanel {
     }
 
     public void createInit() throws RemoteException {
+        System.out.printf(lblMaKH.getText());
         DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
         double tongTienThanhToan = 0;
         int tongSoLuongSp = 0;
@@ -742,7 +743,7 @@ public class FrmLapHoaDon extends JPanel {
                 LocalDateTime ngayLap = LocalDateTime.now();
 
                 KhachHang kh = null;
-                if (lblTenKH.getText().equals("Khách lẻ")) {
+                if (lblMaKH.getText() == null) {
                     kh = new KhachHang();
 //                    lblMaKH.getText(), "Khách lẻ", "", NhomKhachHang.KHACHLE, 0, 0
                     kh.setMaKhachHang(Integer.parseInt(lblMaKH.getText()));
@@ -2531,11 +2532,11 @@ public class FrmLapHoaDon extends JPanel {
             int sl = (int) tableChonSP.getValueAt(row, 4);
             if (sl != 0) {
                 lblTenSanPhamChon.setText((String) tableChonSP.getValueAt(row, 2));
-                String maSP = (String) tableChonSP.getValueAt(row, 1);
+                String maSP = tableChonSP.getValueAt(row, 1).toString();
                 String ma = "";
                 boolean value = false;
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
-                    ma = (String) tableInForSP.getValueAt(i, 1);
+                    ma = tableInForSP.getValueAt(i, 1).toString();
                     if (ma.equalsIgnoreCase(maSP)) {
                         value = true;
                     }
@@ -2665,7 +2666,8 @@ public class FrmLapHoaDon extends JPanel {
                     s.getDonGiaBan(), sl, tinhThanhTien(sl, s.getDonGiaBan())});
                 sttSP++;
             } else {
-                VanPhongPham vpp = dao_vpp.getVPPtheoMa(maSP);
+                VanPhongPham vpp = dao_vpp.getVPPtheoMa("1");
+                System.out.println(vpp.getSoLuongTon());
                 if (sl >= vpp.getSoLuongTon()) {
                     sl = vpp.getSoLuongTon();
                 }
