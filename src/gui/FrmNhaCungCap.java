@@ -1194,6 +1194,7 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
 
             dao_ncc.themNhaCungCap(nccThem);
             JOptionPane.showMessageDialog(null, "Thêm nhà cung cấp thành công");
+            loadData();
         }
 
     }//GEN-LAST:event_btnThemSPActionPerformed
