@@ -53,7 +53,7 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
  *
  * @author nguyen chau tai
  */
-public class FrmThongKe extends javax.swing.JPanel {
+public class FrmThongKe extends javax.swing.JFrame {
 
     DecimalFormat deciFormat = new DecimalFormat("###.###");
     /**
@@ -66,7 +66,13 @@ public class FrmThongKe extends javax.swing.JPanel {
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
 
+    public static void main(String[] args) throws RemoteException {
+        FrmThongKe frm = new FrmThongKe();
+        frm.setVisible(true);
+    }
+
     public FrmThongKe() throws RemoteException {
+        setSize(1690, 787);
         ConnectDB.getInstance().connect();
         initComponents();
         showPieChart();

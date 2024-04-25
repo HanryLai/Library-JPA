@@ -66,7 +66,7 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
  *
  * @author nguyen chau tai
  */
-public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
+public class FrmNhaCungCap extends javax.swing.JFrame implements MouseListener {
 
     /**
      * Creates new form FrmDSKhachHang
@@ -77,12 +77,17 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
 
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
+
+    public static void main(String[] args) throws Exception {
+        new FrmNhaCungCap().setVisible(true);
+    }
     
     public FrmNhaCungCap() throws Exception {
+        setSize(1690, 787);
         initComponents();
         kiemTraThem();
         loadData();
-        thietLapMaNCC();
+//        thietLapMaNCC();
         
         thread = new Thread(this::setTimeAuto);
         thread.start();
@@ -1193,6 +1198,7 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
             nccThem.setGhiChu(ghiChu);
 
             dao_ncc.themNhaCungCap(nccThem);
+            JOptionPane.showMessageDialog(null, "Thêm nhà cung cấp thành công");
         }
 
     }//GEN-LAST:event_btnThemSPActionPerformed
@@ -1260,7 +1266,7 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
 
     private void txtTimKH13ActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_txtTimKH13ActionPerformed
         // TODO add your handling code here:
-        thietLapMaNCC();
+//        thietLapMaNCC();
         
     }//GEN-LAST:event_txtTimKH13ActionPerformed
 
@@ -1286,6 +1292,7 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         else if (validData()) {
             dao_ncc.updateNhaCungCap(maNCCSua, nccMoi);
             System.out.println("NCC: "+nccMoi);
+            JOptionPane.showMessageDialog(null, "Sửa nhà cung cấp thành công");
         }
 
     }//GEN-LAST:event_btnSuaKH2ActionPerformed
@@ -1301,7 +1308,7 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
     private void btnSuaKH3ActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_btnSuaKH3ActionPerformed
         // TODO add your handling code here:
         loadData();
-        thietLapMaNCC();
+//        thietLapMaNCC();
         xoaRong();
     }//GEN-LAST:event_btnSuaKH3ActionPerformed
 
