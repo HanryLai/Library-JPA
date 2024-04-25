@@ -79,11 +79,11 @@ public class NhanVien_Impl extends UnicastRemoteObject implements NhanVien_Dao {
     }
 
     @Override
-    public boolean updateNhanVien(int maNVSua) throws RemoteException {
+    public boolean updateNhanVien(NhanVien nv) throws RemoteException {
         try{
             Generic_Impl<NhanVien> generic = new Generic_Impl<>(NhanVien.class, emf);
-            NhanVien nvMoi = generic.findById(maNVSua);
-            generic.update(nvMoi);
+            //NhanVien nvMoi = generic.findById(maNVSua);
+            generic.update(nv);
             return true;
         }catch (Exception e) {
             e.printStackTrace();

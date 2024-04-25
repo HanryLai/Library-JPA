@@ -56,7 +56,9 @@ public class ThongKe_Impl extends UnicastRemoteObject implements ThongKe_Dao {
 
     @Override
     public double tongDoanhThu(int currentYear) throws RemoteException {
-        return 0;
+        String query = "SELECT SUM(tongTien) FROM HoaDon WHERE YEAR(ngayLap) = ?";
+        EntityManager em = emf.createEntityManager();
+        return (double) em.createNativeQuery(query).setParameter(1, currentYear).getSingleResult();
     }
 
     @Override
@@ -71,22 +73,54 @@ public class ThongKe_Impl extends UnicastRemoteObject implements ThongKe_Dao {
 
     @Override
     public List<MonthlyRevenueInfo> tienHoanTheoThang() throws RemoteException {
-        return null;
+        String query = "SELECT MONTH(ngayHoan) AS month, SUM(tienHoanTra) AS total_revenue\n" +
+                "FROM hoaDonHoanTra\n" +
+                "WHERE YEAR(ngayHoan) = ? " +
+                "GROUP BY MONTH(ngayHoan)";
+        EntityManager em = emf.createEntityManager();
+        List<MonthlyRevenueInfo> result = new ArrayList<>();
+        System.out.println(new Date().getYear());
+        List<?> list = em.createNativeQuery(query).setParameter(1, Calendar.getInstance().get(Calendar.YEAR)).getResultList();
+        System.out.println(list.size());
+        for(Object o : list){
+            Object[] arr = (Object[]) o;
+            result.add(new MonthlyRevenueInfo((int) arr[0], (double) arr[1]));
+        }
+        return result;
     }
 
     @Override
     public double thongKeDoanhThu(Date ngayBatDau, Date ngayKetThuc) throws RemoteException {
-        return 0;
+        String query = "SELECT SUM(tongTien) FROM HoaDon WHERE ngayLap BETWEEN ? AND ?";
+        EntityManager em = emf.createEntityManager();
+        return (double) em.createNativeQuery(query)
+                .setParameter(1, ngayBatDau)
+                .setParameter(2, ngayKetThuc)
+                .getSingleResult();
+
     }
 
     @Override
     public int thongKeSoHoaDon(Date ngayBatDau, Date ngayKetThuc) throws RemoteException {
-        return 0;
+        String query = "SELECT COUNT(*) FROM HoaDon WHERE ngayLap BETWEEN ? AND ?";
+        EntityManager em = emf.createEntityManager();
+        return (int) em.createNativeQuery(query)
+                .setParameter(1, ngayBatDau)
+                .setParameter(2, ngayKetThuc)
+                .getSingleResult();
+
+
     }
 
     @Override
     public int thongKeSoHoaDonHoanTra(Date ngayBatDau, Date ngayKetThuc) throws RemoteException {
-        return 0;
+        String query = "SELECT COUNT(*) AS SoLuongHoaDonHoanTra FROM HoaDonHoanTra WHERE ngayHoan BETWEEN ? AND ?";
+        EntityManager em = emf.createEntityManager();
+        return (int) em.createNativeQuery(query)
+                .setParameter(1, ngayBatDau)
+                .setParameter(2, ngayKetThuc)
+                .getSingleResult();
+
     }
 
     @Override
