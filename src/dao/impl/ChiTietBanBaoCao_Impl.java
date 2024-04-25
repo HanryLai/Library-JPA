@@ -82,13 +82,12 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
         thoiGianKetThuc = thoiGianKetThuc.replace("T", " ");
 
         String sql   = """
-                select v.maSanPham, sum(ct.soLuong) as soLuong, sum(thanhTien) as thanhTiens
-                    from VanPhongPham v
-                  inner join ChiTietHoaDon ct on ct.maSanPham = v.maSanPham
-                  inner join HoaDon hd on hd.maHoaDon = ct.maHoaDon
-                    where ct.maHoaDon in (select maHoaDon from HoaDon where ngayLap like '2024-04-24%')
-                and (ngayLap >= '2024-04-24 06:00:00' and ngayLap < '2024-04-24 12:00:00')
-                  group by v.maSanPham""";
+                select s.maSanPham, sum(ct.soLuong) as soLuong, sum(thanhTien) as thanhTien
+                                from VanPhongPham vpp
+                                inner join ChiTietHoaDon ct on ct.maSanPham = s.maSanPham
+                                inner join HoaDon hd on hd.maHoaDon = ct.maHoaDon
+                                where ct.maHoaDon = ? and (ngayLap >= ? and ngayLap < ?)
+                                group by vpp.maSanPham""";
 
         EntityManager em = emf.createEntityManager();
 
