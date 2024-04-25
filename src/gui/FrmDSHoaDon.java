@@ -376,7 +376,7 @@ public class FrmDSHoaDon extends javax.swing.JFrame {
         double tongTienThanhToan = 0;
         int tongSoLuongSp = 0;
         for (int i = 0; i < md.getRowCount(); i++) {
-            tongTienThanhToan += (double) md.getValueAt(i, 5);
+            tongTienThanhToan += (double) md.getValueAt(i, 5)* (int) md.getValueAt(i, 4);
             tongSoLuongSp += (int) md.getValueAt(i, 4);
         }
         lblTongTienDefault.setText(deciFormat.format(tongTienThanhToan));
@@ -991,19 +991,19 @@ public class FrmDSHoaDon extends javax.swing.JFrame {
     }
 
     public double apDungKhuyenMai() {
-        double tongTienKM = 0.0;
-        if (tableInForSP.getRowCount() != 0) {
-            KhuyenMai km = dao_khuyenMai.getKMtheoMa(txtMaKhuyenMai.getText());
-            if (km != null && km.getTienToiThieu() <= Double.parseDouble(lblTongTienDefault.getText())) {
-                tongTienKM = Double.parseDouble(lblTongTienDefault.getText()) * (km.getTiLeKM() / 100);
-                if (tongTienKM > km.getGiaTriMAX()) {
-                    tongTienKM = km.getGiaTriMAX();
-                    return tongTienKM;
-                }
-                return tongTienKM;
-            }
-        }
-        return tongTienKM;
+//        double tongTienKM = 0.0;
+//        if (tableInForSP.getRowCount() != 0) {
+//            KhuyenMai km = dao_khuyenMai.getKMtheoMa(txtMaKhuyenMai.getText());
+//            if (km != null && km.getTienToiThieu() <= Double.parseDouble(lblTongTienDefault.getText())) {
+//                tongTienKM = Double.parseDouble(lblTongTienDefault.getText()) * (km.getTiLeKM() / 100);
+//                if (tongTienKM > km.getGiaTriMAX()) {
+//                    tongTienKM = km.getGiaTriMAX();
+//                    return tongTienKM;
+//                }
+//                return tongTienKM;
+//            }
+//        }
+        return 0;
     }
 
     public void loadKhuyenMai() {
