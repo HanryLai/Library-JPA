@@ -655,7 +655,7 @@ public class FrmLapHoaDon extends JPanel {
                 NhanVien nv = dao_nv.getNVTheoMa(1);
                 HoaDon hd = new HoaDon();
 //              lblMaHoaDon.getText(), ngayLap, nv, kh, jTextAreaGhiChu.getText(), 1, Double.parseDouble(lblTongTienThanhToan.getText()), Double.parseDouble(txtTienChietKhau.getText()), txtMaKhuyenMai.getText()
-                hd.setMaHoaDon(Integer.parseInt(lblMaHoaDon.getText()));
+//                hd.setMaHoaDon(Integer.parseInt(lblMaHoaDon.getText()));
                 hd.setNgayLap(ngayLap);
                 hd.setNhanVien(nv);
                 hd.setKhachHang(kh);
@@ -671,8 +671,11 @@ public class FrmLapHoaDon extends JPanel {
                 DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
                 String ma = "";
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
-                    ma = (String) tableInForSP.getValueAt(i, 1);
-                    if (ma.startsWith("S")) {
+                    ma = tableInForSP.getValueAt(i, 1).toString();
+
+                    Sach sach = dao_sach.getSachtheoMa(ma);
+
+                    if (sach != null) {
                         Sach s = dao_sach.getSachtheoMa(ma);
                         ChiTietHoaDon cthd = new ChiTietHoaDon(hd, s, (int) tableInForSP.getValueAt(i, 4), (double) tableInForSP.getValueAt(i, 5));
                         dao_cthd.createChiTietHoaDon(cthd);
@@ -760,7 +763,7 @@ public class FrmLapHoaDon extends JPanel {
                 NhanVien nv = dao_nv.getNVTheoMa(1);
                 HoaDon hd = new HoaDon();
 //                lblMaHoaDon.getText(), ngayLap, nv, kh, jTextAreaGhiChu.getText(), 0, Double.parseDouble(lblTongTienThanhToan.getText()), Double.parseDouble(txtTienChietKhau.getText()), txtMaKhuyenMai.getText()
-                hd.setMaHoaDon(Integer.parseInt(lblMaHoaDon.getText()));
+//                hd.setMaHoaDon(Integer.parseInt(lblMaHoaDon.getText()));
                 hd.setNgayLap(ngayLap);
                 hd.setNhanVien(nv);
                 hd.setKhachHang(kh);
@@ -772,7 +775,7 @@ public class FrmLapHoaDon extends JPanel {
                 DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
                 String ma = "";
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
-                    ma = (String) tableInForSP.getValueAt(i, 1);
+                    ma =  tableInForSP.getValueAt(i, 1).toString();
                     if (ma.startsWith("S")) {
                         Sach s = dao_sach.getSachtheoMa(ma);
                         ChiTietHoaDon cthd = new ChiTietHoaDon(hd, s, (int) tableInForSP.getValueAt(i, 4), (double) tableInForSP.getValueAt(i, 5));

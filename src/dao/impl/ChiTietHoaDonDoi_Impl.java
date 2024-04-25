@@ -23,7 +23,7 @@ public class ChiTietHoaDonDoi_Impl extends UnicastRemoteObject implements ChiTie
     }
 
     @Override
-    public ArrayList<ChiTietHoaDonDoi> getAllChiTietDonDoi() throws Exception {
+    public ArrayList<ChiTietHoaDonDoi> getAllChiTietDonDoi() throws RemoteException {
         Generic_Impl<entityJPA.ChiTietHoaDonDoi> generic = new Generic_Impl<>(entityJPA.ChiTietHoaDonDoi.class, emf);
         ArrayList<ChiTietHoaDonDoi> list = new ArrayList<>();
         for (entityJPA.ChiTietHoaDonDoi cthd : generic.findAll()) {
@@ -33,7 +33,7 @@ public class ChiTietHoaDonDoi_Impl extends UnicastRemoteObject implements ChiTie
     }
 
     @Override
-    public boolean createChiTietDonDoi(ChiTietHoaDonDoi cthd) throws Exception {
+    public boolean createChiTietDonDoi(ChiTietHoaDonDoi cthd) throws RemoteException {
         try {
             Generic_Impl<ChiTietHoaDonDoi> generic = new Generic_Impl<>(ChiTietHoaDonDoi.class, emf);
             return generic.save(cthd);
@@ -47,7 +47,7 @@ public class ChiTietHoaDonDoi_Impl extends UnicastRemoteObject implements ChiTie
     }
 
     @Override
-    public void deleteChiTietDonDoi(String maHD) throws Exception {
+    public void deleteChiTietDonDoi(String maHD) throws RemoteException {
        Generic_Impl<ChiTietHoaDonDoi> generic = new Generic_Impl<>(ChiTietHoaDonDoi.class, emf);
        List<ChiTietHoaDonDoi> temp = generic.findByProperty("id.maHoaDonDoi",maHD);
        for(ChiTietHoaDonDoi cthd : temp){
@@ -59,7 +59,7 @@ public class ChiTietHoaDonDoi_Impl extends UnicastRemoteObject implements ChiTie
 
 
     @Override
-    public ChiTietHoaDonDoi getHoaDontheoMa(String ma1, String ma2) throws Exception {
+    public ChiTietHoaDonDoi getHoaDontheoMa(String ma1, String ma2) throws RemoteException {
         String query= "select c.maHoaDonDoi , c.maSanPham,c.soLuong,c.thanhTien  \n" +
                 "              from ChiTietHoaDonDoi c \n" +
                 "              where c.maHoaDonDoi like ?1 and c.maSanPham like ?2";
@@ -90,7 +90,7 @@ public class ChiTietHoaDonDoi_Impl extends UnicastRemoteObject implements ChiTie
         return null;
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws RemoteException {
         ChiTietHoaDonDoi_Impl dao = new ChiTietHoaDonDoi_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         // insert
 //        HoaDonDoiHang_Impl hoaDonDoiHang_dao = new HoaDonDoiHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
