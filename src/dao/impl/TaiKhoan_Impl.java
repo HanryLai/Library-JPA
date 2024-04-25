@@ -48,16 +48,13 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 					frmChinh.setVisible(true);
 					return true;
 				} else {
-					JOptionPane.showMessageDialog(null, "Sai mật khẩu");
 					return false;
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Tên đăng nhập không tồn tại");
 				return false;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Error");
 			return false;
 		}
 	}
@@ -120,7 +117,7 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Error");
+			return "Error";
 		}
 		return tenDN;
 	}
@@ -139,12 +136,12 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Error");
+			return "Error";
 		}
 		return tenND;
 	}
 	@Override
-	public void doiMatKhau(String email, String newPassword) throws RemoteException{
+	public boolean doiMatKhau(String email, String newPassword) throws RemoteException{
 		try {
 			String query = "SELECT c FROM TaiKhoan c WHERE email = :email";
 			EntityManager em = emf.createEntityManager();
@@ -163,13 +160,13 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 			int rowsAffected = updatePwdQuery.executeUpdate();
 
 			if (rowsAffected > 0) {
-				JOptionPane.showMessageDialog(null, "Đổi mật khẩu thành công.");
+				return true;
 			} else {
-				JOptionPane.showMessageDialog(null, "Có lỗi xảy ra khi đổi mật khẩu.");
+				return false;
 			}
-			em.getTransaction().commit();
-		} catch (Exception e) {
+        } catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 
