@@ -37,7 +37,7 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
 
     }
 
-    public ArrayList<ChiTietBanBaoCao> getSachDaBan (int maHD, String thoiGianBatDau, String thoiGianKetThuc) throws RemoteException{
+    public ArrayList<ChiTietBanBaoCao> getSachDaBan (String thoiGianBatDau, String thoiGianKetThuc) throws RemoteException{
         ArrayList<ChiTietBanBaoCao> list = new ArrayList<>();
 
         thoiGianBatDau = thoiGianBatDau.replace("T", " ");
@@ -48,14 +48,13 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
                                 from Sach s
                                 inner join ChiTietHoaDon ct on ct.maSanPham = s.maSanPham
                                 inner join HoaDon hd on hd.maHoaDon = ct.maHoaDon
-                                where ct.maHoaDon = ? and (ngayLap >= ? and ngayLap < ?)
+                                where (ngayLap >= ? and ngayLap < ?)
                                 group by s.maSanPham""";
 
         EntityManager em = emf.createEntityManager();
         Query query = em.createNativeQuery(sql, Object.class);
-        query.setParameter(1, maHD);
-        query.setParameter(2, thoiGianBatDau);
-        query.setParameter(3, thoiGianKetThuc);
+        query.setParameter(1, thoiGianBatDau);
+        query.setParameter(2, thoiGianKetThuc);
 
         List<?> result = query.getResultList();
 
@@ -75,27 +74,25 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
         return list;
     }
 
-    public ArrayList<ChiTietBanBaoCao> getVPPDaBan (int maHD, String thoiGianBatDau, String thoiGianKetThuc)throws RemoteException{
+    public ArrayList<ChiTietBanBaoCao> getVPPDaBan (String thoiGianBatDau, String thoiGianKetThuc)throws RemoteException{
         ArrayList<ChiTietBanBaoCao> list = new ArrayList<>();
 
         thoiGianBatDau = thoiGianBatDau.replace("T", " ");
         thoiGianKetThuc = thoiGianKetThuc.replace("T", " ");
 
         String sql   = """
-                select v.maSanPham, sum(ct.soLuong) as soLuong, sum(thanhTien) as thanhTiens
-                    from VanPhongPham v
-                  inner join ChiTietHoaDon ct on ct.maSanPham = v.maSanPham
-                  inner join HoaDon hd on hd.maHoaDon = ct.maHoaDon
-                    where ct.maHoaDon in (select maHoaDon from HoaDon where ngayLap like '2024-04-24%')
-                and (ngayLap >= '2024-04-24 06:00:00' and ngayLap < '2024-04-24 12:00:00')
-                  group by v.maSanPham""";
+                select vpp.maSanPham, sum(ct.soLuong) as soLuong, sum(thanhTien) as thanhTien
+                                from VanPhongPham vpp
+                                inner join ChiTietHoaDon ct on ct.maSanPham = vpp.maSanPham
+                                inner join HoaDon hd on hd.maHoaDon = ct.maHoaDon
+                                where (ngayLap >= ? and ngayLap < ?)
+                                group by vpp.maSanPham""";
 
         EntityManager em = emf.createEntityManager();
 
         Query query = em.createNativeQuery(sql, Object.class);
-        query.setParameter(1, maHD);
-        query.setParameter(2, thoiGianBatDau);
-        query.setParameter(3, thoiGianKetThuc);
+        query.setParameter(1, thoiGianBatDau);
+        query.setParameter(2, thoiGianKetThuc);
 
         List<?> result = query.getResultList();
 

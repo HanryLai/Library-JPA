@@ -1,10 +1,11 @@
 package testPackage.implement;
 
-import dao.impl.ChiTietBanBaoCao_Impl;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
+
+import dao.impl.ChiTietBanBaoCao_Impl;
 
 public class ChiTietBanBaoCao_Test_Implement {
     public static void main(String[] args) throws RemoteException {

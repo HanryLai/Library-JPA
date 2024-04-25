@@ -2,6 +2,7 @@ package entityJPA;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,13 +27,13 @@ public class VanPhongPham extends SanPham implements Serializable {
 	@JoinColumn(name = "mauSac")
 	private MauSac	mauSac;
 
+
 	@Column(columnDefinition = "NVARCHAR(255)")
   	private String noiSanXuat;
 
 	@Override
 	public String toString() {
 		return "VanPhongPham{" +
-				"mauSac=" + mauSac.getMaMau() +
 				", noiSanXuat='" + noiSanXuat + '\'' +
 				'}';
 

@@ -1,15 +1,11 @@
 package entityJPA;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,23 +18,35 @@ import lombok.ToString;
 @NoArgsConstructor
 
 @Table(name = "HoaDonHoanTra")
-public class HoaDonHoanTra {
+public class HoaDonHoanTra implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maHoaDonHoanTra;
 	
-	private LocalDate ngayHoan;
-	private int nhanVien;
-	
+	private LocalDateTime ngayHoan;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "maNhanVien")
+	private NhanVien nhanVien;
+
+	@OneToMany(mappedBy = "hoaDonHoanTra",fetch = FetchType.LAZY)
+	private List<ChiTietHoanTra> ChiTietHoanTra;
+
+	@OneToOne(fetch = FetchType.LAZY,mappedBy = "hoaDonHoanTra")
+	private HoaDonDoiHang hoaDonDoiHang;
+
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "maHoaDon")
 	private HoaDon hoaDon;
+
 	private String ghiChu;
 	private int tinhTrangHoaDon;
-	private float tienHoanTra;
+	private Double tienHoanTra;
 
 
-	public HoaDonHoanTra(LocalDate ngayHoan, HoaDon hoaDon, String ghiChu, int tinhTrangHoaDon, float tienHoanTra) {
+	public HoaDonHoanTra(LocalDateTime ngayHoan, HoaDon hoaDon, String ghiChu, int tinhTrangHoaDon, Double tienHoanTra) {
 		this.ngayHoan = ngayHoan;
 		this.hoaDon = hoaDon;
 		this.ghiChu = ghiChu;

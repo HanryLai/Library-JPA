@@ -1,9 +1,10 @@
 package testPackage.implement;
 
-import dao.impl.TaiKhoan_Impl;
 import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 import java.rmi.RemoteException;
+
+import dao.impl.TaiKhoan_Impl;
 
 public class TaiKhoan_Test_Implement {
     public static void main(String[] args) throws RemoteException {

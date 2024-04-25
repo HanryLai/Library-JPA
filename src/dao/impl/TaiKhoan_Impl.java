@@ -24,12 +24,10 @@ import java.util.Random;
 public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 	private EntityManagerFactory emf;
 
-	private Generic_Impl<TaiKhoan> generic;
-
 	public TaiKhoan_Impl(EntityManagerFactory emf) throws RemoteException {
 		this.emf = emf;
 	}
-
+	@Override
 	public boolean xacThucNguoiDung(String tenDangNhap, String matKhau) throws RemoteException{
 		try {
 			String   query    = "SELECT c FROM TaiKhoan c WHERE tenDangNhap = :tenDangNhap";
@@ -50,20 +48,17 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 					frmChinh.setVisible(true);
 					return true;
 				} else {
-					JOptionPane.showMessageDialog(null, "Sai mật khẩu");
 					return false;
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Tên đăng nhập không tồn tại");
 				return false;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Error");
 			return false;
 		}
 	}
-
+	@Override
 	public int sendEmail(String email) throws RemoteException{
 		final String from     = "ttrandanghieu42@gmail.com";
 		final String password = "tcth pwux kmfg aokb";
@@ -107,7 +102,7 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 		}
 
 	}
-
+	@Override
 	public String phanQuyen(String email) throws RemoteException{
 		String tenDN = "";
 		try {
@@ -122,11 +117,11 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Error");
+			return "Error";
 		}
 		return tenDN;
 	}
-
+	@Override
 	public String getTenNguoiDung(String email) throws RemoteException{
 		String tenND = "";
 		try {
@@ -141,12 +136,12 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Error");
+			return "Error";
 		}
 		return tenND;
 	}
-
-	public void doiMatKhau(String email, String newPassword) throws RemoteException{
+	@Override
+	public boolean doiMatKhau(String email, String newPassword) throws RemoteException{
 		try {
 			String query = "SELECT c FROM TaiKhoan c WHERE email = :email";
 			EntityManager em = emf.createEntityManager();
@@ -165,13 +160,13 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 			int rowsAffected = updatePwdQuery.executeUpdate();
 
 			if (rowsAffected > 0) {
-				JOptionPane.showMessageDialog(null, "Đổi mật khẩu thành công.");
+				return true;
 			} else {
-				JOptionPane.showMessageDialog(null, "Có lỗi xảy ra khi đổi mật khẩu.");
+				return false;
 			}
-			em.getTransaction().commit();
-		} catch (Exception e) {
+        } catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 
@@ -185,6 +180,17 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public boolean createTaiKhoan(TaiKhoan taiKhoan) throws RemoteException {
+		try {
+			Generic_Impl<TaiKhoan> generic = new Generic_Impl<>(TaiKhoan.class, emf);
+			return generic.save(taiKhoan);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 

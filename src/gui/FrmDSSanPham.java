@@ -7,19 +7,8 @@ import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import connectDB.ConnectDB;
-//import dao.DAO_MauSac;
-//import dao.DAO_NhaCungCap;
-//import dao.DAO_NhomSanPham;
-//import dao.DAO_Sach;
-//import dao.DAO_VanPhongPham;
 import dao.Interface.*;
-import dao.impl.*;
-//import entity.MauSac;
-//import entity.NhaCungCap;
-//import entity.NhomSanPham;
-//import entity.Sach;
-//import entity.VanPhongPham;
+
 import entityJPA.*;
 import gui.FrmChinh;
 
@@ -33,7 +22,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.*;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.Timestamp;
@@ -47,6 +36,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 import com.barcodelib.barcode.Linear;
+
+import client_Dao.Dao_Package_Static;
+
 import java.awt.Desktop;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionListener;
@@ -61,8 +53,6 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.regex.Pattern;
 import javax.swing.JComponent;
 import javax.swing.event.AncestorEvent;
@@ -76,14 +66,12 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 /**
  *
  * @author nguyen chau tai
  */
 public class FrmDSSanPham extends javax.swing.JPanel {
-
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     private String MANCC = "";
     private String MAMAU = "";
@@ -91,16 +79,16 @@ public class FrmDSSanPham extends javax.swing.JPanel {
      * Creates new form FrmDSKhachHang
      */
     private FrmChinh frm = new FrmChinh();
-    private VanPhongPham_Dao dao_vpp = new VanPhongPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private Sach_Dao dao_sach = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhomSanPham_Dao dao_nsp = new NhomSanPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhaCungCap_Dao dao_ncc = new NhaCungCap_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private MauSac_Dao dao_mausac = new MauSac_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private SanPham_Dao dao_sanPham = new SanPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private VanPhongPham_Dao dao_vpp = Dao_Package_Static.dao_VanPhongPham;
+    private Sach_Dao dao_sach = Dao_Package_Static.dao_Sach;
+    private NhomSanPham_Dao dao_nsp = Dao_Package_Static.dao_NhomSanPham;
+    private NhaCungCap_Dao dao_ncc = Dao_Package_Static.dao_NhaCungCap;
+    private MauSac_Dao dao_mausac = Dao_Package_Static.dao_MauSac;
+    private SanPham_Dao dao_sanPham = Dao_Package_Static.dao_SanPham;
     private Thread thread = null;
 
+
     public FrmDSSanPham() throws RemoteException {
-        ConnectDB.getInstance().connect();
         initComponents();
         // TODO Auto-generated catch block
 
@@ -146,7 +134,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         NhomSanPham nsp = dao_nsp.getNsptheoTen(jComboBox9.getSelectedItem().toString());
 
         NhaCungCap ncc = new NhaCungCap();
-        ncc.setMaNCC(Integer.valueOf(txtSuaVPPChonNCC.getText()));
+        ncc.setMaNCC(dao_ncc.getNCCTheoTen(txtSuaVPPChonNCC.getText()).getMaNCC());
 
         double donGiaNhap = Double.parseDouble(txtTimKH66.getText());
         String moTa = jTextArea6.getText();
@@ -155,9 +143,12 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         double vat = Double.parseDouble(txtTimKH64.getText());
         double giamGia = vpp.getGiamGia();
         LocalDateTime ngayTao   = vpp.getNgayTao();
-        MauSac        mau       = new MauSac(txtSuaVPPChonMau.getText());
+        MauSac        mau       = new MauSac();
+
+        mau = dao_mausac.getMauSactheoTen(txtSuaVPPChonMau.getText());
 
         String        tinhTrang = sl > 0 ? "Còn hàng" : "Hết hàng";
+
 
         VanPhongPham vppNew = new VanPhongPham();
         vppNew.setMaSanPham(Integer.valueOf(maVpp));
@@ -189,7 +180,8 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         int sl = Integer.parseInt(txtTimKH48.getText());
         NhomSanPham nsp = dao_nsp.getNsptheoTen(jComboBox8.getSelectedItem().toString());
         NhaCungCap ncc = new NhaCungCap();
-        ncc.setMaNCC(Integer.valueOf(txtSuaSachChonNCC.getText()));
+        ncc = dao_ncc.getNCCTheoTen(txtSuaSachChonNCC.getText());
+
         double donGiaNhap = Double.parseDouble(txtTimKH54.getText());
         String moTa = jTextArea5.getText();
         String tinhTrang = sl > 0 ? "Còn hàng" : "Hết hàng";
@@ -588,7 +580,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
                                 double donGiaBan = getNumericCellValue(cellIterator.next());
                                 double vat = getNumericCellValue(cellIterator.next());
                                 String maMau = getStringCellValue(cellIterator.next());
-                                MauSac ms = new MauSac(maMau);
+                                MauSac ms = new MauSac(dao_mausac.getMauSactheoTen(maMau).getTenMau());
                                 String noiSx = getStringCellValue(cellIterator.next());
 
                                 Date DngayTao = cellIterator.next().getDateCellValue();
@@ -598,6 +590,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
                                 String tinhTrang = getStringCellValue(cellIterator.next());
                                 VanPhongPham vpp = new VanPhongPham();
                                 VanPhongPham vppNew = new VanPhongPham();
+
                                 vppNew.setMaSanPham(Integer.parseInt(maSp));
                                 vppNew.setTenSanPham(tenSp);
                                 vppNew.setNhomSanPham(nsp);
@@ -610,7 +603,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
                                 vppNew.setVAT(vat);
                                 vppNew.setNgayTao(ngayTao);
                                 vppNew.setGiamGia(giamGia);
-                                vppNew.setMauSac(dao_mausac.getMauSactheoMa(maMau));
+                                vppNew.setMauSac(ms);
                                 vppNew.setNoiSanXuat(noiSx);
                                 dao_vpp.insertVpp(vpp);
                                 JOptionPane.showMessageDialog(null, "Nhập thành công");
@@ -900,12 +893,12 @@ public class FrmDSSanPham extends javax.swing.JPanel {
 //        }
 //    }
     public String createMaVpp() throws RemoteException {
-        return String.valueOf(dao_sanPham.getLastId());
+        return String.valueOf(dao_sanPham.getLastId()+1);
 
     }
 
     public String createMaSach() throws RemoteException {
-        return String.valueOf(dao_sanPham.getLastId());
+        return String.valueOf(dao_sanPham.getLastId()+1);
     }
 
     public void showPanelChange(JPanel a, JPanel b) {
@@ -5308,7 +5301,10 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
 
         String maSP = model.getValueAt(rowChooser, 1).toString();
-        if (maSP.startsWith("S")) {
+
+        Sach sach = dao_sach.getSachtheoMa(maSP);
+
+        if (sach != null) {
             showPanelChange(pnlChange, pnlCenterSuaSach);
             Sach s = dao_sach.getSachtheoMa(maSP);
             txtTimKH49.setText(String.valueOf(s.getMaSanPham()));
@@ -5320,7 +5316,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
             NhomSanPham nsp = dao_nsp.getNsptheoTen(model.getValueAt(rowChooser, 3).toString());
             jComboBox8.setSelectedItem(nsp.getTenNhomSanPham());
             jTextArea5.setText(s.getMoTa());
-            txtSuaSachChonNCC.setText(String.valueOf(s.getNhaCungCap().getMaNCC()));
+            txtSuaSachChonNCC.setText(String.valueOf(dao_ncc.getNCCTheoMa(String.valueOf(s.getNhaCungCap().getMaNCC())).getTenNCC()));
             txtTimKH51.setText(s.getTacGia());
             txtTimKH54.setText(Double.toString(s.getDonGiaNhap()));
             txtTimKH56.setText(Double.toString(s.getDonGiaBan()));
@@ -5351,10 +5347,13 @@ public class FrmDSSanPham extends javax.swing.JPanel {
             NhomSanPham nsp = dao_nsp.getNsptheoTen(model.getValueAt(rowChooser, 3).toString());
             jComboBox9.setSelectedItem(nsp.getTenNhomSanPham());
             jTextArea6.setText(vpp.getMoTa());
-            txtSuaVPPChonNCC.setText(String.valueOf(vpp.getNhaCungCap().getMaNCC()));
+            txtSuaVPPChonNCC.setText(String.valueOf(dao_ncc.getNCCTheoMa(String.valueOf(vpp.getNhaCungCap().getMaNCC())).getTenNCC()));
             txtTimKH66.setText(Double.toString(vpp.getDonGiaNhap()));
             txtTimKH63.setText(vpp.getNoiSanXuat());
-            txtSuaVPPChonMau.setText(String.valueOf(vpp.getMauSac().getMaMau()));
+
+            MauSac mau = dao_mausac.getMauSactheoMa(String.valueOf(vpp.getMauSac().getMaMau()));
+
+            txtSuaVPPChonMau.setText(mau.getTenMau());
             txtTimKH65.setText(vpp.getDonGiaBan() + "");
             txtTimKH64.setText(Double.toString(vpp.getVAT()));
             // set (*) -> ""
@@ -5412,7 +5411,7 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         double vat = Double.parseDouble(txtThemVATSach.getText());
         String nhaXB = txtThemNhaXBSach.getText();
         double giamGia = Double.parseDouble(txtThemGiamGiaSach.getText());
-        String tinhTrang = sl > 0 ? "còn hàng" : "hết hàng";
+        String tinhTrang = sl > 0 ? "Còn hàng" : "Hết hàng";
 
         Sach sNew = new Sach();
         sNew.setTenSanPham(tenS);
@@ -5430,6 +5429,9 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         sNew.setNamXuatBan(namXB);
         sNew.setNhaSanXuat(nhaXB);
         sNew.setSoTrang(soStrang);
+        System.out.println("---------------------------------------------------");
+        System.out.println(sNew);
+        System.out.println("---------------------------------------------------");
 
         if (valiDataThemSach()) {
             dao_sach.createSach(sNew);
@@ -5529,8 +5531,25 @@ public class FrmDSSanPham extends javax.swing.JPanel {
         double vat = Double.parseDouble(txtTimKH27.getText());
         MauSac ms = dao_mausac.getMauSactheoTen(txtMauSac.getText());
         double giamGia = 0;
-        String tinhTrang = sl > 0 ? "còn hàng" : "hết hàng";
+        String tinhTrang = sl > 0 ? "Còn hàng" : "Hết hàng";
+
+
         VanPhongPham vpp = new VanPhongPham();
+
+        vpp.setTenSanPham(tenVpp);
+        vpp.setSoLuongTon(sl);
+        vpp.setNgayTao(ngayTao);
+        vpp.setNhomSanPham(nsp);
+        vpp.setNhaCungCap(ncc);
+        vpp.setMoTa(moTa);
+        vpp.setDonGiaNhap(donGiaNhap);
+        vpp.setDonGiaBan(donGiaBan);
+        vpp.setNoiSanXuat(noiSx);
+        vpp.setVAT(vat);
+        vpp.setMauSac(ms);
+        vpp.setGiamGia(giamGia);
+        vpp.setTinhTrang(tinhTrang);
+
 
         if (valiDataThemVpp()) {
             dao_vpp.insertVpp(vpp);

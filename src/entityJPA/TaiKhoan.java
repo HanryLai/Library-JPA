@@ -23,6 +23,7 @@ public class TaiKhoan {
 	@Column(columnDefinition = "nvarchar(100)")
 	private String email;
 
+
 	public TaiKhoan(String tenDangNhap, String matKhau, String email) {
 		this.tenDangNhap = tenDangNhap;
 		this.matKhau = matKhau;

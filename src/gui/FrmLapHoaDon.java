@@ -1,8 +1,62 @@
 package gui;
 
 
-import dao.impl.*;
-import entityJPA.*;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.rmi.RemoteException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.regex.Pattern;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.KeyStroke;
+import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
+import com.barcodelib.barcode.Linear;
+
+import client_Dao.Dao_Package_Static;
+import dao.Interface.ChiTietHoaDon_Dao;
+import dao.Interface.HoaDon_Dao;
+import dao.Interface.KhachHang_Dao;
+import dao.Interface.MauSac_Dao;
+import dao.Interface.NhaCungCap_Dao;
+import dao.Interface.NhanVien_Dao;
+import dao.Interface.NhomSanPham_Dao;
+import dao.Interface.Sach_Dao;
+import dao.Interface.VanPhongPham_Dao;
+
+import entityJPA.ChiTietHoaDon;
+import entityJPA.HoaDon;
+import entityJPA.KhachHang;
+import entityJPA.NhanVien;
+import entityJPA.NhomKhachHang;
+import entityJPA.NhomSanPham;
+import entityJPA.Sach;
+import entityJPA.VanPhongPham;
 import menuGui.TableActionCellEditor;
 import menuGui.TableActionCellRender;
 import menuGui.TableActionEvent;
@@ -10,63 +64,11 @@ import printReport.FieldReport;
 import printReport.ParameterReport;
 import printReport.ReportManager;
 
-import com.barcodelib.barcode.Linear;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
-
-import java.awt.AWTEvent;
-import java.awt.Component;
-import java.awt.Toolkit;
-import java.awt.event.AWTEventListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowFocusListener;
-import java.rmi.RemoteException;
-import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.regex.Pattern;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.InputMap;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.KeyStroke;
-import javax.swing.RowFilter;
-import javax.swing.UIManager;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
-
 /**
  *
  * @author nguyen chau tai
  */
-public class FrmLapHoaDon extends javax.swing.JPanel {
+public class FrmLapHoaDon extends JPanel {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     DecimalFormat deciFormat = new DecimalFormat("###.###");
@@ -78,15 +80,15 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
      * Creates new form FrmDSKhachHang
      */
     private FrmChinh frm = new FrmChinh();
-    private VanPhongPham_Impl dao_vpp = new VanPhongPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private Sach_Impl dao_sach = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhomSanPham_Impl dao_nsp = new NhomSanPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhaCungCap_Impl dao_ncc = new NhaCungCap_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private MauSac_Impl dao_mausac = new MauSac_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private KhachHang_Impl dao_kh = new KhachHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private HoaDon_Impl dao_hd = new HoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private ChiTietHoaDon_Impl dao_cthd = new ChiTietHoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private NhanVien_Impl dao_nv = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private VanPhongPham_Dao dao_vpp = Dao_Package_Static.dao_VanPhongPham;
+    private Sach_Dao dao_sach = Dao_Package_Static.dao_Sach;
+    private NhomSanPham_Dao dao_nsp = Dao_Package_Static.dao_NhomSanPham;
+    private NhaCungCap_Dao dao_ncc = Dao_Package_Static.dao_NhaCungCap;
+    private MauSac_Dao dao_mausac = Dao_Package_Static.dao_MauSac;
+    private KhachHang_Dao dao_kh = Dao_Package_Static.dao_KhachHang;
+    private HoaDon_Dao dao_hd = Dao_Package_Static.dao_HoaDon;
+    private ChiTietHoaDon_Dao dao_cthd = Dao_Package_Static.dao_ChiTietHoaDon;
+    private NhanVien_Dao dao_nv = Dao_Package_Static.dao_NhanVien;
     private Thread thread = null;
 //    private DAO_KhuyenMai dao_khuyenMai = new DAO_KhuyenMai();
 
@@ -106,7 +108,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         thread = new Thread(this::setTimeAuto);
         thread.start();
 
-        lblMaHoaDon.setText(createMaHoaDon());
+//        lblMaHoaDon.setText(createMaHoaDon());
         lblTenKH.setText("Khách lẻ");
         lblMaKH.setText(createMaKhachHang());
 
@@ -115,6 +117,8 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
         tableAction();
 
     }
+
+
 
     public void setTimeAuto() {
         try {
@@ -414,28 +418,29 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 
     public String createMaHoaDon() throws RemoteException {
 //        LocalDate d = LocalDate.of(2023, 11, 13);
-        LocalDate d = LocalDate.now();
-        DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("ddMMyyyy");
-        String format = d.format(myFormatDate);
-        Integer count = 1;
-        String hdID = "";
-        do {
-            String tempID = count.toString().length() == 1 ? ("HD" + format + "-00000" + count)
-                    : count.toString().length() == 2 ? ("HD" + format + "-0000" + count)
-                    : count.toString().length() == 3 ? ("HD" + format + "-000" + count)
-                    : count.toString().length() == 4 ? ("HD" + format + "-00" + count)
-                    : count.toString().length() == 5 ? ("HD" + format + "-0" + count)
-                    : ("HD" + format + "-" + count);
-
-            HoaDon existingBill = dao_hd.getHoaDontheoMa(tempID);
-            if (existingBill == null) {
-                hdID = tempID;
-                break;
-            }
-            count++;
-        } while (true);
-
-        return hdID;
+//        LocalDate d = LocalDate.now();
+//        DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("ddMMyyyy");
+//        String format = d.format(myFormatDate);
+//        Integer count = 1;
+//        String hdID = "";
+//        do {
+//            String tempID = count.toString().length() == 1 ? ("HD" + format + "-00000" + count)
+//                    : count.toString().length() == 2 ? ("HD" + format + "-0000" + count)
+//                    : count.toString().length() == 3 ? ("HD" + format + "-000" + count)
+//                    : count.toString().length() == 4 ? ("HD" + format + "-00" + count)
+//                    : count.toString().length() == 5 ? ("HD" + format + "-0" + count)
+//                    : ("HD" + format + "-" + count);
+//
+//            HoaDon existingBill = dao_hd.getHoaDontheoMa(tempID);
+//            if (existingBill == null) {
+//                hdID = tempID;
+//                break;
+//            }
+//            count++;
+//        } while (true);
+//
+//        return hdID;
+        return "";
     }
 
     private void showPanelChange(JPanel a, JPanel b) {
@@ -591,6 +596,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
     }
 
     public void createInit() throws RemoteException {
+        System.out.printf(lblMaKH.getText());
         DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
         double tongTienThanhToan = 0;
         int tongSoLuongSp = 0;
@@ -651,7 +657,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
                 if (lblTenKH.getText().equals("Khách lẻ")) {
 //                    lblMaKH.getText(), "Khách lẻ", "", NhomKhachHang.KHACHLE, 0, 0
                     kh = new KhachHang();
-                    kh.setMaKhachHang(Integer.parseInt(lblMaKH.getText()));
+//                    kh.setMaKhachHang(Integer.parseInt(lblMaKH.getText()));
                     kh.setTenKhachHang("Khách lẻ");
                     kh.setNhomKhachHang(NhomKhachHang.KHACHLE);
                     kh.setSoLuongHoaDon(0);
@@ -665,7 +671,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
                 NhanVien nv = dao_nv.getNVTheoMa(1);
                 HoaDon hd = new HoaDon();
 //              lblMaHoaDon.getText(), ngayLap, nv, kh, jTextAreaGhiChu.getText(), 1, Double.parseDouble(lblTongTienThanhToan.getText()), Double.parseDouble(txtTienChietKhau.getText()), txtMaKhuyenMai.getText()
-                hd.setMaHoaDon(Integer.parseInt(lblMaHoaDon.getText()));
+//                hd.setMaHoaDon(Integer.parseInt(lblMaHoaDon.getText()));
                 hd.setNgayLap(ngayLap);
                 hd.setNhanVien(nv);
                 hd.setKhachHang(kh);
@@ -678,11 +684,17 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 
                 dao_hd.createHoaDon(hd);
 
+                hd = dao_hd.getAllHoaDon().getLast();
+                System.out.println(hd);
+
                 DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
                 String ma = "";
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
-                    ma = (String) tableInForSP.getValueAt(i, 1);
-                    if (ma.startsWith("S")) {
+                    ma = tableInForSP.getValueAt(i, 1).toString();
+
+                    Sach sach = dao_sach.getSachtheoMa(ma);
+                    System.out.println(sach);
+                    if (sach != null) {
                         Sach s = dao_sach.getSachtheoMa(ma);
                         ChiTietHoaDon cthd = new ChiTietHoaDon(hd, s, (int) tableInForSP.getValueAt(i, 4), (double) tableInForSP.getValueAt(i, 5));
                         dao_cthd.createChiTietHoaDon(cthd);
@@ -753,7 +765,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
                 LocalDateTime ngayLap = LocalDateTime.now();
 
                 KhachHang kh = null;
-                if (lblTenKH.getText().equals("Khách lẻ")) {
+                if (lblMaKH.getText() == null) {
                     kh = new KhachHang();
 //                    lblMaKH.getText(), "Khách lẻ", "", NhomKhachHang.KHACHLE, 0, 0
                     kh.setMaKhachHang(Integer.parseInt(lblMaKH.getText()));
@@ -770,7 +782,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
                 NhanVien nv = dao_nv.getNVTheoMa(1);
                 HoaDon hd = new HoaDon();
 //                lblMaHoaDon.getText(), ngayLap, nv, kh, jTextAreaGhiChu.getText(), 0, Double.parseDouble(lblTongTienThanhToan.getText()), Double.parseDouble(txtTienChietKhau.getText()), txtMaKhuyenMai.getText()
-                hd.setMaHoaDon(Integer.parseInt(lblMaHoaDon.getText()));
+//                hd.setMaHoaDon(Integer.parseInt(lblMaHoaDon.getText()));
                 hd.setNgayLap(ngayLap);
                 hd.setNhanVien(nv);
                 hd.setKhachHang(kh);
@@ -782,7 +794,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
                 DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
                 String ma = "";
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
-                    ma = (String) tableInForSP.getValueAt(i, 1);
+                    ma =  tableInForSP.getValueAt(i, 1).toString();
                     if (ma.startsWith("S")) {
                         Sach s = dao_sach.getSachtheoMa(ma);
                         ChiTietHoaDon cthd = new ChiTietHoaDon(hd, s, (int) tableInForSP.getValueAt(i, 4), (double) tableInForSP.getValueAt(i, 5));
@@ -832,6 +844,8 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
             }
 
         }
+
+
 
         if (maSP.startsWith("S")) {
             Sach s = dao_sach.getSachtheoMa(maSP);
@@ -2542,11 +2556,11 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
             int sl = (int) tableChonSP.getValueAt(row, 4);
             if (sl != 0) {
                 lblTenSanPhamChon.setText((String) tableChonSP.getValueAt(row, 2));
-                String maSP = (String) tableChonSP.getValueAt(row, 1);
+                String maSP = tableChonSP.getValueAt(row, 1).toString();
                 String ma = "";
                 boolean value = false;
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
-                    ma = (String) tableInForSP.getValueAt(i, 1);
+                    ma = tableInForSP.getValueAt(i, 1).toString();
                     if (ma.equalsIgnoreCase(maSP)) {
                         value = true;
                     }
@@ -2667,7 +2681,9 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
             DefaultTableModel modelInfo = (DefaultTableModel) tableInForSP.getModel();
             DecimalFormat df = new DecimalFormat("#,##0");
             int sl = Integer.parseInt(txtSoLuongSanPhamChon.getText());
-            if (maSP.startsWith("S")) {
+            Sach sach = dao_sach.getSachtheoMa(maSP);
+            if (sach!=null) {
+//            if (maSP.startsWith("S")) {
                 Sach s = dao_sach.getSachtheoMa(maSP);
                 if (sl >= s.getSoLuongTon()) {
                     sl = s.getSoLuongTon();
@@ -2676,7 +2692,8 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
                     s.getDonGiaBan(), sl, tinhThanhTien(sl, s.getDonGiaBan())});
                 sttSP++;
             } else {
-                VanPhongPham vpp = dao_vpp.getVPPtheoMa(maSP);
+                VanPhongPham vpp = dao_vpp.getVPPtheoMa("1");
+                System.out.println(vpp.getSoLuongTon());
                 if (sl >= vpp.getSoLuongTon()) {
                     sl = vpp.getSoLuongTon();
                 }

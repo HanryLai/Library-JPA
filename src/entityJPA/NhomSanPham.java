@@ -1,5 +1,7 @@
 package entityJPA;
 
+import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -24,7 +26,8 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "NhomSanPham")
-public class NhomSanPham {
+public class NhomSanPham implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maNhomSanPham;
@@ -32,7 +35,7 @@ public class NhomSanPham {
 	private String tenNhomSanPham;
 	
 	@OneToMany(mappedBy = "nhomSanPham")
-	private Set<SanPham> sanPham;
+	private List<SanPham> sanPham;
 	
 	@Override
 	public String toString() {

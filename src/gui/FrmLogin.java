@@ -1,35 +1,27 @@
 
 package gui;
 
-import dao.impl.TaiKhoan_Impl;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
-
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 
-
-
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
-import javax.swing.KeyStroke;
+import client_Dao.Dao_Package_Static;
+import dao.Interface.TaiKhoan_Dao;
 
 public class FrmLogin extends javax.swing.JFrame {
     public static String tenDN = "";
     public static String tenNguoiDung = "";
     public static String emailDN = "";
-    private TaiKhoan_Impl dao_TaiKhoan = new TaiKhoan_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private TaiKhoan_Dao dao_TaiKhoan = Dao_Package_Static.dao_TaiKhoan;
     private int otp;
 	/**
      * Creates new form FrmChinh
      */
     public FrmLogin() throws RemoteException {
+
 
         initComponents();
         
@@ -314,7 +306,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField1.setText("nguyentanloc1108@gmail.com");
+        jTextField1.setText("nguyentanloc1108");
         jTextField1.setToolTipText("");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -323,7 +315,7 @@ public class FrmLogin extends javax.swing.JFrame {
         });
 
         jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jPasswordField1.setText("NTL@11082003");
+        jPasswordField1.setText("1234");
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
@@ -485,7 +477,7 @@ public class FrmLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
 //    	dao_TaiKhoan.xacThucNguoiDung(txtEmail.getText(), "0000");
 //        System.out.println(txtEmail.getText());
-        dao_TaiKhoan = new TaiKhoan_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+        dao_TaiKhoan = Dao_Package_Static.dao_TaiKhoan;
         otp = dao_TaiKhoan.sendEmail(txtEmail.getText());// lấy mã otp
 //        System.out.println(otp);
     }//GEN-LAST:event_btnGuiMaActionPerformed
@@ -506,7 +498,12 @@ public class FrmLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     	 if (jTextField3.getText().equals(String.valueOf(otp))) {
              if (jTextField4.getText().equals(jTextField5.getText())) {
-                 dao_TaiKhoan.doiMatKhau(txtEmail.getText(), jTextField4.getText());
+                 if(dao_TaiKhoan.doiMatKhau(txtEmail.getText(), jTextField4.getText())){
+                     JOptionPane.showMessageDialog(null, "Đổi mật khẩu thành công");
+                 }
+                 else {
+                        JOptionPane.showMessageDialog(null, "Đổi mật khẩu thất bại");
+                 }
                  showPanelChange(jPanel1, jPanel2);
                  jTextField1.setText(txtEmail.getText());
              }
@@ -514,8 +511,11 @@ public class FrmLogin extends javax.swing.JFrame {
     }  
     /**
      * @param args the command line arguments
+     * @throws NotBoundException 
+     * @throws RemoteException 
+     * @throws MalformedURLException 
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws MalformedURLException, RemoteException, NotBoundException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -562,11 +562,15 @@ public class FrmLogin extends javax.swing.JFrame {
         String matKhau = new String(jPasswordField1.getPassword());
         if(dao_TaiKhoan.xacThucNguoiDung(tenDangNhap, matKhau))
         {
+        	FrmChinh frmChinh = new FrmChinh();
+        	frmChinh.setVisible(true);
         	this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Sai tên đăng nhập hoặc mật khẩu");
         }
 //        Dao_TaiKhoan dao_TaiKhoan = new Dao_TaiKhoan();
-        tenDN = dao_TaiKhoan.phanQuyen(tenDangNhap);
-        this.tenNguoiDung = dao_TaiKhoan.getTenNguoiDung(tenDangNhap);
+        tenDN = dao_TaiKhoan.phanQuyen(tenDangNhap+"@gmail.com");
+        tenNguoiDung = dao_TaiKhoan.getTenNguoiDung(tenDangNhap+"@gmail.com");
         emailDN = tenDangNhap;
     }
    

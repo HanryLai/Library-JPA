@@ -4,16 +4,9 @@
  */
 package gui;
 
-import connectDB.ConnectDB;
-import dao.DAO_Sach;
-import dao.DAO_ThongKe;
-import dao.DAO_VanPhongPham;
 import dao.Interface.Sach_Dao;
 import dao.Interface.ThongKe_Dao;
 import dao.Interface.VanPhongPham_Dao;
-import dao.impl.Sach_Impl;
-import dao.impl.ThongKe_Impl;
-import dao.impl.VanPhongPham_Impl;
 import entityJPA.Sach;
 import entityJPA.VanPhongPham;
 
@@ -46,34 +39,29 @@ import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.statistics.HistogramDataset;
+
+import client_Dao.Dao_Package_Static;
 import otherEntity.MonthlyRevenueInfo;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
+import otherEntity.ProductInfo;
 
 /**
  *
  * @author nguyen chau tai
  */
-public class FrmThongKe extends javax.swing.JFrame {
+public class FrmThongKe extends javax.swing.JPanel {
 
     DecimalFormat deciFormat = new DecimalFormat("###.###");
     /**
      * Creates new form FrmDSKhachHang
      */
-    private VanPhongPham_Dao dao_vpp = new VanPhongPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private Sach_Dao dao_sach = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private ThongKe_Dao dao_thongKe = new ThongKe_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private VanPhongPham_Dao dao_vpp = Dao_Package_Static.dao_VanPhongPham;
+    private Sach_Dao dao_sach = Dao_Package_Static.dao_Sach;
+    private ThongKe_Dao dao_thongKe = Dao_Package_Static.dao_ThongKe;
 
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
 
-    public static void main(String[] args) throws RemoteException {
-        FrmThongKe frm = new FrmThongKe();
-        frm.setVisible(true);
-    }
-
     public FrmThongKe() throws RemoteException {
-        setSize(1690, 787);
-        ConnectDB.getInstance().connect();
         initComponents();
         showPieChart();
         showLineChart();
@@ -122,8 +110,8 @@ public class FrmThongKe extends javax.swing.JFrame {
     public void showPieChart() throws RemoteException {
         DefaultPieDataset barDataset = new DefaultPieDataset();
         
-        List<DAO_ThongKe.ProductInfo> topProducts = dao_thongKe.getTopSellingProducts();
-        for (DAO_ThongKe.ProductInfo product : topProducts) {
+        List<ProductInfo> topProducts = dao_thongKe.getTopSellingProducts();
+        for (ProductInfo product : topProducts) {
             if(product.getProductId().startsWith("S")) {
                 Sach s = dao_sach.getSachtheoMa(product.getProductId());
                 barDataset.setValue(s.getTenSanPham(), Double.valueOf(product.getTotalQuantity())); 

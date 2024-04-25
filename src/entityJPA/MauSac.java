@@ -6,6 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Set;
+
+import java.io.Serializable;
+
+
 
 @Entity
 @Getter
@@ -13,7 +18,8 @@ import lombok.ToString;
 @NoArgsConstructor
 
 @Table(name = "MauSac")
-public class MauSac {
+public class MauSac implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maMau;

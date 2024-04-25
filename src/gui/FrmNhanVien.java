@@ -5,65 +5,57 @@
 package gui;
 
 import java.awt.Color;
-import java.rmi.RemoteException;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
-
-import com.toedter.calendar.JDateChooser;
-
-
-import dao.impl.CaLamViec_Impl;
-import dao.impl.NhanVien_Impl;
-import entityJPA.CaLamViec;
-import entityJPA.ChucVu;
-import entityJPA.NhanVien;
-import entityJPA.TaiKhoan;
-
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
-import lombok.SneakyThrows;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import untils.entityManagerFactory.EntityManagerFactory_Static;
+
+import client_Dao.Dao_Package_Static;
+import dao.Interface.CaLamViec_Dao;
+import dao.Interface.NhanVien_Dao;
+import dao.Interface.TaiKhoan_Dao;
+import entityJPA.CaLamViec;
+import entityJPA.ChucVu;
+import entityJPA.NhanVien;
+import entityJPA.TaiKhoan;
+import jakarta.persistence.EntityManager;
+import lombok.SneakyThrows;
+
 
 /**
  *
@@ -76,13 +68,18 @@ public class FrmNhanVien extends javax.swing.JPanel {
      */
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
-    private NhanVien_Impl dao_nhanvien = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-    private CaLamViec_Impl dao_calamviec = new CaLamViec_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+    private NhanVien_Dao dao_nhanvien = Dao_Package_Static.dao_NhanVien;
+    private CaLamViec_Dao dao_calamviec = Dao_Package_Static.dao_CaLamViec;
+
+    public static void main(String[] args) throws SQLException, RemoteException {
+        FrmNhanVien frm = new FrmNhanVien();
+        frm.setVisible(true);
+    }
     public FrmNhanVien() throws SQLException, RemoteException {
         initComponents();
         kiemTra();
         loadData();
-        thietLapMaNhanVienTN();
+        //thietLapMaNhanVienTN();
         thread = new Thread(this::setTimeAuto);
         thread.start();
         // Su Kiem Loc theo Chuc Vu
@@ -136,14 +133,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED){
                     if(jComboBox11.getSelectedIndex()==0){
-                        thietLapMaNhanVienTN();
+                        //thietLapMaNhanVienTN();
                     }
                     else{
-                        try {
-                            thietLapMaNhanVienQL();
-                        } catch (RemoteException ex) {
-                            throw new RuntimeException(ex);
-                        }
+                        //thietLapMaNhanVienQL();
+                        System.out.println("thietLapMaNhanVienQL");
                     }
                 }
             }
@@ -411,7 +405,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
     public void loadData() throws SQLException, RemoteException {
         deleteTable();
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        dao_nhanvien = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+        dao_nhanvien = Dao_Package_Static.dao_NhanVien;
         data = dao_nhanvien.getAllNhanVienTheoCa(thietLapCaLamViec());
         jDateChooser3.setDate(new Date());
         int stt = 1;
@@ -2699,7 +2693,11 @@ public class FrmNhanVien extends javax.swing.JPanel {
         String soDienThoai = txtTimKH12.getText();
         String gioiTinh = String.valueOf(jComboBox12.getSelectedItem());
         String email = txtTimKH10.getText();
-        TaiKhoan taiKhoan = new TaiKhoan();
+        // Them taiKhoan truoc khi them nhan vien
+        TaiKhoan taiKhoan = new TaiKhoan(email.substring(0, email.indexOf("@")), "1111", email);
+  
+        TaiKhoan_Dao dao_taikhoan = Dao_Package_Static.dao_TaiKhoan;
+        dao_taikhoan.createTaiKhoan(taiKhoan);
 
         int tinhTrangLamViec = Integer.parseInt(String.valueOf(jComboBox2.getSelectedItem()));
         String caLv = String.valueOf(jComboBox5.getSelectedItem());
@@ -2737,7 +2735,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
                 nvThem.setSoDienThoai(soDienThoai);
                 nvThem.setGioiTinh(gioiTinh);
                 nvThem.setEmail(email);
-                nvThem.setTaiKhoan(new TaiKhoan(email.substring(0, email.indexOf("@")), "1111", email));
+                nvThem.setTaiKhoan(taiKhoan);
                 nvThem.setTinhTrangLamViec(tinhTrangLamViec);
                 nvThem.setCaLamViec(caLamViec); // Sửa lại lấy ca làm việc từ db lên để set vào nhân viên
                 nvThem.setChucVu(chucVu);
@@ -2875,6 +2873,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
         
         TaiKhoan taiKhoan = new TaiKhoan(emailMoi.substring(0, emailMoi.indexOf("@")), "1111", emailMoi);
         NhanVien nvMoi = new NhanVien();
+        nvMoi.setMaNhanVien(maNVSua);
         nvMoi.setHoTenNV(tenNVMoi);
         nvMoi.setNgaySinh(ngaySinhMoi);
         nvMoi.setSoDienThoai(soDienThoaiMoi);
@@ -2889,7 +2888,8 @@ public class FrmNhanVien extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Hãy chọn dòng cần sửa");
         }
         else if (validData()) {
-            dao_nhanvien.updateNhanVien(maNVSua);
+            dao_nhanvien.updateNhanVien(nvMoi);
+            JOptionPane.showMessageDialog(null, "Sửa thành công");
             System.out.println("Update: "+nvMoi);
         }
         
@@ -2907,19 +2907,19 @@ public class FrmNhanVien extends javax.swing.JPanel {
     
     private void btnSuaNhanVien2ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnSuaNhanVien2ActionPerformed
 
-        try {
-            loadData();
-        } catch (SQLException | RemoteException ex) {
-            Logger.getLogger(FrmNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if(String.valueOf(jComboBox11.getSelectedItem()).equalsIgnoreCase("Thu ngân")){
-            thietLapMaNhanVienTN();
-        }
-        else{
-            thietLapMaNhanVienQL();
-        }
-        txtTimKH11.setEnabled(false);
-        xoaRong();
+//        try {
+//            loadData();
+//        } catch (SQLException | RemoteException ex) {
+//            Logger.getLogger(FrmNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        if(String.valueOf(jComboBox11.getSelectedItem()).equalsIgnoreCase("Thu ngân")){
+//            thietLapMaNhanVienTN();
+//        }
+//        else{
+//            thietLapMaNhanVienQL();
+//        }
+//        txtTimKH11.setEnabled(false);
+//        xoaRong();
             
     }//GEN-LAST:event_btnSuaNhanVien2ActionPerformed
 
@@ -2968,7 +2968,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
 
         showPanelChange(pnlChange, pnlCenterSua);
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        dao_nhanvien = new NhanVien_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
+        dao_nhanvien = Dao_Package_Static.dao_NhanVien;
         int maNhanVien = Integer.parseInt(model.getValueAt(jTable2.getSelectedRow(), 1).toString());
         NhanVien nv = dao_nhanvien.getNVTheoMa(maNhanVien);
 

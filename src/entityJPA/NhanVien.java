@@ -1,20 +1,10 @@
 package entityJPA;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +15,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "NhanVien")
-public class NhanVien {
+public class NhanVien implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maNhanVien;
@@ -40,24 +31,25 @@ public class NhanVien {
 	private String gioiTinh;
 	@Column(columnDefinition = "nvarchar(100)")
 	private String email;
-	
-	@OneToOne
-	@JoinColumn(name = "tenDangNhap", unique = true, nullable = false)
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "tenDangNhap", unique = true)
 	private TaiKhoan taiKhoan;
+
 	private int tinhTrangLamViec;
-	
-	@ManyToOne
+
+	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn(name = "maCa")
 	private CaLamViec caLamViec;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "nvarchar(10)")
 	private ChucVu chucVu;
-	
-	@OneToMany
+
+	@OneToMany(mappedBy = "nhanVien", fetch = FetchType.LAZY)
 	private List<HoaDon> hoaDons;
-	
-	@OneToMany
+
+	@OneToMany(mappedBy = "nhanVien", fetch = FetchType.LAZY)
 	private List<HoaDonHoanTra> hoaDonHoanTras;
 
 

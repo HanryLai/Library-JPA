@@ -10,19 +10,20 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 import java.rmi.RemoteException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class HoaDonHoanTra_ChiTietHoanTra {
     public static void main(String[] args) throws RemoteException {
         HoaDonHoanTra_Dao daoht = new HoaDonHoanTra_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         Sach_Dao sach_dao = new Sach_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         VanPhongPham_Dao vvp_dao = new VanPhongPham_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
-        ChiTietHoaDonHoanTra_Dao daoctht = new ChiTietHoaDonHoanTraImpl(EntityManagerFactory_Static.getEntityManagerFactory());
+        ChiTietHoaDonHoanTra_Dao daoctht = new ChiTietHoaDonHoanTra_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         HoaDon_Dao daohd= new HoaDon_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
 
 
         HoaDon hd = daohd.getHoaDontheoMa("1");
 
-        HoaDonHoanTra hdht = new HoaDonHoanTra(LocalDate.now(), hd, "ghi chu", 1, 100f);
+        HoaDonHoanTra hdht = new HoaDonHoanTra(LocalDateTime.now(), hd, "ghi chu", 1, 100d);
         System.out.println(daoht.createHoaDonHoanTra(hdht));
 
         SanPham sach = sach_dao.getSachtheoMa("2");

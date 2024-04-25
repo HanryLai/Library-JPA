@@ -6,7 +6,6 @@ import dao.impl.ChiTietHoaDonDoi_Impl;
 import dao.impl.HoaDonDoiHang_Impl;
 import dao.impl.HoaDonHoanTra_Impl;
 import dao.impl.Sach_Impl;
-
 import entityJPA.ChiTietHoaDonDoi;
 import entityJPA.HoaDonDoiHang;
 import entityJPA.HoaDonHoanTra;
@@ -21,7 +20,7 @@ import java.rmi.RemoteException;
 public class ChiTietHoaDonDoi_Data {
     public static void main(String[] args) throws Exception {
 
-        // thay mấy thằng hoaDonDoiHang và sanPham tùy theo mã database
+
         ChiTietHoaDonDoi_Impl dao = new ChiTietHoaDonDoi_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         HoaDonDoiHang_Impl hoaDonDoiHang_dao = new HoaDonDoiHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
 
@@ -32,7 +31,7 @@ public class ChiTietHoaDonDoi_Data {
         HoaDonDoiHang_Dao daodh = new HoaDonDoiHang_Impl(EntityManagerFactory_Static.getEntityManagerFactory());
         HoaDonHoanTra     hdht  = daoht.getHoaDonHoanTratheoMa("1");
 
-        HoaDonDoiHang hddh = new HoaDonDoiHang(hdht, "ghi chu", 50f, 0.1f, "khum");
+        HoaDonDoiHang hddh = new HoaDonDoiHang(hdht, "ghi chu", 50.0, 0.1, "khum");
 
         System.out.println(daodh.createHoaDonDoiHang(hddh));
 
@@ -44,8 +43,8 @@ public class ChiTietHoaDonDoi_Data {
 
         ChiTietHoaDonDoi cthd = new ChiTietHoaDonDoi();
         cthd.setId(new ChiTietHoaDonDoiID(1,1));
-        cthd.setSoLuong(1);
-        cthd.setThanhTien(1);
+        cthd.setSoLuong(2);
+        cthd.setThanhTien(500000);
 
         System.out.println(dao.createChiTietDonDoi(cthd));
 
