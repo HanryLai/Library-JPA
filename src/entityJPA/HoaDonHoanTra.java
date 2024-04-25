@@ -28,11 +28,15 @@ public class HoaDonHoanTra {
 	private int maHoaDonHoanTra;
 	
 	private LocalDate ngayHoan;
-	private int nhanVien;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "nhanVien")
+	private NhanVien nhanVien;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "maHoaDon")
 	private HoaDon hoaDon;
+
 	private String ghiChu;
 	private int tinhTrangHoaDon;
 	private float tienHoanTra;

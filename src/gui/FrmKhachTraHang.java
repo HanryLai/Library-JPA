@@ -89,8 +89,9 @@ import untils.entityManagerFactory.EntityManagerFactory_Static;
  *
  * @author nguyen chau tai
  */
-public class FrmKhachTraHang extends javax.swing.JPanel {
+//public class FrmKhachTraHang extends javax.swing.JPanel {
 
+public class FrmKhachTraHang extends javax.swing.JFrame {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     DecimalFormat deciFormat = new DecimalFormat("###.###");
     int soLuong = 1;
@@ -116,8 +117,13 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
     private Thread thread1 = null;
     private DAO_KhuyenMai dao_khuyenMai = new DAO_KhuyenMai();
 
+
+    public static void main(String[] args) throws RemoteException {
+        new FrmKhachTraHang().setVisible(true);
+    }
+
     public FrmKhachTraHang() throws RemoteException {
-        ConnectDB.getInstance().connect();
+        this.setSize(1400, 800);
         initComponents();
         thread = new Thread(this::setTimeAuto);
         thread.start();
@@ -217,7 +223,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
 
     public void loadDataSanPhamDoiHang() throws Exception {
         int row = tableDSDonTra.getSelectedRow();
-        String maHD = (String) tableDSDonTra.getValueAt(row, 3);
+        String maHD = (String.valueOf(tableDSDonTra.getValueAt(row, 3)));
         DefaultTableModel mdSP = (DefaultTableModel) tableInForSPDoi.getModel();
         mdSP.getDataVector().removeAllElements();
         mdSP.fireTableDataChanged();
@@ -297,8 +303,8 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
                 dao_hddh.createHoaDonDoiHang(hddh);
                 DefaultTableModel md = (DefaultTableModel) tableInForSPDoi.getModel();
                 String ma = "";
-                for (int i = 0; i < tableInForSPDoi.getRowCount(); i++) {
-                    ma = (String) tableInForSPDoi.getValueAt(i, 1);
+                for (int i = 0; i < tableInForSPDoi.getRowCount(); i++) {   
+                    ma = String.valueOf(tableInForSPDoi.getValueAt(i, 1));
                     if (ma.startsWith("S")) {
                         Sach s = dao_sach.getSachtheoMa(ma);
                         ChiTietHoaDonDoi ctdd = new ChiTietHoaDonDoi(hddh, s, (int) tableInForSPDoi.getValueAt(i, 4), (double) tableInForSPDoi.getValueAt(i, 5));
@@ -335,7 +341,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
         if (true) {
             if (tableInForSP.getRowCount() != 0) {
                 LocalDateTime ngayLap = LocalDateTime.now();
-                int maNhanVien = 0; // Lấy mã nhân viên đang thực hiện hoàn trả sản phẩm
+                int maNhanVien = 1; // Lấy mã nhân viên đang thực hiện hoàn trả sản phẩm
                 NhanVien nv = dao_nv.getNVTheoMa(maNhanVien);
                 HoaDon hd = dao_hd.getHoaDontheoMa(lblMaHoaDon.getText());
                 HoaDonHoanTra hdht = new HoaDonHoanTra();
@@ -349,7 +355,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
 
                 hdht.setMaHoaDonHoanTra(Integer.parseInt(lblMaHoaDonHoanTra.getText()));
                 hdht.setNgayHoan(LocalDate.from(ngayLap));
-                hdht.setNhanVien(nv.getMaNhanVien());
+                hdht.setNhanVien(nv);
                 hdht.setHoaDon(hd);
                 hdht.setGhiChu(jTextAreaGhiChuTraHang.getText());
                 hdht.setTinhTrangHoaDon(1);
@@ -359,7 +365,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
                 DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
                 String ma = "";
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
-                    ma = (String) tableInForSP.getValueAt(i, 1);
+                    ma = (String.valueOf( tableInForSP.getValueAt(i, 1)));
                     if (ma.startsWith("S")) {
                         Sach s = dao_sach.getSachtheoMa(ma);
                         ChiTietHoanTra ctht = new ChiTietHoanTra();
@@ -411,7 +417,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
 
     public void loadSanPhamTra() throws RemoteException {
         int row = tableDSHoaDon.getSelectedRow();
-        String maHD = (String) tableDSHoaDon.getValueAt(row, 1);
+        String maHD =String.valueOf(tableDSHoaDon.getValueAt(row, 1));
         ArrayList<ChiTietHoaDon> dsCTHD = dao_cthd.getAllChiTietHoaDon();
         ArrayList<ChiTietHoaDon> dsCTHD_get = new ArrayList<ChiTietHoaDon>();
         HoaDon hd = dao_hd.getHoaDontheoMa(maHD);
@@ -441,7 +447,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
 
     public void loadSanPhamTraTuDSDonTra() throws RemoteException {
         int row = tableDSDonTra.getSelectedRow();
-        String maHD = (String) tableDSDonTra.getValueAt(row, 1);
+        String maHD = (String.valueOf( tableDSDonTra.getValueAt(row, 1)));
         ArrayList<ChiTietHoaDon> dsCTHD = dao_cthd.getAllChiTietHoaDon();
         ArrayList<ChiTietHoaDon> dsCTHD_get = new ArrayList<ChiTietHoaDon>();
         HoaDon hd = dao_hd.getHoaDontheoMa(maHD);
@@ -471,7 +477,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
 
     public void loadSanPhamDaTra() throws RemoteException {
         int row = tableDSDonTra.getSelectedRow();
-        String maHT = (String) tableDSDonTra.getValueAt(row, 2);
+        String maHT = String.valueOf(tableDSDonTra.getValueAt(row, 2));
         ArrayList<ChiTietHoanTra> dsCTHT = dao_ctht.getAllChiTietHoanTra();
         ArrayList<ChiTietHoanTra> dsCTHT_get = new ArrayList<ChiTietHoanTra>();
         HoaDonHoanTra hdht = dao_hdht.getHoaDonHoanTratheoMa(maHT);
@@ -515,7 +521,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
                 if (tableInForSP.isEditing()) {
                     tableInForSP.getCellEditor().stopCellEditing();
                 }
-                String maSP = (String) tableInForSP.getValueAt(row, 1);
+                String maSP = String.valueOf( tableInForSP.getValueAt(row, 1));
 //                String maHT = lblMaHoaDonHoanTra.getText();
 //                ChiTietHoanTra ctht = dao_ctht.getHoaDontheoMa(maHT, maSP);
                 String maHD = lblMaHoaDon.getText();
@@ -595,7 +601,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
                     tableInForSPDoi.getCellEditor().stopCellEditing();
                 }
                 DefaultTableModel model = (DefaultTableModel) tableInForSPDoi.getModel();
-                String maSP = (String) tableInForSPDoi.getValueAt(row, 1);
+                String maSP = String.valueOf(tableInForSPDoi.getValueAt(row, 1));
                 int sl = (int) tableInForSPDoi.getValueAt(row, 4);
                 double dg = (double) tableInForSPDoi.getValueAt(row, 3);
                 if (maSP.startsWith("S")) {
@@ -796,7 +802,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
         btnXoaKhuyenMai.setEnabled(true);
         //******** load San pham
         int row = tableDSHoaDon.getSelectedRow();
-        String maHD = (String) tableDSHoaDon.getValueAt(row, 1);
+        String maHD = String.valueOf(tableDSHoaDon.getValueAt(row, 1));
         HoaDon hd = dao_hd.getHoaDontheoMa(maHD);
 //            //******** load Thong tin hoa don
         lblMaHoaDon.setText(maHD);
@@ -1011,7 +1017,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
         tableChonSPDoiHang.setRowSorter(sorter);
         DefaultTableModel md = (DefaultTableModel) tableChonSPDoiHang.getModel();
         md.getDataVector().removeAllElements();
-        String nhom = (String) cboSortTabelChonSP.getSelectedItem();
+        String nhom = String.valueOf(cboSortTabelChonSP.getSelectedItem());
         ArrayList<Sach> dsSach = dao_sach.getAlltbSach();
         ArrayList<VanPhongPham> dsVpp = dao_vpp.getAllVanPhongPhan();
         if (nhom.equalsIgnoreCase("Tất cả")) {
@@ -1059,29 +1065,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
     }
 
     public String createMaHoaDonHoanTra() throws RemoteException {
-//        LocalDate d = LocalDate.of(2023, 11, 13);
-        LocalDate d = LocalDate.now();
-        DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("ddMMyyyy");
-        String format = d.format(myFormatDate);
-        Integer count = 1;
-        String hdID = "";
-        do {
-            String tempID = count.toString().length() == 1 ? ("HT" + format + "-00000" + count)
-                    : count.toString().length() == 2 ? ("HT" + format + "-0000" + count)
-                    : count.toString().length() == 3 ? ("HT" + format + "-000" + count)
-                    : count.toString().length() == 4 ? ("HT" + format + "-00" + count)
-                    : count.toString().length() == 5 ? ("HT" + format + "-0" + count)
-                    : ("HT" + format + "-" + count);
-
-            HoaDonHoanTra existingBill = dao_hdht.getHoaDonHoanTratheoMa(tempID);
-            if (existingBill == null) {
-                hdID = tempID;
-                break;
-            }
-            count++;
-        } while (true);
-
-        return hdID;
+        return String.valueOf(dao_hdht.getLastId());
     }
 
     public void timTableSPdoiHang() {
@@ -1091,29 +1075,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
     }
 
     public String createMaHoaDonDoiHang() throws RemoteException {
-//        LocalDate d = LocalDate.of(2023, 11, 13);
-        LocalDate d = LocalDate.now();
-        DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("ddMMyyyy");
-        String format = d.format(myFormatDate);
-        Integer count = 1;
-        String hdID = "";
-        do {
-            String tempID = count.toString().length() == 1 ? ("HDD" + format + "-00000" + count)
-                    : count.toString().length() == 2 ? ("HDD" + format + "-0000" + count)
-                    : count.toString().length() == 3 ? ("HDD" + format + "-000" + count)
-                    : count.toString().length() == 4 ? ("HDD" + format + "-00" + count)
-                    : count.toString().length() == 5 ? ("HDD" + format + "-0" + count)
-                    : ("HT" + format + "-" + count);
-
-            HoaDonDoiHang existingBill = dao_hddh.getHoaDonDoiHangtheoMa(tempID);
-            if (existingBill == null) {
-                hdID = tempID;
-                break;
-            }
-            count++;
-        } while (true);
-
-        return hdID;
+        return String.valueOf(dao_hddh.getLastId());
     }
 
     public void loadChonSPDoiHang() throws RemoteException {
@@ -1173,9 +1135,9 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
         btnXoaKhuyenMai.setEnabled(false);
         //******** load San pham
         int row = tableDSDonTra.getSelectedRow();
-        String maHD = (String) tableDSDonTra.getValueAt(row, 1);
-        String maHDDoi = (String) tableDSDonTra.getValueAt(row, 3);
-        String maHDHT = (String) tableDSDonTra.getValueAt(row, 2);
+        String maHD = (String.valueOf(tableDSDonTra.getValueAt(row, 1)));
+        String maHDDoi = String.valueOf(tableDSDonTra.getValueAt(row, 3));
+        String maHDHT = String.valueOf(tableDSDonTra.getValueAt(row, 2));
         HoaDon hd = dao_hd.getHoaDontheoMa(maHD);
         HoaDonDoiHang hddh = null;
         HoaDonHoanTra hdht = dao_hdht.getHoaDonHoanTratheoMa(maHDHT);
@@ -3935,8 +3897,8 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
         } else {
 //            loadChonSP();
             int row = tableDSDonTra.getSelectedRow();
-            String trangThai = (String) tableDSDonTra.getValueAt(row, 6);
-            String ma = (String) tableDSDonTra.getValueAt(row, 3);
+            String trangThai = String.valueOf(tableDSDonTra.getValueAt(row, 6));
+            String ma = String.valueOf(tableDSDonTra.getValueAt(row, 3));
             if (trangThai.equalsIgnoreCase("Đã hoàn tiền")) {
                 if (!ma.startsWith("H")) {
                     lblMaHoaDonDoiHang.setText(createMaHoaDonDoiHang());
@@ -4102,17 +4064,17 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
 
         } else {
             int row = tableSanPhamDaBan.getSelectedRow();
-            String maSP = (String) tableSanPhamDaBan.getValueAt(row, 1);
+            String maSP = String.valueOf(tableSanPhamDaBan.getValueAt(row, 1));
             String ma = "";
             boolean value = false;
             for (int i = 0; i < tableInForSP.getRowCount(); i++) {
-                ma = (String) tableInForSP.getValueAt(i, 1);
+                ma = String.valueOf(tableInForSP.getValueAt(i, 1));
                 if (ma.equalsIgnoreCase(maSP)) {
                     value = true;
                 }
             }
             if (value == false) {
-                lblTenSanPhamChon.setText((String) tableSanPhamDaBan.getValueAt(row, 2));
+                lblTenSanPhamChon.setText(String.valueOf(tableSanPhamDaBan.getValueAt(row, 2)));
                 jDialogGhiSoLuongTra.setLocationRelativeTo(null);
                 jDialogGhiSoLuongTra.setVisible(true);
             }
@@ -4158,13 +4120,16 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
             if (sl >= soLuong) {
                 sl = soLuong;
             }
-            if (maSP.startsWith("S")) {
+            Sach sa = dao_sach.getSachtheoMa(maSP);
+
+            if (sa != null) {
                 Sach s = dao_sach.getSachtheoMa(maSP);
                 modelInfo.addRow(new Object[]{sttSP, s.getMaSanPham(), s.getTenSanPham(),
                     s.getDonGiaBan(), sl, tinhThanhTien(sl, s.getDonGiaBan())});
                 sttSP++;
             } else {
                 VanPhongPham vpp = dao_vpp.getVPPtheoMa(maSP);
+                System.out.println(maSP);
                 modelInfo.addRow(new Object[]{sttSP, vpp.getMaSanPham(), vpp.getTenSanPham(),
                     vpp.getDonGiaBan(), sl, tinhThanhTien(sl, vpp.getDonGiaBan())});
                 sttSP++;
@@ -4207,17 +4172,17 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
 
         } else {
             int row = tableChonSPDoiHang.getSelectedRow();
-            String maSP = (String) tableChonSPDoiHang.getValueAt(row, 1);
+            String maSP = String.valueOf(tableChonSPDoiHang.getValueAt(row, 1));
             String ma = "";
             boolean value = false;
             for (int i = 0; i < tableInForSPDoi.getRowCount(); i++) {
-                ma = (String) tableInForSPDoi.getValueAt(i, 1);
+                ma = (String.valueOf( tableInForSPDoi.getValueAt(i, 1)));
                 if (ma.equalsIgnoreCase(maSP)) {
                     value = true;
                 }
             }
             if (value == false) {
-                lblTenSanPhamChon1.setText((String) tableChonSPDoiHang.getValueAt(row, 2));
+                lblTenSanPhamChon1.setText(String.valueOf(tableChonSPDoiHang.getValueAt(row, 2)));
                 jDialogGhiSoLuongDoi.setLocationRelativeTo(null);
                 jDialogGhiSoLuongDoi.setVisible(true);
             }
@@ -4343,7 +4308,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
     private void tableChonKH1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableChonKH1MouseClicked
         // TODO add your handling code here:
         int row = tableChonKH1.getSelectedRow();
-        String ma = (String) tableChonKH1.getValueAt(row, 0);
+        String ma = String.valueOf(tableChonKH1.getValueAt(row, 0));
         txtMaKhuyenMai.setText(ma);
         try {
             createInit();

@@ -15,6 +15,9 @@ public class Main_Create_Data {
 
         System.out.println("--------------------CREATE DATA--------------------");
 
+        NhaCungCap_Dao.main(args);
+        System.out.println("--------------------CREATE DATA--------------------");
+
         SanPham_BaoCao_ChiTiet.main(args);
         System.out.println("--------------------CREATE DATA--------------------");
 
@@ -24,8 +27,6 @@ public class Main_Create_Data {
         HoaDon_ChiTietHoaDon.main(args);
         System.out.println("--------------------CREATE DATA--------------------");
 
-        NhaCungCap_Dao.main(args);
-        System.out.println("--------------------CREATE DATA--------------------");
 
         ChiTietHoaDonDoi_Data.main(args);
         System.out.println("--------------------CREATE DATA--------------------");

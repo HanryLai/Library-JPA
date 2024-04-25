@@ -17,5 +17,7 @@ public interface HoaDonHoanTra_Dao extends Remote {
     public HoaDonHoanTra getHoaDonHoanTratheoMa(String ma)  throws RemoteException;
     public void deleteHoaDonHoanTra(String ma) throws RemoteException;
 
+    public int getLastId() throws RemoteException;
+
 
 }

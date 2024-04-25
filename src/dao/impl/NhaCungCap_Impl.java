@@ -35,7 +35,8 @@ public class NhaCungCap_Impl extends UnicastRemoteObject implements NhaCungCap_D
 
     @Override
     public NhaCungCap getNCCTheoTen(String tenNCC) throws RemoteException {
-        return null;
+        Generic_Impl<NhaCungCap> nccGeneric = new Generic_Impl<>(NhaCungCap.class, emf);
+        return nccGeneric.findByProperty("tenNCC", tenNCC).get(0);
     }
 
     @Override
