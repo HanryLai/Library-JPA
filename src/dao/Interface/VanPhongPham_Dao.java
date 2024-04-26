@@ -11,4 +11,6 @@ public interface VanPhongPham_Dao extends Remote {
     void insertVpp(VanPhongPham vpp) throws RemoteException;
     boolean update (VanPhongPham vpp) throws RemoteException;
     VanPhongPham getVPPtheoMa(String id) throws RemoteException;
+
+    VanPhongPham getVPPTheoTen(String tenSanPham) throws RemoteException;
 }

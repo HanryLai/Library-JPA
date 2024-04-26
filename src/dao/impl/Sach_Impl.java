@@ -4,10 +4,12 @@ import dao.Interface.Sach_Dao;
 import entityJPA.Sach;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import untils.entityManagerFactory.EntityManagerFactory_Static;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Sach_Impl extends UnicastRemoteObject implements Sach_Dao {
 
@@ -41,14 +43,19 @@ public class Sach_Impl extends UnicastRemoteObject implements Sach_Dao {
         Sach sach = null;
         try{
             String query = """
-            select * from Sach s
+            select s from Sach s
             inner join SanPham sp on s.maSanPham = sp.maSanPham
-            where s.tenSanPham = :tenSach
+            where sp.tenSanPham like :tenSach
             """;
             EntityManager em = emf.createEntityManager();
-            sach = (Sach) em.createNativeQuery(query, Sach.class)
+            List<?> sachs = em.createQuery(query, Object.class)
                     .setParameter("tenSach", tenSach)
-                    .getSingleResult();
+                    .getResultList();
+            for (Object o : sachs) {
+                sach = (Sach) o;
+            }
+            System.out.println(sach);
+            em.close();
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,6 +63,5 @@ public class Sach_Impl extends UnicastRemoteObject implements Sach_Dao {
     }
 
 
-
-
 }
+

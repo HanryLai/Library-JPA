@@ -5,9 +5,7 @@
 package gui;
 
 import dao.Interface.*;
-import entityJPA.BanBaoCao;
-import entityJPA.ChiTietBanBaoCao;
-import entityJPA.NhanVien;
+import entityJPA.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,7 +29,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-import entityJPA.Sach;
+import entityJPA.otherID.ChiTietBanBaoCaoID;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -786,6 +784,8 @@ public class FrmBaoCao extends javax.swing.JPanel {
         
         
         BanBaoCao bbc1 = new BanBaoCao();
+        int ma = dao_BCDT.getMaBBCTheoTen(tenBBC);
+        bbc1 = dao_BCDT.getBanBaoCaoTheoMa(ma);
         
         String tenSanPham = "";
         int soLuongBan = 0;
@@ -802,10 +802,22 @@ public class FrmBaoCao extends javax.swing.JPanel {
             ChiTietBanBaoCao ctbbc = new ChiTietBanBaoCao();
             ctbbc.setBanBaoCao(bbc1);
             Sach s = dao_sach.getSachTheoTen(tenSanPham);
-            ctbbc.setSanPham(s);
-            ctbbc.setSoLuongBan(soLuongBan);
-            ctbbc.setThanhTien(thanhTien);
-            ctbbc.setGhiChu(ghiChuSP);
+            if(s==null){
+                System.out.printf(tenSanPham+" khong phai la sach\n");
+                VanPhongPham v = dao_vpp.getVPPTheoTen(tenSanPham);
+                System.out.println("v: "+v.getTenSanPham());
+                ctbbc.setId(new ChiTietBanBaoCaoID(v.getMaSanPham(), bbc1.getMaBanBaoCao()));
+                ctbbc.setSoLuongBan(soLuongBan);
+                ctbbc.setThanhTien(thanhTien);
+                ctbbc.setGhiChu(ghiChuSP);
+            }
+            else{
+                ctbbc.setId(new ChiTietBanBaoCaoID(s.getMaSanPham(), bbc1.getMaBanBaoCao()));
+                ctbbc.setSoLuongBan(soLuongBan);
+                ctbbc.setThanhTien(thanhTien);
+                ctbbc.setGhiChu(ghiChuSP);
+            }
+
             dao_CTBC.taoChiTietBaoCao(ctbbc);
             System.out.println("ctbbc: "+ctbbc);
         }
@@ -817,10 +829,23 @@ public class FrmBaoCao extends javax.swing.JPanel {
             
             ChiTietBanBaoCao ctbbc = new ChiTietBanBaoCao();
             ctbbc.setBanBaoCao(bbc1);
-            ctbbc.getSanPham().setTenSanPham(tenSanPham);
-            ctbbc.setSoLuongNhap(soLuongNhap);
-            ctbbc.setTonKho(tonKho);
-            ctbbc.setGhiChu(ghiChuSP);
+            Sach s = dao_sach.getSachTheoTen(tenSanPham);
+            if(s==null){
+                System.out.printf(tenSanPham+" khong phai la sach\n");
+                VanPhongPham v = dao_vpp.getVPPTheoTen(tenSanPham);
+                System.out.println("v: "+v.getTenSanPham());
+                ctbbc.setId(new ChiTietBanBaoCaoID(bbc1.getMaBanBaoCao(), v.getMaSanPham()));
+                ctbbc.setSoLuongBan(soLuongBan);
+                ctbbc.setThanhTien(thanhTien);
+                ctbbc.setGhiChu(ghiChuSP);
+            }
+            else{
+                ctbbc.setId(new ChiTietBanBaoCaoID(bbc1.getMaBanBaoCao(), s.getMaSanPham()));
+                ctbbc.setSoLuongBan(soLuongBan);
+                ctbbc.setThanhTien(thanhTien);
+                ctbbc.setGhiChu(ghiChuSP);
+            }
+
             dao_CTBC.taoChiTietBaoCao(ctbbc);
             System.out.println("ctbbc: "+ctbbc);
             if(i==jTable2.getRowCount())
