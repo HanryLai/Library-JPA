@@ -597,7 +597,6 @@ public class FrmLapHoaDon extends JPanel {
     }
 
     public void createInit() throws RemoteException {
-        System.out.printf(lblMaKH.getText());
         DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
         double tongTienThanhToan = 0;
         int tongSoLuongSp = 0;
