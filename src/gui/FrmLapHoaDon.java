@@ -847,8 +847,12 @@ public class FrmLapHoaDon extends JPanel {
         }
 
 
-        Sach sach = dao_sach.getSachtheoMa(maSP);
-        if (sach != null) {
+
+
+
+      Sach sach = dao_sach.getSachtheoMa(maSP);
+            if (sach != null) {
+
             Sach s = dao_sach.getSachtheoMa(maSP);
             modelInfo.addRow(new Object[]{sttSP, s.getMaSanPham(), s.getTenSanPham(),
                 s.getDonGiaBan(), 1, tinhThanhTien(1, s.getDonGiaBan())});
