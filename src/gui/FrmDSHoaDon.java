@@ -732,7 +732,8 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
                 String ma = "";
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
                     ma = (String) tableInForSP.getValueAt(i, 1);
-                    if (ma.startsWith("S")) {
+                    Sach sach = dao_sach.getSachtheoMa(ma);
+                    if (sach != null) {
                         Sach s = dao_sach.getSachtheoMa(ma);
                         ChiTietHoaDon cthd = new ChiTietHoaDon(hd, s, (int) tableInForSP.getValueAt(i, 4), (double) tableInForSP.getValueAt(i, 5));
                         dao_cthd.createChiTietHoaDon(cthd);
@@ -810,7 +811,8 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
                 String maSP = (String) tableInForSP.getValueAt(row, 1);
                 int sl = (int) tableInForSP.getValueAt(row, 4);
                 double dg = (double) tableInForSP.getValueAt(row, 3);
-                if (maSP.startsWith("S")) {
+                Sach sach = dao_sach.getSachtheoMa(maSP);
+                if (sach != null) {
                     Sach s = dao_sach.getSachtheoMa(maSP);
                     if (sl < s.getSoLuongTon()) {
                         sl++;
@@ -1006,7 +1008,8 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
         tableModal.getDataVector().removeAllElements();
         tableModal.fireTableDataChanged();
         String ma = txtTimSanPhamChon.getText().trim();
-        if (txtTimSanPhamChon.getText().startsWith("S")) {
+        Sach sach = dao_sach.getSachtheoMa(txtTimSanPhamChon.getText());
+        if (sach != null) {
             Sach s = dao_sach.getSachtheoMa(ma);
             tableModal.addRow(new Object[]{1, s.getMaSanPham(), s.getTenSanPham(), s.getDonGiaBan(),
                 s.getSoLuongTon(), s.getTinhTrang()
@@ -1041,7 +1044,9 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
 
         }
 
-        if (maSP.startsWith("S")) {
+        Sach sach = dao_sach.getSachtheoMa(maSP);
+
+        if (sach != null) {
             Sach s = dao_sach.getSachtheoMa(maSP);
             modelInfo.addRow(new Object[]{sttSP, s.getMaSanPham(), s.getTenSanPham(),
                 s.getDonGiaBan(), 1, tinhThanhTien(1, s.getDonGiaBan())});
@@ -3389,7 +3394,8 @@ public class FrmDSHoaDon extends javax.swing.JPanel {
             DefaultTableModel modelInfo = (DefaultTableModel) tableInForSP.getModel();
             DecimalFormat df = new DecimalFormat("#,##0");
             int sl = Integer.parseInt(txtSoLuongSanPhamChon.getText());
-            if (maSP.startsWith("S")) {
+            Sach sach = dao_sach.getSachtheoMa(maSP);
+            if (sach != null) {
                 Sach s = dao_sach.getSachtheoMa(maSP);
                 if (sl >= s.getSoLuongTon()) {
                     sl = s.getSoLuongTon();

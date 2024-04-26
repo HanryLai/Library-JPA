@@ -724,10 +724,10 @@ public class FrmLapHoaDon extends JPanel {
                     kh.setNhomKhachHang(NhomKhachHang.KHACHVIP);
                 }
                 dao_kh.updateKhachHang(kh);
-                int chon = JOptionPane.showConfirmDialog(null, "Bạn có muốn in hóa đơn hay không?", "Thông báo", JOptionPane.YES_OPTION);
-                if (chon == JOptionPane.YES_OPTION) {
-                    inHoaDon();
-                }
+//                int chon = JOptionPane.showConfirmDialog(null, "Bạn có muốn in hóa đơn hay không?", "Thông báo", JOptionPane.YES_OPTION);
+//                if (chon == JOptionPane.YES_OPTION) {
+//                    inHoaDon();
+//                }
                 loadChonSP();
                 lamMoiHoaDon();
 
@@ -1022,6 +1022,7 @@ public class FrmLapHoaDon extends JPanel {
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton9.setForeground(new java.awt.Color(3, 136, 253));
         jButton9.setText("Khách lẻ");
+
         jButton9.setFocusable(false);
         jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton9.setMargin(new java.awt.Insets(2, 10, 3, 10));
@@ -2071,6 +2072,7 @@ public class FrmLapHoaDon extends JPanel {
         btnKhachLe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnKhachLe.setForeground(new java.awt.Color(3, 136, 253));
         btnKhachLe.setText("Khách lẻ");
+        btnKhachLe.setVisible(false);
         btnKhachLe.setFocusable(false);
         btnKhachLe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnKhachLe.setMargin(new java.awt.Insets(2, 10, 3, 10));

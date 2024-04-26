@@ -10,7 +10,7 @@ import gui.FrmLogin;
 
 public class Client {
     public static void main(String[] args) throws MalformedURLException, NotBoundException, RemoteException {
-        String url = "rmi://localhost:7878/";
+        String url = "rmi://26.139.190.148:7878/";
         
         Dao_Package_Static.init(url);
         
