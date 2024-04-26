@@ -35,7 +35,7 @@ public class Main_Create_Data {
         HoaDonHoanTra_ChiTietHoanTra.main(args);
         System.out.println("--------------------CREATE DATA--------------------");
 
-        EntityManagerFactory_Static.closeEntityManagerFactory();
+//        EntityManagerFactory_Static.closeEntityManagerFactory();
 
 //        DO NOT CLOSE EntityManagerFactory
 
