@@ -326,10 +326,11 @@ public class FrmLapHoaDon extends JPanel {
                     tableInForSP.getCellEditor().stopCellEditing();
                 }
                 DefaultTableModel model = (DefaultTableModel) tableInForSP.getModel();
-                String maSP = (String) tableInForSP.getValueAt(row, 1);
+                String maSP = String.valueOf(tableInForSP.getValueAt(row, 1));
                 int sl = (int) tableInForSP.getValueAt(row, 4);
                 double dg = (double) tableInForSP.getValueAt(row, 3);
-                if (maSP.startsWith("S")) {
+                Sach sach = dao_sach.getSachtheoMa(maSP);
+                if (sach != null) {
                     Sach s = dao_sach.getSachtheoMa(maSP);
                     if (sl < s.getSoLuongTon()) {
                         sl++;
@@ -847,7 +848,9 @@ public class FrmLapHoaDon extends JPanel {
 
 
 
-        if (maSP.startsWith("S")) {
+
+      Sach sach = dao_sach.getSachtheoMa(maSP);
+            if (sach != null) {
             Sach s = dao_sach.getSachtheoMa(maSP);
             modelInfo.addRow(new Object[]{sttSP, s.getMaSanPham(), s.getTenSanPham(),
                 s.getDonGiaBan(), 1, tinhThanhTien(1, s.getDonGiaBan())});
@@ -2799,7 +2802,7 @@ public class FrmLapHoaDon extends JPanel {
     private void tableChonKH1MouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_tableChonKH1MouseClicked
         // TODO add your handling code here:
         int row = tableChonKH1.getSelectedRow();
-        String ma = (String) tableChonKH1.getValueAt(row, 0);
+        String ma = String.valueOf(tableChonKH1.getValueAt(row, 0));
         txtMaKhuyenMai.setText(ma);
         createInit();
         jDialogChonKhuyenMai.setVisible(false);
