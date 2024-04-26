@@ -14,4 +14,6 @@ public interface Sach_Dao extends Remote {
     Sach getSachtheoMa(String ma) throws RemoteException;
 
     void updateSach(Sach s) throws RemoteException;
+
+    Sach getSachTheoTen(String tenSach) throws RemoteException;
 }

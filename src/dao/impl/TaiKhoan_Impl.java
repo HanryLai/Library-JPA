@@ -105,6 +105,7 @@ public class TaiKhoan_Impl extends UnicastRemoteObject implements TaiKhoan_Dao {
 	@Override
 	public String phanQuyen(String email) throws RemoteException{
 		String tenDN = "";
+		System.out.println(email);
 		try {
 			String query = "SELECT tenDangNhap FROM TaiKhoan WHERE email = :email";
 			EntityManager em = emf.createEntityManager();

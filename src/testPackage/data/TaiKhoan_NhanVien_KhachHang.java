@@ -29,8 +29,8 @@ public class TaiKhoan_NhanVien_KhachHang {
                 "0123456789", "Nữ", "tranthithuyvy@gmail.com", taiKhoan3, 1, ca2, ChucVu.QUANLY);
         NhanVien nhanVien4 = new NhanVien("Lại Dương Minh Hiếu", LocalDate.of(2003, 1, 1),
                 "0123456789", "Nam", "laiduongminhhieu@gmail.com", taiKhoan4, 1, ca3, ChucVu.QUANLY);
-        NhanVien nhanVien5 = new NhanVien("Nguyen Van A", LocalDate.of(1999, 1, 1),
-                "0333666999", "Nam", "nguyenvana@gmail.com", taiKhoan5, 1, ca3, ChucVu.THUNGAN);
+        NhanVien nhanVien5 = new NhanVien("Lại Dương Minh adas", LocalDate.of(2003, 1, 1),
+                "0123456789", "Nam", "nguyenvana@gmail.com", taiKhoan5, 1, ca3, ChucVu.THUNGAN);
         // KhachHang
         KhachHang khachHang1 = new KhachHang();
         khachHang1.setTenKhachHang("Nguyễn Van A");

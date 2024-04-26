@@ -34,7 +34,18 @@ public class ChiTietBanBaoCao_Impl extends UnicastRemoteObject implements ChiTie
 
     @Override
     public void taoChiTietBaoCao(ChiTietBanBaoCao entity) throws RemoteException {
-
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            em.persist(entity);
+            et.commit();
+        } catch (Exception e){
+            et.rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
     }
 
     public ArrayList<ChiTietBanBaoCao> getSachDaBan (String thoiGianBatDau, String thoiGianKetThuc) throws RemoteException{

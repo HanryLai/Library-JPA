@@ -13,4 +13,5 @@ public interface BanBaoCao_Dao extends Remote {
 
     public int getMaBBCTheoTen(String tenBBC) throws RemoteException;
 
+    BanBaoCao getBanBaoCaoTheoMa(int maBBC) throws RemoteException;
 }

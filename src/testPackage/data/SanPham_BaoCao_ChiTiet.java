@@ -184,6 +184,15 @@ public class SanPham_BaoCao_ChiTiet {
 		em.persist(vpp2);
 		em.persist(sach2);
 
+
+//		em.persist(banBaoCao);
+//		em.persist(banBaoCao2);
+//
+//
+//		em.persist(chiTietBanBaoCao);
+//		em.persist(chiTietBanBaoCao2);
+//		em.persist(chiTietBanBaoCao3);
+//		em.persist(chiTietBanBaoCao4);
 		
 		em.getTransaction().commit();
 

@@ -664,6 +664,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
         LocalDateTime curDate = LocalDateTime.now();
         for (HoaDon hd : dsHD) {
             if (hd.getTinhTrangHoaDon() == 1 && hd.getNgayLap().isAfter(curDate.minusDays(7))) {
+
                 nv = dao_nv.getNVTheoMa(hd.getNhanVien().getMaNhanVien());
                 kh = dao_kh.getKHTheoMa(hd.getKhachHang().getMaKhachHang());
                 tableModal.addRow(new Object[]{stt, hd.getMaHoaDon(), formatter.format(hd.getNgayLap()), kh.getTenKhachHang(), nv.getHoTenNV(), deciFormat.format(hd.getTongTien())});

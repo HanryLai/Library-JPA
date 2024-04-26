@@ -178,8 +178,7 @@ public class FrmChinh extends javax.swing.JFrame {
                         e.printStackTrace();
                     }
                 } else if (index == 5 && subIndex == 1) {
-                    System.out.println(dao_nv.getChucVuTheoTen(gui.FrmLogin.tenDN));
-                    if (dao_nv.getChucVuTheoTen(gui.FrmLogin.tenDN).equalsIgnoreCase("THUNGAN")) {
+                    if (dao_nv.getChucVuTheoTen(gui.FrmLogin.tenDN).equalsIgnoreCase("THUNGAN")){
                         System.out.println("Value of tenDN 1: " + gui.FrmLogin.tenDN);
                         try {
                             showForm(new FrmBaoCao());

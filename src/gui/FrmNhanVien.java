@@ -154,6 +154,8 @@ public class FrmNhanVien extends javax.swing.JPanel {
                     btnThemNVActionPerformed(e);
                 } catch (RemoteException ex) {
                     throw new RuntimeException(ex);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
         };
@@ -410,14 +412,26 @@ public class FrmNhanVien extends javax.swing.JPanel {
         jDateChooser3.setDate(new Date());
         int stt = 1;
         for (NhanVien nv : data) {
-            String tenCa = "";
-            if (nv.getCaLamViec().getMaCa() == 1) {
-                tenCa = "Sáng";
-            } else if (nv.getCaLamViec().getMaCa() == 2) {
-                tenCa = "Chiều";
+            NhanVien nvc = dao_nhanvien.getNVTheoMa(nv.getMaNhanVien());
+            int maca = nvc.getCaLamViec().getMaCa();
+
+            String tenca = "";
+            if (maca == 1) {
+                tenca = "Sáng";
+            } else if (maca == 2) {
+                tenca = "Chiều";
             } else {
-                tenCa = "Tối";
+                tenca = "Tối";
             }
+
+
+//            if (ca.getMaCa() == 1) {
+//                nv.getCaLamViec().setTenCa("Sáng");
+//            } else if (nv.getCaLamViec().getMaCa() == 2) {
+//                nv.getCaLamViec().setTenCa("Chiều");
+//            } else {
+//                nv.getCaLamViec().setTenCa("Tối");
+//            }
 
             if (nv.getTinhTrangLamViec() == 1) {
                 String[] newRow = {String.format("%s", stt),
@@ -425,8 +439,8 @@ public class FrmNhanVien extends javax.swing.JPanel {
                     String.format("%s", nv.getHoTenNV()),
                     String.format("%s", nv.getChucVu()),
                     String.format("%s", nv.getGioiTinh()),
-                    String.format("%s", tenCa),
-                        String.format("%s", "Đang làm việc")
+                    String.format("%s", tenca),
+                    String.format("%s", "Đang làm việc")
                 };
                 model.addRow(newRow);
             } else {
@@ -435,7 +449,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
                     String.format("%s", nv.getHoTenNV()),
                     String.format("%s", nv.getChucVu()),
                     String.format("%s", nv.getGioiTinh()),
-                    String.format("%s", tenCa),
+                    String.format("%s", tenca),
                     String.format("%s", "Đã nghỉ việc")
                 };
                 model.addRow(newRow);
@@ -1906,6 +1920,8 @@ public class FrmNhanVien extends javax.swing.JPanel {
                     btnThemNVActionPerformed(evt);
                 } catch (RemoteException e) {
                     throw new RuntimeException(e);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });
@@ -2682,7 +2698,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
     }
     
     
-    private void btnThemNVActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_btnThemNVActionPerformed
+    private void btnThemNVActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException, SQLException {//GEN-FIRST:event_btnThemNVActionPerformed
         // TODO add your handling code here:
 
         int maNhanVien = Integer.parseInt(txtTimKH11.getText());
@@ -2696,9 +2712,10 @@ public class FrmNhanVien extends javax.swing.JPanel {
         String email = txtTimKH10.getText();
         // Them taiKhoan truoc khi them nhan vien
         TaiKhoan taiKhoan = new TaiKhoan(email.substring(0, email.indexOf("@")), "1111", email);
+        System.out.println(taiKhoan);
   
         TaiKhoan_Dao dao_taikhoan = Dao_Package_Static.dao_TaiKhoan;
-        dao_taikhoan.createTaiKhoan(taiKhoan);
+        System.out.println("Ket qua them tai khoan"+ dao_taikhoan.createTaiKhoan(taiKhoan));
 
         int tinhTrangLamViec = Integer.parseInt(String.valueOf(jComboBox2.getSelectedItem()));
         String caLv = String.valueOf(jComboBox5.getSelectedItem());
@@ -2740,8 +2757,12 @@ public class FrmNhanVien extends javax.swing.JPanel {
                 nvThem.setTinhTrangLamViec(tinhTrangLamViec);
                 nvThem.setCaLamViec(caLamViec); // Sửa lại lấy ca làm việc từ db lên để set vào nhân viên
                 nvThem.setChucVu(chucVu);
+                System.out.println(nvThem);
+                System.out.println(nvThem.getTaiKhoan());
                 dao_nhanvien.themNhanVien(nvThem);
-               
+                boolean kq = dao_nhanvien.themNhanVien(nvThem);
+//                System.out.println("Ket qua them nhan vien: "+ kq);
+                loadData();
             } 
         } 
     }//GEN-LAST:event_btnThemNVActionPerformed
