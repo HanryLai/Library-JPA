@@ -22,6 +22,8 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -103,6 +105,8 @@ public class FrmXemBaoCao extends javax.swing.JPanel {
     public void loadData() throws SQLException, RemoteException {
         deleteTable();
         DefaultTableModel model = (DefaultTableModel) tableXemBC.getModel();
+
+
         data = dao_BCDT.getALLBanBaoCao();
         int stt = 1;
         for (BanBaoCao bbc : data) {
