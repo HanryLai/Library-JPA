@@ -196,11 +196,6 @@ public class SanPham_BaoCao_ChiTiet {
 		
 		em.getTransaction().commit();
 
-		ChiTietBanBaoCaoID id = new ChiTietBanBaoCaoID(1, 1);
-
-		ChiTietBanBaoCao t = em.find(ChiTietBanBaoCao.class, id);
-
-
 		em.close();
 
 	}
