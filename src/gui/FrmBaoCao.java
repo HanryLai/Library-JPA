@@ -4,10 +4,7 @@
  */
 package gui;
 
-import dao.Interface.BanBaoCao_Dao;
-import dao.Interface.ChiTietBaoCao_Dao;
-import dao.Interface.HoaDon_Dao;
-import dao.Interface.NhanVien_Dao;
+import dao.Interface.*;
 import entityJPA.BanBaoCao;
 import entityJPA.ChiTietBanBaoCao;
 import entityJPA.NhanVien;
@@ -33,6 +30,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+
+import entityJPA.Sach;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -55,6 +54,8 @@ public class FrmBaoCao extends javax.swing.JPanel {
      */
     private FrmChinh frm = new FrmChinh();
     private Thread thread = null;
+    private Sach_Dao dao_sach = Dao_Package_Static.dao_Sach;
+    private VanPhongPham_Dao dao_vpp = Dao_Package_Static.dao_VanPhongPham;
 
  
     public FrmBaoCao() throws SQLException, RemoteException {
@@ -800,7 +801,8 @@ public class FrmBaoCao extends javax.swing.JPanel {
             
             ChiTietBanBaoCao ctbbc = new ChiTietBanBaoCao();
             ctbbc.setBanBaoCao(bbc1);
-            ctbbc.getSanPham().setTenSanPham(tenSanPham);
+            Sach s = dao_sach.getSachTheoTen(tenSanPham);
+            ctbbc.setSanPham(s);
             ctbbc.setSoLuongBan(soLuongBan);
             ctbbc.setThanhTien(thanhTien);
             ctbbc.setGhiChu(ghiChuSP);

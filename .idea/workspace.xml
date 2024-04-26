@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5f2ae875-a319-4aab-906e-e9966f181cd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Interface/NhanVien_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/NhanVien_Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/impl/NhanVien_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/NhanVien_Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entityJPA/ChiTietBanBaoCao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/FrmChinh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmChinh.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interface/Sach_Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interface/Sach_Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/impl/Sach_Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/impl/Sach_Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FrmBaoCao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FrmBaoCao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +125,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714098321252</updated>
-      <workItem from="1714098324264" duration="694000" />
+      <workItem from="1714098324264" duration="1396000" />
     </task>
     <servers />
   </component>
