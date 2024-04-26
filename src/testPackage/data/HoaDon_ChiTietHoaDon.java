@@ -62,27 +62,27 @@ public class HoaDon_ChiTietHoaDon {
         hd3.setKhachHang(kh3);
         hd3.setNhanVien(nv3);
 
-        hd_dao.createHoaDon(hd1);
-        hd_dao.createHoaDon(hd2);
-        hd_dao.createHoaDon(hd3);
-
-        ChiTietHoaDon cthd1_1 = new ChiTietHoaDon(hd1, sach1, 5, 100);
-        ChiTietHoaDon cthd1_2 = new ChiTietHoaDon(hd1, sach2, 10, 500);
-
-        ChiTietHoaDon cthd2_1 = new ChiTietHoaDon(hd2, vvp1, 5, 100);
-        ChiTietHoaDon cthd2_2 = new ChiTietHoaDon(hd2, vvp2, 10, 500);
-
-        ChiTietHoaDon cthd3_1 = new ChiTietHoaDon(hd3, sach1, 5, 100);
-        ChiTietHoaDon cthd3_2 = new ChiTietHoaDon(hd3, vvp2, 10, 500);
-
-        cthd_dao.createChiTietHoaDon(cthd1_1);
-        cthd_dao.createChiTietHoaDon(cthd1_2);
-
-        cthd_dao.createChiTietHoaDon(cthd2_1);
-        cthd_dao.createChiTietHoaDon(cthd2_2);
-
-        cthd_dao.createChiTietHoaDon(cthd3_1);
-        cthd_dao.createChiTietHoaDon(cthd3_2);
+//        hd_dao.createHoaDon(hd1);
+//        hd_dao.createHoaDon(hd2);
+//        hd_dao.createHoaDon(hd3);
+//
+//        ChiTietHoaDon cthd1_1 = new ChiTietHoaDon(hd1, sach1, 5, 100);
+//        ChiTietHoaDon cthd1_2 = new ChiTietHoaDon(hd1, sach2, 10, 500);
+//
+//        ChiTietHoaDon cthd2_1 = new ChiTietHoaDon(hd2, vvp1, 5, 100);
+//        ChiTietHoaDon cthd2_2 = new ChiTietHoaDon(hd2, vvp2, 10, 500);
+//
+//        ChiTietHoaDon cthd3_1 = new ChiTietHoaDon(hd3, sach1, 5, 100);
+//        ChiTietHoaDon cthd3_2 = new ChiTietHoaDon(hd3, vvp2, 10, 500);
+//
+//        cthd_dao.createChiTietHoaDon(cthd1_1);
+//        cthd_dao.createChiTietHoaDon(cthd1_2);
+//
+//        cthd_dao.createChiTietHoaDon(cthd2_1);
+//        cthd_dao.createChiTietHoaDon(cthd2_2);
+//
+//        cthd_dao.createChiTietHoaDon(cthd3_1);
+//        cthd_dao.createChiTietHoaDon(cthd3_2);
 
 
 

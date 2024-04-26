@@ -260,7 +260,7 @@ public class FrmLapHoaDon extends JPanel {
         DefaultTableModel md = (DefaultTableModel) tableChonSP.getModel();
         md.getDataVector().removeAllElements();
         md.fireTableDataChanged();
-        String nhom = (String) cboSortTabelChonSP.getSelectedItem();
+        String nhom = String.valueOf(cboSortTabelChonSP.getSelectedItem());
         ArrayList<Sach> dsSach = dao_sach.getAlltbSach();
         ArrayList<entityJPA.VanPhongPham> dsVpp = dao_vpp.getAllVanPhongPhan();
         if (nhom.equalsIgnoreCase("Tất cả")) {
@@ -849,8 +849,10 @@ public class FrmLapHoaDon extends JPanel {
 
 
 
+
       Sach sach = dao_sach.getSachtheoMa(maSP);
             if (sach != null) {
+
             Sach s = dao_sach.getSachtheoMa(maSP);
             modelInfo.addRow(new Object[]{sttSP, s.getMaSanPham(), s.getTenSanPham(),
                 s.getDonGiaBan(), 1, tinhThanhTien(1, s.getDonGiaBan())});

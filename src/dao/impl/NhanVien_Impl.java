@@ -147,19 +147,22 @@ public class NhanVien_Impl extends UnicastRemoteObject implements NhanVien_Dao {
         return maCa;
     }
 
+    @Override
     public String getChucVuTheoTen(String tenDangNhap) throws RemoteException {
-        String cVu = "";
+        String chucVu = "";
         try {
             String query = "SELECT chucVu FROM NhanVien WHERE tenDangNhap like :tenDangNhap";
             EntityManager em = emf.createEntityManager();
             Query q = em.createNativeQuery(query);
             q.setParameter("tenDangNhap", tenDangNhap);
             List<?> list = q.getResultList();
-            cVu = (String) list.get(0);
+            for(Object o : list) {
+                chucVu = (String) o;
+            }
             em.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return cVu;
+        return chucVu;
     }
 }

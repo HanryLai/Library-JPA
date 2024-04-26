@@ -138,7 +138,7 @@ public class FrmChinh extends javax.swing.JFrame {
             public void selected(int index, int subIndex) throws Exception {
                 if (index == 0) {
                     dispose();
-//                    new FrmChinh().setVisible(true);
+                    new FrmChinh().setVisible(true);
                 } else if (index == 1 && subIndex == 1) {
                     showForm(new FrmLapHoaDon());
                 } else if (index == 1 && subIndex == 2) {
@@ -178,8 +178,7 @@ public class FrmChinh extends javax.swing.JFrame {
                         e.printStackTrace();
                     }
                 } else if (index == 5 && subIndex == 1) {
-                    System.out.println(dao_nv.getChucVuTheoTen(gui.FrmLogin.tenDN));
-                    if (dao_nv.getChucVuTheoTen(gui.FrmLogin.tenDN).equalsIgnoreCase("THUNGAN")) {
+                    if (dao_nv.getChucVuTheoTen(gui.FrmLogin.tenDN).equalsIgnoreCase("THUNGAN")){
                         System.out.println("Value of tenDN 1: " + gui.FrmLogin.tenDN);
                         try {
                             showForm(new FrmBaoCao());

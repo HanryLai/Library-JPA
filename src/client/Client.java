@@ -5,6 +5,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import client_Dao.Dao_Package_Static;
+import gui.FrmChinh;
 import gui.FrmLogin;
 
 public class Client {
@@ -14,5 +15,9 @@ public class Client {
         Dao_Package_Static.init(url);
         
         FrmLogin frmLogin = new FrmLogin();
+        frmLogin.setVisible(true);
     }
 }
+
+
+
