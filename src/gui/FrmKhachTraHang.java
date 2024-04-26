@@ -331,6 +331,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
                 hdht.setTienHoanTra(Double.parseDouble(lblTongTienHoan.getText()));
 
                 dao_hdht.createHoaDonHoanTra(hdht);
+                hdht = dao_hdht.getAllHoaDonHoanTra().getLast();
                 DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
                 String ma = "";
                 for (int i = 0; i < tableInForSP.getRowCount(); i++) {
