@@ -410,12 +410,13 @@ public class FrmNhanVien extends javax.swing.JPanel {
         jDateChooser3.setDate(new Date());
         int stt = 1;
         for (NhanVien nv : data) {
+            String tenCa = "";
             if (nv.getCaLamViec().getMaCa() == 1) {
-                nv.getCaLamViec().setTenCa("Sáng");
+                tenCa = "Sáng";
             } else if (nv.getCaLamViec().getMaCa() == 2) {
-                nv.getCaLamViec().setTenCa("Chiều");
+                tenCa = "Chiều";
             } else {
-                nv.getCaLamViec().setTenCa("Tối");
+                tenCa = "Tối";
             }
 
             if (nv.getTinhTrangLamViec() == 1) {
@@ -424,8 +425,8 @@ public class FrmNhanVien extends javax.swing.JPanel {
                     String.format("%s", nv.getHoTenNV()),
                     String.format("%s", nv.getChucVu()),
                     String.format("%s", nv.getGioiTinh()),
-                    String.format("%s", nv.getCaLamViec().getTenCa()),
-                    String.format("%s", "Đang làm việc")
+                    String.format("%s", tenCa),
+                        String.format("%s", "Đang làm việc")
                 };
                 model.addRow(newRow);
             } else {
@@ -434,7 +435,7 @@ public class FrmNhanVien extends javax.swing.JPanel {
                     String.format("%s", nv.getHoTenNV()),
                     String.format("%s", nv.getChucVu()),
                     String.format("%s", nv.getGioiTinh()),
-                    String.format("%s", nv.getCaLamViec().getTenCa()),
+                    String.format("%s", tenCa),
                     String.format("%s", "Đã nghỉ việc")
                 };
                 model.addRow(newRow);

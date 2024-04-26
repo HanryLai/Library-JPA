@@ -14,7 +14,7 @@ public class Client {
         
         Dao_Package_Static.init(url);
         
-        FrmChinh frmLogin = new FrmChinh();
+        FrmLogin frmLogin = new FrmLogin();
         frmLogin.setVisible(true);
     }
 }
