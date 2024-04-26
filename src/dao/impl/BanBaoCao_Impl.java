@@ -37,4 +37,9 @@ public class BanBaoCao_Impl extends UnicastRemoteObject implements BanBaoCao_Dao
 
 		return -1;
 	}
+	@Override
+	public BanBaoCao getBanBaoCaoTheoMa(int maBBC) throws RemoteException {
+		Generic_Impl<BanBaoCao> generic = new Generic_Impl<>(BanBaoCao.class, emf);
+		return generic.findById(maBBC);
+	}
 }
