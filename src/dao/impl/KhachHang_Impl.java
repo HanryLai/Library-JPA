@@ -128,13 +128,22 @@ public class KhachHang_Impl extends UnicastRemoteObject implements KhachHang_Dao
 
     public int getLastId() throws RemoteException {
         int id = 0;
+        EntityManager em    = emf.createEntityManager();
         try {
             String        query = "SELECT MAX(maKhachHang) FROM KhachHang";
-            EntityManager em    = emf.createEntityManager();
-            id = (int) em.createNativeQuery(query).getSingleResult();
+
+            List<?> list = em.createNativeQuery(query).getResultList();
+            if (list.get(0) != null) {
+                id = (int) list.get(0);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+        finally {
+            em.close();
+        }
+
         return id;
     }
 }
