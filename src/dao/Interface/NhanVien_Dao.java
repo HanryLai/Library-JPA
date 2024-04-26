@@ -18,6 +18,7 @@ public interface NhanVien_Dao extends Remote {
     public String getMaNhanVienQLDB() throws RemoteException;
     public String getMaNhanVienTNDB() throws RemoteException;
     public String getCaLamViecTheoNhanVien(String email) throws RemoteException;
+    public String getChucVuTheoTen(String tenDangNhap) throws RemoteException;
 
 
 }

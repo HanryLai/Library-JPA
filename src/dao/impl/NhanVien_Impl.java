@@ -5,6 +5,7 @@ import entityJPA.NhanVien;
 import entityJPA.VanPhongPham;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Query;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -144,5 +145,21 @@ public class NhanVien_Impl extends UnicastRemoteObject implements NhanVien_Dao {
             e.printStackTrace();
         }
         return maCa;
+    }
+
+    public String getChucVuTheoTen(String tenDangNhap) throws RemoteException {
+        String cVu = "";
+        try {
+            String query = "SELECT chucVu FROM NhanVien WHERE tenDangNhap like :tenDangNhap";
+            EntityManager em = emf.createEntityManager();
+            Query q = em.createNativeQuery(query);
+            q.setParameter("tenDangNhap", tenDangNhap);
+            List<?> list = q.getResultList();
+            cVu = (String) list.get(0);
+            em.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cVu;
     }
 }
