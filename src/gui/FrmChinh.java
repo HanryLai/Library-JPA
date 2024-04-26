@@ -138,7 +138,7 @@ public class FrmChinh extends javax.swing.JFrame {
             public void selected(int index, int subIndex) throws Exception {
                 if (index == 0) {
                     dispose();
-//                    new FrmChinh().setVisible(true);
+                    new FrmChinh().setVisible(true);
                 } else if (index == 1 && subIndex == 1) {
                     showForm(new FrmLapHoaDon());
                 } else if (index == 1 && subIndex == 2) {

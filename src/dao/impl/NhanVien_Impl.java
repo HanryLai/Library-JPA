@@ -155,7 +155,9 @@ public class NhanVien_Impl extends UnicastRemoteObject implements NhanVien_Dao {
             Query q = em.createNativeQuery(query);
             q.setParameter("tenDangNhap", tenDangNhap);
             List<?> list = q.getResultList();
-            cVu = (String) list.get(0);
+            for(Object o : list) {
+                cVu = (String) o;
+            }
             em.close();
         } catch (Exception e) {
             e.printStackTrace();

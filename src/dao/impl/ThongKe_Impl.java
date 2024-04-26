@@ -237,12 +237,20 @@ public class ThongKe_Impl extends UnicastRemoteObject implements ThongKe_Dao {
     @Override
     public double ThongKeTongDoanhThu() throws RemoteException {
         double tongDoanhThu = 0;
+        EntityManager em = emf.createEntityManager();
         try {
             String query = "SELECT SUM(tongTien) FROM HoaDon";
-            EntityManager em = emf.createEntityManager();
-            tongDoanhThu = (double) em.createNativeQuery(query).getSingleResult();
+            List<?> list = em.createNativeQuery(query).getResultList();
+            for (Object o : list) {
+                if (o != null) {
+                    tongDoanhThu = (double) o;
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        finally {
+            em.close();
         }
         return tongDoanhThu;
     }
@@ -279,12 +287,17 @@ public class ThongKe_Impl extends UnicastRemoteObject implements ThongKe_Dao {
         EntityManager em = emf.createEntityManager();
         try{
             String query = "SELECT SUM(soLuong) AS SoLuongSanPhamDaBan FROM ChiTietHoaDon WHERE ChiTietHoaDon.maHoaDon IN (SELECT maHoaDon FROM HoaDon WHERE ngayLap  BETWEEN ? AND ?)";
-            soLuongSanPhamDaBan = (int) em.createNativeQuery(query)
-                    .setParameter(1, new Date())
-                    .setParameter(2, new Date())
-                    .getSingleResult();
+            List<?> list = em.createNativeQuery(query).setParameter(1, new Date()).setParameter(2, new Date()).getResultList();
+            for(Object o : list){
+                if (o != null) {
+                    soLuongSanPhamDaBan = (int) o;
+                }
+            }
         }catch(Exception e) {
             e.printStackTrace();
+        }
+        finally {
+            em.close();
         }
         return soLuongSanPhamDaBan;
     }
